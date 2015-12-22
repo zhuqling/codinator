@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="arH-W2-gzB">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Oxm-5T-dZ9">
+            <objects>
+                <viewController id="arH-W2-gzB" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zvo-Ks-KGf"/>
+                        <viewControllerLayoutGuide type="bottom" id="aoQ-8n-qzE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CsW-jp-rgE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrainForLS" translatesAutoresizingMaskIntoConstraints="NO" id="Co7-Y5-J0x">
+                                <rect key="frame" x="200" y="200" width="200" height="200"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="5yg-L5-Vre"/>
+                                    <constraint firstAttribute="width" constant="200" id="iSf-gr-r46"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Co7-Y5-J0x" firstAttribute="centerX" secondItem="CsW-jp-rgE" secondAttribute="centerX" id="BVk-4T-QNw"/>
+                            <constraint firstItem="Co7-Y5-J0x" firstAttribute="centerY" secondItem="CsW-jp-rgE" secondAttribute="centerY" id="vAm-PR-mnq"/>
+                        </constraints>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RTr-Dd-foJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="141" y="445"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="BrainForLS" width="200" height="200"/>
+    </resources>
+</document>
