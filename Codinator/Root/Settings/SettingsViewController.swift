@@ -174,7 +174,7 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
             self.presentMail("Codinator", message: "Hi Vladimir,<br>", includeLink: false)
         }
         
-        let recomendAction = UIAlertAction(title: "Recomand a Friend", style: .Default) { (UIAlertAction) in
+        let recomendAction = UIAlertAction(title: "Recommend a Friend", style: .Default) { (UIAlertAction) in
             self.presentMail("Codinator", message: "Hey,<br>Coding on the go has never been easy... But Codinator is a real life changer! It makes coding really confortable on mobile devices and even supports versioning.<br><br><a href=\"https://itunes.apple.com/us/app/codinator/id1024671232?ls=1&mt=8\">You should really try it out.</a>", includeLink: true)
         }
         
