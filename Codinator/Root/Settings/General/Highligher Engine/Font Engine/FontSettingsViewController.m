@@ -135,26 +135,7 @@ BOOL madeChanges;
 
 
 - (IBAction)closeButton:(id)sender {
-
-    
-    
-        if (madeChanges) {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"⚠️" message:@"You need to visit every Engine Rendering Layer to that the effect should appear at least once in this beta!" preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * __nonnull action) {
-                [self dismissViewControllerAnimated:true completion:nil];
-                [self dismissViewControllerAnimated:true completion:nil];
-            }];
-            
-            [alertController addAction:cancel];
-            
-            [self presentViewController:alertController animated:YES completion:nil];
-            
-        }
-        else{
-            [self dismissViewControllerAnimated:true completion:nil];
-        }
-
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 

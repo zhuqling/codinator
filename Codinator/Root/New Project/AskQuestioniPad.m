@@ -73,6 +73,10 @@ BOOL done;
     useFtp  = YES;
     
     
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy"];
+    NSString *yearString = [formatter stringFromDate:[NSDate date]];
+    copyrightTextField.text = yearString;
     
     [self checkNext];
     
@@ -190,7 +194,7 @@ BOOL done;
 
 -(void)checkNext{
     if (usePhp2 && useJs2 && useCss2 && useFtp2 && useVersion2) {
-        if (!webPageNameTextField.text.length == 0) {
+        if (webPageNameTextField.text.length == 0) {
             webPageNameTextField.backgroundColor = [UIColor blackColor];
             webPageNameTextField.textColor = copyrightTextField.textColor;
   

@@ -30,15 +30,11 @@ class SettingsGeneralViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
         self.showLineNumberSwitch.on = userDefauls.boolForKey(kLineNumber)
     
         self.useWebServerSwitch.on = userDefauls.boolForKey(kWebServer);
         self.useWebDavServerSwitch.on = userDefauls.boolForKey(kWebDavServer);
         self.useUploadServerSwitch.on = userDefauls.boolForKey(kUploadServer);
-        
-        
-        
     }
 
     
@@ -86,10 +82,6 @@ class SettingsGeneralViewController: UIViewController {
         userDefauls.setBool(self.useUploadServerSwitch.on, forKey: kWebDavServer)
         userDefauls.synchronize()
     }
-    
-    
-    
-    
     
     
     override func didReceiveMemoryWarning() {

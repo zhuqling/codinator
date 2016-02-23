@@ -36,7 +36,7 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
     
     override func viewDidAppear(animated: Bool) {
         
-                let maskPath = UIBezierPath(roundedRect: purpleView.bounds, byRoundingCorners: [UIRectCorner.BottomLeft, UIRectCorner.BottomRight], cornerRadii: CGSizeMake(15.0, 15.0))
+        let maskPath = UIBezierPath(roundedRect: purpleView.bounds, byRoundingCorners: [UIRectCorner.BottomLeft, UIRectCorner.BottomRight], cornerRadii: CGSizeMake(15.0, 15.0))
         
         let maskLayer = CAShapeLayer()
         maskLayer.frame = self.view.bounds
@@ -109,6 +109,8 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
             tweetSheet.setInitialText("#Codinator is amazing. Editing projects on the go has never been easier. You really should try it out!")
             tweetSheet.addURL(NSURL(string: "https://itunes.apple.com/us/app/codinator/id1024671232?ls=1&mt=8"))
             
+            tweetSheet.view.tintColor = self.view.tintColor
+            
             self.presentViewController(tweetSheet, animated: true, completion: nil)
             
             Answers.logCustomEventWithName("tweetPressed",
@@ -124,9 +126,6 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
     @IBAction func ratePressed(sender: AnyObject) {
 
         
-        
-        
-        
         let alert = UIAlertController(title: "Review", message: "Do you enjoy using Codinator?", preferredStyle: UIAlertControllerStyle.Alert)
         alert.view.tintColor = UIColor.purpleColor()
         
@@ -138,7 +137,7 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
         let hate = UIAlertAction(title: "Not really", style: UIAlertActionStyle.Cancel) { (UIAlertAction) -> Void in
            
             //Show email
-            self.presentMail("Codinnator Feedback", message: "Codinator is not working properly for me. Here is a brief description of what's going on:", includeLink: false)
+            self.presentMail("Codinator Feedback", message: "Codinator is not working properly for me. Here is a brief description of what's going on:", includeLink: false)
         
         }
         
@@ -164,8 +163,30 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
     @IBAction func mailPressed(sender: AnyObject) {
         //SHOW EMAIL
         
-        presentMail("Codinator", message: "Hey,<br>Coding on the go has never been easy... But Codinator is a real life changer! It makes coding really confortable on mobile devices and even supports versioning.<br><br><a href=\"https://itunes.apple.com/us/app/codinator/id1024671232?ls=1&mt=8\">You should really try it out.</a>", includeLink: true)
         
+        let alertController = UIAlertController(title: "Email Whom?", message: "", preferredStyle: .ActionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        
+        
+        let emailMeAction = UIAlertAction(title: "Email the Developer", style: .Default) { (UIAlertAction) in
+            self.presentMail("Codinator", message: "Hi Vladimir,<br>", includeLink: false)
+        }
+        
+        let recomendAction = UIAlertAction(title: "Recomand a Friend", style: .Default) { (UIAlertAction) in
+            self.presentMail("Codinator", message: "Hey,<br>Coding on the go has never been easy... But Codinator is a real life changer! It makes coding really confortable on mobile devices and even supports versioning.<br><br><a href=\"https://itunes.apple.com/us/app/codinator/id1024671232?ls=1&mt=8\">You should really try it out.</a>", includeLink: true)
+        }
+        
+        alertController.addAction(emailMeAction)
+        alertController.addAction(recomendAction)
+        
+        alertController.popoverPresentationController?.sourceView = (sender as! UIView).superview
+        alertController.popoverPresentationController?.sourceRect = (sender as! UIView).frame
+        
+        alertController.view.tintColor = sender.tintColor
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     
@@ -182,8 +203,8 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
                 mailController.setToRecipients(["vladidanila@icloud.com"])
             }
             
-            
             mailController.mailComposeDelegate = self
+            mailController.view.tintColor = self.view.tintColor
             
             self.presentViewController(mailController, animated: true, completion: nil)
       

@@ -803,7 +803,7 @@
             UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"Move file into a project 🚊" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
             
                 ///move FILE DIALOGE
-            
+                
             
             }];
         
@@ -956,19 +956,16 @@
 
 - (IBAction)versionDidPush:(id)sender {
     
-    NSString* version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString* build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
 
     
     NSString *versionString = [NSString stringWithFormat:@"Version: %@", version];
     NSString *buildString = [NSString stringWithFormat:@"Build (%@)", build];
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:versionString message:buildString preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:versionString message:buildString preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *close = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * __nonnull action) {
-        [alert dismissViewControllerAnimated:true completion:nil];
-    }];
-    
+    UIAlertAction *close = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:close];
 
     
@@ -980,18 +977,6 @@
 
     [alert addAction:settings];
 
-    UIAlertAction *devForum = [UIAlertAction actionWithTitle:@"Dev Forum" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-       
-        NSURL *url = [NSURL URLWithString:@"http://vwas.cf/solvinator/"];
-        SFSafariViewController *webVC = [[SFSafariViewController alloc] initWithURL:url];
-        webVC.view.tintColor = [UIColor purpleColor];
-        webVC.delegate = self;
-        
-        [self presentViewController:webVC animated:YES completion:nil];
-        
-    }];
-    
-    [alert addAction:devForum];
     
     UIAlertAction *newsFeed = [UIAlertAction actionWithTitle:@"News" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
         
@@ -1001,6 +986,7 @@
         SFSafariViewController *webVC = [[SFSafariViewController alloc] initWithURL:url];
         webVC.view.tintColor = [UIColor purpleColor];
         webVC.delegate = self;
+        webVC.modalPresentationStyle = UIModalPresentationFormSheet;
         
         [self presentViewController:webVC animated:YES completion:nil];
         
@@ -1010,6 +996,13 @@
     [alert addAction:newsFeed];
     
     alert.view.tintColor = [UIColor purpleColor];
+    
+    alert.modalPresentationStyle = UIModalPresentationPopover;
+    UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+    popPresenter.sourceView = sender;
+    
+    UIButton *senderButton = (UIButton *)sender;
+    popPresenter.sourceRect = senderButton.bounds;
     
     
     [self presentViewController:alert animated:true completion:nil];

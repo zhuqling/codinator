@@ -64,7 +64,7 @@
 {
 
     if (section == 0) {
-        return @"Autobackup";
+        return @"Auto Backup";
     }
     else{
         return @"Snapshots";
@@ -105,7 +105,7 @@
         NSString *time = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
         
         
-        cell.versionLabel.text =  [NSString stringWithFormat:@"Autobackup@<%@>", time];
+        cell.versionLabel.text =  [NSString stringWithFormat:@"Auto Backup@<%@>", time];
         cell.versionLabel.font = [UIFont systemFontOfSize:35.0f];
         cell.descriptionTextView.text = @"Automatic snapshot taken every 10 min";
     

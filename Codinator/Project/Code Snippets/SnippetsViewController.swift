@@ -11,15 +11,11 @@ import UIKit
 class ImgSnippetsViewController: UIViewController,UITextFieldDelegate {
    
     @IBOutlet var textField: UITextField!
-   
     
     @IBOutlet var width: UITextField!
     @IBOutlet var height: UITextField!
    
     
-    
-    var code : NSString = "";
-
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -31,22 +27,22 @@ class ImgSnippetsViewController: UIViewController,UITextFieldDelegate {
         var status : String = ""
         
         let text = textField.text
-        let number = text!.characters.count
+        let characterCount = text!.characters.count
         
-        if number != 0{
+        if characterCount != 0 {
             let image: NSString = (textField.text! as NSString).lastPathComponent
             let imageName: NSString = image.stringByDeletingPathExtension
-        code = "<img src=\"\(text)\" alt=\"\(imageName)\"  width=\"\(width.text)\" height=\"\(height.text)\">"
-        status = "copied"
+            let code = "<img src=\"\(text)\" alt=\"\(imageName)\"  width=\"\(width.text)\" height=\"\(height.text)\">"
+            status = "copied"
+            
+            let pasteboard = UIPasteboard.generalPasteboard()
+            pasteboard.string = code
         }
         else{
             print("Error")
             status = "copiedError"
         }
-            
-    
-        let pasteboard = UIPasteboard.generalPasteboard()
-        pasteboard.string = code as String
+        
         
         
         self.dismissViewControllerAnimated(true, completion: {
@@ -74,14 +70,13 @@ class LinkSnippetsViewController :UIViewController,UITextFieldDelegate{
     
     @IBAction func generateDidPush(sender: AnyObject) {
     
-        if (nameTextField.text!.isEmpty){
+        if nameTextField.text!.isEmpty {
             nameTextField.becomeFirstResponder()
         }
-        else if (textField.text!.isEmpty){
+        else if textField.text!.isEmpty {
             textField.becomeFirstResponder()
         }
         else{
-        
             let code = "<a href=\"\(textField.text)\">\(nameTextField.text)</a>"
             let pasteBoard = UIPasteboard.generalPasteboard()
             pasteBoard.string = code
@@ -137,16 +132,13 @@ class ListSnippetsViewController :UIViewController{
     }
     
     @IBAction func generateDidPush(sender: AnyObject) {
-        let integer = Int(stepper.value)
-        
         var  tags = "<ul> \n"
         
       
-        for var i = 0; i <= integer; i++
+        for _ in 1...Int(stepper.value)
         {
             let middleTag = "   <li></li> \n"
             tags += middleTag
-            print("\(i)")
         }
         tags += "</ul> "
         
@@ -167,12 +159,10 @@ class ListSnippetsViewController :UIViewController{
 class ColorPickerViewController: UIViewController{
 
     var displayed = false
-    
     let colorPickerView = HRColorPickerView(frame: CGRectMake(0, 0, 400, 550))
     
+    
     override func viewDidLoad() {
-
-        
         if let color = NSUserDefaults.standardUserDefaults().colorForKey("colorPickerCn"){
             colorPickerView.color = color
         }
@@ -181,10 +171,7 @@ class ColorPickerViewController: UIViewController{
         }
         
         self.view.addSubview(colorPickerView)
-        
         colorPickerView.addTarget(self, action: "colorPickerDidChanged", forControlEvents: UIControlEvents.ValueChanged)
-        
-        
     }
     
     
@@ -204,10 +191,7 @@ class ColorPickerViewController: UIViewController{
     
     }
     
-    
-
-    
-    
+     
 }
 
 

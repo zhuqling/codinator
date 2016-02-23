@@ -154,7 +154,7 @@ public func >>(lhs: String, rhs: String) -> [LTCharacterDiffResult] {
         default:
             ()
         }
-        i++
+        i += 1
     }
     
     return diffResults

@@ -19,13 +19,9 @@
 //close button
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 
-
-
 //customize
 @property (weak, nonatomic) IBOutlet UISegmentedControl *fontSegment;
 @property (weak, nonatomic) IBOutlet UIButton *changeColorButton;
-
-
 
 //macros
 @property (weak, nonatomic) IBOutlet UITextView *macroTextView;
@@ -33,12 +29,9 @@
 //overview
 @property (weak, nonatomic) IBOutlet UILabel *overViewLabel;
 
-
 //UI
 @property (weak, nonatomic) IBOutlet UIView *pickerView;
 @property (weak, nonatomic) IBOutlet UIButton *okButtonForPickerView;
-
-
 
 
 @end
@@ -48,12 +41,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
     self.closeButton.layer.cornerRadius = 5;
     self.closeButton.layer.masksToBounds = YES;
-
-
-
 
     [self load];
 
@@ -65,7 +54,6 @@
     [self.pickerView addSubview:colorPicker];
     [self.okButtonForPickerView removeFromSuperview];
     [self.pickerView addSubview:self.okButtonForPickerView];
-    
 }
 
 
@@ -100,8 +88,6 @@
 
 
 - (void)load{
-    
-    
     
     switch (self.selectedType) {
             
@@ -156,39 +142,28 @@
 
 
 - (NSString *)macro{
-
     NSString *key = [NSString stringWithFormat:@"Macro:%li",(long)self.selectedType];
-
     return [[NSUserDefaults standardUserDefaults] stringForKey:key];
 }
 
 
 - (void)saveMacro{
-    
     NSString *key = [NSString stringWithFormat:@"Macro:%li",(long)self.selectedType];
-   
     [[NSUserDefaults standardUserDefaults] setObject:self.macroTextView.text forKey:key];
 }
 
 
 
-
-
-
 - (void)saveAttributes{
- 
     NSString *saveKey = [NSString stringWithFormat:@"Macro:%li Attribute",(long)self.selectedType];
     NSString *fontKey = [NSString stringWithFormat:@"Font: %li",(long)self.fontSegment.selectedSegmentIndex];
-    
     
     NSDictionary *attributes = @{
                                 NSForegroundColorAttributeName : self.changeColorButton.tintColor,
                                 NSFontAttributeName : [[NSUserDefaults standardUserDefaults] fontForKey:fontKey]
                                 };
     
-    
     [[NSUserDefaults standardUserDefaults] setDic:attributes ForKey:saveKey];
-    
 }
 
 
@@ -201,7 +176,6 @@
 - (IBAction)closeDidPush:(id)sender {
     [self saveMacro];
     [self saveAttributes];
-    
     [self dismissViewControllerAnimated:true completion:nil];
 }
 

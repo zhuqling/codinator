@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		649B64721C7B618900E0830D /* ContributeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649B64711C7B618900E0830D /* ContributeViewController.swift */; };
 		64A080B91BDBD9D60001CA0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A080B81BDBD9D60001CA0C /* main.m */; };
 		64A080BC1BDBD9D60001CA0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A080BB1BDBD9D60001CA0C /* AppDelegate.m */; };
 		64A080C21BDBD9D60001CA0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A080C01BDBD9D60001CA0C /* Main.storyboard */; };
@@ -35,7 +36,6 @@
 		64A081311BDBE0520001CA0C /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0812F1BDBE0520001CA0C /* PlaygroundViewController.swift */; };
 		64A081321BDBE0520001CA0C /* Neuron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A081301BDBE0520001CA0C /* Neuron.swift */; };
 		64A081351BDBE07E0001CA0C /* ProjectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A081341BDBE07E0001CA0C /* ProjectCollectionViewCell.m */; };
-		64A0813B1BDBE0AE0001CA0C /* ContributeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0813A1BDBE0AE0001CA0C /* ContributeController.m */; };
 		64A0813D1BDBE0B60001CA0C /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0813C1BDBE0B60001CA0C /* SettingsGeneralViewController.swift */; };
 		64A081431BDBE12A0001CA0C /* FontSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A081421BDBE12A0001CA0C /* FontSettingsViewController.m */; };
 		64A081461BDBE13A0001CA0C /* EngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A081451BDBE13A0001CA0C /* EngineViewController.m */; };
@@ -195,6 +195,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		649B64711C7B618900E0830D /* ContributeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeViewController.swift; sourceTree = "<group>"; };
 		64A080B41BDBD9D60001CA0C /* Codinator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Codinator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A080B81BDBD9D60001CA0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		64A080BA1BDBD9D60001CA0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
@@ -248,13 +249,11 @@
 		64A081281BDBE0180001CA0C /* PlaygroundTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaygroundTextView.m; sourceTree = "<group>"; };
 		64A0812B1BDBE0390001CA0C /* NewPlaygroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPlaygroundViewController.h; sourceTree = "<group>"; };
 		64A0812C1BDBE0390001CA0C /* NewPlaygroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPlaygroundViewController.m; sourceTree = "<group>"; };
-		64A0812E1BDBE0520001CA0C /* Codinator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Codinator-Bridging-Header.h"; path = "Root/Playground/Codinator-Bridging-Header.h"; sourceTree = "<group>"; };
+		64A0812E1BDBE0520001CA0C /* Thumbnail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Thumbnail.h; path = "../../../Open Source/Polaris/Thumbnail.h"; sourceTree = "<group>"; };
 		64A0812F1BDBE0520001CA0C /* PlaygroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
-		64A081301BDBE0520001CA0C /* Neuron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Neuron.swift; sourceTree = "<group>"; };
+		64A081301BDBE0520001CA0C /* Neuron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Neuron.swift; path = "../../../../../Xcode 7 libs/Neuron.swift"; sourceTree = "<group>"; };
 		64A081331BDBE07E0001CA0C /* ProjectCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCollectionViewCell.h; sourceTree = "<group>"; };
 		64A081341BDBE07E0001CA0C /* ProjectCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCollectionViewCell.m; sourceTree = "<group>"; };
-		64A081391BDBE0AE0001CA0C /* ContributeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContributeController.h; sourceTree = "<group>"; };
-		64A0813A1BDBE0AE0001CA0C /* ContributeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContributeController.m; sourceTree = "<group>"; };
 		64A0813C1BDBE0B60001CA0C /* SettingsGeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGeneralViewController.swift; sourceTree = "<group>"; };
 		64A081411BDBE12A0001CA0C /* FontSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontSettingsViewController.h; sourceTree = "<group>"; };
 		64A081421BDBE12A0001CA0C /* FontSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontSettingsViewController.m; sourceTree = "<group>"; };
@@ -591,7 +590,7 @@
 		64A080B71BDBD9D60001CA0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				64A0812E1BDBE0520001CA0C /* Codinator-Bridging-Header.h */,
+				64A0812E1BDBE0520001CA0C /* Thumbnail.h */,
 				64A080B81BDBD9D60001CA0C /* main.m */,
 				64A0810C1BDBDCF10001CA0C /* PrefixHeader.pch */,
 			);
@@ -849,8 +848,7 @@
 		64A081381BDBE0A20001CA0C /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				64A081391BDBE0AE0001CA0C /* ContributeController.h */,
-				64A0813A1BDBE0AE0001CA0C /* ContributeController.m */,
+				649B64711C7B618900E0830D /* ContributeViewController.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -962,7 +960,7 @@
 				64A081BF1BDBE3790001CA0C /* UIColor+HexString.m */,
 			);
 			name = Polaris;
-			path = ../../../Polaris;
+			path = "../../../../Open Source/Polaris";
 			sourceTree = "<group>";
 		};
 		64A081821BDBE3780001CA0C /* Encrytion */ = {
@@ -1495,7 +1493,6 @@
 			children = (
 				64A082E61BDCD82E0001CA0C /* Archive */,
 				64A082E51BDCD8250001CA0C /* History */,
-				64A082E41BDCD81B0001CA0C /* Related To Uploading */,
 			);
 			path = "Product Button";
 			sourceTree = "<group>";
@@ -1533,13 +1530,6 @@
 				64A082E21BDCD7BC0001CA0C /* NewFileViewController.m */,
 			);
 			path = "New File";
-			sourceTree = "<group>";
-		};
-		64A082E41BDCD81B0001CA0C /* Related To Uploading */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Related To Uploading";
 			sourceTree = "<group>";
 		};
 		64A082E51BDCD8250001CA0C /* History */ = {
@@ -1930,7 +1920,6 @@
 				64A082441BDBE4DC0001CA0C /* CLImageToolBase.m in Sources */,
 				64A080FF1BDBDC3E0001CA0C /* unzip.c in Sources */,
 				64A082781BDBE4EC0001CA0C /* CLTextLabel.m in Sources */,
-				64A0813B1BDBE0AE0001CA0C /* ContributeController.m in Sources */,
 				64A082481BDBE4DC0001CA0C /* CLColorPickerView.m in Sources */,
 				64A082A71BDBE7CC0001CA0C /* CSLayerStealingBlurView.m in Sources */,
 				64A0823A1BDBE4DC0001CA0C /* CLGloomEffect.m in Sources */,
@@ -1945,6 +1934,7 @@
 				64A082DA1BDCD7980001CA0C /* NewImportViewController.swift in Sources */,
 				64A080EA1BDBDBFE0001CA0C /* HRColorCursor.m in Sources */,
 				64A081461BDBE13A0001CA0C /* EngineViewController.m in Sources */,
+				649B64721C7B618900E0830D /* ContributeViewController.swift in Sources */,
 				64A081D51BDBE3790001CA0C /* GCDWebServerStreamedResponse.m in Sources */,
 				64A081D21BDBE3790001CA0C /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				64A081251BDBDFD80001CA0C /* CBZVectorSplashView.m in Sources */,
@@ -2142,6 +2132,7 @@
 				64A080CD1BDBD9D60001CA0C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

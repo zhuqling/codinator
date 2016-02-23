@@ -63,11 +63,8 @@
         nameTextField.backgroundColor = [UIColor redColor];
         nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Dir name..." attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
         [nameTextField becomeFirstResponder];
-
     }
     else{
-        
-        
         NSError *error;
         NSString *name = [NSString stringWithFormat:@"%@/",nameTextField.text];
         NSString *dirPath = [projectManager.inspectorPath stringByAppendingPathComponent:name];
@@ -89,8 +86,6 @@
                             }];
             [alert addAction:closeAlert];
             [self presentViewController:alert animated:YES completion:nil];
-            
-            
         }
         
 

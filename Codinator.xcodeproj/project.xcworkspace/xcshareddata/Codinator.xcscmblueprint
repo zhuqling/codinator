@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A538BA9F3253DCAA87781DA465E11C259BEC7B00",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DA886E2245D7B121BF6B2203145D21CB7C15A611" : 0,
+    "A538BA9F3253DCAA87781DA465E11C259BEC7B00" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8D166164-01F8-46AC-953E-F187059DADFE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DA886E2245D7B121BF6B2203145D21CB7C15A611" : "..\/Open%20Source\/Polaris",
+    "A538BA9F3253DCAA87781DA465E11C259BEC7B00" : "Codinator\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Codinator",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Codinator.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/VWAS\/Codiantor.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A538BA9F3253DCAA87781DA465E11C259BEC7B00"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/VWAS\/Polaris.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DA886E2245D7B121BF6B2203145D21CB7C15A611"
+    }
+  ]
+}

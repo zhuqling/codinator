@@ -23,18 +23,13 @@ class MadeByViewController: UIViewController {
     
     
     @IBAction func pupilsDidPressed(sender: AnyObject) {
-        
         let alert = UIAlertController(title: nil, message: "Vladimir Danila - 16 y.o 🇩🇪\n Sam Miller - 15 y.o 🇨🇦\n Enoch Appathurai - 14 y.o 🇦🇺", preferredStyle: UIAlertControllerStyle.Alert)
         alert.view.tintColor = UIColor.purpleColor()
         
-        let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }
+        let action = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
         alert.addAction(action)
         
         self.presentViewController(alert, animated: true, completion: nil)
-        
-        
     }
     
     
