@@ -13,6 +13,8 @@
 #import "AppDelegate.h"
 
 #import "WelcomeViewController.h"
+#import "SettingsEngine.h"
+
 #import "ProjectCollectionViewCell.h"
 
 
@@ -258,7 +260,6 @@
 
 - (void)setUp{
     
-    
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"CNFirstRunEver"]) {
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self performSegueWithIdentifier:@"setUp" sender:nil];
@@ -266,118 +267,17 @@
         
     }
     
-    
-    NSOperation *backgroundOperation = [[NSOperation alloc] init];
-    backgroundOperation.queuePriority = NSOperationQueuePriorityLow;
-    backgroundOperation.qualityOfService = NSOperationQualityOfServiceBackground;
-    
-    backgroundOperation.completionBlock = ^{
-        
-        NSString *macro = [[NSUserDefaults standardUserDefaults] stringForKey:@"MacroInit"];
-    
-        if (![macro isEqualToString:@"MacroInitNewB3"]) {
-        
-            
-            macro = @"MacroInitNewB3";
 
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            
-            
-            //save macros
-            
-            NSString *tagMacro = @"<.*?(>)";
-            NSString *bracketsMacro = @"[\\[\\]]";
-            NSString *keywordsMacro = @"(algin|width|height|color|text|border|bgcolor|description|name|content|href|src|charset|class|role|id|<!DOCTYPE html>|border)";
-            NSString *stringMacro = @"\".*?(\"|$)";
-        
-            [userDefaults setObject:macro forKey:@"MacroInit"];
-            [userDefaults setObject:tagMacro forKey:@"Macro:3"];
-            [userDefaults setObject:bracketsMacro forKey:@"Macro:4"];
-            [userDefaults setObject:keywordsMacro forKey:@"Macro:5"];
-            [userDefaults setObject:stringMacro forKey:@"Macro:6"];
+    NSString *macro = [[NSUserDefaults standardUserDefaults] stringForKey:@"MacroInit"];
+    NSString *expectedMacro = [[NSUserDefaults standardUserDefaults] stringForKey:@"MacroInitNewB4"];
+   
+    if (![macro isEqualToString:expectedMacro]) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:expectedMacro forKey:@"MacroInit"];
 
-            //save fonts
-            
-            UIFont *normalFont = [UIFont systemFontOfSize:14];
-            UIFont *italicFont = [UIFont italicSystemFontOfSize:14];
-            UIFont *boldFont = [UIFont boldSystemFontOfSize:14];
-            
-            [userDefaults setFont:normalFont forKey:@"Font: 0"];
-            [userDefaults setFont:italicFont forKey:@"Font: 1"];
-            [userDefaults setFont:boldFont forKey:@"Font: 2"];
-         
-            
-            //Save colors
-            
-            
-            UIColor *tagColor = [UIColor redColor];
-            UIColor *bracketsColor = [UIColor orangeColor];
-            UIColor *keyworkdsColor = [UIColor grayColor];
-            UIColor *stringColor = RGB(3, 128, 30);
-            
-            
-            [userDefaults setColor:tagColor ForKey:@"Color: 3"];
-            [userDefaults setColor:bracketsColor ForKey:@"Color: 4"];
-            [userDefaults setColor:keyworkdsColor ForKey:@"Color: 5"];
-            [userDefaults setColor:stringColor ForKey:@"Color: 6"];
-            
-            
-            
-            //Attributs Dictionary
-            
-            
-            NSDictionary *tagDictionary = @{
-                                         NSForegroundColorAttributeName : tagColor,
-                                         NSFontAttributeName : normalFont
-                                         };
-            
-            
-
-            
-            NSDictionary *bracketsDictionary = @{
-                                            NSForegroundColorAttributeName : bracketsColor,
-                                            NSFontAttributeName : boldFont
-                                            };
-            
-            
-            NSDictionary *keywordsDictionary = @{
-                                            NSForegroundColorAttributeName : keyworkdsColor,
-                                            NSFontAttributeName : boldFont
-                                            };
-            
-            
-            NSDictionary *stringDictionary = @{
-                                            NSForegroundColorAttributeName : stringColor,
-                                            NSFontAttributeName : normalFont
-                                            };
-            
-            
-            
-            
-            [userDefaults setDic:tagDictionary ForKey:@"Macro:3 Attribute"];
-            [userDefaults setDic:bracketsDictionary ForKey:@"Macro:4 Attribute"];
-            [userDefaults setDic:keywordsDictionary ForKey:@"Macro:5 Attribute"];
-            [userDefaults setDic:stringDictionary ForKey:@"Macro:6 Attribute"];
-
-            
-            
-            
-            //Codinator General
-            
-            [userDefaults setBool:NO forKey:@"CnLineNumber"];
-            [userDefaults setBool:YES forKey:@"CnWebServer"];
-            [userDefaults setBool:YES forKey:@"CnWebDavServer"];
-            [userDefaults setBool:YES forKey:@"CnUploadServer"];
-            
-        }
-
-        
-    };
-    
-    
-    [[NSOperationQueue mainQueue] addOperation:backgroundOperation];
-    
-        
+        [SettingsEngine restoreSyntaxSettings];
+        [SettingsEngine restoreServerSettings];
+    }
 }
 
 
@@ -951,7 +851,6 @@
 
 
 
-#pragma mark - >= Beta 3
 
 
 - (IBAction)versionDidPush:(id)sender {

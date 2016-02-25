@@ -192,6 +192,7 @@
 		64A083661BDD24680001CA0C /* project.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A083651BDD24680001CA0C /* project.storyboard */; };
 		64A083691BDD35250001CA0C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A083671BDD35240001CA0C /* Fabric.framework */; };
 		64A0836A1BDD35250001CA0C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A083681BDD35250001CA0C /* Crashlytics.framework */; };
+		64B67C8F1C7F53440040E574 /* SettingsEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B67C8E1C7F53440040E574 /* SettingsEngine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -539,6 +540,8 @@
 		64A083671BDD35240001CA0C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		64A083681BDD35250001CA0C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		64A0836B1BDD61E70001CA0C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		64B67C8D1C7F53440040E574 /* SettingsEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsEngine.h; sourceTree = "<group>"; };
+		64B67C8E1C7F53440040E574 /* SettingsEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsEngine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -860,6 +863,8 @@
 				64A0813F1BDBE1130001CA0C /* Engine */,
 				64A081471BDBE14B0001CA0C /* HighlighterEngineCustomizerRootViewController.h */,
 				64A081481BDBE14B0001CA0C /* HighlighterEngineCustomizerRootViewController.m */,
+				64B67C8D1C7F53440040E574 /* SettingsEngine.h */,
+				64B67C8E1C7F53440040E574 /* SettingsEngine.m */,
 			);
 			path = "Highligher Engine";
 			sourceTree = "<group>";
@@ -1798,6 +1803,7 @@
 				64A081611BDBE1F90001CA0C /* LTMorphingEffect.swift in Sources */,
 				64A082771BDBE4EC0001CA0C /* CLPickerView.m in Sources */,
 				64A081671BDBE1F90001CA0C /* LTMorphingLabel+Sparkle.swift in Sources */,
+				64B67C8F1C7F53440040E574 /* SettingsEngine.m in Sources */,
 				64A082401BDBE4DC0001CA0C /* CLEffectBase.m in Sources */,
 				64A081CC1BDBE3790001CA0C /* GCDWebServerDataRequest.m in Sources */,
 				64A0810B1BDBDC840001CA0C /* UZKFileInfo.m in Sources */,

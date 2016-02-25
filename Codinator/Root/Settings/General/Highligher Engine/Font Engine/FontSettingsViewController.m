@@ -7,9 +7,8 @@
 //
 
 #import "FontSettingsViewController.h"
-
 #import "NSUserDefaults+Additions.h"
-
+#import "SettingsEngine.h"
 
 @interface FontSettingsViewController ()
 
@@ -135,6 +134,13 @@ BOOL madeChanges;
 
 
 - (IBAction)closeButton:(id)sender {
+    
+    
+    if (madeChanges) {
+        [SettingsEngine reloadSyntaxLayers];
+    }
+    
+    
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
