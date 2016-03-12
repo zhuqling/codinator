@@ -24,15 +24,15 @@ class ImgSnippetsViewController: UIViewController,UITextFieldDelegate {
     
     @IBAction func copyDidPush(sender: AnyObject) {
      
-        var status : String = ""
+        var status = ""
         
         let text = textField.text
         let characterCount = text!.characters.count
         
         if characterCount != 0 {
-            let image: NSString = (textField.text! as NSString).lastPathComponent
-            let imageName: NSString = image.stringByDeletingPathExtension
-            let code = "<img src=\"\(text)\" alt=\"\(imageName)\"  width=\"\(width.text)\" height=\"\(height.text)\">"
+            let image = (textField.text! as NSString).lastPathComponent
+            let imageName = (image as NSString).stringByDeletingPathExtension
+            let code = "<img src=\"\(text)\" alt=\"\(imageName)\"  width=\"\(width.text!)\" height=\"\(height.text!)\">"
             status = "copied"
             
             let pasteboard = UIPasteboard.generalPasteboard()
@@ -77,7 +77,7 @@ class LinkSnippetsViewController :UIViewController,UITextFieldDelegate{
             textField.becomeFirstResponder()
         }
         else{
-            let code = "<a href=\"\(textField.text)\">\(nameTextField.text)</a>"
+            let code = "<a href=\"\(textField.text!)\">\(nameTextField.text!)</a>"
             let pasteBoard = UIPasteboard.generalPasteboard()
             pasteBoard.string = code
             

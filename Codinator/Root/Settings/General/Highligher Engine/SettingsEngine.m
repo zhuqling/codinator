@@ -123,10 +123,13 @@
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         
-        for (NSInteger i = 3; i<= 10; i++) {
+        for (NSInteger i = 3; i<= 6; i++) {
             NSString *saveKey = [NSString stringWithFormat:@"Macro:%li Attribute",(long)i];
             NSString *fontKey = [NSString stringWithFormat:@"Font: %li",(long)i];
             NSString *colorKey = [NSString stringWithFormat:@"Color: %li",(long)i];
+            
+
+            NSLog(@"%li", (long)i);
             
             NSDictionary *attributes = @{
                                          NSForegroundColorAttributeName : [userDefaults colorForKey: colorKey],
