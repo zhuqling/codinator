@@ -900,8 +900,8 @@
     UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
     popPresenter.sourceView = sender;
     
-    UIButton *senderButton = (UIButton *)sender;
-    popPresenter.sourceRect = senderButton.bounds;
+    UIBarButtonItem *senderButton = sender;
+    popPresenter.barButtonItem = senderButton;
     
     
     [self presentViewController:alert animated:true completion:nil];
@@ -909,7 +909,7 @@
 
 - (IBAction)plusDidPush:(id)sender {
     
-    UIButton *plusButton = sender;
+    UIBarButtonItem *plusButton = sender;
 
     
     
@@ -922,7 +922,7 @@
         UIAlertController *projectAlert = [UIAlertController alertControllerWithTitle:nil message:@"Do you want to create a new project or import an existing one?" preferredStyle:UIAlertControllerStyleActionSheet];
         
         projectAlert.popoverPresentationController.sourceView = self.plusButtonSuperView;
-        projectAlert.popoverPresentationController.sourceRect = plusButton.frame;
+        projectAlert.popoverPresentationController.barButtonItem = plusButton;
         
         UIAlertAction *createProjectAction = [UIAlertAction actionWithTitle:@"Create" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
                [self performSegueWithIdentifier:@"newProj" sender:self];
@@ -972,7 +972,7 @@
 
     
     newDoc.popoverPresentationController.sourceView = self.plusButtonSuperView;
-    newDoc.popoverPresentationController.sourceRect = plusButton.frame;
+    newDoc.popoverPresentationController.barButtonItem = plusButton;
     
     
     [self presentViewController:newDoc animated:YES completion:nil];

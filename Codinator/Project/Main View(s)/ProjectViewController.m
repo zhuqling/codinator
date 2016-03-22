@@ -283,7 +283,7 @@ BOOL allowSaving;
         
     });
     
-    
+    self.navigationController.navigationBar.hidden = true;
 }
 
 
@@ -1861,10 +1861,16 @@ BOOL allowSaving;
 
 }
 
-
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    self.navigationController.navigationBar.hidden = false;
+}
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:YES];
+    
+    
 }
 
 
