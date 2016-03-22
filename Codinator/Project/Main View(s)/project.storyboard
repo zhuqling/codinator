@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15E49a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RWa-wq-ecS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RWa-wq-ecS">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -465,7 +465,7 @@
                                         <rect key="frame" x="0.0" y="22" width="90" height="99"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="43a-60-COm" id="YVR-gv-ZjG">
-                                            <rect key="frame" x="0.0" y="0.0" width="90" height="98"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="98.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C3r-sI-8X8">
@@ -1413,6 +1413,18 @@
                                     <action selector="php:" destination="P4p-YF-fYd" eventType="touchUpInside" id="174-wa-17k"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="VfQ-Q0-bpC">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="New File" id="drm-Tt-lzL">
+                                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="N6a-Uy-xQ8">
+                                            <connections>
+                                                <action selector="cancelDidPush:" destination="P4p-YF-fYd" id="Iqb-Kp-lVS"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.52941176469999995" green="0.31372549020000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1436,6 +1448,7 @@
                             <constraint firstItem="35i-lO-nBH" firstAttribute="top" secondItem="CKN-a2-qCB" secondAttribute="bottom" constant="45" id="Psm-SG-F56"/>
                             <constraint firstItem="EOL-bU-xN6" firstAttribute="centerY" secondItem="5x1-5w-1Zu" secondAttribute="centerY" id="QTn-aD-u8G"/>
                             <constraint firstItem="pe0-I4-SRd" firstAttribute="centerX" secondItem="CKN-a2-qCB" secondAttribute="centerX" id="R9g-vJ-3Pb"/>
+                            <constraint firstItem="VfQ-Q0-bpC" firstAttribute="top" secondItem="kgq-fX-07R" secondAttribute="bottom" id="SrA-Qb-hkQ"/>
                             <constraint firstItem="bir-hh-FOp" firstAttribute="leading" secondItem="ZTT-G6-IA0" secondAttribute="leadingMargin" id="TYB-ez-9IS"/>
                             <constraint firstItem="Ncp-6P-Ep3" firstAttribute="top" secondItem="kgq-fX-07R" secondAttribute="bottom" id="Vyz-yj-yG3"/>
                             <constraint firstItem="35i-lO-nBH" firstAttribute="centerX" secondItem="ZTT-G6-IA0" secondAttribute="centerX" id="XBo-yE-DeM"/>
@@ -1443,6 +1456,7 @@
                             <constraint firstItem="35i-lO-nBH" firstAttribute="leading" secondItem="AeA-cz-2ne" secondAttribute="trailing" constant="105" id="XsA-oO-mjr"/>
                             <constraint firstItem="CKN-a2-qCB" firstAttribute="leading" secondItem="5x1-5w-1Zu" secondAttribute="trailing" constant="105" id="YIT-8M-Eoo"/>
                             <constraint firstItem="Ncp-6P-Ep3" firstAttribute="leading" secondItem="ZTT-G6-IA0" secondAttribute="leadingMargin" constant="-20" id="aHG-cA-cMR"/>
+                            <constraint firstItem="VfQ-Q0-bpC" firstAttribute="leading" secondItem="ZTT-G6-IA0" secondAttribute="leadingMargin" constant="-20" id="avS-ET-M42"/>
                             <constraint firstItem="AeA-cz-2ne" firstAttribute="centerY" secondItem="35i-lO-nBH" secondAttribute="centerY" id="bWp-t5-Vgx"/>
                             <constraint firstItem="pe0-I4-SRd" firstAttribute="top" secondItem="CKN-a2-qCB" secondAttribute="bottom" constant="111" id="f6Q-Xk-HgB">
                                 <variation key="heightClass=compact" constant="20"/>
@@ -1463,6 +1477,7 @@
                             <constraint firstItem="pe0-I4-SRd" firstAttribute="centerY" secondItem="35i-lO-nBH" secondAttribute="centerY" id="t2N-Ei-73S"/>
                             <constraint firstItem="pe0-I4-SRd" firstAttribute="leading" secondItem="35i-lO-nBH" secondAttribute="trailing" constant="105" id="vHO-P0-raj"/>
                             <constraint firstItem="CKN-a2-qCB" firstAttribute="centerX" secondItem="35i-lO-nBH" secondAttribute="centerX" id="wvS-cG-q4t"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VfQ-Q0-bpC" secondAttribute="trailing" constant="-20" id="xtz-rG-doK"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -1638,4 +1653,5 @@
         <image name="txt" width="128" height="128"/>
         <image name="undoN" width="25" height="25"/>
     </resources>
+    <color key="tintColor" red="0.59976761879999996" green="0.3591421494" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

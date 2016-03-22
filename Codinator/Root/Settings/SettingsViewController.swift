@@ -36,7 +36,7 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
     
     override func viewDidAppear(animated: Bool) {
         
-        let maskPath = UIBezierPath(roundedRect: purpleView.bounds, byRoundingCorners: [UIRectCorner.BottomLeft, UIRectCorner.BottomRight], cornerRadii: CGSizeMake(15.0, 15.0))
+        /*let maskPath = UIBezierPath(roundedRect: purpleView.bounds, byRoundingCorners: [UIRectCorner.BottomLeft, UIRectCorner.BottomRight], cornerRadii: CGSizeMake(15.0, 15.0))
         
         let maskLayer = CAShapeLayer()
         maskLayer.frame = self.view.bounds
@@ -49,7 +49,7 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
         let maskLayer2 = CAShapeLayer()
         maskLayer2.frame = self.view.bounds
         maskLayer2.path = maskPath2.CGPath
-        self.purpleViewPartTwo.layer.mask = maskLayer2
+        self.purpleViewPartTwo.layer.mask = maskLayer2*/
         
     }
     
