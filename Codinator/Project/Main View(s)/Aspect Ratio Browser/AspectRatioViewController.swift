@@ -88,7 +88,7 @@ class AspectRatioViewController: UIViewController {
     
     override var keyCommands: [UIKeyCommand]? {
         
-        return [UIKeyCommand(input: "W", modifierFlags: .Command, action: "close", discoverabilityTitle: "Close Window")]
+        return [UIKeyCommand(input: "W", modifierFlags: .Command, action: #selector(AspectRatioViewController.close), discoverabilityTitle: "Close Window")]
     }
     
     

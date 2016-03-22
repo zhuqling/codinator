@@ -27,7 +27,7 @@ class GetReadyViewController: UIViewController {
         // Do any additional setup after loading the view.
         welcomeToCodinatorLabel.morphingEffect = .Evaporate
         
-        self.callSelector("finishLoading", object: self, delay: 4.0)
+        self.callSelector(#selector(GetReadyViewController.finishLoading), object: self, delay: 4.0)
         
         
         self.nextButton.layer.borderWidth = 2

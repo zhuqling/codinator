@@ -171,7 +171,7 @@ class ColorPickerViewController: UIViewController{
         }
         
         self.view.addSubview(colorPickerView)
-        colorPickerView.addTarget(self, action: "colorPickerDidChanged", forControlEvents: UIControlEvents.ValueChanged)
+        colorPickerView.addTarget(self, action: #selector(ColorPickerViewController.colorPickerDidChanged), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     

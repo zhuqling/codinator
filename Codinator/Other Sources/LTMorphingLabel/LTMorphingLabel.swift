@@ -144,7 +144,7 @@ public class LTMorphingLabel : UILabel {
     private lazy var displayLink: CADisplayLink = {
         let displayLink = CADisplayLink(
             target: self,
-            selector: Selector("displayFrameTick"))
+            selector: #selector(LTMorphingLabel.displayFrameTick))
         displayLink.addToRunLoop(
             NSRunLoop.currentRunLoop(),
             forMode: NSRunLoopCommonModes)

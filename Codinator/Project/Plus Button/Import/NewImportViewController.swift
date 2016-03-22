@@ -40,7 +40,7 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
 
         closeButton.layer.cornerRadius = 5
 
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "close2", name: "filesImported", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewImportViewController.close2), name: "filesImported", object: nil)
         
 
         
@@ -58,7 +58,7 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
     
     override var keyCommands: [UIKeyCommand]? {
     
-        return [UIKeyCommand(input: "W", modifierFlags: .Command, action: "close2", discoverabilityTitle: "Close Window")]
+        return [UIKeyCommand(input: "W", modifierFlags: .Command, action: #selector(NewImportViewController.close2), discoverabilityTitle: "Close Window")]
     }
     
     
