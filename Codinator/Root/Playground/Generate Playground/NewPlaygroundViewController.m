@@ -113,7 +113,7 @@
 @"START \n\
     HEAD() \n\
         TITLE(\"%@\")TITLE \n\
-        VIEWPORT(content: \"width=device-width\", initialScale: 1) \n\
+        META(name: \"viewport\", content: \"width=device-width\", initialScale: 1)\n\
         DESCRIPTION(\"A simple webpage written in Neuron\")         \n\
         AUTHOR(\"YOUR NAME\")    \n\
         IMPORT(CSS)   \n\
