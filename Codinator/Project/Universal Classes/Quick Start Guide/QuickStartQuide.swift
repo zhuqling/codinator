@@ -12,9 +12,7 @@ class QuickStartQuide: UIViewController {
 
     
     
-        @IBOutlet weak var okButton: UIButton?
-    
-    
+    @IBOutlet weak var okButton: UIButton?
     
     
     @IBAction func closeDidPush(sender: AnyObject) {
@@ -29,7 +27,6 @@ class QuickStartQuide: UIViewController {
         self.view.layer.borderWidth = 3
         
     }
-    
     
 
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
@@ -55,7 +52,6 @@ class QuickStartQuidePlaygrounds: UIViewController {
     
     
     @IBOutlet weak var closeButton: UIButton?
-    
     @IBOutlet weak var okButton: UIButton?
     
     

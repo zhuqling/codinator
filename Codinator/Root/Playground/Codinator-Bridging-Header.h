@@ -15,3 +15,6 @@
 #import "JsTextView.h"
 
 #import "PlaygroundDocument.h"
+
+
+#import "PlaygroundFileCreator.h"
