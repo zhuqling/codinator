@@ -210,7 +210,7 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
                 let jsString = self.document.contents[2] as! String
                 
                 try Neuron.neuronCode(startingHTMLString, cssString: cssTextView.text, jsString: jsString).writeToFile(tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
-                
+            
             }
             catch{
                 //ERROR
