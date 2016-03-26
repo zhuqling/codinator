@@ -268,8 +268,8 @@
 		649B64711C7B618900E0830D /* ContributeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeViewController.swift; sourceTree = "<group>"; };
 		64A080B41BDBD9D60001CA0C /* Codinator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Codinator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A080B81BDBD9D60001CA0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		64A080BA1BDBD9D60001CA0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
-		64A080BB1BDBD9D60001CA0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
+		64A080BA1BDBD9D60001CA0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		64A080BB1BDBD9D60001CA0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		64A080C11BDBD9D60001CA0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		64A080C31BDBD9D60001CA0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		64A080C61BDBD9D60001CA0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -569,89 +569,110 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		326F02441CA1DD3700CA61C7 /* Encrytion */ = {
+		6435B20C1CA1EEB700E81F53 /* Polaris */ = {
 			isa = PBXGroup;
 			children = (
-				326F02451CA1DD3700CA61C7 /* RNCryptor+Private.h */,
-				326F02461CA1DD3700CA61C7 /* RNCryptor+Swift.h */,
-				326F02471CA1DD3700CA61C7 /* RNCryptor.h */,
-				326F02481CA1DD3700CA61C7 /* RNCryptor.m */,
-				326F02491CA1DD3700CA61C7 /* RNCryptorEngine.h */,
-				326F024A1CA1DD3700CA61C7 /* RNCryptorEngine.m */,
-				326F024B1CA1DD3700CA61C7 /* RNDecryptor.h */,
-				326F024C1CA1DD3700CA61C7 /* RNDecryptor.m */,
-				326F024D1CA1DD3700CA61C7 /* RNEncryptor.h */,
-				326F024E1CA1DD3700CA61C7 /* RNEncryptor.m */,
-				326F024F1CA1DD3700CA61C7 /* UIBarButtonItem+BlocksKit.h */,
-				326F02501CA1DD3700CA61C7 /* UIBarButtonItem+BlocksKit.m */,
+				6435B2591CA1F09100E81F53 /* Encrytion */,
+				6435B2241CA1F03400E81F53 /* Server */,
+				6435B21F1CA1F00F00E81F53 /* CodinatorDocument.h */,
+				6435B2201CA1F00F00E81F53 /* CodinatorDocument.m */,
+				6435B21C1CA1EFCE00E81F53 /* Polaris.h */,
+				6435B21D1CA1EFCE00E81F53 /* Polaris.m */,
+				6435B2191CA1EF9100E81F53 /* PlaygroundDocument.h */,
+				6435B21A1CA1EF9100E81F53 /* PlaygroundDocument.m */,
+				6435B2161CA1EF3C00E81F53 /* NSUserDefaults+Additions.h */,
+				6435B2171CA1EF3C00E81F53 /* NSUserDefaults+Additions.m */,
+				6435B2101CA1EF1C00E81F53 /* Thumbnail.h */,
+				6435B2111CA1EF1C00E81F53 /* Thumbnail.m */,
+				6435B2121CA1EF1C00E81F53 /* UIColor+HexString.h */,
+				6435B2131CA1EF1C00E81F53 /* UIColor+HexString.m */,
 			);
-			name = Encrytion;
-			path = "../../Downloads/polaris-master/Encrytion";
+			name = Polaris;
+			path = "../../../../Open Source/Polaris";
 			sourceTree = "<group>";
 		};
-		326F02511CA1DD3700CA61C7 /* Local Server */ = {
+		6435B2241CA1F03400E81F53 /* Server */ = {
 			isa = PBXGroup;
 			children = (
-				326F02521CA1DD3700CA61C7 /* Uploader */,
-				326F02561CA1DD3700CA61C7 /* Web Dav */,
-				326F02591CA1DD3700CA61C7 /* Web Server */,
+				6435B2271CA1F05700E81F53 /* Web Server */,
+				6435B2261CA1F05000E81F53 /* Web Dav */,
+				6435B2251CA1F04900E81F53 /* Uploader */,
 			);
-			name = "Local Server";
-			path = "../../Downloads/polaris-master/Local Server";
+			name = Server;
+			path = "Local Server";
 			sourceTree = "<group>";
 		};
-		326F02521CA1DD3700CA61C7 /* Uploader */ = {
+		6435B2251CA1F04900E81F53 /* Uploader */ = {
 			isa = PBXGroup;
 			children = (
-				326F02531CA1DD3700CA61C7 /* GCDWebUploader.bundle */,
-				326F02541CA1DD3700CA61C7 /* GCDWebUploader.h */,
-				326F02551CA1DD3700CA61C7 /* GCDWebUploader.m */,
+				6435B2541CA1F07E00E81F53 /* GCDWebUploader.bundle */,
+				6435B2551CA1F07E00E81F53 /* GCDWebUploader.h */,
+				6435B2561CA1F07E00E81F53 /* GCDWebUploader.m */,
 			);
-			path = Uploader;
+			name = Uploader;
 			sourceTree = "<group>";
 		};
-		326F02561CA1DD3700CA61C7 /* Web Dav */ = {
+		6435B2261CA1F05000E81F53 /* Web Dav */ = {
 			isa = PBXGroup;
 			children = (
-				326F02571CA1DD3700CA61C7 /* GCDWebDAVServer.h */,
-				326F02581CA1DD3700CA61C7 /* GCDWebDAVServer.m */,
+				6435B2511CA1F06F00E81F53 /* GCDWebDAVServer.h */,
+				6435B2521CA1F06F00E81F53 /* GCDWebDAVServer.m */,
 			);
-			path = "Web Dav";
+			name = "Web Dav";
 			sourceTree = "<group>";
 		};
-		326F02591CA1DD3700CA61C7 /* Web Server */ = {
+		6435B2271CA1F05700E81F53 /* Web Server */ = {
 			isa = PBXGroup;
 			children = (
-				326F025A1CA1DD3700CA61C7 /* GCDWebServer.h */,
-				326F025B1CA1DD3700CA61C7 /* GCDWebServer.m */,
-				326F025C1CA1DD3700CA61C7 /* GCDWebServerConnection.h */,
-				326F025D1CA1DD3700CA61C7 /* GCDWebServerConnection.m */,
-				326F025E1CA1DD3700CA61C7 /* GCDWebServerDataRequest.h */,
-				326F025F1CA1DD3700CA61C7 /* GCDWebServerDataRequest.m */,
-				326F02601CA1DD3700CA61C7 /* GCDWebServerDataResponse.h */,
-				326F02611CA1DD3700CA61C7 /* GCDWebServerDataResponse.m */,
-				326F02621CA1DD3700CA61C7 /* GCDWebServerErrorResponse.h */,
-				326F02631CA1DD3700CA61C7 /* GCDWebServerErrorResponse.m */,
-				326F02641CA1DD3700CA61C7 /* GCDWebServerFileRequest.h */,
-				326F02651CA1DD3700CA61C7 /* GCDWebServerFileRequest.m */,
-				326F02661CA1DD3700CA61C7 /* GCDWebServerFileResponse.h */,
-				326F02671CA1DD3700CA61C7 /* GCDWebServerFileResponse.m */,
-				326F02681CA1DD3700CA61C7 /* GCDWebServerFunctions.h */,
-				326F02691CA1DD3700CA61C7 /* GCDWebServerFunctions.m */,
-				326F026A1CA1DD3700CA61C7 /* GCDWebServerHTTPStatusCodes.h */,
-				326F026B1CA1DD3700CA61C7 /* GCDWebServerMultiPartFormRequest.h */,
-				326F026C1CA1DD3700CA61C7 /* GCDWebServerMultiPartFormRequest.m */,
-				326F026D1CA1DD3700CA61C7 /* GCDWebServerPrivate.h */,
-				326F026E1CA1DD3700CA61C7 /* GCDWebServerRequest.h */,
-				326F026F1CA1DD3700CA61C7 /* GCDWebServerRequest.m */,
-				326F02701CA1DD3700CA61C7 /* GCDWebServerResponse.h */,
-				326F02711CA1DD3700CA61C7 /* GCDWebServerResponse.m */,
-				326F02721CA1DD3700CA61C7 /* GCDWebServerStreamedResponse.h */,
-				326F02731CA1DD3700CA61C7 /* GCDWebServerStreamedResponse.m */,
-				326F02741CA1DD3700CA61C7 /* GCDWebServerURLEncodedFormRequest.h */,
-				326F02751CA1DD3700CA61C7 /* GCDWebServerURLEncodedFormRequest.m */,
+				6435B2281CA1F06300E81F53 /* GCDWebServer.h */,
+				6435B2291CA1F06300E81F53 /* GCDWebServer.m */,
+				6435B22A1CA1F06300E81F53 /* GCDWebServerConnection.h */,
+				6435B22B1CA1F06300E81F53 /* GCDWebServerConnection.m */,
+				6435B22C1CA1F06300E81F53 /* GCDWebServerDataRequest.h */,
+				6435B22D1CA1F06300E81F53 /* GCDWebServerDataRequest.m */,
+				6435B22E1CA1F06300E81F53 /* GCDWebServerDataResponse.h */,
+				6435B22F1CA1F06300E81F53 /* GCDWebServerDataResponse.m */,
+				6435B2301CA1F06300E81F53 /* GCDWebServerErrorResponse.h */,
+				6435B2311CA1F06300E81F53 /* GCDWebServerErrorResponse.m */,
+				6435B2321CA1F06300E81F53 /* GCDWebServerFileRequest.h */,
+				6435B2331CA1F06300E81F53 /* GCDWebServerFileRequest.m */,
+				6435B2341CA1F06300E81F53 /* GCDWebServerFileResponse.h */,
+				6435B2351CA1F06300E81F53 /* GCDWebServerFileResponse.m */,
+				6435B2361CA1F06300E81F53 /* GCDWebServerFunctions.h */,
+				6435B2371CA1F06300E81F53 /* GCDWebServerFunctions.m */,
+				6435B2381CA1F06300E81F53 /* GCDWebServerHTTPStatusCodes.h */,
+				6435B2391CA1F06300E81F53 /* GCDWebServerMultiPartFormRequest.h */,
+				6435B23A1CA1F06300E81F53 /* GCDWebServerMultiPartFormRequest.m */,
+				6435B23B1CA1F06300E81F53 /* GCDWebServerPrivate.h */,
+				6435B23C1CA1F06300E81F53 /* GCDWebServerRequest.h */,
+				6435B23D1CA1F06300E81F53 /* GCDWebServerRequest.m */,
+				6435B23E1CA1F06300E81F53 /* GCDWebServerResponse.h */,
+				6435B23F1CA1F06300E81F53 /* GCDWebServerResponse.m */,
+				6435B2401CA1F06300E81F53 /* GCDWebServerStreamedResponse.h */,
+				6435B2411CA1F06300E81F53 /* GCDWebServerStreamedResponse.m */,
+				6435B2421CA1F06300E81F53 /* GCDWebServerURLEncodedFormRequest.h */,
+				6435B2431CA1F06300E81F53 /* GCDWebServerURLEncodedFormRequest.m */,
 			);
-			path = "Web Server";
+			name = "Web Server";
+			sourceTree = "<group>";
+		};
+		6435B2591CA1F09100E81F53 /* Encrytion */ = {
+			isa = PBXGroup;
+			children = (
+				6435B25A1CA1F09100E81F53 /* RNCryptor+Private.h */,
+				6435B25B1CA1F09100E81F53 /* RNCryptor+Swift.h */,
+				6435B25C1CA1F09100E81F53 /* RNCryptor.h */,
+				6435B25D1CA1F09100E81F53 /* RNCryptor.m */,
+				6435B25E1CA1F09100E81F53 /* RNCryptorEngine.h */,
+				6435B25F1CA1F09100E81F53 /* RNCryptorEngine.m */,
+				6435B2601CA1F09100E81F53 /* RNDecryptor.h */,
+				6435B2611CA1F09100E81F53 /* RNDecryptor.m */,
+				6435B2621CA1F09100E81F53 /* RNEncryptor.h */,
+				6435B2631CA1F09100E81F53 /* RNEncryptor.m */,
+				6435B2641CA1F09100E81F53 /* UIBarButtonItem+BlocksKit.h */,
+				6435B2651CA1F09100E81F53 /* UIBarButtonItem+BlocksKit.m */,
+			);
+			path = Encrytion;
 			sourceTree = "<group>";
 		};
 		64A080AB1BDBD9D60001CA0C = {
@@ -712,6 +733,8 @@
 		64A080D51BDBDBBF0001CA0C /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				6435B20C1CA1EEB700E81F53 /* Polaris */,
+				6435B2081CA1ED2E00E81F53 /* Neuron.swift */,
 				64A083381BDD15F80001CA0C /* Zip */,
 				64A0830D1BDD14DC0001CA0C /* Syntax */,
 				64A082FD1BDD13F20001CA0C /* Keyboard */,
@@ -721,7 +744,6 @@
 				64A082841BDBE63B0001CA0C /* PulseView */,
 				64A0827E1BDBE6120001CA0C /* YALSunnyRefreshControll */,
 				64A081DD1BDBE4C40001CA0C /* Photonator */,
-				64A0817F1BDBE3780001CA0C /* Polaris */,
 				64A081501BDBE1DF0001CA0C /* LTMorphingLabel */,
 				64A080D71BDBDBEF0001CA0C /* Extension */,
 				64A080D61BDBDBDB0001CA0C /* Color Picker */,
@@ -886,6 +908,7 @@
 		64A0811B1BDBDFB50001CA0C /* Playground */ = {
 			isa = PBXGroup;
 			children = (
+				6435B1F11CA1DE0200E81F53 /* Codinator-Bridging-Header.h */,
 				64A0812F1BDBE0520001CA0C /* PlaygroundViewController.swift */,
 				326F02401CA1DCF800CA61C7 /* Neuron.swift */,
 				3201D0111CA6E58800204373 /* Codinator-Bridging-Header.h */,
@@ -923,6 +946,9 @@
 			children = (
 				64A0812B1BDBE0390001CA0C /* NewPlaygroundViewController.h */,
 				64A0812C1BDBE0390001CA0C /* NewPlaygroundViewController.m */,
+				6435B1EC1CA1D35000E81F53 /* NewPlaygroundViewController.swift */,
+				6435B1EE1CA1D86200E81F53 /* PlaygroundFileCreator.h */,
+				6435B1EF1CA1D86200E81F53 /* PlaygroundFileCreator.m */,
 			);
 			path = "Generate Playground";
 			sourceTree = "<group>";
@@ -1040,29 +1066,6 @@
 				64A081771BDBE2530001CA0C /* ImportFromGitHubViewController.m */,
 			);
 			path = Download;
-			sourceTree = "<group>";
-		};
-		64A0817F1BDBE3780001CA0C /* Polaris */ = {
-			isa = PBXGroup;
-			children = (
-				326F02421CA1DD3700CA61C7 /* CodinatorDocument.h */,
-				326F02431CA1DD3700CA61C7 /* CodinatorDocument.m */,
-				326F02441CA1DD3700CA61C7 /* Encrytion */,
-				326F02511CA1DD3700CA61C7 /* Local Server */,
-				326F02761CA1DD3700CA61C7 /* NSUserDefaults+Additions.h */,
-				326F02771CA1DD3700CA61C7 /* NSUserDefaults+Additions.m */,
-				326F02781CA1DD3700CA61C7 /* PlaygroundDocument.h */,
-				326F02791CA1DD3700CA61C7 /* PlaygroundDocument.m */,
-				326F027A1CA1DD3700CA61C7 /* Polaris.h */,
-				326F027B1CA1DD3700CA61C7 /* Polaris.m */,
-				326F027C1CA1DD3700CA61C7 /* README.md */,
-				326F027D1CA1DD3700CA61C7 /* Thumbnail.h */,
-				326F027E1CA1DD3700CA61C7 /* Thumbnail.m */,
-				326F027F1CA1DD3700CA61C7 /* UIColor+HexString.h */,
-				326F02801CA1DD3700CA61C7 /* UIColor+HexString.m */,
-			);
-			name = Polaris;
-			path = "../../../../Open Source/Polaris";
 			sourceTree = "<group>";
 		};
 		64A081DD1BDBE4C40001CA0C /* Photonator */ = {
@@ -1338,7 +1341,7 @@
 				64A080BB1BDBD9D60001CA0C /* AppDelegate.m */,
 			);
 			name = Main;
-			path = Codinator/Main;
+			path = Codinator;
 			sourceTree = "<group>";
 		};
 		64A0827D1BDBE5AD0001CA0C /* Project */ = {
@@ -1778,9 +1781,9 @@
 				64A082831BDBE61B0001CA0C /* YALSunnyRefreshControl.xib in Resources */,
 				64A080C71BDBD9D60001CA0C /* LaunchScreen.storyboard in Resources */,
 				64A0816F1BDBE2180001CA0C /* Fire.png in Resources */,
+				6435B2571CA1F07E00E81F53 /* GCDWebUploader.bundle in Resources */,
 				64A082AF1BDBE81F0001CA0C /* qsgProjects.storyboard in Resources */,
 				64A082B11BDBE81F0001CA0C /* extra.storyboard in Resources */,
-				326F02871CA1DD3700CA61C7 /* GCDWebUploader.bundle in Resources */,
 				64A082311BDBE4DC0001CA0C /* CLImageEditor.bundle in Resources */,
 				64A080C41BDBD9D60001CA0C /* Assets.xcassets in Resources */,
 				64A0833C1BDD16040001CA0C /* UnZip.storyboard in Resources */,
@@ -1816,12 +1819,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6435B1ED1CA1D35000E81F53 /* NewPlaygroundViewController.swift in Sources */,
 				64A082871BDBE6430001CA0C /* PulseViewController.m in Sources */,
 				64A081611BDBE1F90001CA0C /* LTMorphingEffect.swift in Sources */,
 				64A082771BDBE4EC0001CA0C /* CLPickerView.m in Sources */,
 				64A081671BDBE1F90001CA0C /* LTMorphingLabel+Sparkle.swift in Sources */,
+				6435B2661CA1F09100E81F53 /* RNCryptor.m in Sources */,
 				64B67C8F1C7F53440040E574 /* SettingsEngine.m in Sources */,
-				326F028D1CA1DD3700CA61C7 /* GCDWebServerDataResponse.m in Sources */,
 				64A082401BDBE4DC0001CA0C /* CLEffectBase.m in Sources */,
 				64A0810B1BDBDC840001CA0C /* UZKFileInfo.m in Sources */,
 				64A080EB1BDBDBFE0001CA0C /* HRColorInfoView.m in Sources */,
@@ -1832,11 +1836,8 @@
 				64A0814D1BDBE1860001CA0C /* SettingsViewController.swift in Sources */,
 				64A0829E1BDBE7A50001CA0C /* PulsingHaloLayer.m in Sources */,
 				64A083591BDD16B00001CA0C /* iCloud.m in Sources */,
-				326F02411CA1DCF800CA61C7 /* Neuron.swift in Sources */,
-				326F02821CA1DD3700CA61C7 /* RNCryptor.m in Sources */,
 				64A083331BDD15660001CA0C /* CYRTextView.m in Sources */,
 				64A082351BDBE4DC0001CA0C /* CLAdjustmentTool.m in Sources */,
-				326F02941CA1DD3700CA61C7 /* GCDWebServerResponse.m in Sources */,
 				64A080EE1BDBDBFE0001CA0C /* HRHSVColorUtil.m in Sources */,
 				64A082741BDBE4EC0001CA0C /* CLStickerTool.m in Sources */,
 				64A081621BDBE1F90001CA0C /* LTMorphingLabel+Anvil.swift in Sources */,
@@ -1846,14 +1847,15 @@
 				3201D00B1CA6E02600204373 /* FilesTableViewController.swift in Sources */,
 				64A082371BDBE4DC0001CA0C /* CLClippingTool.m in Sources */,
 				64A082D01BDBE89A0001CA0C /* AFURLRequestSerialization.m in Sources */,
+				6435B2461CA1F06300E81F53 /* GCDWebServerDataRequest.m in Sources */,
 				64A080E91BDBDBFE0001CA0C /* HRBrightnessSlider.m in Sources */,
 				64A083541BDD16900001CA0C /* Selector.swift in Sources */,
 				64A082E01BDCD7B30001CA0C /* NewSubpageViewController.m in Sources */,
 				3201D0181CA6EFAA00204373 /* EditorViewController.swift in Sources */,
 				64A0823C1BDBE4DC0001CA0C /* CLHueEffect.m in Sources */,
+				6435B2671CA1F09100E81F53 /* RNCryptorEngine.m in Sources */,
 				64A082461BDBE4DC0001CA0C /* CLToneCurveTool.m in Sources */,
 				64A082941BDBE7170001CA0C /* ProjectTableViewCell.m in Sources */,
-				326F028E1CA1DD3700CA61C7 /* GCDWebServerErrorResponse.m in Sources */,
 				64A082491BDBE4DC0001CA0C /* CLImageEditorTheme+Private.m in Sources */,
 				64A082471BDBE4DC0001CA0C /* CLCircleView.m in Sources */,
 				64A0824D1BDBE4DC0001CA0C /* CLClassList.m in Sources */,
@@ -1863,38 +1865,40 @@
 				64A082701BDBE4EC0001CA0C /* CLEmoticonTool.m in Sources */,
 				64A082F11BDCD8BB0001CA0C /* HistoryRow.m in Sources */,
 				64A082CB1BDBE89A0001CA0C /* AFHTTPRequestOperationManager.m in Sources */,
+				6435B2141CA1EF1C00E81F53 /* Thumbnail.m in Sources */,
 				64A081431BDBE12A0001CA0C /* FontSettingsViewController.m in Sources */,
+				6435B24D1CA1F06300E81F53 /* GCDWebServerRequest.m in Sources */,
 				64A0823F1BDBE4DC0001CA0C /* CLSpotEffect.m in Sources */,
 				64A0814F1BDBE1C80001CA0C /* GetReadyViewController.swift in Sources */,
-				326F028B1CA1DD3700CA61C7 /* GCDWebServerConnection.m in Sources */,
 				64A0817E1BDBE28D0001CA0C /* WelcomeViewController.m in Sources */,
 				64A083151BDD15470001CA0C /* JsTextView.m in Sources */,
 				64A082821BDBE61B0001CA0C /* YALSunnyRefreshControl.m in Sources */,
+				6435B2471CA1F06300E81F53 /* GCDWebServerDataResponse.m in Sources */,
+				6435B24B1CA1F06300E81F53 /* GCDWebServerFunctions.m in Sources */,
 				64A0815F1BDBE1F90001CA0C /* LTEasing.swift in Sources */,
 				64A0828F1BDBE6AF0001CA0C /* QuickStartQuide.swift in Sources */,
-				326F02921CA1DD3700CA61C7 /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				64A0814B1BDBE1660001CA0C /* MadeByViewController.swift in Sources */,
+				6435B2681CA1F09100E81F53 /* RNDecryptor.m in Sources */,
 				64A081641BDBE1F90001CA0C /* LTMorphingLabel+Evaporate.swift in Sources */,
 				64A082A91BDBE7CC0001CA0C /* CSNotificationView.m in Sources */,
 				64A082421BDBE4DC0001CA0C /* CLFilterBase.m in Sources */,
 				64A081491BDBE14B0001CA0C /* HighlighterEngineCustomizerRootViewController.m in Sources */,
 				64A082511BDBE4DC0001CA0C /* UIView+Frame.m in Sources */,
 				64A081001BDBDC3E0001CA0C /* zip.c in Sources */,
+				6435B21E1CA1EFCE00E81F53 /* Polaris.m in Sources */,
 				64A081351BDBE07E0001CA0C /* ProjectCollectionViewCell.m in Sources */,
-				326F029B1CA1DD3700CA61C7 /* Thumbnail.m in Sources */,
-				326F02971CA1DD3700CA61C7 /* NSUserDefaults+Additions.m in Sources */,
 				64A0823B1BDBE4DC0001CA0C /* CLHighlightShadowEffect.m in Sources */,
 				64A0824F1BDBE4DC0001CA0C /* UIDevice+SystemVersion.m in Sources */,
 				64A081781BDBE2530001CA0C /* ImportFromGitHubViewController.m in Sources */,
-				326F02911CA1DD3700CA61C7 /* GCDWebServerFunctions.m in Sources */,
+				6435B24A1CA1F06300E81F53 /* GCDWebServerFileResponse.m in Sources */,
+				6435B2691CA1F09100E81F53 /* RNEncryptor.m in Sources */,
 				64A0833D1BDD16040001CA0C /* UnArchivingViewController.m in Sources */,
 				64A0815E1BDBE1F90001CA0C /* LTCharacterLimbo.swift in Sources */,
-				326F029C1CA1DD3700CA61C7 /* UIColor+HexString.m in Sources */,
 				64A0827A1BDBE4EC0001CA0C /* CLTextTool.m in Sources */,
-				326F02881CA1DD3700CA61C7 /* GCDWebUploader.m in Sources */,
 				64A081311BDBE0520001CA0C /* PlaygroundViewController.swift in Sources */,
-				326F02951CA1DD3700CA61C7 /* GCDWebServerStreamedResponse.m in Sources */,
 				64A082721BDBE4EC0001CA0C /* CLResizeTool.m in Sources */,
+				6435B2481CA1F06300E81F53 /* GCDWebServerErrorResponse.m in Sources */,
+				6435B2151CA1EF1C00E81F53 /* UIColor+HexString.m in Sources */,
 				64A083271BDD155C0001CA0C /* WUTextSuggestionController.m in Sources */,
 				64A081041BDBDC6D0001CA0C /* SSZipArchive.m in Sources */,
 				64A083341BDD15660001CA0C /* CYRToken.m in Sources */,
@@ -1903,12 +1907,9 @@
 				64A080E81BDBDBFE0001CA0C /* HRBrightnessCursor.m in Sources */,
 				64A081241BDBDFD80001CA0C /* CBZSplashView.m in Sources */,
 				64A082391BDBE4DC0001CA0C /* CLBloomEffect.m in Sources */,
-				326F02811CA1DD3700CA61C7 /* CodinatorDocument.m in Sources */,
 				64A0817B1BDBE25A0001CA0C /* ProjectZipImporterViewController.m in Sources */,
 				64A082CD1BDBE89A0001CA0C /* AFNetworkReachabilityManager.m in Sources */,
-				326F028C1CA1DD3700CA61C7 /* GCDWebServerDataRequest.m in Sources */,
 				64A082501BDBE4DC0001CA0C /* UIImage+Utility.m in Sources */,
-				326F02831CA1DD3700CA61C7 /* RNCryptorEngine.m in Sources */,
 				64A082381BDBE4DC0001CA0C /* CLDrawTool.m in Sources */,
 				64A0824B1BDBE4DC0001CA0C /* CLToolbarMenuItem.m in Sources */,
 				64A082971BDBE7350001CA0C /* ProjectViewController.m in Sources */,
@@ -1918,22 +1919,23 @@
 				64A082321BDBE4DC0001CA0C /* CLImageEditor.m in Sources */,
 				64A082731BDBE4EC0001CA0C /* CLSplashTool.m in Sources */,
 				64A082451BDBE4DC0001CA0C /* CLRotateTool.m in Sources */,
+				6435B24C1CA1F06300E81F53 /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				64A082411BDBE4DC0001CA0C /* CLEffectTool.m in Sources */,
 				64A082711BDBE4EC0001CA0C /* CLGPUImageVignetteFilter.m in Sources */,
 				64A081661BDBE1F90001CA0C /* LTMorphingLabel+Pixelate.swift in Sources */,
-				326F029A1CA1DD3700CA61C7 /* README.md in Sources */,
+				6435B26A1CA1F09100E81F53 /* UIBarButtonItem+BlocksKit.m in Sources */,
+				6435B2181CA1EF3C00E81F53 /* NSUserDefaults+Additions.m in Sources */,
 				64A082F71BDCD8D10001CA0C /* ProjectExportViewController.m in Sources */,
-				326F02901CA1DD3700CA61C7 /* GCDWebServerFileResponse.m in Sources */,
+				6435B2091CA1ED2E00E81F53 /* Neuron.swift in Sources */,
 				64A080BC1BDBD9D60001CA0C /* AppDelegate.m in Sources */,
 				64A080FD1BDBDC3E0001CA0C /* ioapi.c in Sources */,
 				64A080EC1BDBDBFE0001CA0C /* HRColorMapView.m in Sources */,
 				64A082CE1BDBE89A0001CA0C /* AFSecurityPolicy.m in Sources */,
 				64A081681BDBE1F90001CA0C /* LTMorphingLabel.swift in Sources */,
 				64A083051BDD14170001CA0C /* KOSwipeButton.m in Sources */,
-				326F02851CA1DD3700CA61C7 /* RNEncryptor.m in Sources */,
+				6435B2501CA1F06300E81F53 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
 				64A082431BDBE4DC0001CA0C /* CLFilterTool.m in Sources */,
 				64A081291BDBE0180001CA0C /* PlaygroundTextView.m in Sources */,
-				326F02861CA1DD3700CA61C7 /* UIBarButtonItem+BlocksKit.m in Sources */,
 				64A082A81BDBE7CC0001CA0C /* CSNativeBlurView.m in Sources */,
 				64A082CC1BDBE89A0001CA0C /* AFHTTPSessionManager.m in Sources */,
 				64A082F41BDCD8C80001CA0C /* HistoryWebViewController.m in Sources */,
@@ -1942,8 +1944,8 @@
 				64A083311BDD15660001CA0C /* CYRLayoutManager.m in Sources */,
 				64A083081BDD142B0001CA0C /* VWASAccessoryView.m in Sources */,
 				64A0810A1BDBDC840001CA0C /* UZKArchive.m in Sources */,
+				6435B21B1CA1EF9100E81F53 /* PlaygroundDocument.m in Sources */,
 				64A082361BDBE4DC0001CA0C /* CLBlurTool.m in Sources */,
-				326F02981CA1DD3700CA61C7 /* PlaygroundDocument.m in Sources */,
 				64A082441BDBE4DC0001CA0C /* CLImageToolBase.m in Sources */,
 				64A080FF1BDBDC3E0001CA0C /* unzip.c in Sources */,
 				64A082781BDBE4EC0001CA0C /* CLTextLabel.m in Sources */,
@@ -1951,25 +1953,28 @@
 				64A082A71BDBE7CC0001CA0C /* CSLayerStealingBlurView.m in Sources */,
 				64A0823A1BDBE4DC0001CA0C /* CLGloomEffect.m in Sources */,
 				64A082E91BDCD8370001CA0C /* ArchiveViewController.m in Sources */,
-				326F02841CA1DD3700CA61C7 /* RNDecryptor.m in Sources */,
 				64A080B91BDBD9D60001CA0C /* main.m in Sources */,
 				64A0829A1BDBE7610001CA0C /* AspectRatioViewController.swift in Sources */,
+				6435B2491CA1F06300E81F53 /* GCDWebServerFileRequest.m in Sources */,
 				64A080ED1BDBDBFE0001CA0C /* HRColorPickerView.m in Sources */,
+				6435B24F1CA1F06300E81F53 /* GCDWebServerStreamedResponse.m in Sources */,
 				64A0823D1BDBE4DC0001CA0C /* CLPixellateEffect.m in Sources */,
-				326F02991CA1DD3700CA61C7 /* Polaris.m in Sources */,
+				6435B2441CA1F06300E81F53 /* GCDWebServer.m in Sources */,
+				6435B2451CA1F06300E81F53 /* GCDWebServerConnection.m in Sources */,
+				6435B24E1CA1F06300E81F53 /* GCDWebServerResponse.m in Sources */,
 				64A0823E1BDBE4DC0001CA0C /* CLPosterizeEffect.m in Sources */,
 				64A0824E1BDBE4DC0001CA0C /* CLSplineInterpolator.m in Sources */,
 				64A082DA1BDCD7980001CA0C /* NewImportViewController.swift in Sources */,
 				64A080EA1BDBDBFE0001CA0C /* HRColorCursor.m in Sources */,
 				64A081461BDBE13A0001CA0C /* EngineViewController.m in Sources */,
-				326F02961CA1DD3700CA61C7 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
 				649B64721C7B618900E0830D /* ContributeViewController.swift in Sources */,
+				6435B1F01CA1D86200E81F53 /* PlaygroundFileCreator.m in Sources */,
+				6435B2211CA1F00F00E81F53 /* CodinatorDocument.m in Sources */,
 				64A081251BDBDFD80001CA0C /* CBZVectorSplashView.m in Sources */,
 				64A0835A1BDD16B00001CA0C /* iCloudDocument.m in Sources */,
+				6435B2531CA1F06F00E81F53 /* GCDWebDAVServer.m in Sources */,
 				64A082D21BDBE89A0001CA0C /* AFURLSessionManager.m in Sources */,
 				64A081231BDBDFD80001CA0C /* CBZRasterSplashView.m in Sources */,
-				326F02931CA1DD3700CA61C7 /* GCDWebServerRequest.m in Sources */,
-				326F02891CA1DD3700CA61C7 /* GCDWebDAVServer.m in Sources */,
 				64A081631BDBE1F90001CA0C /* LTMorphingLabel+Burn.swift in Sources */,
 				64A081651BDBE1F90001CA0C /* LTMorphingLabel+Fall.swift in Sources */,
 				64A081601BDBE1F90001CA0C /* LTEmitterView.swift in Sources */,
@@ -1982,7 +1987,6 @@
 				64A082331BDBE4DC0001CA0C /* CLImageEditorTheme.m in Sources */,
 				64A080EF1BDBDBFE0001CA0C /* UIImage+CoreGraphics.m in Sources */,
 				64A0824A1BDBE4DC0001CA0C /* CLImageToolInfo+Private.m in Sources */,
-				326F028F1CA1DD3700CA61C7 /* GCDWebServerFileRequest.m in Sources */,
 				64A082F01BDCD8BB0001CA0C /* HistoryViewController.m in Sources */,
 				64A083371BDD15700001CA0C /* QEDTextView.m in Sources */,
 				64A080FE1BDBDC3E0001CA0C /* mztools.c in Sources */,
