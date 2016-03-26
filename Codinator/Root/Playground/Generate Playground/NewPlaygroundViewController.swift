@@ -42,8 +42,10 @@ class NewPlaygroundViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    // MARK: - Generate
+    // MARK: - Buttons
+
     
+    // Generate a new File
     @IBAction func nextDidPush(sender: AnyObject) {
         let document = PlaygroundFileCreator.generatePlaygroundFileWithName(fileNameTextField.text!)
         let url = PlaygroundFileCreator.fileUrlForPlaygroundWithName(fileNameTextField.text!)
@@ -69,16 +71,7 @@ class NewPlaygroundViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    // MARK: - Extra Buttons
-    
-    @IBAction func playgroundTitleDidPush(sender: AnyObject) {
-        let alertController = UIAlertController(title: "Playground - noun:", message: "A place where people can play and prototype stuff...", preferredStyle: .Alert)
-        let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
+    // Close View 
     @IBAction func closeDidPush(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

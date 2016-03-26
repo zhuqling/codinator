@@ -113,9 +113,9 @@
 
 - (void)dealloc
 {
-    //[self removeObserver:self forKeyPath:NSStringFromSelector(@selector(defaultFont))];
-    //[self removeObserver:self forKeyPath:NSStringFromSelector(@selector(boldFont))];
-    //[self removeObserver:self forKeyPath:NSStringFromSelector(@selector(italicFont))];
+    [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(defaultFont))];
+    [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(boldFont))];
+    [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(italicFont))];
 }
 
 #pragma mark - KVO

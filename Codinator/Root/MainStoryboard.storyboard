@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6sV-hf-PdK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6sV-hf-PdK">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -21,7 +21,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Lw-vM-EQ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-104" y="380"/>
+            <point key="canvasLocation" x="-160" y="380"/>
         </scene>
         <!--Projects-->
         <scene sceneID="KZW-cb-QcT">
@@ -115,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F4p-oD-Lgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="569" y="380"/>
+            <point key="canvasLocation" x="575" y="380"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eDS-h2-uwV">
@@ -364,7 +364,7 @@
         <!--New Playground-->
         <scene sceneID="l0F-4C-cwN">
             <objects>
-                <viewController id="VAe-LC-zvc" customClass="NewPlaygroundViewController" sceneMemberID="viewController">
+                <viewController id="VAe-LC-zvc" customClass="NewPlaygroundViewController" customModule="Codinator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="i4M-yk-5Oo"/>
                         <viewControllerLayoutGuide type="bottom" id="PSN-nP-iSM"/>
@@ -383,18 +383,15 @@
                                 <state key="normal" title="Next">
                                     <color key="titleColor" red="0.59976761879999996" green="0.3591421494" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="playDidPush:" destination="VAe-LC-zvc" eventType="touchUpInside" id="v0J-ne-TRi"/>
-                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4az-hV-cDV">
-                                <rect key="frame" x="20" y="108" width="45" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4az-hV-cDV">
+                                <rect key="frame" x="20" y="88" width="45" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ss2-Cs-850">
-                                <rect key="frame" x="216" y="104" width="364" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ss2-Cs-850">
+                                <rect key="frame" x="216" y="84" width="364" height="30"/>
                                 <color key="backgroundColor" red="0.11838624339999999" green="0.11838624339999999" blue="0.11838624339999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="364" id="ADk-C1-Ixk"/>
@@ -419,12 +416,13 @@
                     <navigationItem key="navigationItem" title="New Playground" id="hu8-d0-Rnh">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" style="done" id="XBf-bh-mB4">
                             <connections>
-                                <action selector="closeDidPush:" destination="VAe-LC-zvc" id="Ccg-tG-Gi2"/>
+                                <action selector="closeDidPush:" destination="VAe-LC-zvc" id="KwK-6x-YRq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="fileName" destination="ss2-Cs-850" id="oWA-i7-Kcq"/>
+                        <outlet property="fileNameTextField" destination="ss2-Cs-850" id="94I-c6-l39"/>
+                        <outlet property="nextButton" destination="X5s-eT-Qgf" id="DAB-oG-jv1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttn-di-4e3" userLabel="First Responder" sceneMemberID="firstResponder"/>

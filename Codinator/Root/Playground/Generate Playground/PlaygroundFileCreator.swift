@@ -52,8 +52,6 @@ class PlaygroundFileCreator: NSObject {
             "END"
         
         
-        document.contents.addObject(neuronFile)
-        
         //CSS file
         let cssFile =
             "/* Normalize.css brings consistency to browsers. \n" +
@@ -62,11 +60,15 @@ class PlaygroundFileCreator: NSObject {
             "@import url(http://cdn.jsdelivr.net/normalize/2.1.3/normalize.min.css); \n" +
             "\n" +
             "/* A fresh start */"
-        document.contents.addObject(cssFile)
+        
         
         // JS file
         let jsFile = "//JS file \n"
-        document.contents.addObject(jsFile)
+        
+        
+        document.setFile(.Neuron, toFile: neuronFile)
+        document.setFile(.JS, toFile: jsFile)
+        document.setFile(.CSS, toFile: cssFile)
         
         return document
     }

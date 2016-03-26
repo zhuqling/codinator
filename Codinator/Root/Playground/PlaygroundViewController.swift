@@ -42,11 +42,9 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         document.openWithCompletionHandler { (success) -> Void in
             
             if (success){
-                if (self.document.contents.count == 3){
-                    self.neuronText = self.document.contents[0] as! String
-                    self.cssText = self.document.contents[1] as! String
-                    self.jsText = self.document.contents[2] as! String
-                }
+                self.neuronText = self.document.embeddedFile(.Neuron)
+                self.cssText = self.document.embeddedFile(.CSS)
+                self.jsText = self.document.embeddedFile(.JS)
             }
             else{
                 //Error
@@ -80,10 +78,9 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         }
         
         
-        
-        self.htmlTextView = PlaygroundTextView(frame: rootHTML)
-        self.cssTextView  = QEDTextView(frame: rootCSS)
-        self.jsTextView   = JsTextView(frame: rootJS)
+        self.htmlTextView.frame = rootHTML
+        self.cssTextView.frame = rootCSS
+        self.jsTextView.frame = rootJS
         
         self.htmlTextView.backgroundColor = UIColor.blackColor()
         self.cssTextView.backgroundColor = UIColor.blackColor()
@@ -174,76 +171,34 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         
         let tmpPath = NSTemporaryDirectory()
         
-        
-        
+        // Save the recent change
         switch (textView.tag) {
+        
         case 1:
-            
-            do{
-                
-                document.contents[0] = self.htmlTextView.text
-                
-                let cssString = self.document.contents[1] as! String
-                let jsString = self.document.contents[2] as! String
-                
-                try Neuron.neuronCode(self.htmlTextView.text, cssString: cssString, jsString: jsString).writeToFile (tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
-
-            }
-            catch{
-            //ERROR
-                
-                
-                print("Error copying file to tmp path")
-                
-            }
-            
-            
-            
-            
-            break
+            document.setFile(.Neuron, toFile: htmlTextView.text)
+        
         case 2:
-
-            do{
-                document.contents[1] = self.cssTextView.text
-                
-                let startingHTMLString = self.document.contents[0] as! String
-                let jsString = self.document.contents[2] as! String
-                
-                try Neuron.neuronCode(startingHTMLString, cssString: cssTextView.text, jsString: jsString).writeToFile(tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
-            
-            }
-            catch{
-                //ERROR
-            }
-
-            
-            break
+            document.setFile(.CSS, toFile: cssTextView.text)
+        
         case 3:
-
-            do{
-                document.contents[2] = self.jsTextView.text
-                
-                let startingHTMLString = self.document.contents[0] as! String
-                let cssString = self.document.contents[1] as! String
-                
-                try Neuron.neuronCode(startingHTMLString, cssString: cssString, jsString: self.jsTextView.text).writeToFile(tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
-                
-            }
-            catch{
-                //ERROR
-            }
-            
-            break
-            
+            document.setFile(.JS, toFile: jsTextView.text)
+        
         default:
             break
         }
         
+        
+        let neuronString = document.embeddedFile(.Neuron)
+        let cssString = document.embeddedFile(.CSS)
+        let jsString = document.embeddedFile(.JS)
+        
+        try! Neuron.neuronCode(neuronString, cssString: cssString, jsString: jsString).writeToFile(tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
 
+            
         document.saveToURL(NSURL(fileURLWithPath: NSUserDefaults.standardUserDefaults().stringForKey("PlaygroundPath")!), forSaveOperation: UIDocumentSaveOperation.ForOverwriting) { (success) -> Void in
             
         }
-
+        
         
         
         let url = NSURL(fileURLWithPath: tmpPath + "/index.html", isDirectory: false)
@@ -345,19 +300,11 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         
         let tmpPath = NSTemporaryDirectory()
         
-        
-        do{
+        let startingNeuronString = document.embeddedFile(.Neuron)
+        let cssString = document.embeddedFile(.CSS)
+        let jsString = document.embeddedFile(.JS)
             
-            let startingHTMLString = self.document.contents[0] as! String
-            let cssString = self.document.contents[1] as! String
-            let jsString = self.document.contents[2] as! String
-            
-            try Neuron.neuronCode(startingHTMLString, cssString: cssString, jsString: jsString).writeToFile(tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
-        
-        }
-        catch {
-            //ERROR
-        }
+        try! Neuron.neuronCode(startingNeuronString, cssString: cssString, jsString: jsString).writeToFile(tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
         
         
         let url = NSURL(fileURLWithPath: tmpPath + "/index.html", isDirectory: false)
@@ -484,11 +431,11 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
             let pasteboard = UIPasteboard.generalPasteboard()
             
             
-            let startingHTMLString = self.document.contents[0] as! String
-            let cssString = self.document.contents[1] as! String
-            let jsString = self.document.contents[2] as! String
+            let startingNeuronString = self.document.embeddedFile(.Neuron)
+            let cssString = self.document.embeddedFile(.CSS)
+            let jsString = self.document.embeddedFile(.JS)
             
-            pasteboard.string = Neuron.neuronCode(startingHTMLString, cssString: cssString, jsString: jsString)
+            pasteboard.string = Neuron.neuronCode(startingNeuronString, cssString: cssString, jsString: jsString)
             
         }
         

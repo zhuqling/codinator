@@ -35,10 +35,12 @@
 		6444D1A81CA71D3A002BAD23 /* GCDWebServerStreamedResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6444D1851CA71D3A002BAD23 /* GCDWebServerStreamedResponse.m */; };
 		6444D1A91CA71D3A002BAD23 /* GCDWebServerURLEncodedFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6444D1871CA71D3A002BAD23 /* GCDWebServerURLEncodedFormRequest.m */; };
 		6444D1AA1CA71D3A002BAD23 /* NSUserDefaults+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6444D1891CA71D3A002BAD23 /* NSUserDefaults+Additions.m */; };
-		6444D1AB1CA71D3A002BAD23 /* PlaygroundDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6444D18B1CA71D3A002BAD23 /* PlaygroundDocument.m */; };
 		6444D1AC1CA71D3A002BAD23 /* Polaris.m in Sources */ = {isa = PBXBuildFile; fileRef = 6444D18D1CA71D3A002BAD23 /* Polaris.m */; };
 		6444D1AE1CA71D3A002BAD23 /* Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 6444D1901CA71D3A002BAD23 /* Thumbnail.m */; };
 		6444D1AF1CA71D3A002BAD23 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6444D1921CA71D3A002BAD23 /* UIColor+HexString.m */; };
+		6444D1B21CA7205E002BAD23 /* NewPlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6444D1B01CA7205E002BAD23 /* NewPlaygroundViewController.swift */; };
+		6444D1B31CA7205E002BAD23 /* PlaygroundFileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6444D1B11CA7205E002BAD23 /* PlaygroundFileCreator.swift */; };
+		6444D1B51CA7237C002BAD23 /* PlaygroundDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6444D1B41CA7237C002BAD23 /* PlaygroundDocument.swift */; };
 		649B64721C7B618900E0830D /* ContributeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649B64711C7B618900E0830D /* ContributeViewController.swift */; };
 		64A080B91BDBD9D60001CA0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A080B81BDBD9D60001CA0C /* main.m */; };
 		64A080BC1BDBD9D60001CA0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A080BB1BDBD9D60001CA0C /* AppDelegate.m */; };
@@ -64,7 +66,6 @@
 		64A081241BDBDFD80001CA0C /* CBZSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A081201BDBDFD80001CA0C /* CBZSplashView.m */; };
 		64A081251BDBDFD80001CA0C /* CBZVectorSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A081221BDBDFD80001CA0C /* CBZVectorSplashView.m */; };
 		64A081291BDBE0180001CA0C /* PlaygroundTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A081281BDBE0180001CA0C /* PlaygroundTextView.m */; };
-		64A0812D1BDBE0390001CA0C /* NewPlaygroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0812C1BDBE0390001CA0C /* NewPlaygroundViewController.m */; };
 		64A081311BDBE0520001CA0C /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0812F1BDBE0520001CA0C /* PlaygroundViewController.swift */; };
 		64A081351BDBE07E0001CA0C /* ProjectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A081341BDBE07E0001CA0C /* ProjectCollectionViewCell.m */; };
 		64A0813D1BDBE0B60001CA0C /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0813C1BDBE0B60001CA0C /* SettingsGeneralViewController.swift */; };
@@ -204,7 +205,7 @@
 		3201D0111CA6E58800204373 /* Codinator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Codinator-Bridging-Header.h"; sourceTree = "<group>"; };
 		3201D0151CA6EDBF00204373 /* ProjectSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectSplitViewController.swift; sourceTree = "<group>"; };
 		3201D0171CA6EFA900204373 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
-		326F02401CA1DCF800CA61C7 /* Neuron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Neuron.swift; sourceTree = "<group>"; };
+		326F02401CA1DCF800CA61C7 /* Neuron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Neuron.swift; path = "../../../../../Open Source/Neuron.swift"; sourceTree = "<group>"; };
 		326F029F1CA1EE1700CA61C7 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		6444D1531CA71D3A002BAD23 /* CodinatorDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodinatorDocument.h; sourceTree = "<group>"; };
 		6444D1541CA71D3A002BAD23 /* CodinatorDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodinatorDocument.m; sourceTree = "<group>"; };
@@ -255,14 +256,15 @@
 		6444D1871CA71D3A002BAD23 /* GCDWebServerURLEncodedFormRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerURLEncodedFormRequest.m; sourceTree = "<group>"; };
 		6444D1881CA71D3A002BAD23 /* NSUserDefaults+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Additions.h"; sourceTree = "<group>"; };
 		6444D1891CA71D3A002BAD23 /* NSUserDefaults+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Additions.m"; sourceTree = "<group>"; };
-		6444D18A1CA71D3A002BAD23 /* PlaygroundDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaygroundDocument.h; sourceTree = "<group>"; };
-		6444D18B1CA71D3A002BAD23 /* PlaygroundDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaygroundDocument.m; sourceTree = "<group>"; };
 		6444D18C1CA71D3A002BAD23 /* Polaris.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polaris.h; sourceTree = "<group>"; };
 		6444D18D1CA71D3A002BAD23 /* Polaris.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Polaris.m; sourceTree = "<group>"; };
 		6444D18F1CA71D3A002BAD23 /* Thumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thumbnail.h; sourceTree = "<group>"; };
 		6444D1901CA71D3A002BAD23 /* Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thumbnail.m; sourceTree = "<group>"; };
 		6444D1911CA71D3A002BAD23 /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
 		6444D1921CA71D3A002BAD23 /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
+		6444D1B01CA7205E002BAD23 /* NewPlaygroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPlaygroundViewController.swift; sourceTree = "<group>"; };
+		6444D1B11CA7205E002BAD23 /* PlaygroundFileCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundFileCreator.swift; sourceTree = "<group>"; };
+		6444D1B41CA7237C002BAD23 /* PlaygroundDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundDocument.swift; sourceTree = "<group>"; };
 		649B64711C7B618900E0830D /* ContributeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeViewController.swift; sourceTree = "<group>"; };
 		64A080B41BDBD9D60001CA0C /* Codinator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Codinator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A080B81BDBD9D60001CA0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -315,8 +317,6 @@
 		64A081221BDBDFD80001CA0C /* CBZVectorSplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBZVectorSplashView.m; sourceTree = "<group>"; };
 		64A081271BDBE0180001CA0C /* PlaygroundTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaygroundTextView.h; sourceTree = "<group>"; };
 		64A081281BDBE0180001CA0C /* PlaygroundTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaygroundTextView.m; sourceTree = "<group>"; };
-		64A0812B1BDBE0390001CA0C /* NewPlaygroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPlaygroundViewController.h; sourceTree = "<group>"; };
-		64A0812C1BDBE0390001CA0C /* NewPlaygroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPlaygroundViewController.m; sourceTree = "<group>"; };
 		64A0812F1BDBE0520001CA0C /* PlaygroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
 		64A081331BDBE07E0001CA0C /* ProjectCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCollectionViewCell.h; sourceTree = "<group>"; };
 		64A081341BDBE07E0001CA0C /* ProjectCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCollectionViewCell.m; sourceTree = "<group>"; };
@@ -576,8 +576,7 @@
 				6444D1631CA71D3A002BAD23 /* Local Server */,
 				6444D1881CA71D3A002BAD23 /* NSUserDefaults+Additions.h */,
 				6444D1891CA71D3A002BAD23 /* NSUserDefaults+Additions.m */,
-				6444D18A1CA71D3A002BAD23 /* PlaygroundDocument.h */,
-				6444D18B1CA71D3A002BAD23 /* PlaygroundDocument.m */,
+				6444D1B41CA7237C002BAD23 /* PlaygroundDocument.swift */,
 				6444D18C1CA71D3A002BAD23 /* Polaris.h */,
 				6444D18D1CA71D3A002BAD23 /* Polaris.m */,
 				6444D18F1CA71D3A002BAD23 /* Thumbnail.h */,
@@ -938,8 +937,8 @@
 		64A0812A1BDBE02B0001CA0C /* Generate Playground */ = {
 			isa = PBXGroup;
 			children = (
-				64A0812B1BDBE0390001CA0C /* NewPlaygroundViewController.h */,
-				64A0812C1BDBE0390001CA0C /* NewPlaygroundViewController.m */,
+				6444D1B01CA7205E002BAD23 /* NewPlaygroundViewController.swift */,
+				6444D1B11CA7205E002BAD23 /* PlaygroundFileCreator.swift */,
 			);
 			path = "Generate Playground";
 			sourceTree = "<group>";
@@ -1859,6 +1858,7 @@
 				64A081431BDBE12A0001CA0C /* FontSettingsViewController.m in Sources */,
 				6444D1961CA71D3A002BAD23 /* RNDecryptor.m in Sources */,
 				64A0823F1BDBE4DC0001CA0C /* CLSpotEffect.m in Sources */,
+				6444D1B31CA7205E002BAD23 /* PlaygroundFileCreator.swift in Sources */,
 				64A0814F1BDBE1C80001CA0C /* GetReadyViewController.swift in Sources */,
 				6444D1AF1CA71D3A002BAD23 /* UIColor+HexString.m in Sources */,
 				64A0817E1BDBE28D0001CA0C /* WelcomeViewController.m in Sources */,
@@ -1885,6 +1885,7 @@
 				64A0827A1BDBE4EC0001CA0C /* CLTextTool.m in Sources */,
 				6444D1931CA71D3A002BAD23 /* CodinatorDocument.m in Sources */,
 				64A081311BDBE0520001CA0C /* PlaygroundViewController.swift in Sources */,
+				6444D1B51CA7237C002BAD23 /* PlaygroundDocument.swift in Sources */,
 				6444D1AA1CA71D3A002BAD23 /* NSUserDefaults+Additions.m in Sources */,
 				64A082721BDBE4EC0001CA0C /* CLResizeTool.m in Sources */,
 				64A083271BDD155C0001CA0C /* WUTextSuggestionController.m in Sources */,
@@ -1918,6 +1919,7 @@
 				64A080EC1BDBDBFE0001CA0C /* HRColorMapView.m in Sources */,
 				64A082CE1BDBE89A0001CA0C /* AFSecurityPolicy.m in Sources */,
 				64A081681BDBE1F90001CA0C /* LTMorphingLabel.swift in Sources */,
+				6444D1B21CA7205E002BAD23 /* NewPlaygroundViewController.swift in Sources */,
 				6444D19C1CA71D3A002BAD23 /* GCDWebDAVServer.m in Sources */,
 				6444D19E1CA71D3A002BAD23 /* GCDWebServerConnection.m in Sources */,
 				64A083051BDD14170001CA0C /* KOSwipeButton.m in Sources */,
@@ -1968,7 +1970,6 @@
 				64A082CF1BDBE89A0001CA0C /* AFURLConnectionOperation.m in Sources */,
 				64A082DD1BDCD7A50001CA0C /* NewDirViewController.m in Sources */,
 				64A082FC1BDCD8E70001CA0C /* GitHubViewController.m in Sources */,
-				64A0812D1BDBE0390001CA0C /* NewPlaygroundViewController.m in Sources */,
 				6444D1951CA71D3A002BAD23 /* RNCryptorEngine.m in Sources */,
 				64A083321BDD15660001CA0C /* CYRTextStorage.m in Sources */,
 				64A082331BDBE4DC0001CA0C /* CLImageEditorTheme.m in Sources */,
@@ -1976,7 +1977,6 @@
 				3201D0721CA710A900204373 /* Neuron.swift in Sources */,
 				64A0824A1BDBE4DC0001CA0C /* CLImageToolInfo+Private.m in Sources */,
 				64A082F01BDCD8BB0001CA0C /* HistoryViewController.m in Sources */,
-				6444D1AB1CA71D3A002BAD23 /* PlaygroundDocument.m in Sources */,
 				64A083371BDD15700001CA0C /* QEDTextView.m in Sources */,
 				64A080FE1BDBDC3E0001CA0C /* mztools.c in Sources */,
 			);
