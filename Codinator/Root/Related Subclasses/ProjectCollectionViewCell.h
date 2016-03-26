@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *labelHolder;
+@property (weak, nonatomic) IBOutlet UIView *document;
 
 
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;

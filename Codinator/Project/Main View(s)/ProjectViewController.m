@@ -129,7 +129,7 @@ BOOL allowSaving;
     webPreviewView = [[WKWebView alloc]initWithFrame:webViewFrame configuration:webViewConfiguration];
     webPreviewView.backgroundColor = [UIColor blackColor];
     
-    [self.view addSubview:webPreviewView];
+    //[self.view addSubview:webPreviewView];
     
     
     //round interface a bit
@@ -283,7 +283,7 @@ BOOL allowSaving;
         
     });
     
-    self.navigationController.navigationBar.hidden = true;
+    //self.navigationController.navigationBar.hidden = true;
 }
 
 
@@ -1864,7 +1864,7 @@ BOOL allowSaving;
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    self.navigationController.navigationBar.hidden = false;
+    //self.navigationController.navigationBar.hidden = false;
 }
 
 -(void)viewDidDisappear:(BOOL)animated{

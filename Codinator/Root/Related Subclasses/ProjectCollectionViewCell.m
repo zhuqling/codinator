@@ -12,15 +12,13 @@
 
 @implementation ProjectCollectionViewCell
 
-
-- (void)awakeFromNib{
-
-    self.backgroundColor = [UIColor blackColor];
-    self.selectedBackgroundView.backgroundColor = [UIColor darkGrayColor];
+-(void)awakeFromNib {
+    [super awakeFromNib];
     
-    self.layer.cornerRadius = 10;
-    self.layer.masksToBounds = YES;
+    self.document.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.document.layer.shadowRadius = 4.0;
+    self.document.layer.shadowOpacity = 0.7;
+    self.document.layer.shadowOffset = CGSizeMake(0, 2);
 }
-
 
 @end
