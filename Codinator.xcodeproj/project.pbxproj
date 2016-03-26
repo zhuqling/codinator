@@ -585,8 +585,7 @@
 				6444D1911CA71D3A002BAD23 /* UIColor+HexString.h */,
 				6444D1921CA71D3A002BAD23 /* UIColor+HexString.m */,
 			);
-			name = Polaris;
-			path = "../../../../Open Source/Polaris";
+			path = Polaris;
 			sourceTree = "<group>";
 		};
 		6444D1551CA71D3A002BAD23 /* Encrytion */ = {
