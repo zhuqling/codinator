@@ -451,7 +451,6 @@
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="cancelDidPush:" destination="7X0-Gi-It9" eventType="touchUpInside" id="4kL-IU-FCd"/>
                                             <action selector="closeDidPush:" destination="lh6-6d-aVU" eventType="touchUpInside" id="lLL-er-361"/>
                                         </connections>
                                     </button>
@@ -895,7 +894,6 @@
                                             <rect key="frame" x="8" y="5" width="24" height="22"/>
                                         </variation>
                                         <connections>
-                                            <action selector="cancelDidPush:" destination="7X0-Gi-It9" eventType="touchUpInside" id="XyH-Na-2zQ"/>
                                             <action selector="cancelDidPush:" destination="AfE-W1-G64" eventType="touchUpInside" id="ZPj-I8-Mbi"/>
                                             <action selector="closeDidPush:" destination="lh6-6d-aVU" eventType="touchUpInside" id="E0y-ni-BRH"/>
                                         </connections>
@@ -1418,7 +1416,7 @@
         <!--New Playground View Controller-->
         <scene sceneID="rll-qf-JNo">
             <objects>
-                <viewController id="7X0-Gi-It9" customClass="NewPlaygroundViewController" sceneMemberID="viewController">
+                <viewController id="7X0-Gi-It9" customClass="NewPlaygroundViewController" customModule="Codinator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="58t-e0-UlV"/>
                         <viewControllerLayoutGuide type="bottom" id="pta-r6-YVi"/>
@@ -1438,7 +1436,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="playgroundButtondPressed:" destination="7X0-Gi-It9" eventType="touchUpInside" id="EXq-4t-elK"/>
+                                            <action selector="playgroundTitleDidPush:" destination="7X0-Gi-It9" eventType="touchUpInside" id="fc3-0p-yTL"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ub-oA-wbe">
@@ -1454,7 +1452,7 @@
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="closeDidPush:" destination="7X0-Gi-It9" eventType="touchUpInside" id="2nb-yO-NmF"/>
+                                            <action selector="closeDidPush:" destination="7X0-Gi-It9" eventType="touchUpInside" id="VWo-nv-URQ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1492,7 +1490,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 </variation>
                                 <connections>
-                                    <action selector="playDidPush:" destination="7X0-Gi-It9" eventType="touchUpInside" id="sPZ-q7-r09"/>
+                                    <action selector="nextDidPush:" destination="7X0-Gi-It9" eventType="touchUpInside" id="D5N-Sf-NJi"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kbP-be-2Qh">
@@ -1507,7 +1505,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done"/>
                                 <connections>
-                                    <outlet property="delegate" destination="7X0-Gi-It9" id="dO9-UX-U9J"/>
+                                    <outlet property="delegate" destination="7X0-Gi-It9" id="aJb-Dp-Fev"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -1529,9 +1527,8 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="closeButton" destination="5Ub-oA-wbe" id="WdA-HW-hoR"/>
-                        <outlet property="fileName" destination="kbP-be-2Qh" id="YJd-qv-cR3"/>
-                        <outlet property="nextButton" destination="IyH-lS-Kqv" id="g8F-lO-ajt"/>
+                        <outlet property="fileNameTextField" destination="kbP-be-2Qh" id="S8U-gq-jZK"/>
+                        <outlet property="nextButton" destination="IyH-lS-Kqv" id="A7b-9f-Mrc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mmR-bh-BkN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1874,7 +1871,6 @@
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="cancelDidPush:" destination="7X0-Gi-It9" eventType="touchUpInside" id="unX-ln-Ued"/>
                                             <action selector="closeDidPush:" destination="nXN-0k-mLy" eventType="touchUpInside" id="hqL-kT-RX1"/>
                                         </connections>
                                     </button>
@@ -2311,7 +2307,6 @@
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="cancelDidPush:" destination="7X0-Gi-It9" eventType="touchUpInside" id="jYO-Wr-BOI"/>
                                             <action selector="closeButton:" destination="Zvf-sZ-ux1" eventType="touchUpInside" id="qni-mv-mfA"/>
                                         </connections>
                                     </button>
@@ -2675,7 +2670,6 @@
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="cancelDidPush:" destination="7X0-Gi-It9" eventType="touchUpInside" id="sgL-b0-rl0"/>
                                             <action selector="closeDidPush:" destination="hHG-aA-WtM" eventType="touchUpInside" id="GKS-pd-R27"/>
                                         </connections>
                                     </button>
