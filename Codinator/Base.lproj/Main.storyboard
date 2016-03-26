@@ -3,11 +3,11 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="AppleSDGothicNeo.ttc">
-            <string>AppleSDGothicNeo-Medium</string>
             <string>AppleSDGothicNeo-Regular</string>
             <string>AppleSDGothicNeo-Regular</string>
             <string>AppleSDGothicNeo-Regular</string>
@@ -1004,7 +1004,7 @@
                                     <constraint firstAttribute="width" constant="187" id="22i-kk-z3W"/>
                                     <constraint firstAttribute="height" constant="39" id="LF6-5o-AGN"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1203,7 +1203,7 @@
                                     <action selector="usePhpY:" destination="AfE-W1-G64" eventType="touchUpInside" id="2GQ-em-BHC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="...and we optimize for you everything" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUl-6X-H6A">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="...and we optimize everything for you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUl-6X-H6A">
                                 <rect key="frame" x="190" y="107" width="377" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -1238,6 +1238,18 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="edm-ap-z11">
+                                <rect key="frame" x="0.0" y="0.0" width="756" height="44"/>
+                                <items>
+                                    <navigationItem title="New Project" id="A5H-Da-bba">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ejp-Pi-bOF">
+                                            <connections>
+                                                <action selector="cancelDidPush:" destination="AfE-W1-G64" id="YH3-ib-qEz"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jj-KJ-f34">
                                 <rect key="frame" x="0.0" y="0.0" width="756" height="739"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="KN7-GX-k9J">
@@ -1316,9 +1328,11 @@
                             <constraint firstItem="JTP-eO-XXq" firstAttribute="centerX" secondItem="OPd-ch-Lkh" secondAttribute="centerX" constant="-87.5" id="Jcw-qC-OKj">
                                 <variation key="widthClass=compact" constant="-70"/>
                             </constraint>
+                            <constraint firstItem="edm-ap-z11" firstAttribute="leading" secondItem="OPd-ch-Lkh" secondAttribute="leadingMargin" constant="-20" id="JoM-Pe-QQ7"/>
                             <constraint firstItem="nfL-Rr-FJG" firstAttribute="top" secondItem="X08-pv-oyl" secondAttribute="bottom" constant="49" id="LHj-VF-9nI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TQJ-Cm-Jvv" secondAttribute="trailing" constant="-20" id="LwW-BA-iFU"/>
                             <constraint firstItem="u2B-t4-B5M" firstAttribute="centerX" secondItem="OPd-ch-Lkh" secondAttribute="centerX" constant="-87.5" id="MMG-Lh-wbg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="edm-ap-z11" secondAttribute="trailing" constant="-20" id="N3A-rO-yrL"/>
                             <constraint firstItem="aJB-oF-pKL" firstAttribute="leading" secondItem="Ogg-Ez-9Gm" secondAttribute="trailing" constant="8" symbolic="YES" id="NVD-tx-NT8"/>
                             <constraint firstItem="ahf-nN-KPa" firstAttribute="top" secondItem="4jj-KJ-f34" secondAttribute="bottom" id="PBf-Hv-Sla"/>
                             <constraint firstItem="fd8-4t-iM8" firstAttribute="top" secondItem="SwL-rf-BIm" secondAttribute="bottom" constant="8" id="Ptm-GB-Fov"/>
@@ -1341,6 +1355,7 @@
                             <constraint firstItem="04G-zB-xjZ" firstAttribute="leading" secondItem="4Qj-It-Bft" secondAttribute="trailing" constant="8" symbolic="YES" id="gL4-s1-Xvy"/>
                             <constraint firstItem="Ogg-Ez-9Gm" firstAttribute="centerX" secondItem="TFS-mV-wmh" secondAttribute="centerX" id="ggL-VO-7tk"/>
                             <constraint firstItem="SwS-RA-K2U" firstAttribute="top" secondItem="JTP-eO-XXq" secondAttribute="bottom" constant="1" id="hKb-zf-44q"/>
+                            <constraint firstItem="edm-ap-z11" firstAttribute="top" secondItem="Q8K-NV-bFH" secondAttribute="bottom" id="i1v-3u-S1k"/>
                             <constraint firstItem="TFS-mV-wmh" firstAttribute="centerY" secondItem="25N-3R-yWo" secondAttribute="centerY" id="i3I-nl-5qI"/>
                             <constraint firstItem="9mw-BI-sxi" firstAttribute="centerX" secondItem="4Qj-It-Bft" secondAttribute="centerX" id="iaU-Xb-Xha"/>
                             <constraint firstItem="vyd-EG-fma" firstAttribute="centerY" secondItem="OPd-ch-Lkh" secondAttribute="centerY" constant="-182" id="l5c-80-mpq">

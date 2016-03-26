@@ -86,8 +86,8 @@
     [self.view addSubview:splashView];
     self.splashView = splashView;
 
-    self.collectionView.contentInset = UIEdgeInsetsMake(60, 0, 0, 0);
-    self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(51, 0, 0, 0);
+    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     
 
     //link to app delegate
@@ -345,11 +345,6 @@
 
 #pragma mark - CollectionView Delegates
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    return CGSizeMake(150, 150);
-}
-
 // 3
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(20, 20, 20, 20);
@@ -544,7 +539,9 @@
                     projectIsOpened = YES;
                     
                     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"project" bundle:nil];
-                    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"project"];
+                    UIViewController *vc = [storyboard instantiateInitialViewController];
+                    
+                    //[storyboard instantiateViewControllerWithIdentifier:@"project"];
 
                     [self.navigationController pushViewController:vc animated:YES];
 
@@ -554,7 +551,7 @@
                 else{
                     NSString *message = [NSString stringWithFormat:@"%@ can't be opened right now...", path.lastPathComponent];
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *closeAlert = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil];
+                    UIAlertAction *closeAlert = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
                     [alert addAction:closeAlert];
                     [self presentViewController:alert animated:YES completion:nil];
                     
@@ -864,7 +861,7 @@
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:versionString message:buildString preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *close = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *close = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:close];
 
     
@@ -943,13 +940,10 @@
         [projectAlert addAction:createProjectAction];
         [projectAlert addAction:importProjectAction];
         [projectAlert addAction:cancelProjectCreationAction];
-        projectAlert.view.tintColor = [UIColor purpleColor];
-
         
-        
-        [self presentViewController:projectAlert animated:true completion:nil];
-
-        
+        [self presentViewController:projectAlert animated:true completion:^{
+            //projectAlert.view.tintColor = [UIColor purpleColor];
+        }];
         
     }];
     
@@ -968,7 +962,7 @@
     [newDoc addAction:projectAction];
     [newDoc addAction:playgroundAction];
     [newDoc addAction:cancelAction];
-    newDoc.view.tintColor = [UIColor purpleColor];
+    //newDoc.view.tintColor = [UIColor purpleColor];
 
     
     newDoc.popoverPresentationController.sourceView = self.plusButtonSuperView;

@@ -49,10 +49,10 @@ BOOL done;
     [super viewDidLoad];
     
     violett = nextButton.backgroundColor;
-    nextButton.backgroundColor = [UIColor grayColor];
+    //nextButton.backgroundColor = [UIColor grayColor];
     nextButton.enabled = NO;
-    cancelButton.layer.cornerRadius = 5;
-    cancelButton.layer.masksToBounds = YES;
+    //cancelButton.layer.cornerRadius = 5;
+    //cancelButton.layer.masksToBounds = YES;
     
     usePHPButtonNo.selected = YES;
     usePHPButtonYes.selected = NO;
@@ -195,16 +195,16 @@ BOOL done;
 -(void)checkNext{
     if (usePhp2 && useJs2 && useCss2 && useFtp2 && useVersion2) {
         if (webPageNameTextField.text.length == 0) {
-            webPageNameTextField.backgroundColor = [UIColor blackColor];
+            /*webPageNameTextField.backgroundColor = [UIColor blackColor];
             webPageNameTextField.textColor = copyrightTextField.textColor;
   
             nextButton.backgroundColor = violett;
 
             webPageNameTextField.layer.cornerRadius = 5.0f;
             webPageNameTextField.layer.borderColor = [[UIColor blackColor] CGColor];
-            webPageNameTextField.layer.borderWidth = 1.0f;
+            webPageNameTextField.layer.borderWidth = 1.0f;*/
             
-            nextButton.enabled = YES;
+            nextButton.enabled = true;
             
             
             
@@ -216,14 +216,15 @@ BOOL done;
             
             //webPageNameTextField.backgroundColor = [UIColor redColor];
             
-            webPageNameTextField.layer.borderColor = [violett CGColor];
+            /*webPageNameTextField.layer.borderColor = [violett CGColor];
             webPageNameTextField.layer.borderWidth = 1.0f;
             webPageNameTextField.layer.cornerRadius = 5.0f;
 
             
             
             
-            webPageNameTextField.textColor = [UIColor whiteColor];
+            webPageNameTextField.textColor = [UIColor whiteColor];*/
+            nextButton.enabled = true;
             [self performSelector:@selector(checkNext) withObject:self afterDelay:0.1];
 
         }

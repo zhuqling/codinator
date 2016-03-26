@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3201D00B1CA6E02600204373 /* FilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3201D00A1CA6E02600204373 /* FilesTableViewController.swift */; };
+		3201D0161CA6EDBF00204373 /* ProjectSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3201D0151CA6EDBF00204373 /* ProjectSplitViewController.swift */; };
+		3201D0181CA6EFAA00204373 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3201D0171CA6EFA900204373 /* EditorViewController.swift */; };
 		326F02411CA1DCF800CA61C7 /* Neuron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326F02401CA1DCF800CA61C7 /* Neuron.swift */; };
 		326F02811CA1DD3700CA61C7 /* CodinatorDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 326F02431CA1DD3700CA61C7 /* CodinatorDocument.m */; };
 		326F02821CA1DD3700CA61C7 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 326F02481CA1DD3700CA61C7 /* RNCryptor.m */; };
@@ -36,6 +39,7 @@
 		326F029A1CA1DD3700CA61C7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 326F027C1CA1DD3700CA61C7 /* README.md */; };
 		326F029B1CA1DD3700CA61C7 /* Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 326F027E1CA1DD3700CA61C7 /* Thumbnail.m */; };
 		326F029C1CA1DD3700CA61C7 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 326F02801CA1DD3700CA61C7 /* UIColor+HexString.m */; };
+		326F02A01CA1EE1700CA61C7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326F029F1CA1EE1700CA61C7 /* MainStoryboard.storyboard */; };
 		649B64721C7B618900E0830D /* ContributeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649B64711C7B618900E0830D /* ContributeViewController.swift */; };
 		64A080B91BDBD9D60001CA0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A080B81BDBD9D60001CA0C /* main.m */; };
 		64A080BC1BDBD9D60001CA0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A080BB1BDBD9D60001CA0C /* AppDelegate.m */; };
@@ -197,6 +201,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3201D00A1CA6E02600204373 /* FilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableViewController.swift; sourceTree = "<group>"; };
+		3201D0111CA6E58800204373 /* Codinator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Codinator-Bridging-Header.h"; sourceTree = "<group>"; };
+		3201D0151CA6EDBF00204373 /* ProjectSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectSplitViewController.swift; sourceTree = "<group>"; };
+		3201D0171CA6EFA900204373 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		326F02401CA1DCF800CA61C7 /* Neuron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Neuron.swift; sourceTree = "<group>"; };
 		326F02421CA1DD3700CA61C7 /* CodinatorDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CodinatorDocument.h; path = "../../Downloads/polaris-master/CodinatorDocument.h"; sourceTree = "<group>"; };
 		326F02431CA1DD3700CA61C7 /* CodinatorDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CodinatorDocument.m; path = "../../Downloads/polaris-master/CodinatorDocument.m"; sourceTree = "<group>"; };
@@ -256,6 +264,7 @@
 		326F027E1CA1DD3700CA61C7 /* Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Thumbnail.m; path = "../../Downloads/polaris-master/Thumbnail.m"; sourceTree = "<group>"; };
 		326F027F1CA1DD3700CA61C7 /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HexString.h"; path = "../../Downloads/polaris-master/UIColor+HexString.h"; sourceTree = "<group>"; };
 		326F02801CA1DD3700CA61C7 /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HexString.m"; path = "../../Downloads/polaris-master/UIColor+HexString.m"; sourceTree = "<group>"; };
+		326F029F1CA1EE1700CA61C7 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		649B64711C7B618900E0830D /* ContributeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeViewController.swift; sourceTree = "<group>"; };
 		64A080B41BDBD9D60001CA0C /* Codinator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Codinator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A080B81BDBD9D60001CA0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -838,6 +847,7 @@
 				64A081191BDBDF950001CA0C /* Related Subclasses */,
 				64A081181BDBDF670001CA0C /* First Start */,
 				64A080C01BDBD9D60001CA0C /* Main.storyboard */,
+				326F029F1CA1EE1700CA61C7 /* MainStoryboard.storyboard */,
 				64A0817C1BDBE28D0001CA0C /* WelcomeViewController.h */,
 				64A0817D1BDBE28D0001CA0C /* WelcomeViewController.m */,
 			);
@@ -878,6 +888,7 @@
 			children = (
 				64A0812F1BDBE0520001CA0C /* PlaygroundViewController.swift */,
 				326F02401CA1DCF800CA61C7 /* Neuron.swift */,
+				3201D0111CA6E58800204373 /* Codinator-Bridging-Header.h */,
 				64A0812A1BDBE02B0001CA0C /* Generate Playground */,
 				64A081261BDBE00E0001CA0C /* Syntax Highlighter */,
 			);
@@ -1395,6 +1406,9 @@
 				64A082911BDBE70C0001CA0C /* Subclasses */,
 				64A082951BDBE7350001CA0C /* ProjectViewController.h */,
 				64A082961BDBE7350001CA0C /* ProjectViewController.m */,
+				3201D0151CA6EDBF00204373 /* ProjectSplitViewController.swift */,
+				3201D00A1CA6E02600204373 /* FilesTableViewController.swift */,
+				3201D0171CA6EFA900204373 /* EditorViewController.swift */,
 				64A083651BDD24680001CA0C /* project.storyboard */,
 			);
 			path = "Main View(s)";
@@ -1772,6 +1786,7 @@
 				64A0833C1BDD16040001CA0C /* UnZip.storyboard in Resources */,
 				64A080C21BDBD9D60001CA0C /* Main.storyboard in Resources */,
 				64A081721BDBE2180001CA0C /* Sparkle.png in Resources */,
+				326F02A01CA1EE1700CA61C7 /* MainStoryboard.storyboard in Resources */,
 				64A081711BDBE2180001CA0C /* Smoke.png in Resources */,
 				64A082B01BDBE81F0001CA0C /* History.storyboard in Resources */,
 				64A082B21BDBE81F0001CA0C /* core.storyboard in Resources */,
@@ -1828,11 +1843,13 @@
 				64A082761BDBE4EC0001CA0C /* CLPickerDrum.m in Sources */,
 				64A083281BDD155C0001CA0C /* WUTextSuggestionDisplayController.m in Sources */,
 				64A082D11BDBE89A0001CA0C /* AFURLResponseSerialization.m in Sources */,
+				3201D00B1CA6E02600204373 /* FilesTableViewController.swift in Sources */,
 				64A082371BDBE4DC0001CA0C /* CLClippingTool.m in Sources */,
 				64A082D01BDBE89A0001CA0C /* AFURLRequestSerialization.m in Sources */,
 				64A080E91BDBDBFE0001CA0C /* HRBrightnessSlider.m in Sources */,
 				64A083541BDD16900001CA0C /* Selector.swift in Sources */,
 				64A082E01BDCD7B30001CA0C /* NewSubpageViewController.m in Sources */,
+				3201D0181CA6EFAA00204373 /* EditorViewController.swift in Sources */,
 				64A0823C1BDBE4DC0001CA0C /* CLHueEffect.m in Sources */,
 				64A082461BDBE4DC0001CA0C /* CLToneCurveTool.m in Sources */,
 				64A082941BDBE7170001CA0C /* ProjectTableViewCell.m in Sources */,
@@ -1896,6 +1913,7 @@
 				64A0824B1BDBE4DC0001CA0C /* CLToolbarMenuItem.m in Sources */,
 				64A082971BDBE7350001CA0C /* ProjectViewController.m in Sources */,
 				326F028A1CA1DD3700CA61C7 /* GCDWebServer.m in Sources */,
+				3201D0161CA6EDBF00204373 /* ProjectSplitViewController.swift in Sources */,
 				64A0813D1BDBE0B60001CA0C /* SettingsGeneralViewController.swift in Sources */,
 				64A082321BDBE4DC0001CA0C /* CLImageEditor.m in Sources */,
 				64A082731BDBE4EC0001CA0C /* CLSplashTool.m in Sources */,

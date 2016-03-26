@@ -8,6 +8,7 @@
 #import "HRColorPickerView.h"
 
 #import "Thumbnail.h"
+#import "Polaris.h"
 
 #import "NSUserDefaults+Additions.h"
 #import "PlaygroundTextView.h"
