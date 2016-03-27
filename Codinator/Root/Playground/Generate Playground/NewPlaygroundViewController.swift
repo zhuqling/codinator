@@ -13,8 +13,6 @@ class NewPlaygroundViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var fileNameTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     
-    @IBOutlet weak var closeButton: UIButton!
-    
     var violett: UIColor?
     
     override func viewDidLoad() {
@@ -36,11 +34,6 @@ class NewPlaygroundViewController: UIViewController, UITextFieldDelegate {
         fileNameTextField.layer.borderWidth = 1.0
         fileNameTextField.layer.cornerRadius = 5
         
-        
-        // Configure Close Button
-        closeButton.layer.masksToBounds = true
-        closeButton.layer.cornerRadius = 5
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,11 +42,13 @@ class NewPlaygroundViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    // MARK: - Generate
+    // MARK: - Buttons
+
     
+    // Generate a new File
     @IBAction func nextDidPush(sender: AnyObject) {
-        let document = PlaygroundFileCreator.generatePlaygroundFileWithName(fileNameTextField.text)
-        let url = PlaygroundFileCreator.fileUrlForPlaygroundWithName(fileNameTextField.text)
+        let document = PlaygroundFileCreator.generatePlaygroundFileWithName(fileNameTextField.text!)
+        let url = PlaygroundFileCreator.fileUrlForPlaygroundWithName(fileNameTextField.text!)
 
         document.saveToURL(url, forSaveOperation: .ForOverwriting) { (success) in
             if success {
@@ -73,20 +68,10 @@ class NewPlaygroundViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        
     }
     
     
-    // MARK: - Extra Buttons
-    
-    @IBAction func playgroundTitleDidPush(sender: AnyObject) {
-        let alertController = UIAlertController(title: "Playground - noun:", message: "A place where people can play and prototype stuff...", preferredStyle: .Alert)
-        let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
+    // Close View 
     @IBAction func closeDidPush(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

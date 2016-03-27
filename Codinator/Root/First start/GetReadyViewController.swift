@@ -9,10 +9,6 @@
 import UIKit
 
 class GetReadyViewController: UIViewController {
-
-    
-    
-    
     
     @IBOutlet weak var welcomeToCodinatorLabel: LTMorphingLabel!
     
@@ -38,7 +34,6 @@ class GetReadyViewController: UIViewController {
     
     
     func finishLoading() {
-        
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             
             self.activityIndicator.alpha = 0
@@ -55,33 +50,20 @@ class GetReadyViewController: UIViewController {
             })
             
         }
-        
-        
     }
     
     
     
     @IBAction func doneDidPush(sender: AnyObject) {
-    
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "CNFirstRunEver")
         self.dismissViewControllerAnimated(true, completion: nil)
-    
     }
-    
-    
-    
-    
-    
-    
     
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    
-    
 
 }

@@ -15,5 +15,4 @@
 #import "QEDTextView.h"
 #import "JsTextView.h"
 
-#import "PlaygroundDocument.h"
-//#import "PlaygroundFileCreator.h"
+#import "AppDelegate.h"
