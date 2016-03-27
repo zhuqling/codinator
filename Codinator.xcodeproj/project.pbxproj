@@ -10,7 +10,7 @@
 		3201D00B1CA6E02600204373 /* FilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3201D00A1CA6E02600204373 /* FilesTableViewController.swift */; };
 		3201D0161CA6EDBF00204373 /* ProjectSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3201D0151CA6EDBF00204373 /* ProjectSplitViewController.swift */; };
 		3201D0181CA6EFAA00204373 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3201D0171CA6EFA900204373 /* EditorViewController.swift */; };
-		3201D0721CA710A900204373 /* Neuron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326F02401CA1DCF800CA61C7 /* Neuron.swift */; };
+		3226D8981CA87B230091C34E /* Neuron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3226D8971CA87B230091C34E /* Neuron.swift */; };
 		326F02A01CA1EE1700CA61C7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326F029F1CA1EE1700CA61C7 /* MainStoryboard.storyboard */; };
 		6444D1931CA71D3A002BAD23 /* CodinatorDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6444D1541CA71D3A002BAD23 /* CodinatorDocument.m */; };
 		6444D1941CA71D3A002BAD23 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6444D1591CA71D3A002BAD23 /* RNCryptor.m */; };
@@ -205,7 +205,7 @@
 		3201D0111CA6E58800204373 /* Codinator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Codinator-Bridging-Header.h"; sourceTree = "<group>"; };
 		3201D0151CA6EDBF00204373 /* ProjectSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectSplitViewController.swift; sourceTree = "<group>"; };
 		3201D0171CA6EFA900204373 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
-		326F02401CA1DCF800CA61C7 /* Neuron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Neuron.swift; path = "../../../../../Open Source/Neuron.swift"; sourceTree = "<group>"; };
+		3226D8971CA87B230091C34E /* Neuron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Neuron.swift; sourceTree = "<group>"; };
 		326F029F1CA1EE1700CA61C7 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		6444D1531CA71D3A002BAD23 /* CodinatorDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodinatorDocument.h; sourceTree = "<group>"; };
 		6444D1541CA71D3A002BAD23 /* CodinatorDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodinatorDocument.m; sourceTree = "<group>"; };
@@ -903,7 +903,7 @@
 			isa = PBXGroup;
 			children = (
 				64A0812F1BDBE0520001CA0C /* PlaygroundViewController.swift */,
-				326F02401CA1DCF800CA61C7 /* Neuron.swift */,
+				3226D8971CA87B230091C34E /* Neuron.swift */,
 				3201D0111CA6E58800204373 /* Codinator-Bridging-Header.h */,
 				64A0812A1BDBE02B0001CA0C /* Generate Playground */,
 				64A081261BDBE00E0001CA0C /* Syntax Highlighter */,
@@ -1939,6 +1939,7 @@
 				64A080FF1BDBDC3E0001CA0C /* unzip.c in Sources */,
 				6444D1941CA71D3A002BAD23 /* RNCryptor.m in Sources */,
 				64A082781BDBE4EC0001CA0C /* CLTextLabel.m in Sources */,
+				3226D8981CA87B230091C34E /* Neuron.swift in Sources */,
 				64A082481BDBE4DC0001CA0C /* CLColorPickerView.m in Sources */,
 				64A082A71BDBE7CC0001CA0C /* CSLayerStealingBlurView.m in Sources */,
 				6444D1971CA71D3A002BAD23 /* RNEncryptor.m in Sources */,
@@ -1974,7 +1975,6 @@
 				64A083321BDD15660001CA0C /* CYRTextStorage.m in Sources */,
 				64A082331BDBE4DC0001CA0C /* CLImageEditorTheme.m in Sources */,
 				64A080EF1BDBDBFE0001CA0C /* UIImage+CoreGraphics.m in Sources */,
-				3201D0721CA710A900204373 /* Neuron.swift in Sources */,
 				64A0824A1BDBE4DC0001CA0C /* CLImageToolInfo+Private.m in Sources */,
 				64A082F01BDCD8BB0001CA0C /* HistoryViewController.m in Sources */,
 				64A083371BDD15700001CA0C /* QEDTextView.m in Sources */,
