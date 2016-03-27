@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="F9g-RV-Waj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="F9g-RV-Waj">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,7 +20,26 @@
                     <view key="view" contentMode="scaleToFill" id="P8J-21-dk9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nbz-TP-foU">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
+                                <connections>
+                                    <outlet property="delegate" destination="kIn-qZ-nWA" id="ZSX-8O-NdX"/>
+                                </connections>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" red="0.14134837959999999" green="0.14134837959999999" blue="0.14134837959999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="nbz-TP-foU" secondAttribute="trailing" constant="-20" id="Dzx-fy-AqT"/>
+                            <constraint firstItem="nbz-TP-foU" firstAttribute="leading" secondItem="P8J-21-dk9" secondAttribute="leadingMargin" constant="-20" id="pKo-nf-NQF"/>
+                            <constraint firstItem="nbz-TP-foU" firstAttribute="top" secondItem="lRt-A3-JG9" secondAttribute="bottom" constant="-44" id="y6t-NU-LK9"/>
+                            <constraint firstItem="4yc-jO-0YB" firstAttribute="top" secondItem="nbz-TP-foU" secondAttribute="bottom" id="zdQ-gR-4RN"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Index.html" id="FjX-K2-FUe">
                         <rightBarButtonItems>
@@ -28,6 +47,9 @@
                             <barButtonItem systemItem="undo" id="KDf-9P-kXM"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="nbz-TP-foU" id="hNe-6k-yRx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Xo-8t-nBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -48,7 +70,7 @@
                         <view key="tableFooterView" contentMode="scaleToFill" id="OPJ-vk-XgT">
                             <rect key="frame" x="0.0" y="116" width="600" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="tge-zg-7o9" style="IBUITableViewCellStyleDefault" id="QU7-HX-tOj">
@@ -122,10 +144,10 @@
             </objects>
             <point key="canvasLocation" x="-1033" y="-825"/>
         </scene>
-        <!--View Controller-->
+        <!--Project Main View Controller-->
         <scene sceneID="YGn-pU-ZS8">
             <objects>
-                <viewController id="F9g-RV-Waj" sceneMemberID="viewController">
+                <viewController id="F9g-RV-Waj" customClass="ProjectMainViewController" customModule="Codinator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TJj-an-Bof"/>
                         <viewControllerLayoutGuide type="bottom" id="GAi-rW-b0a"/>
@@ -135,26 +157,109 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNn-Go-QbU">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="336"/>
                                 <connections>
                                     <segue destination="Awz-0T-PAb" kind="embed" id="29d-m8-6aD"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lAe-GI-N2a">
+                                <rect key="frame" x="0.0" y="400" width="600" height="10"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfp-vc-1TV">
+                                        <rect key="frame" x="273" y="3" width="54" height="4"/>
+                                        <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="54" id="ODE-Yt-Dmt"/>
+                                            <constraint firstAttribute="height" constant="4" id="k8Z-IN-ePc"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="gfp-vc-1TV" firstAttribute="centerX" secondItem="lAe-GI-N2a" secondAttribute="centerX" id="YIg-9j-dvf"/>
+                                    <constraint firstItem="gfp-vc-1TV" firstAttribute="centerY" secondItem="lAe-GI-N2a" secondAttribute="centerY" id="cG4-Jf-qKb"/>
+                                    <constraint firstAttribute="height" constant="10" id="tN6-bE-nse"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qmB-Zy-xBc" appends="YES" id="T6u-L9-YoH"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcS-DT-rcw">
+                                <rect key="frame" x="0.0" y="411" width="600" height="189"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.14134837959999999" green="0.14134837959999999" blue="0.14134837959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="lAe-GI-N2a" firstAttribute="leading" secondItem="FXD-xH-WL3" secondAttribute="leadingMargin" constant="-20" id="2H7-Al-p2b"/>
                             <constraint firstItem="bNn-Go-QbU" firstAttribute="leading" secondItem="FXD-xH-WL3" secondAttribute="leadingMargin" constant="-20" id="3o9-mp-jXn"/>
-                            <constraint firstItem="GAi-rW-b0a" firstAttribute="top" secondItem="bNn-Go-QbU" secondAttribute="bottom" id="PUj-tl-Ifj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lAe-GI-N2a" secondAttribute="trailing" constant="-20" id="6Kj-1P-Dop"/>
+                            <constraint firstItem="GAi-rW-b0a" firstAttribute="top" secondItem="bNn-Go-QbU" secondAttribute="bottom" id="BBK-32-5zQ"/>
+                            <constraint firstItem="lAe-GI-N2a" firstAttribute="top" secondItem="bNn-Go-QbU" secondAttribute="bottom" id="HyN-ab-AHS"/>
+                            <constraint firstItem="GAi-rW-b0a" firstAttribute="top" secondItem="lAe-GI-N2a" secondAttribute="top" priority="750" constant="200" id="YKe-iP-LkI"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="vcS-DT-rcw" secondAttribute="bottom" id="ZjD-cO-ZJr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vcS-DT-rcw" secondAttribute="trailing" constant="-20" id="apw-pL-xOW"/>
+                            <constraint firstItem="vcS-DT-rcw" firstAttribute="top" secondItem="lAe-GI-N2a" secondAttribute="bottom" constant="1" id="e0k-zU-sPQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bNn-Go-QbU" secondAttribute="trailing" constant="-20" id="fXM-3f-GzQ"/>
+                            <constraint firstItem="vcS-DT-rcw" firstAttribute="leading" secondItem="FXD-xH-WL3" secondAttribute="leadingMargin" constant="-20" id="q3G-wK-tsi"/>
                             <constraint firstItem="bNn-Go-QbU" firstAttribute="top" secondItem="TJj-an-Bof" secondAttribute="bottom" id="uw3-mP-2Fq"/>
+                            <constraint firstItem="vcS-DT-rcw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="TJj-an-Bof" secondAttribute="bottom" constant="140" id="xUT-rQ-1m1"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="BBK-32-5zQ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="iuA-cy-H8S">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="oXq-J9-Ev6"/>
+                        <barButtonItem key="leftBarButtonItem" image="back" id="aSf-pi-tR8">
+                            <connections>
+                                <action selector="back:" destination="F9g-RV-Waj" id="m2f-kn-ZiQ"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="action" id="ORW-3Z-hF2"/>
+                            <barButtonItem systemItem="search" id="oXq-J9-Ev6">
+                                <connections>
+                                    <action selector="search:" destination="F9g-RV-Waj" id="nhP-wJ-56Y"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem enabled="NO" image="right" id="ZgN-7B-z9k">
+                                <inset key="imageInsets" minX="-46" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </barButtonItem>
+                            <barButtonItem image="bottom" id="Ud9-s9-rxW">
+                                <inset key="imageInsets" minX="-22" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <action selector="bottom:" destination="F9g-RV-Waj" id="Ft9-RD-T6H"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="left" id="XGf-7S-efG">
+                                <connections>
+                                    <action selector="left:" destination="F9g-RV-Waj" id="hI8-MH-blZ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <connections>
+                        <outlet property="bottomConstraint" destination="BBK-32-5zQ" id="Ekg-7V-ZWB"/>
+                        <outlet property="bottomView" destination="vcS-DT-rcw" id="KgE-o3-Rmg"/>
+                        <outlet property="grabberConstraint" destination="YKe-iP-LkI" id="CT9-t4-1Rn"/>
+                        <outlet property="grabberView" destination="lAe-GI-N2a" id="1yN-3l-Ibj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GsN-R2-dsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="qmB-Zy-xBc">
+                    <connections>
+                        <action selector="grabber:" destination="F9g-RV-Waj" id="X87-Xc-i85"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1033" y="-1486"/>
         </scene>
@@ -1804,14 +1909,18 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="13" height="21"/>
+        <image name="bottom" width="30" height="30"/>
         <image name="css" width="128" height="128"/>
         <image name="generic" width="128" height="128"/>
         <image name="hide-utilities" width="30" height="30"/>
         <image name="html" width="128" height="128"/>
         <image name="js" width="128" height="128"/>
+        <image name="left" width="30" height="30"/>
         <image name="leftN" width="25" height="25"/>
         <image name="php" width="128" height="128"/>
         <image name="redoN" width="25" height="25"/>
+        <image name="right" width="30" height="30"/>
         <image name="rightN" width="85" height="85"/>
         <image name="run" width="30" height="30"/>
         <image name="search" width="100" height="100"/>
@@ -1820,8 +1929,8 @@
         <image name="undoN" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="scT-3i-Q5U"/>
-        <segue reference="Ivh-8N-ZCP"/>
+        <segue reference="Pb0-kG-REy"/>
+        <segue reference="5Sz-GO-iqw"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.59976761879999996" green="0.3591421494" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
