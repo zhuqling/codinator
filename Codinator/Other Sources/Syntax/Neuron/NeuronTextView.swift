@@ -35,17 +35,14 @@ class NeuronTextView: CYRTextView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        self.commonSetUp()
     }
-    
     
     
     func commonSetUp() {
         self.font = defaultFont
         self.textColor = UIColor.whiteColor()
-        
-        
-        //TODO: Missing KVO
         
         self.tokens = highlightingTokens()
     }

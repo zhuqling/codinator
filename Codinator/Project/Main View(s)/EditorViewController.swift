@@ -9,25 +9,27 @@
 import UIKit
 
 class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggestionDisplayControllerDataSource {
-    @IBOutlet var textView: UITextView!
+    @IBOutlet var textView: HTMLTextView!
     
-    var text : String? = ""
-    var documentTitle : String? = ""
-    var projectManager : Polaris?
+    //FIXME: @Lennart You have to create the textview with code otherwise the Syntax Highlighting won't work.
+    
+    var text: String? = ""
+    var documentTitle: String? = ""
+    var projectManager: Polaris?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.Interactive
-        textView.layer.drawsAsynchronously = true
-        textView.text = text
+        textView!.keyboardDismissMode = .Interactive
+        textView!.layer.drawsAsynchronously = true
+        textView!.text = text
         
         self.navigationItem.title = documentTitle
         
         let suggestionDisplayController = WUTextSuggestionDisplayController()
         suggestionDisplayController.dataSource = self
         let suggestionController = WUTextSuggestionController(textView: textView, suggestionDisplayController: suggestionDisplayController)
-        suggestionController.suggestionType = WUTextSuggestionType.At
+        suggestionController.suggestionType = .At
     }
     
     func textViewDidChange(textView: UITextView) {
@@ -35,8 +37,16 @@ class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggesti
         operation.queuePriority = .Low
         operation.qualityOfService = .Background
         operation.completionBlock = {
-            let fileURL = NSURL(fileURLWithPath: self.projectManager!.selectedFilePath, isDirectory: false)
-            let root = NSURL(fileURLWithPath: (self.projectManager!.selectedFilePath as NSString).stringByDeletingLastPathComponent, isDirectory: true)
+            
+    
+            // Unwrap Polaris
+            guard let safeProjectManager = self.projectManager else {
+                return
+            }
+            
+            
+            let fileURL = NSURL(fileURLWithPath: safeProjectManager.selectedFilePath, isDirectory: false)
+            let root = NSURL(fileURLWithPath: (safeProjectManager.selectedFilePath as NSString).stringByDeletingLastPathComponent, isDirectory: true)
             
             dispatch_async(dispatch_get_main_queue(), { 
                 if let splitViewController = self.splitViewController as? ProjectSplitViewController {
@@ -54,6 +64,12 @@ class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggesti
         
         NSOperationQueue.mainQueue().addOperation(operation)
     }
+    
+    
+    
+    
+    // MARK: - Auto Completion
+    
     
     func textSuggestionDisplayController(textSuggestionDisplayController: WUTextSuggestionDisplayController!, suggestionDisplayItemsForSuggestionType suggestionType: WUTextSuggestionType, query suggestionQuery: String!) -> [AnyObject]! {
         if suggestionType == WUTextSuggestionType.At {
