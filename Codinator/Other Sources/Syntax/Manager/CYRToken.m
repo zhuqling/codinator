@@ -39,7 +39,7 @@
 + (instancetype)tokenWithName:(NSString *)name expression:(NSString *)expression attributes:(NSDictionary *)attributes
 {
     CYRToken *textAttribute = [CYRToken new];
-    
+
     textAttribute.name = name;
     textAttribute.expression = expression;
     textAttribute.attributes = attributes;

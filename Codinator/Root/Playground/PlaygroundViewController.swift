@@ -20,8 +20,8 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
     
     var document: PlaygroundDocument = PlaygroundDocument(fileURL: NSURL(fileURLWithPath: NSUserDefaults.standardUserDefaults().stringForKey("PlaygroundPath")!, isDirectory: false))
     
-    var htmlTextView: PlaygroundTextView = PlaygroundTextView()
-    var cssTextView: QEDTextView = QEDTextView()
+    var neuronTextView: NeuronTextView = NeuronTextView()
+    var cssTextView: HTMLTextView = HTMLTextView()
     var jsTextView: JsTextView = JsTextView()
    
     
@@ -78,29 +78,29 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         }
         
         
-        self.htmlTextView.frame = rootHTML
+        self.neuronTextView.frame = rootHTML
         self.cssTextView.frame = rootCSS
         self.jsTextView.frame = rootJS
         
-        self.htmlTextView.backgroundColor = UIColor.blackColor()
+        self.neuronTextView.backgroundColor = UIColor.blackColor()
         self.cssTextView.backgroundColor = UIColor.blackColor()
         self.jsTextView.backgroundColor = UIColor.blackColor()
         
         let appearance = UIKeyboardAppearance.Dark
         
-        self.htmlTextView.alwaysBounceVertical = true
+        self.neuronTextView.alwaysBounceVertical = true
         self.cssTextView.alwaysBounceVertical = true
         self.jsTextView.alwaysBounceVertical = true
         
-        self.htmlTextView.keyboardAppearance = appearance
+        self.neuronTextView.keyboardAppearance = appearance
         self.cssTextView.keyboardAppearance = appearance
         self.jsTextView.keyboardAppearance = appearance
         
-        self.htmlTextView.keyboardDismissMode = .Interactive
+        self.neuronTextView.keyboardDismissMode = .Interactive
         self.cssTextView.keyboardDismissMode = .Interactive
         self.jsTextView.keyboardDismissMode = .Interactive
         
-        self.htmlTextView.tintColor = UIColor.orangeColor()
+        self.neuronTextView.tintColor = UIColor.orangeColor()
         self.cssTextView.tintColor = UIColor.orangeColor()
         self.jsTextView.tintColor = UIColor.orangeColor()
         
@@ -117,16 +117,16 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         let barButtonItems = [snippet,snippetOne, snippetTwo, snippetThree, snippetFour];
         
         let group = UIBarButtonItemGroup(barButtonItems: barButtonItems, representativeItem: nil)
-        htmlTextView.inputAssistantItem.trailingBarButtonGroups = [group]
+        neuronTextView.inputAssistantItem.trailingBarButtonGroups = [group]
         
         
         
         
-        self.htmlTextView.tag = 1
+        self.neuronTextView.tag = 1
         self.cssTextView.tag = 2
         self.jsTextView.tag = 3
         
-        self.view.addSubview(self.htmlTextView)
+        self.view.addSubview(self.neuronTextView)
         self.view.addSubview(self.cssTextView)
         self.view.addSubview(self.jsTextView)
         
@@ -135,7 +135,7 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         self.closeButton.layer.cornerRadius = 5
         
         
-        self.htmlTextView.text = neuronText
+        self.neuronTextView.text = neuronText
         self.cssTextView.text = cssText
         self.jsTextView.text = jsText
         self.setUpPlayground()
@@ -144,7 +144,7 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         
         
         
-        self.htmlTextView.delegate = self
+        self.neuronTextView.delegate = self
         self.cssTextView.delegate = self
         self.jsTextView.delegate = self
         
@@ -156,7 +156,7 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         
         let resizingMask: UIViewAutoresizing = [.FlexibleWidth, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleBottomMargin]
         
-        self.htmlTextView.autoresizingMask = resizingMask
+        self.neuronTextView.autoresizingMask = resizingMask
         self.cssTextView.autoresizingMask = resizingMask
         self.jsTextView.autoresizingMask = resizingMask
         
@@ -175,7 +175,7 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         switch (textView.tag) {
         
         case 1:
-            document.setFile(.Neuron, toFile: htmlTextView.text)
+            document.setFile(.Neuron, toFile: neuronTextView.text)
         
         case 2:
             document.setFile(.CSS, toFile: cssTextView.text)
@@ -213,12 +213,12 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         
         if (self.view.bounds.size.width >= 1000){
             
-            var frame1 = self.htmlTextView.frame
+            var frame1 = self.neuronTextView.frame
             var frame2 = self.cssTextView.frame
             var frame3 = self.jsTextView.frame
             
             let noInsets = UIEdgeInsetsMake(0, 0, 0, 0)
-            self.htmlTextView.contentInset = noInsets
+            self.neuronTextView.contentInset = noInsets
             self.cssTextView.contentInset = noInsets
             self.jsTextView.contentInset = noInsets
 
@@ -262,7 +262,7 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
             
             UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
                 
-                self.htmlTextView.frame = frame1
+                self.neuronTextView.frame = frame1
                 self.cssTextView.frame = frame2
                 self.jsTextView.frame = frame3
                 
@@ -282,7 +282,7 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
             
             UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
                 
-                self.htmlTextView.frame = self.rootHTML
+                self.neuronTextView.frame = self.rootHTML
                 self.cssTextView.frame = self.rootCSS
                 self.jsTextView.frame = self.rootJS
                 
@@ -328,17 +328,17 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         switch (segment.selectedSegmentIndex){
             
         case 0:
-            self.htmlTextView.hidden = false
+            self.neuronTextView.hidden = false
             self.cssTextView.hidden = true
             self.jsTextView.hidden = true
             break
         case 1:
-            self.htmlTextView.hidden = true
+            self.neuronTextView.hidden = true
             self.cssTextView.hidden = false
             self.jsTextView.hidden = true
             break
         case 2:
-            self.htmlTextView.hidden = true
+            self.neuronTextView.hidden = true
             self.cssTextView.hidden = true
             self.jsTextView.hidden = false
             break
@@ -353,23 +353,23 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
     //MARK: Snippets
 
     func insertTab(){
-        self.htmlTextView.insertText("    ");
+        self.neuronTextView.insertText("    ");
     }
     
     func insertStringSnippet(){
-        self.htmlTextView.insertText("\"");
+        self.neuronTextView.insertText("\"");
     }
 
     func insertOpenBracket(){
-        self.htmlTextView.insertText("(");
+        self.neuronTextView.insertText("(");
     }
     
     func insertCloseBracket(){
-        self.htmlTextView.insertText(")");
+        self.neuronTextView.insertText(")");
     }
     
     func insertDoublePoint(){
-        self.htmlTextView.insertText(":");
+        self.neuronTextView.insertText(":");
     }
     
     
@@ -503,7 +503,7 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
             
         }
         
-        self.htmlTextView.frame = rootHTML
+        self.neuronTextView.frame = rootHTML
         self.cssTextView.frame = rootCSS
         self.jsTextView.frame = rootJS
         

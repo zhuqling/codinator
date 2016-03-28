@@ -9,7 +9,6 @@
 
 @import WebKit;
 
-#import "QEDTextView.h"
 #import "WUTextSuggestionDisplayController.h"
 #import "JsTextView.h"
 #import "HRColorPickerView.h"
@@ -32,7 +31,7 @@
     IBOutlet UIView *navigatorPanelView;        CGRect navigatorPanelViewFrame;
     WKWebView *webPreviewView;         CGRect webPreviewViewFrame;
     
-    QEDTextView *textview;
+    UITextView *textview;
     //JsTextView *textview2;
     
     

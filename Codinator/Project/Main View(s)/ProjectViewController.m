@@ -96,7 +96,7 @@ BOOL allowSaving;
         textViewFrame = CGRectMake(tableView.frame.size.width, extrasPanel.frame.size.height + extrasPanel.frame.origin.y + 5, self.view.frame.size.width - tableView.frame.size.width - utilitiesPanelView.frame.size.width, self.view.frame.size.height/2 - extrasPanel.frame.size.height - extrasPanel.frame.origin.y - 3);
     }
     
-    textview = [[QEDTextView alloc]initWithFrame:textViewFrame];
+    textview = [[UITextView alloc]initWithFrame:textViewFrame];
     textview.backgroundColor = [UIColor blackColor];
     textview.keyboardAppearance = UIKeyboardAppearanceDark;
     textview.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;

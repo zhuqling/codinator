@@ -11,8 +11,6 @@
 #import "Polaris.h"
 
 #import "NSUserDefaults+Additions.h"
-#import "PlaygroundTextView.h"
-#import "QEDTextView.h"
 #import "JsTextView.h"
-
+#import "CYRToken.h"
 #import "AppDelegate.h"

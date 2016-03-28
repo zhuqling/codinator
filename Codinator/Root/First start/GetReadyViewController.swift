@@ -18,10 +18,8 @@ class GetReadyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     
         // Do any additional setup after loading the view.
-        welcomeToCodinatorLabel.morphingEffect = .Evaporate
         
         self.callSelector(#selector(GetReadyViewController.finishLoading), object: self, delay: 4.0)
         
@@ -31,6 +29,12 @@ class GetReadyViewController: UIViewController {
         self.nextButton.layer.cornerRadius = 5
     }
 
+    override func viewDidAppear(animated: Bool) {
+        dispatch_async(dispatch_get_main_queue(),{
+            self.welcomeToCodinatorLabel.text = "Welcome to Codinator"
+            self.welcomeToCodinatorLabel.morphingEffect = .Evaporate
+        })
+    }
     
     
     func finishLoading() {
