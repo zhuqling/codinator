@@ -9,6 +9,8 @@
 import UIKit
 
 class ProjectSplitViewController: UISplitViewController {
+    var webView : WKWebView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

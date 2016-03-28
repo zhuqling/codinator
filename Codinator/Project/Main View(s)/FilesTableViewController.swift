@@ -161,12 +161,19 @@ class FilesTableViewController: UITableViewController {
             if let controller = navigation.viewControllers[0] as? EditorViewController {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     if let selectedPath = (projectManager?.inspectorPath as NSString?)?.stringByAppendingPathComponent(items[indexPath.row].lastPathComponent!) {
+                        projectManager?.selectedFilePath = selectedPath
+
+                        if let splitViewController = self.splitViewController as? ProjectSplitViewController {
+                            splitViewController.webView?.loadFileURL( NSURL(fileURLWithPath: selectedPath, isDirectory: false), allowingReadAccessToURL: NSURL(fileURLWithPath: projectManager!.inspectorPath, isDirectory: true))
+                        }
+                        
                         if let data = NSFileManager.defaultManager().contentsAtPath(selectedPath) {
                             let contents = NSString(data: data, encoding: NSUTF8StringEncoding)
                             controller.text = contents as? String
                         }
                         
                         controller.documentTitle = items[indexPath.row].lastPathComponent!
+                        controller.projectManager = self.projectManager
                     }
                 }
             }

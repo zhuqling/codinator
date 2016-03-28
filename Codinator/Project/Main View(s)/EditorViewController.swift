@@ -10,8 +10,10 @@ import UIKit
 
 class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggestionDisplayControllerDataSource {
     @IBOutlet var textView: UITextView!
+    
     var text : String? = ""
     var documentTitle : String? = ""
+    var projectManager : Polaris?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,31 @@ class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggesti
         suggestionDisplayController.dataSource = self
         let suggestionController = WUTextSuggestionController(textView: textView, suggestionDisplayController: suggestionDisplayController)
         suggestionController.suggestionType = WUTextSuggestionType.At
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        let operation = NSOperation()
+        operation.queuePriority = .Low
+        operation.qualityOfService = .Background
+        operation.completionBlock = {
+            let fileURL = NSURL(fileURLWithPath: self.projectManager!.selectedFilePath, isDirectory: false)
+            let root = NSURL(fileURLWithPath: (self.projectManager!.selectedFilePath as NSString).stringByDeletingLastPathComponent, isDirectory: true)
+            
+            dispatch_async(dispatch_get_main_queue(), { 
+                if let splitViewController = self.splitViewController as? ProjectSplitViewController {
+                    splitViewController.webView?.loadFileURL(fileURL, allowingReadAccessToURL: root)
+                }
+            })
+            
+            do {
+                try textView.text.writeToFile(self.projectManager!.selectedFilePath, atomically: false, encoding: NSUTF8StringEncoding)
+            } catch {
+                
+            }
+            
+        }
+        
+        NSOperationQueue.mainQueue().addOperation(operation)
     }
     
     func textSuggestionDisplayController(textSuggestionDisplayController: WUTextSuggestionDisplayController!, suggestionDisplayItemsForSuggestionType suggestionType: WUTextSuggestionType, query suggestionQuery: String!) -> [AnyObject]! {
