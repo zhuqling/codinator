@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6sV-hf-PdK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6sV-hf-PdK">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -442,48 +442,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="O6i-8Y-T9r">
-                                <rect key="frame" x="290" y="572" width="20" height="20"/>
+                                <rect key="frame" x="290" y="560" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0E-4B-K9i">
-                                <rect key="frame" x="255" y="495" width="91" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="tintColor" red="0.58620491340000003" green="0.49538324189999999" blue="0.98829159609999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="  Start Using  "/>
-                                <variation key="heightClass=compact" misplaced="YES">
-                                    <rect key="frame" x="246" y="295" width="110" height="34"/>
-                                </variation>
-                                <connections>
-                                    <action selector="doneDidPush:" destination="f4a-oq-NNn" eventType="touchUpInside" id="ban-b1-UTf"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Codinator" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="SPR-Y4-F5A" customClass="LTMorphingLabel" customModule="Codinator" customModuleProvider="target">
                                 <rect key="frame" x="10" y="277" width="580" height="45"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="37"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact" misplaced="YES">
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                     <rect key="frame" x="10" y="177" width="580" height="45"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eC7-n7-bQf">
+                                <rect key="frame" x="0.0" y="542" width="600" height="58"/>
+                                <color key="backgroundColor" red="0.59976761879999996" green="0.3591421494" blue="1" alpha="0.17000000000000001" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="dig-N0-DfV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="Start Using">
+                                    <color key="titleColor" red="0.59976761879999996" green="0.3591421494" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneDidPush:" destination="f4a-oq-NNn" eventType="touchUpInside" id="c5R-Vk-iyc"/>
+                                    <action selector="nextDidPush:" destination="AGI-c8-Zz2" eventType="touchUpInside" id="8qa-wT-aEv"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="O6i-8Y-T9r" firstAttribute="top" secondItem="v0E-4B-K9i" secondAttribute="bottom" constant="43" id="CPv-aM-iIK"/>
-                            <constraint firstItem="v0E-4B-K9i" firstAttribute="centerX" secondItem="GVx-ul-48g" secondAttribute="centerX" id="Id7-tI-qgX"/>
+                            <constraint firstItem="eC7-n7-bQf" firstAttribute="leading" secondItem="GVx-ul-48g" secondAttribute="leadingMargin" constant="-20" id="1fd-Zk-LDF"/>
+                            <constraint firstItem="tPH-7F-Obl" firstAttribute="top" secondItem="eC7-n7-bQf" secondAttribute="bottom" id="KsW-Zy-D6o"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eC7-n7-bQf" secondAttribute="trailing" constant="-20" id="NPi-KZ-G8G"/>
                             <constraint firstItem="SPR-Y4-F5A" firstAttribute="leading" secondItem="GVx-ul-48g" secondAttribute="leadingMargin" constant="-10" id="Rcy-3Q-NmX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SPR-Y4-F5A" secondAttribute="trailing" constant="-10" id="Wff-Un-Yu8"/>
                             <constraint firstItem="SPR-Y4-F5A" firstAttribute="centerY" secondItem="GVx-ul-48g" secondAttribute="centerY" id="bP6-lh-bxv"/>
-                            <constraint firstItem="tPH-7F-Obl" firstAttribute="top" secondItem="O6i-8Y-T9r" secondAttribute="bottom" constant="8" id="ell-Dk-2WU"/>
+                            <constraint firstItem="tPH-7F-Obl" firstAttribute="top" secondItem="O6i-8Y-T9r" secondAttribute="bottom" constant="20" id="ell-Dk-2WU"/>
                             <constraint firstItem="O6i-8Y-T9r" firstAttribute="centerX" secondItem="GVx-ul-48g" secondAttribute="centerX" id="hdq-Iw-4xZ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="O6i-8Y-T9r" id="rKf-9L-ZWF"/>
-                        <outlet property="nextButton" destination="v0E-4B-K9i" id="S4f-AM-4Xq"/>
+                        <outlet property="nextButton" destination="eC7-n7-bQf" id="e2h-5X-ugN"/>
                         <outlet property="welcomeToCodinatorLabel" destination="SPR-Y4-F5A" id="Ldh-rD-Yso"/>
                     </connections>
                 </viewController>

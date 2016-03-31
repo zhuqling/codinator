@@ -1728,10 +1728,8 @@ BOOL allowSaving;
 
 
 
--(void)moveCursor:(NSUInteger)number{
-    
-    if (!number == 0) {
-        
+-(void)moveCursor:(NSUInteger)number{    
+    if (number != 0) {
         [self leftDidPush:nil];
         [self moveCursor:number-1];
     }

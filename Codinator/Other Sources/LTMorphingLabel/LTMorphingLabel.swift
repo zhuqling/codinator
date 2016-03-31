@@ -170,11 +170,15 @@ extension LTMorphingLabel {
             totalDelayFrames = Int(ceil(totalDelay / frameRate))
         }
         
-        if previousText != text && currentFrame++ < totalFrames + totalDelayFrames + 5 {
+        currentFrame += 1
+        
+        if previousText != text && currentFrame < totalFrames + totalDelayFrames + 5 {
             morphingProgress += 1.0 / Float(totalFrames)
             
-            if let closure = skipFramesClosures["\(morphingEffect.description)\(LTMorphingPhaseSkipFrames)"] {
-                if ++skipFramesCount > closure() {
+            let closureKey = "\(morphingEffect.description)\(LTMorphingPhaseSkipFrames)"
+            if let closure = skipFramesClosures[closureKey] {
+                skipFramesCount += 1
+                if skipFramesCount > closure() {
                     skipFramesCount = 0
                     setNeedsDisplay()
                 }
@@ -188,9 +192,7 @@ extension LTMorphingLabel {
         } else {
             displayLink.paused = true
             
-            if let complete = delegate?.morphingDidComplete {
-                complete(self)
-            }
+            delegate?.morphingDidComplete?(self)
         }
     }
     

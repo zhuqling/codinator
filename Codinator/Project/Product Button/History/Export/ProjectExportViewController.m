@@ -61,9 +61,9 @@
 
 - (IBAction)ftpDidPush:(id)sender {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"In development" message:@"This feature is still in development. Please upload the files one by one in the share view." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"In development" message:@"This feature is still in development. Please upload the files one by one in the share view." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     
-    [alert show];
+    //[alert show];
 }
 
 

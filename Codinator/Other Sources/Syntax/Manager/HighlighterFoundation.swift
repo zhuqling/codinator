@@ -8,8 +8,21 @@
 
 import UIKit
 
-class HighlighterFoundation: UITextView {
+enum HighlightingDictionaryKey: String {
+    case Tag = "Macro:3 Attribute"
+    case SquareBrackets = "Macro:4 Attribute"
+    case ReservedWords = "Macro:5 Attribute"
+    case String = "Macro:6 Attribute"
+}
 
+enum HighlightingMacroKey: String {
+    case Tag = "Macro:3"
+    case SquareBrackets = "Macro:4"
+    case ReservedWords = "Macro:5"
+    case String = "Macro:6"
+}
+
+class HighlighterFoundation: UITextView {
     
     var tokens: [CYRToken]? {
         get {

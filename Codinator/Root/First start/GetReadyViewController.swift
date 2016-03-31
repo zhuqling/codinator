@@ -21,12 +21,8 @@ class GetReadyViewController: UIViewController {
     
         // Do any additional setup after loading the view.
         
-        self.callSelector(#selector(GetReadyViewController.finishLoading), object: self, delay: 4.0)
         
-        
-        self.nextButton.layer.borderWidth = 2
-        self.nextButton.layer.borderColor = self.nextButton.tintColor.CGColor
-        self.nextButton.layer.cornerRadius = 5
+        self.callSelector(#selector(GetReadyViewController.finishLoading), object: self, delay: 3.0)
     }
 
     override func viewDidAppear(animated: Bool) {

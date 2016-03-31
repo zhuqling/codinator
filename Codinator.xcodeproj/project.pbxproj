@@ -65,6 +65,9 @@
 		646EC71F1CA8D15700F359C2 /* Sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = 646EC70F1CA8D15700F359C2 /* Sparkle.png */; };
 		646EC7211CA8D30800F359C2 /* NSUserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EC7201CA8D30800F359C2 /* NSUserDefaultsExtension.swift */; };
 		646EC7251CA8D3EF00F359C2 /* NeuronTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EC7241CA8D3EF00F359C2 /* NeuronTextView.swift */; };
+		646EC7271CADD2A800F359C2 /* UIAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EC7261CADD2A800F359C2 /* UIAlertViewController.swift */; };
+		646EC7291CADD80900F359C2 /* JsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EC7281CADD80900F359C2 /* JsTextView.swift */; };
+		646EC72B1CADD8AC00F359C2 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EC72A1CADD8AC00F359C2 /* UIColorExtension.swift */; };
 		649B64721C7B618900E0830D /* ContributeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649B64711C7B618900E0830D /* ContributeViewController.swift */; };
 		64A080B91BDBD9D60001CA0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A080B81BDBD9D60001CA0C /* main.m */; };
 		64A080BC1BDBD9D60001CA0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A080BB1BDBD9D60001CA0C /* AppDelegate.m */; };
@@ -186,7 +189,6 @@
 		64A083051BDD14170001CA0C /* KOSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A083031BDD14170001CA0C /* KOSwipeButton.m */; };
 		64A083081BDD142B0001CA0C /* VWASAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A083061BDD142B0001CA0C /* VWASAccessoryView.m */; };
 		64A0830C1BDD14B80001CA0C /* AskQuestioniPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0830B1BDD14B80001CA0C /* AskQuestioniPad.m */; };
-		64A083151BDD15470001CA0C /* JsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A083141BDD15470001CA0C /* JsTextView.m */; };
 		64A083271BDD155C0001CA0C /* WUTextSuggestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A083241BDD155C0001CA0C /* WUTextSuggestionController.m */; };
 		64A083281BDD155C0001CA0C /* WUTextSuggestionDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A083261BDD155C0001CA0C /* WUTextSuggestionDisplayController.m */; };
 		64A083311BDD15660001CA0C /* CYRLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0832A1BDD15660001CA0C /* CYRLayoutManager.m */; };
@@ -196,8 +198,6 @@
 		64A0833C1BDD16040001CA0C /* UnZip.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A083391BDD16040001CA0C /* UnZip.storyboard */; };
 		64A0833D1BDD16040001CA0C /* UnArchivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0833B1BDD16040001CA0C /* UnArchivingViewController.m */; };
 		64A083541BDD16900001CA0C /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A083531BDD16900001CA0C /* Selector.swift */; };
-		64A083591BDD16B00001CA0C /* iCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A083561BDD16B00001CA0C /* iCloud.m */; };
-		64A0835A1BDD16B00001CA0C /* iCloudDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A083581BDD16B00001CA0C /* iCloudDocument.m */; };
 		64A083631BDD1E6B0001CA0C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0835B1BDD18C40001CA0C /* libxml2.tbd */; };
 		64A083641BDD20740001CA0C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A081141BDBDE780001CA0C /* libz.tbd */; };
 		64A083661BDD24680001CA0C /* project.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A083651BDD24680001CA0C /* project.storyboard */; };
@@ -296,6 +296,9 @@
 		646EC70F1CA8D15700F359C2 /* Sparkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sparkle.png; sourceTree = "<group>"; };
 		646EC7201CA8D30800F359C2 /* NSUserDefaultsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultsExtension.swift; sourceTree = "<group>"; };
 		646EC7241CA8D3EF00F359C2 /* NeuronTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeuronTextView.swift; sourceTree = "<group>"; };
+		646EC7261CADD2A800F359C2 /* UIAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertViewController.swift; sourceTree = "<group>"; };
+		646EC7281CADD80900F359C2 /* JsTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsTextView.swift; sourceTree = "<group>"; };
+		646EC72A1CADD8AC00F359C2 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		649B64711C7B618900E0830D /* ContributeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeViewController.swift; sourceTree = "<group>"; };
 		64A080B41BDBD9D60001CA0C /* Codinator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Codinator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A080B81BDBD9D60001CA0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -529,8 +532,6 @@
 		64A083071BDD142B0001CA0C /* VWASAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWASAccessoryView.h; sourceTree = "<group>"; };
 		64A0830A1BDD14B80001CA0C /* AskQuestioniPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskQuestioniPad.h; sourceTree = "<group>"; };
 		64A0830B1BDD14B80001CA0C /* AskQuestioniPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskQuestioniPad.m; sourceTree = "<group>"; };
-		64A083131BDD15470001CA0C /* JsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsTextView.h; sourceTree = "<group>"; };
-		64A083141BDD15470001CA0C /* JsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsTextView.m; sourceTree = "<group>"; };
 		64A083231BDD155C0001CA0C /* WUTextSuggestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WUTextSuggestionController.h; sourceTree = "<group>"; };
 		64A083241BDD155C0001CA0C /* WUTextSuggestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WUTextSuggestionController.m; sourceTree = "<group>"; };
 		64A083251BDD155C0001CA0C /* WUTextSuggestionDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WUTextSuggestionDisplayController.h; sourceTree = "<group>"; };
@@ -547,10 +548,6 @@
 		64A0833A1BDD16040001CA0C /* UnArchivingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnArchivingViewController.h; sourceTree = "<group>"; };
 		64A0833B1BDD16040001CA0C /* UnArchivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnArchivingViewController.m; sourceTree = "<group>"; };
 		64A083531BDD16900001CA0C /* Selector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
-		64A083551BDD16B00001CA0C /* iCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCloud.h; sourceTree = "<group>"; };
-		64A083561BDD16B00001CA0C /* iCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCloud.m; sourceTree = "<group>"; };
-		64A083571BDD16B00001CA0C /* iCloudDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCloudDocument.h; sourceTree = "<group>"; };
-		64A083581BDD16B00001CA0C /* iCloudDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCloudDocument.m; sourceTree = "<group>"; };
 		64A0835B1BDD18C40001CA0C /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		64A0835D1BDD19830001CA0C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		64A0835F1BDD19970001CA0C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -824,9 +821,10 @@
 			isa = PBXGroup;
 			children = (
 				64A080F21BDBDC2E0001CA0C /* Zip */,
-				64A080F11BDBDC210001CA0C /* iCloud */,
 				64A080F01BDBDC170001CA0C /* Swift */,
 				640407C31CADB42D00CC25E5 /* UIViewExtension.swift */,
+				646EC72A1CADD8AC00F359C2 /* UIColorExtension.swift */,
+				646EC7261CADD2A800F359C2 /* UIAlertViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -837,17 +835,6 @@
 				64A083531BDD16900001CA0C /* Selector.swift */,
 			);
 			path = Swift;
-			sourceTree = "<group>";
-		};
-		64A080F11BDBDC210001CA0C /* iCloud */ = {
-			isa = PBXGroup;
-			children = (
-				64A083551BDD16B00001CA0C /* iCloud.h */,
-				64A083561BDD16B00001CA0C /* iCloud.m */,
-				64A083571BDD16B00001CA0C /* iCloudDocument.h */,
-				64A083581BDD16B00001CA0C /* iCloudDocument.m */,
-			);
-			path = iCloud;
 			sourceTree = "<group>";
 		};
 		64A080F21BDBDC2E0001CA0C /* Zip */ = {
@@ -1662,8 +1649,7 @@
 		64A0830E1BDD14EF0001CA0C /* JS */ = {
 			isa = PBXGroup;
 			children = (
-				64A083131BDD15470001CA0C /* JsTextView.h */,
-				64A083141BDD15470001CA0C /* JsTextView.m */,
+				646EC7281CADD80900F359C2 /* JsTextView.swift */,
 			);
 			path = JS;
 			sourceTree = "<group>";
@@ -1841,7 +1827,7 @@
 				64A0828C1BDBE68E0001CA0C /* FileMoverViewController.m in Sources */,
 				64A0814D1BDBE1860001CA0C /* SettingsViewController.swift in Sources */,
 				64A0829E1BDBE7A50001CA0C /* PulsingHaloLayer.m in Sources */,
-				64A083591BDD16B00001CA0C /* iCloud.m in Sources */,
+				646EC72B1CADD8AC00F359C2 /* UIColorExtension.swift in Sources */,
 				64A083331BDD15660001CA0C /* CYRTextView.m in Sources */,
 				64A082351BDBE4DC0001CA0C /* CLAdjustmentTool.m in Sources */,
 				64A080EE1BDBDBFE0001CA0C /* HRHSVColorUtil.m in Sources */,
@@ -1885,7 +1871,6 @@
 				6444D1B31CA7205E002BAD23 /* PlaygroundFileCreator.swift in Sources */,
 				64A0814F1BDBE1C80001CA0C /* GetReadyViewController.swift in Sources */,
 				64A0817E1BDBE28D0001CA0C /* WelcomeViewController.m in Sources */,
-				64A083151BDD15470001CA0C /* JsTextView.m in Sources */,
 				64A082821BDBE61B0001CA0C /* YALSunnyRefreshControl.m in Sources */,
 				64A0828F1BDBE6AF0001CA0C /* QuickStartQuide.swift in Sources */,
 				64A0814B1BDBE1660001CA0C /* MadeByViewController.swift in Sources */,
@@ -1905,6 +1890,7 @@
 				646EC6E01CA8D0BE00F359C2 /* RNCryptor.m in Sources */,
 				64A081311BDBE0520001CA0C /* PlaygroundViewController.swift in Sources */,
 				64A082721BDBE4EC0001CA0C /* CLResizeTool.m in Sources */,
+				646EC7271CADD2A800F359C2 /* UIAlertViewController.swift in Sources */,
 				646EC6FB1CA8D0BE00F359C2 /* Thumbnail.m in Sources */,
 				64A083271BDD155C0001CA0C /* WUTextSuggestionController.m in Sources */,
 				64A081041BDBDC6D0001CA0C /* SSZipArchive.m in Sources */,
@@ -1974,6 +1960,7 @@
 				646EC6E31CA8D0BE00F359C2 /* RNEncryptor.m in Sources */,
 				64A0823D1BDBE4DC0001CA0C /* CLPixellateEffect.m in Sources */,
 				64A0823E1BDBE4DC0001CA0C /* CLPosterizeEffect.m in Sources */,
+				646EC7291CADD80900F359C2 /* JsTextView.swift in Sources */,
 				64A0824E1BDBE4DC0001CA0C /* CLSplineInterpolator.m in Sources */,
 				64A082DA1BDCD7980001CA0C /* NewImportViewController.swift in Sources */,
 				64A080EA1BDBDBFE0001CA0C /* HRColorCursor.m in Sources */,
@@ -1981,7 +1968,6 @@
 				646EC6F01CA8D0BE00F359C2 /* GCDWebServerFunctions.m in Sources */,
 				649B64721C7B618900E0830D /* ContributeViewController.swift in Sources */,
 				64A081251BDBDFD80001CA0C /* CBZVectorSplashView.m in Sources */,
-				64A0835A1BDD16B00001CA0C /* iCloudDocument.m in Sources */,
 				646EC7251CA8D3EF00F359C2 /* NeuronTextView.swift in Sources */,
 				64A082D21BDBE89A0001CA0C /* AFURLSessionManager.m in Sources */,
 				64A081231BDBDFD80001CA0C /* CBZRasterSplashView.m in Sources */,

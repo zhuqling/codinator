@@ -10,7 +10,6 @@
 @import WebKit;
 
 #import "WUTextSuggestionDisplayController.h"
-#import "JsTextView.h"
 #import "HRColorPickerView.h"
 
 @interface ProjectViewController : UIViewController<UITextViewDelegate,UITableViewDataSource,UITableViewDelegate,WUTextSuggestionDisplayControllerDataSource,UITextFieldDelegate,UIPopoverControllerDelegate,UISearchBarDelegate, UITraitEnvironment>{

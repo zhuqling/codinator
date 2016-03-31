@@ -11,7 +11,7 @@
 #import "Polaris.h"
 
 #import "NSUserDefaults+Additions.h"
-#import "JsTextView.h"
+#import "CYRTextView.h"
 #import "AppDelegate.h"
 
 #import "CYRToken.h"
