@@ -9,9 +9,7 @@
 import UIKit
 
 class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggestionDisplayControllerDataSource {
-    @IBOutlet var textView: HTMLTextView!
-    
-    //FIXME: @Lennart You have to create the textview with code otherwise the Syntax Highlighting won't work.
+    let textView: HTMLTextView = HTMLTextView()
     
     var text: String? = ""
     var documentTitle: String? = ""
@@ -20,9 +18,14 @@ class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggesti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textView!.keyboardDismissMode = .Interactive
-        textView!.layer.drawsAsynchronously = true
-        textView!.text = text
+        
+        // Setting up TextView
+        textView.frame = self.view.frame
+        textView.bindFrameToSuperviewBounds()
+        
+        textView.text = text
+        view.addSubview(textView)
+        
         
         self.navigationItem.title = documentTitle
         
@@ -30,6 +33,8 @@ class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggesti
         suggestionDisplayController.dataSource = self
         let suggestionController = WUTextSuggestionController(textView: textView, suggestionDisplayController: suggestionDisplayController)
         suggestionController.suggestionType = .At
+        
+        view.layoutSubviews()
     }
     
     func textViewDidChange(textView: UITextView) {

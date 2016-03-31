@@ -13,11 +13,13 @@
 		32150DCB1CA8849300B87094 /* ProjectMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32150DCA1CA8849300B87094 /* ProjectMainViewController.swift */; };
 		3226D8981CA87B230091C34E /* Neuron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3226D8971CA87B230091C34E /* Neuron.swift */; };
 		326F02A01CA1EE1700CA61C7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326F029F1CA1EE1700CA61C7 /* MainStoryboard.storyboard */; };
+		640407C41CADB42D00CC25E5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640407C31CADB42D00CC25E5 /* UIViewExtension.swift */; };
 		6444D1B21CA7205E002BAD23 /* NewPlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6444D1B01CA7205E002BAD23 /* NewPlaygroundViewController.swift */; };
 		6444D1B31CA7205E002BAD23 /* PlaygroundFileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6444D1B11CA7205E002BAD23 /* PlaygroundFileCreator.swift */; };
 		6458FDC21CA8987C005B2B93 /* HTMLTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458FDC11CA8987C005B2B93 /* HTMLTextView.swift */; };
 		6458FDC61CA8AD34005B2B93 /* HighlighterToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458FDC51CA8AD34005B2B93 /* HighlighterToken.swift */; };
 		6458FDCA1CA8BADB005B2B93 /* HighlighterExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458FDC91CA8BADB005B2B93 /* HighlighterExtention.swift */; };
+		646E15721CAC3C7400330BAD /* HighlighterFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646E15711CAC3C7400330BAD /* HighlighterFoundation.swift */; };
 		646EC6DF1CA8D0BE00F359C2 /* CodinatorDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 646EC6A01CA8D0BE00F359C2 /* CodinatorDocument.m */; };
 		646EC6E01CA8D0BE00F359C2 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 646EC6A51CA8D0BE00F359C2 /* RNCryptor.m */; };
 		646EC6E11CA8D0BE00F359C2 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 646EC6A71CA8D0BE00F359C2 /* RNCryptorEngine.m */; };
@@ -212,11 +214,13 @@
 		32150DCA1CA8849300B87094 /* ProjectMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectMainViewController.swift; sourceTree = "<group>"; };
 		3226D8971CA87B230091C34E /* Neuron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Neuron.swift; sourceTree = "<group>"; };
 		326F029F1CA1EE1700CA61C7 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		640407C31CADB42D00CC25E5 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		6444D1B01CA7205E002BAD23 /* NewPlaygroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPlaygroundViewController.swift; sourceTree = "<group>"; };
 		6444D1B11CA7205E002BAD23 /* PlaygroundFileCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundFileCreator.swift; sourceTree = "<group>"; };
 		6458FDC11CA8987C005B2B93 /* HTMLTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLTextView.swift; sourceTree = "<group>"; };
 		6458FDC51CA8AD34005B2B93 /* HighlighterToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlighterToken.swift; sourceTree = "<group>"; };
 		6458FDC91CA8BADB005B2B93 /* HighlighterExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlighterExtention.swift; sourceTree = "<group>"; };
+		646E15711CAC3C7400330BAD /* HighlighterFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlighterFoundation.swift; sourceTree = "<group>"; };
 		646EC69F1CA8D0BE00F359C2 /* CodinatorDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodinatorDocument.h; sourceTree = "<group>"; };
 		646EC6A01CA8D0BE00F359C2 /* CodinatorDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodinatorDocument.m; sourceTree = "<group>"; };
 		646EC6A21CA8D0BE00F359C2 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
@@ -822,6 +826,7 @@
 				64A080F21BDBDC2E0001CA0C /* Zip */,
 				64A080F11BDBDC210001CA0C /* iCloud */,
 				64A080F01BDBDC170001CA0C /* Swift */,
+				640407C31CADB42D00CC25E5 /* UIViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1687,6 +1692,7 @@
 				64A083301BDD15660001CA0C /* CYRToken.m */,
 				6458FDC51CA8AD34005B2B93 /* HighlighterToken.swift */,
 				6458FDC91CA8BADB005B2B93 /* HighlighterExtention.swift */,
+				646E15711CAC3C7400330BAD /* HighlighterFoundation.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1943,6 +1949,7 @@
 				64A082CC1BDBE89A0001CA0C /* AFHTTPSessionManager.m in Sources */,
 				64A082F41BDCD8C80001CA0C /* HistoryWebViewController.m in Sources */,
 				64A082521BDBE4DC0001CA0C /* _CLImageEditorViewController.m in Sources */,
+				646E15721CAC3C7400330BAD /* HighlighterFoundation.swift in Sources */,
 				64A082791BDBE4EC0001CA0C /* CLTextSettingView.m in Sources */,
 				64A083311BDD15660001CA0C /* CYRLayoutManager.m in Sources */,
 				64A083081BDD142B0001CA0C /* VWASAccessoryView.m in Sources */,
@@ -1951,6 +1958,7 @@
 				64A082361BDBE4DC0001CA0C /* CLBlurTool.m in Sources */,
 				64A082441BDBE4DC0001CA0C /* CLImageToolBase.m in Sources */,
 				64A080FF1BDBDC3E0001CA0C /* unzip.c in Sources */,
+				640407C41CADB42D00CC25E5 /* UIViewExtension.swift in Sources */,
 				64A082781BDBE4EC0001CA0C /* CLTextLabel.m in Sources */,
 				6458FDC61CA8AD34005B2B93 /* HighlighterToken.swift in Sources */,
 				3226D8981CA87B230091C34E /* Neuron.swift in Sources */,

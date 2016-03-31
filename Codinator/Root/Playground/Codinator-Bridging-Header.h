@@ -12,5 +12,8 @@
 
 #import "NSUserDefaults+Additions.h"
 #import "JsTextView.h"
-#import "CYRToken.h"
 #import "AppDelegate.h"
+
+#import "CYRToken.h"
+#import "CYRLayoutManager.h"
+#import "CYRTextStorage.h"

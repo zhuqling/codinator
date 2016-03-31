@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="F9g-RV-Waj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="F9g-RV-Waj">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,26 +20,7 @@
                     <view key="view" contentMode="scaleToFill" id="P8J-21-dk9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nbz-TP-foU" customClass="HTMLTextView" customModule="Codinator" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
-                                <connections>
-                                    <outlet property="delegate" destination="kIn-qZ-nWA" id="ZSX-8O-NdX"/>
-                                </connections>
-                            </textView>
-                        </subviews>
                         <color key="backgroundColor" red="0.14134837959999999" green="0.14134837959999999" blue="0.14134837959999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="nbz-TP-foU" secondAttribute="trailing" constant="-20" id="Dzx-fy-AqT"/>
-                            <constraint firstItem="nbz-TP-foU" firstAttribute="leading" secondItem="P8J-21-dk9" secondAttribute="leadingMargin" constant="-20" id="pKo-nf-NQF"/>
-                            <constraint firstItem="nbz-TP-foU" firstAttribute="top" secondItem="lRt-A3-JG9" secondAttribute="bottom" constant="-44" id="y6t-NU-LK9"/>
-                            <constraint firstItem="4yc-jO-0YB" firstAttribute="top" secondItem="nbz-TP-foU" secondAttribute="bottom" id="zdQ-gR-4RN"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Index.html" id="FjX-K2-FUe">
                         <rightBarButtonItems>
@@ -47,9 +28,6 @@
                             <barButtonItem systemItem="undo" id="KDf-9P-kXM"/>
                         </rightBarButtonItems>
                     </navigationItem>
-                    <connections>
-                        <outlet property="textView" destination="nbz-TP-foU" id="hNe-6k-yRx"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Xo-8t-nBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1929,8 +1907,8 @@
         <image name="undoN" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5Sz-GO-iqw"/>
         <segue reference="Pb0-kG-REy"/>
+        <segue reference="scT-3i-Q5U"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.59976761879999996" green="0.3591421494" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
