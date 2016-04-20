@@ -65,7 +65,8 @@
     
 
     
-    
+
+    _window.tintColor = [UIColor purpleColor];
     
     
     return YES;

@@ -49,10 +49,9 @@ BOOL done;
     [super viewDidLoad];
     
     violett = nextButton.backgroundColor;
-    //nextButton.backgroundColor = [UIColor grayColor];
+    nextButton.backgroundColor = [UIColor grayColor];
     nextButton.enabled = NO;
-    //cancelButton.layer.cornerRadius = 5;
-    //cancelButton.layer.masksToBounds = YES;
+
     
     usePHPButtonNo.selected = YES;
     usePHPButtonYes.selected = NO;
@@ -81,112 +80,11 @@ BOOL done;
     [self checkNext];
     
     
-}
-
-
-
-
-
-#pragma mark - YN buttons
-
-
-
-//first block
-
-- (IBAction)usePhpY:(id)sender {
-    usePHPButtonYes.selected = YES;
-    usePHPButtonNo.selected = NO;
+    [webPageNameTextField addTarget:self
+                  action:@selector(textFieldDidChange)
+        forControlEvents:UIControlEventEditingChanged];
     
-    usePhp2 = YES;
-    usePhp = YES;
-    [self checkNext];
 }
-
-- (IBAction)usePhpN:(id)sender {
-    usePHPButtonNo.selected = YES;
-    usePHPButtonYes.selected = NO;
-    
-    usePhp2 = YES;
-    usePhp = NO;
-}
-
-
-- (IBAction)useJsY:(id)sender {
-    useJsButtonYes.selected = YES;
-    useJsButtonNo.selected = NO;
-    
-    useJs2 = YES;
-    useJs = YES;
-    [self checkNext];
-}
-
-- (IBAction)useJsN:(id)sender {
-    useJsButtonNo.selected = YES;
-    useJsButtonYes.selected = NO;
-    
-    useJs2 = YES;
-    useJs = NO;
-    [self checkNext];
-}
-
-
-- (IBAction)useCssY:(id)sender {
-    useCssButtonYes.selected = YES;
-    useCssButtonNo.selected = NO;
-    
-    useCss2 = YES;
-    useCss = YES;
-    [self checkNext];
-}
-
-- (IBAction)useCssNo:(id)sender {
-    useCssButtonNo.selected = YES;
-    useCssButtonYes.selected = NO;
-    
-    useCss2 = YES;
-    useCss  = NO;
-    [self checkNext];
-}
-
-//second block
-
-- (IBAction)useFtpY:(id)sender {
-    useFtpButtonYes.selected = YES;
-    useFtpButtonNo.selected = NO;
-    
-    useFtp2 = YES;
-    useFtp = YES;
-    [self checkNext];
-}
-
-- (IBAction)useFtpN:(id)sender {
-    useFtpButtonNo.selected = YES;
-    useFtpButtonYes.selected = NO;
-    
-    useFtp2 = YES;
-    useFtp = NO;
-    [self checkNext];
-}
-
-
-- (IBAction)useVersionY:(id)sender {
-    useVersionControllButtonYes.selected = YES;
-    useVersionControllButtonNo.selected = NO;
-    
-    useVersion2 = YES;
-    useVersion = YES;
-    [self checkNext];
-}
-
-- (IBAction)useVersionN:(id)sender {
-    useVersionControllButtonNo.selected = YES;
-    useVersionControllButtonYes.selected = NO;
-    
-    useVersion2 = YES;
-    useVersion = NO;
-    [self checkNext];
-}
-
 
 
 
@@ -194,18 +92,19 @@ BOOL done;
 
 -(void)checkNext{
     if (usePhp2 && useJs2 && useCss2 && useFtp2 && useVersion2) {
-        if (webPageNameTextField.text.length == 0) {
-            /*webPageNameTextField.backgroundColor = [UIColor blackColor];
+        if (webPageNameTextField.text.length != 0) {
+            webPageNameTextField.backgroundColor = [copyrightTextField backgroundColor];
             webPageNameTextField.textColor = copyrightTextField.textColor;
   
-            nextButton.backgroundColor = violett;
+            [UIView animateWithDuration:0.1f animations:^{
+                nextButton.backgroundColor = violett;
+            }];
 
             webPageNameTextField.layer.cornerRadius = 5.0f;
             webPageNameTextField.layer.borderColor = [[UIColor blackColor] CGColor];
-            webPageNameTextField.layer.borderWidth = 1.0f;*/
+            webPageNameTextField.layer.borderWidth = 0;
             
-            nextButton.enabled = true;
-            
+            nextButton.enabled = YES;
             
             
         }
@@ -214,17 +113,21 @@ BOOL done;
             
             
             
-            //webPageNameTextField.backgroundColor = [UIColor redColor];
-            
-            /*webPageNameTextField.layer.borderColor = [violett CGColor];
+            webPageNameTextField.layer.borderColor = [violett CGColor];
             webPageNameTextField.layer.borderWidth = 1.0f;
             webPageNameTextField.layer.cornerRadius = 5.0f;
 
+            nextButton.enabled = NO;
+            
+            [UIView animateWithDuration:0.1f animations:^{
+                nextButton.backgroundColor = [UIColor grayColor];
+                nextButton.titleLabel.textColor = [UIColor darkGrayColor];
+
+            }];
             
             
             
-            webPageNameTextField.textColor = [UIColor whiteColor];*/
-            nextButton.enabled = true;
+            webPageNameTextField.textColor = [UIColor whiteColor];
             [self performSelector:@selector(checkNext) withObject:self afterDelay:0.1];
 
         }
@@ -414,7 +317,10 @@ BOOL done;
                 NSError *error;
                 NSString *fileName = @"script.js";
                 NSString *fileContents = [NSString stringWithFormat:
-                                          @""];
+@"function myFunction(a, b) { \n\
+           return a * b; \n\
+} \n\
+document.getElementById(\"demo\").innerHTML = myFunction(4, 3);"];
                 
                 NSString *filePath = [[projectManager projectUserDirectoryPath] stringByAppendingPathComponent:fileName];
                 [fileContents writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
@@ -498,11 +404,9 @@ BOOL done;
 
 #pragma mark - delegates
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return true;
+- (void)textFieldDidChange {
+    [self checkNext];
 }
-
 
 
 #pragma mark - basic

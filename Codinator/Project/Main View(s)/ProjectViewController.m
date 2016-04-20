@@ -102,6 +102,7 @@ BOOL allowSaving;
     textview.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     textview.delegate = self;
     textview.tintColor = [UIColor whiteColor];
+    textview.textColor = [UIColor whiteColor];
     [self.view insertSubview:textview belowSubview:self.searchBar];
     textview.hidden = NO;
 
@@ -129,7 +130,7 @@ BOOL allowSaving;
     webPreviewView = [[WKWebView alloc]initWithFrame:webViewFrame configuration:webViewConfiguration];
     webPreviewView.backgroundColor = [UIColor blackColor];
     
-    //[self.view addSubview:webPreviewView];
+    [self.view addSubview:webPreviewView];
     
     
     //round interface a bit

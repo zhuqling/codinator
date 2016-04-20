@@ -112,7 +112,6 @@ static const float kCursorVelocity = 1.0f/8.0f;
     
     self.backgroundColor = [UIColor blackColor];
     self.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
-    self.layer.drawsAsynchronously = true;
     
     
     // Inset the content to make room for line numbers

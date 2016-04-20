@@ -117,6 +117,15 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
                 customAttributes: [:])
             
         }
+        else {
+            
+            let alertController = UIAlertController(title: "Twitter is set up. Please go to settings an login first.", message: nil, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            
+            alertController.addAction(cancelAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        
+        }
     
     
     }

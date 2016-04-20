@@ -86,8 +86,20 @@
     [self.view addSubview:splashView];
     self.splashView = splashView;
 
-    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    UIEdgeInsets insets;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        insets = UIEdgeInsetsMake(0, 0, 0, 0);
+    }
+    else {
+        insets = UIEdgeInsetsMake(30, 0, 0, 0);
+    }
+    
+    self.collectionView.contentInset = insets;
+    
+    UIEdgeInsets scrollInsets = insets;
+    scrollInsets.top = 0;
+    
+    self.collectionView.scrollIndicatorInsets = scrollInsets;
     
 
     //link to app delegate
@@ -100,8 +112,13 @@
     [self performSelectorInBackground:@selector(setUp) withObject:nil];
     
 
+
+    
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+}
 
 - (void)viewDidAppear:(BOOL)animated{
     
@@ -156,7 +173,8 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(DISPATCH_TIME_NOW)), dispatch_get_main_queue(), ^{
         [self.splashView startAnimation];
     });
-    
+
+
 }
 
 
@@ -886,12 +904,10 @@
         
         [self presentViewController:webVC animated:YES completion:nil];
         
-        
     }];
     
     [alert addAction:newsFeed];
     
-    alert.view.tintColor = [UIColor purpleColor];
     
     alert.modalPresentationStyle = UIModalPresentationPopover;
     UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
@@ -900,8 +916,13 @@
     UIBarButtonItem *senderButton = sender;
     popPresenter.barButtonItem = senderButton;
     
+    alert.view.tintColor = [UIColor purpleColor];
+
     
-    [self presentViewController:alert animated:true completion:nil];
+    [self presentViewController:alert animated:true completion:^{
+        alert.view.tintColor = [UIColor purpleColor];
+    }];
+    
 }
 
 - (IBAction)plusDidPush:(id)sender {

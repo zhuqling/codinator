@@ -9,13 +9,27 @@
 import UIKit
 import WebKit
 
+
+
 class ProjectMainViewController: UIViewController {
 
     var webView: WKWebView?
+    var projectManager : Polaris!
+
+    var getSplitView: ProjectSplitViewController? {
+     
+        get {
+            return (self.childViewControllers[0] as? ProjectSplitViewController)
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.clipsToBounds = true
+        
+        // WebView
         let configuration = WKWebViewConfiguration()
         configuration.allowsInlineMediaPlayback = true
         configuration.allowsAirPlayForMediaPlayback = true
@@ -31,10 +45,36 @@ class ProjectMainViewController: UIViewController {
         bottomView.addConstraint(NSLayoutConstraint(item: bottomView, attribute: .Left, relatedBy: .Equal, toItem: webView, attribute: .Left, multiplier: 1.0, constant: 0.0))
         bottomView.addConstraint(NSLayoutConstraint(item: bottomView, attribute: .Right, relatedBy: .Equal, toItem: webView, attribute: .Right, multiplier: 1.0, constant: 0.0))
         
-        if let splitViewController = self.childViewControllers[0] as? ProjectSplitViewController {
+        
+
+    
+
+        // Polaris the project manager
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if let splitViewController = getSplitView {
             splitViewController.webView = webView
+            splitViewController.projectManager = Polaris(projectPath: userDefaults.stringForKey("ProjectPath"), currentView: self.view, withWebServer: userDefaults.boolForKey("CnWebServer"), uploadServer: userDefaults.boolForKey("CnUploadServer"), andWebDavServer: userDefaults.boolForKey("CnWebDavServer"))
+        }
+        
+        // Override trait collection
+        let horizontallyRegularTraitCollection = UITraitCollection(horizontalSizeClass: .Regular)
+        self.setOverrideTraitCollection(horizontallyRegularTraitCollection, forChildViewController: getSplitView!)
+
+        
+    }
+    override func viewDidAppear(animated: Bool) {
+        if let splitView = getSplitView {
+            let projectName = splitView.projectManager.getSettingsDataForKey("ProjectName") as! String
+            self.navigationController?.navigationBar.topItem?.title = projectName
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+    }
+    
     
     @IBAction func back(sender: UIBarButtonItem) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -46,11 +86,18 @@ class ProjectMainViewController: UIViewController {
     
     @IBOutlet var grabberConstraint: NSLayoutConstraint!
     @IBAction func grabber(sender: UIPanGestureRecognizer) {
+        getSplitView?.webViewDidChange()
+
         grabberConstraint.constant = view.frame.height - sender.locationInView(view).y
+        
+        self.view.layoutIfNeeded()
+        UIView.animateWithDuration(0.4) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     @IBAction func left(sender: UIBarButtonItem) {
-        if let splitViewController = self.childViewControllers[0] as? ProjectSplitViewController {
+        if let splitViewController = getSplitView {
             UIView.animateWithDuration(0.4, delay: 0.0, options: .BeginFromCurrentState, animations: {
                 if splitViewController.preferredDisplayMode == .PrimaryHidden {
                     splitViewController.preferredDisplayMode = .Automatic
@@ -63,6 +110,7 @@ class ProjectMainViewController: UIViewController {
             })
         }
     }
+    
     
     @IBOutlet var bottomView: UIView!
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
@@ -78,7 +126,7 @@ class ProjectMainViewController: UIViewController {
             UIView.animateWithDuration(0.4, delay: 0.0, options: .BeginFromCurrentState, animations: {
                 self.view.layoutIfNeeded()
                 }, completion: { (completion: Bool) in
-                    
+                    self.getSplitView?.webViewDidChange()
             })
         } else {
             grabberConstraint.active = false
@@ -89,7 +137,61 @@ class ProjectMainViewController: UIViewController {
                 }, completion: { (completion: Bool) in
                     self.bottomView.hidden = true
                     self.grabberView.hidden = true
+                    
+                    self.getSplitView?.webViewDidChange()
+
             })
         }
     }
+    
+    
+    // MARK: - Trait Collection
+    @IBOutlet weak var leftButton: UIBarButtonItem!
+
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if UIApplication.sharedApplication().statusBarOrientation == .Portrait || UIApplication.sharedApplication().statusBarOrientation == .PortraitUpsideDown  {
+            leftButton.enabled = false
+
+            
+            UIView.animateWithDuration(0.4, animations: { 
+                self.getSplitView?.preferredDisplayMode = .PrimaryHidden
+                }, completion: { bool in
+                    self.getSplitView?.preferredDisplayMode = .PrimaryOverlay
+            })
+            
+        }
+        else {
+            
+            if self.view.traitCollection.horizontalSizeClass == .Regular {
+                self.leftButton.enabled = true
+                self.getSplitView!.preferredDisplayMode = .AllVisible
+            }
+            else if self.view.traitCollection.horizontalSizeClass == .Compact {
+                leftButton.enabled = false
+                
+                self.getSplitView!.preferredDisplayMode = .PrimaryHidden
+            }
+            
+        }
+        
+        
+        
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        
+        if UIApplication.sharedApplication().statusBarOrientation == .Portrait || UIApplication.sharedApplication().statusBarOrientation == .PortraitUpsideDown  {
+            
+            self.getSplitView?.preferredDisplayMode = .PrimaryHidden
+            
+            leftButton.enabled = false
+        }
+
+    }
+    
+    
+    
 }

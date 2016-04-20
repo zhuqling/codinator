@@ -8,28 +8,85 @@
 
 import UIKit
 
-class FilesTableViewController: UITableViewController {
+class FilesTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var items : NSMutableArray = []
-    var projectManager : Polaris?
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var toolBar: UIToolbar!
+
+    
+    var items: [NSURL] = []
+    
+    var projectManager : Polaris! {
+        
+        get {
+            return getSplitView.projectManager
+        }
+        
+    }
+    
+    var getSplitView: ProjectSplitViewController! {
+        
+        get {
+            return self.splitViewController as! ProjectSplitViewController
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
-        self.navigationItem.rightBarButtonItems?.append(self.editButtonItem())
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        projectManager = Polaris(projectPath: userDefaults.stringForKey("ProjectPath"), currentView: self.view, withWebServer: userDefaults.boolForKey("CnWebServer"), uploadServer: userDefaults.boolForKey("CnUploadServer"), andWebDavServer: userDefaults.boolForKey("CnWebDavServer"))
-        if let items = projectManager?.contentsOfDirectoryAtPath(projectManager!.projectUserDirectoryPath()) {
-            self.items = items
+        if let items = projectManager!.contentsOfDirectoryAtPath(projectManager!.projectUserDirectoryPath()) {
+            self.items = items.map { $0 as! NSURL }
         }
-
+        
+        self.toolbarItems = [UIBarButtonItem(title: "test", style: .Plain, target: self, action: nil)]
+        
+    
+        let insets = UIEdgeInsetsMake(0, 0, toolBar.frame.height, 0)
+        tableView.contentInset = insets
+        tableView.scrollIndicatorInsets = insets
     }
 
+    
+    var hasntOpenIndexFileYet = true
+    override func viewDidAppear(animated: Bool) {
+        
+        
+        // Keyboard show/hide notifications
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+        
+        if hasntOpenIndexFileYet {
+            // Find 'index.html' and save index of it in the array itself
+            let items = self.items.enumerate().filter { $0.element.absoluteString.hasSuffix("index.html")}
+            
+            // if 'items' isn't empty sellect the corresponding cell
+            if items.isEmpty != true {
+                let indexPath = NSIndexPath(forRow: items.first!.index, inSection: 0)
+                tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .Top)
+                tableView(tableView, didSelectRowAtIndexPath: indexPath)
+                
+                // Load WebView
+                guard let webView = getSplitView.webView else {
+                    return
+                }
+                
+                guard let path = (projectManager?.inspectorPath as NSString?)?.stringByAppendingPathComponent(items.first!.element.lastPathComponent!) else {
+                    return
+                }
+                
+                webView.loadFileURL( NSURL(fileURLWithPath: path, isDirectory: false), allowingReadAccessToURL: NSURL(fileURLWithPath: path, isDirectory: true))
+              
+                
+                hasntOpenIndexFileYet = false
+            }
+        }
+
+    
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -37,24 +94,24 @@ class FilesTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return items.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
 
         // Configure the cell...
 
         
-        if let text = (items[indexPath.row] as? NSURL)?.lastPathComponent {
+        if let text = items[indexPath.row].lastPathComponent {
             cell.textLabel?.text = text
             
             if let path = (projectManager?.inspectorPath as NSString?)?.stringByAppendingPathComponent(text) {
@@ -66,40 +123,6 @@ class FilesTableViewController: UITableViewController {
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     @IBAction func add(sender: UIBarButtonItem) {
         let newFile = UIAlertAction(title: "New File", style: .Default) { (action : UIAlertAction) in
@@ -122,6 +145,7 @@ class FilesTableViewController: UITableViewController {
         
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
+        
         let popup = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         popup.addAction(newFile)
         popup.addAction(newSubpage)
@@ -129,54 +153,92 @@ class FilesTableViewController: UITableViewController {
         popup.addAction(Import)
         popup.addAction(cancel)
         
+        popup.view.tintColor = UIColor.purpleColor()
+        
         popup.popoverPresentationController?.barButtonItem = sender
-        self.presentViewController(popup, animated: true, completion: nil)
+        self.presentViewController(popup, animated: true, completion: {
+            popup.view.tintColor = UIColor.purpleColor()
+        })
     }
+    
+    
+    // MARK: - Keyboard show/hide
+    
+    let grabberViewHeight = CGFloat(10)
+    var keyboardHeight: CGFloat = 0
+    
+    func keyboardWillShow(notification: NSNotification) {
+//        let userInfo = notification.userInfo!
+//        keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().height
+        
+
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+//        keyboardHeight = 0
+//        
+//        var insets = tableView.contentInset
+//        insets.bottom = 0
+//        
+//        tableView.contentInset = insets
+//        tableView.scrollIndicatorInsets = insets
+        
+    }
+
     
     // MARK: - Navigation
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let selectedPath = (projectManager?.inspectorPath as NSString?)?.stringByAppendingPathComponent(items[indexPath.row].lastPathComponent!) {
             var isDirectory : ObjCBool = ObjCBool(false)
             
             if (NSFileManager.defaultManager().fileExistsAtPath(selectedPath, isDirectory: &isDirectory) && Bool(isDirectory) == true) {
-                projectManager?.inspectorPath = projectManager!.selectedFilePath
+                projectManager.inspectorPath = projectManager.selectedFilePath
                 
                 if let controller = storyboard?.instantiateViewControllerWithIdentifier("files") {
                     self.navigationController?.showViewController(controller, sender: self)
                 }
             } else {
-                self.performSegueWithIdentifier("editor", sender: self)
+               
+               // getSplitView?.editorView!.text = "Hi there!"
+                
+                if let selectedPath = (projectManager?.inspectorPath as NSString?)?.stringByAppendingPathComponent(items[indexPath.row].lastPathComponent!) {
+                    projectManager?.selectedFilePath = selectedPath
+                    
+                    if let splitViewController = self.splitViewController as? ProjectSplitViewController {
+                       
+                        guard let webView = splitViewController.webView else {
+                            return
+                        }
+                        
+                        webView.loadFileURL( NSURL(fileURLWithPath: selectedPath, isDirectory: false), allowingReadAccessToURL: NSURL(fileURLWithPath: projectManager!.selectedFilePath, isDirectory: true))
+                        //}
+                        //else {
+                            // Repeat this till webView is initialized
+                            //self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+                        //}
+                        
+                    }
+                    
+                    if let data = NSFileManager.defaultManager().contentsAtPath(selectedPath) {
+                        let contents = NSString(data: data, encoding: NSUTF8StringEncoding)
+                        
+                        getSplitView.editorView!.text = contents as? String
+                        
+                    }
+                    
+                }
+  
+                
+                
             }
         }
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
-        
-        if let navigation = segue.destinationViewController as? UINavigationController {
-            if let controller = navigation.viewControllers[0] as? EditorViewController {
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    if let selectedPath = (projectManager?.inspectorPath as NSString?)?.stringByAppendingPathComponent(items[indexPath.row].lastPathComponent!) {
-                        projectManager?.selectedFilePath = selectedPath
-
-                        if let splitViewController = self.splitViewController as? ProjectSplitViewController {
-                            splitViewController.webView?.loadFileURL( NSURL(fileURLWithPath: selectedPath, isDirectory: false), allowingReadAccessToURL: NSURL(fileURLWithPath: projectManager!.inspectorPath, isDirectory: true))
-                        }
-                        
-                        if let data = NSFileManager.defaultManager().contentsAtPath(selectedPath) {
-                            let contents = NSString(data: data, encoding: NSUTF8StringEncoding)
-                            controller.text = contents as? String
-                        }
-                        
-                        controller.documentTitle = items[indexPath.row].lastPathComponent!
-                        controller.projectManager = self.projectManager
-                    }
-                }
-            }
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        // Get the new view controller using segue.destinationViewController.
+//        // Pass the selected object to the new view controller.
+//        
+//    }
 }

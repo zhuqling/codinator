@@ -10,8 +10,8 @@
 #import <objc/runtime.h>
 
 NSString * const WUTextSuggestionDisplayControllerUIMenuControllerActionSelectorPrefix = @"textSuggestionDisplayControllerUIMenuControllerAction_";
-
 NSString * const WUTextSuggestionDisplayItemAssociationKey = @"WUTextSuggestionDisplayItemAssociationKey";
+
 
 @implementation WUTextSuggestionDisplayItem
 

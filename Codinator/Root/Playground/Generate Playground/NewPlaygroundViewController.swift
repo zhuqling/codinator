@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewPlaygroundViewController: UIViewController, UITextFieldDelegate {
+class NewPlaygroundViewController: UIViewController{
 
     @IBOutlet weak var fileNameTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
@@ -33,6 +33,12 @@ class NewPlaygroundViewController: UIViewController, UITextFieldDelegate {
         fileNameTextField.layer.borderColor = violett?.CGColor
         fileNameTextField.layer.borderWidth = 1.0
         fileNameTextField.layer.cornerRadius = 5
+        
+        fileNameTextField.addTarget(self, action: #selector(NewPlaygroundViewController.textFieldDidChange), forControlEvents: UIControlEvents.EditingChanged)
+
+        
+        self.nextButton.backgroundColor = UIColor.grayColor()
+        self.nextButton.setTitleColor(UIColor.darkGrayColor(), forState: UIControlState.Normal)
         
     }
 
@@ -80,32 +86,34 @@ class NewPlaygroundViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Textfield Delegate
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        textField.layer.borderWidth = 0
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        if textField.text?.isEmpty == true {
-            textField.layer.masksToBounds = true
-            textField.layer.borderColor = violett?.CGColor
-            textField.layer.borderWidth = 1
-            textField.layer.cornerRadius = 5
+    func textFieldDidChange() {
+        if fileNameTextField.text?.isEmpty == true {
+            fileNameTextField.layer.masksToBounds = true
+            fileNameTextField.layer.borderColor = violett?.CGColor
+            fileNameTextField.layer.borderWidth = 1
+            fileNameTextField.layer.cornerRadius = 5
             
             // Textfield is emtpy so disable NextButton
             nextButton.enabled = false
-            nextButton.backgroundColor = UIColor.grayColor()
+            
+            UIView.animateWithDuration(0.2, animations: { 
+                self.nextButton.backgroundColor = UIColor.grayColor()
+                self.nextButton.setTitleColor(UIColor.darkGrayColor(), forState: UIControlState.Normal)
+
+            })
         }
         else {
             
             // Textfield is not empty so enable NextButton
             nextButton.enabled = true
-            nextButton.backgroundColor = violett
+            
+            UIView.animateWithDuration(0.2, animations: {
+                self.nextButton.backgroundColor = self.violett
+                self.nextButton.setTitleColor(self.view.tintColor, forState: UIControlState.Normal)
+            })
         }
     }
+    
+    
 
 }

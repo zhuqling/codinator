@@ -47,8 +47,9 @@ class HTMLTextView: CYRTextView {
     func commonSetUp() {
         self.font = defaultFont
         self.textColor = UIColor.whiteColor()
-    
-
+        self.keyboardAppearance = .Dark
+        
+        self.indicatorStyle = .White
         self.tokens = highlightingTokens()
     }
     
