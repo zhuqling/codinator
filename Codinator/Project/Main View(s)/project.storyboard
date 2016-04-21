@@ -33,6 +33,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="xsF-WQ-fJb" secondAttribute="trailing" constant="-20" id="wkr-x5-253"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Index.html" id="FjX-K2-FUe">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="redo" id="kP7-o4-36J"/>

@@ -49,7 +49,7 @@ class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggesti
         textView.delegate = self
         textView.tintColor = UIColor.whiteColor()
         
-        view.insertSubview(textView, belowSubview: searchBar)
+        view.addSubview(textView)
         textView.bindFrameToSuperviewBounds()
 
         

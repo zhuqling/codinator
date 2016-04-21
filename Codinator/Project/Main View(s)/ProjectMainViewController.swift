@@ -45,9 +45,6 @@ class ProjectMainViewController: UIViewController {
         bottomView.addConstraint(NSLayoutConstraint(item: bottomView, attribute: .Right, relatedBy: .Equal, toItem: webView, attribute: .Right, multiplier: 1.0, constant: 0.0))
         
         
-
-    
-
         // webView
         if let splitViewController = getSplitView {
             splitViewController.webView = webView

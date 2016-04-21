@@ -43,19 +43,4 @@ class Notifications: NSObject {
         viewController.presentViewController(alert, animated: true, completion: nil)
     }
     
-//    -(void)displaySuccesNotificationWithMesssage:(NSString*)message{
-//    [CSNotificationView showInViewController:self
-//    style:CSNotificationViewStyleSuccess
-//    message:message];
-//    }
-//    
-//    -(void)displayErrorNotificationWithMesssage:(NSString*)message{
-//    [CSNotificationView showInViewController:self
-//    style:CSNotificationViewStyleError
-//    message:message];
-//    }
-//    
-//    -(void)displayNeutralNotificationWithMessage:(NSString*)message{
-//    [CSNotificationView showInViewController:self tintColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:18] textAlignment:NSTextAlignmentCenter image:nil message:message duration:3.0];
-//    }
 }
