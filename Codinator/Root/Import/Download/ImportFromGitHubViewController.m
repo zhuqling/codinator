@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Vladimir Danila. All rights reserved.
 //
 
-@import Crashlytics;
-
 #import "ImportFromGitHubViewController.h"
 #import "CSNotificationView.h"
 #import "AFNetworking.h"
@@ -124,11 +122,6 @@
         currentURL = self.pathTextField.text;
     }
     
-    
-    [Answers logCustomEventWithName:@"Import from Web"
-                   customAttributes:@{
-                                      @"Imported from" : currentURL
-                                      }];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:currentURL]];
     AFURLConnectionOperation *operation =   [[AFHTTPRequestOperation alloc] initWithRequest:request];

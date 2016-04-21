@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 
 class SettingsGeneralViewController: UIViewController {
 
@@ -43,11 +42,7 @@ class SettingsGeneralViewController: UIViewController {
     //MARK: Switches Changed
     
     
-    @IBAction func showLineNumberSwichChanged(sender: AnyObject) {
-        
-        Answers.logCustomEventWithName("showLineNumber",
-            customAttributes: ["Enabled": showLineNumberSwitch.on])
-        
+    @IBAction func showLineNumberSwichChanged(sender: AnyObject) {        
         userDefauls.setBool(self.showLineNumberSwitch.on, forKey: kLineNumber)
         userDefauls.synchronize()
     }
@@ -55,30 +50,18 @@ class SettingsGeneralViewController: UIViewController {
     
     
     @IBAction func webDavSwichChanged(sender: AnyObject) {
-        
-        Answers.logCustomEventWithName("webDavSwitchChanged",
-            customAttributes: ["Enabled": useWebDavServerSwitch.on])
-        
         userDefauls.setBool(self.useWebDavServerSwitch.on, forKey: kWebDavServer)
         userDefauls.synchronize()
     }
     
     
     @IBAction func webServerSwichChanged(sender: AnyObject) {
-        
-        Answers.logCustomEventWithName("webServerSwitchChanged",
-            customAttributes: ["Enabled": useWebServerSwitch.on])
-        
         userDefauls.setBool(self.useWebServerSwitch.on, forKey: kWebDavServer)
         userDefauls.synchronize()
     }
     
     
     @IBAction func uploadServerSwichChanged(sender: AnyObject) {
-        
-        Answers.logCustomEventWithName("uploadServerSwichChanged",
-            customAttributes: ["Enabled": useUploadServerSwitch.on])
-        
         userDefauls.setBool(self.useUploadServerSwitch.on, forKey: kWebDavServer)
         userDefauls.synchronize()
     }

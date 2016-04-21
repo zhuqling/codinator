@@ -23,7 +23,6 @@
 #import "NewFileViewController.h"
 #import "NewSubpageViewController.h"
 #import "NewDirViewController.h"
-#import "ArchiveViewController.h"
 
 #import "CLImageEditor.h"
 
@@ -32,7 +31,6 @@
 
 
 //Server
-#import "PulseViewController.h"
 
 
 //file mover
@@ -1817,8 +1815,6 @@ BOOL allowSaving;
         destViewController.projectManager = projectManager;
     }
     if ([segue.identifier isEqualToString:@"archive"]) {
-        ArchiveViewController *destViewController = segue.destinationViewController;
-        destViewController.projectManager = projectManager;
     }
     else if ([segue.identifier isEqualToString:@"newFile"]){
         NewFileViewController *destViewController = segue.destinationViewController;
@@ -1832,11 +1828,6 @@ BOOL allowSaving;
     else if ([segue.identifier isEqualToString:@"newDir"]){
         NewDirViewController *destViewController = segue.destinationViewController;
         destViewController.projectManager = projectManager;
-    }
-    else if ([segue.identifier isEqualToString:@"Pulse"]){
-        PulseViewController *destViewController = segue.destinationViewController;
-        destViewController.projectManager = projectManager;
-
     }
     else if ([segue.identifier isEqualToString:@"moveFile"]){
         FileMoverViewController *fileMover = segue.destinationViewController;

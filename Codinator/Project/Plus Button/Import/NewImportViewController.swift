@@ -11,43 +11,25 @@ import MessageUI
 
 class NewImportViewController: UIViewController,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIDocumentPickerDelegate,UITextFieldDelegate,NSURLConnectionDelegate{
 
-    let inspectorPath = NSUserDefaults.standardUserDefaults().stringForKey("inspectorPath")
-    let webUploaderURL = NSUserDefaults.standardUserDefaults().stringForKey("webUploaderServerURL")
     
-    var error = NSError?()
-    var content : NSData?
-    var items = try! NSFileManager.defaultManager().contentsOfDirectoryAtPath(NSUserDefaults.standardUserDefaults().stringForKey("inspectorPath")!)
     
+    @IBOutlet weak var label: UILabel!
     @IBOutlet var textField: UITextField!
-    
-    
-    @IBOutlet weak var activity: UIActivityIndicatorView?
-    @IBOutlet var urlTextField: UITextField?
-    
-    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var cameraButton: UIButton!
     
     
     
-    
-    @IBOutlet weak var cameraRollButton: UIButton!
-    
+    var items: [String]!
+    var webUploaderURL: String!
+    var inspectorPath: String!
 
-    
     
     
     
     override func viewDidLoad() {
 
-        closeButton.layer.cornerRadius = 5
-
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewImportViewController.close2), name: "filesImported", object: nil)
-        
-
-        
-        activity!.hidden = true
-     
-
     }
+    
     
     // MARK: - Shortcuts
     
@@ -57,19 +39,11 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
     
     
     override var keyCommands: [UIKeyCommand]? {
-    
         return [UIKeyCommand(input: "W", modifierFlags: .Command, action: #selector(NewImportViewController.close2), discoverabilityTitle: "Close Window")]
     }
     
     
     
-    
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
 
     
@@ -137,12 +111,22 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
     
 
     
+    // MARK: image picker
+
     
     @IBAction func cameraDidPush(sender: AnyObject) {
 
         
         if (textField.text!.isEmpty){
+            
+            textField.alpha = 0
+            label.alpha = 0
             textField.hidden = false
+            label.hidden = false
+            UIView.animateWithDuration(0.4, animations: {
+                self.textField.alpha = 1
+                self.label.alpha = 1
+            })
             textField.becomeFirstResponder()
         }
         else{
@@ -158,7 +142,7 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
             let popover : UIPopoverPresentationController = picker.popoverPresentationController!
             
             popover.sourceView = self.view
-            popover.sourceRect = cameraRollButton.frame
+            popover.sourceRect = sender.frame
             
             
             presentViewController(picker, animated: true, completion: nil)
@@ -169,7 +153,47 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
     }
     
     
-
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
+        let pathToWriteFile = inspectorPath! + "/" + textField.text!
+        var fileUrl = NSURL(fileURLWithPath: pathToWriteFile)
+        
+        if (fileUrl.lastPathComponent == ""){
+            fileUrl = fileUrl.URLByAppendingPathExtension("png")
+        }
+        else{
+            fileUrl = fileUrl.URLByDeletingPathExtension!
+            fileUrl = fileUrl.URLByAppendingPathExtension("png")
+        }
+        
+        
+        let newFileName = availableName(fileUrl.lastPathComponent!, nameWithoutExtension: fileUrl.URLByDeletingPathExtension!.lastPathComponent!, Extension: fileUrl.pathExtension!)
+        
+    
+        fileUrl = fileUrl.URLByDeletingLastPathComponent!.URLByAppendingPathComponent(newFileName)
+        
+    
+        
+        let content = UIImagePNGRepresentation(image)
+        
+        NSFileManager.defaultManager().createFileAtPath((fileUrl.path)!, contents: content, attributes: nil)
+        
+        
+        picker.dismissViewControllerAnimated(true, completion: {
+            NSNotificationCenter.defaultCenter().postNotificationName("fileImported", object: self, userInfo: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("history", object: self, userInfo: nil)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+    }
+    
+    
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
     
     
     
@@ -184,18 +208,14 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
     // MARK: textfield
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        if (textField.tag == 1){  //URL
         
-            textField.text = "http://"
-            
-        }
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
        
         if (textField.tag == 2){  //Image name
             
-            cameraDidPush(textField)
+            cameraDidPush(cameraButton)
             textField.hidden = true
         }
         
@@ -205,7 +225,7 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if (textField.tag == 2){  //Image name
             
-            cameraDidPush(textField)
+            cameraDidPush(cameraButton)
             textField.hidden = true
             textField.resignFirstResponder()
         }
@@ -214,61 +234,18 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
     }
     
     
-    // MARK: image picker
-    
-    
-    
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
-        let pathToWriteFile = inspectorPath! + "/" + textField.text!
-        var fileUrl = NSURL(fileURLWithPath: pathToWriteFile)
-        
-        if (fileUrl.lastPathComponent == ""){
-            fileUrl = fileUrl.URLByAppendingPathExtension("png")
-        }
-        else{
-           fileUrl = fileUrl.URLByDeletingPathExtension!
-           fileUrl = fileUrl.URLByAppendingPathExtension("png")
-        }
-        
-        
-        content = UIImagePNGRepresentation(image)
-        
-        NSFileManager.defaultManager().createFileAtPath((fileUrl.path)!, contents: content, attributes: nil)
-        
-        
-        picker.dismissViewControllerAnimated(true, completion: {
-            NSNotificationCenter.defaultCenter().postNotificationName("fileImported", object: self, userInfo: nil)
-            NSNotificationCenter.defaultCenter().postNotificationName("history", object: self, userInfo: nil)
-            self.dismissViewControllerAnimated(true, completion: nil)
-        })
-    }
-
-    
-
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-
-    
-    
-
     
     
     
     // MARK: cloud
     
-    
-    
     func documentPicker(controller: UIDocumentPickerViewController, didPickDocumentAtURL url: NSURL) {
         if (controller.documentPickerMode == UIDocumentPickerMode.Import){
             
-            let name = url.lastPathComponent
-            let pathToWriteFile = inspectorPath! + "/" + (name! as String)
+            let name = url.lastPathComponent!
+            let pathToWriteFile = inspectorPath! + "/" + name
 
-            content = NSData(contentsOfURL: url)
+            let content = NSData(contentsOfURL: url)
             NSFileManager.defaultManager().createFileAtPath(pathToWriteFile, contents: content, attributes: nil)
             
             content?.writeToFile(inspectorPath!, atomically: true)
@@ -280,6 +257,40 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
         })
     }
     
+    
+    // MARK: - Custom API
+    
+    func availableName(name: String, nameWithoutExtension: String, Extension: String) -> String {
+        let files = items.filter { $0 == name }
+        
+        // If there no file names that are the same continue else count up
+        if files.isEmpty {
+            return name
+        }
+        else {
+            
+            // Check if there's already a number at the end else return name2.extension
+            guard let number = Int(String((nameWithoutExtension.characters.last! as Character))) else {
+                return nameWithoutExtension + "2." + Extension
+            }
+            
+            // Increase number and append extension
+            return nameWithoutExtension + String(number + 1) + Extension
+        }
+        
+    }
+    
+    
+    
+    
+    // MARK: - Default
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     
     
     

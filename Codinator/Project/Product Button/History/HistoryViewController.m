@@ -89,8 +89,6 @@
     
     
     HistoryRow *cell = [tableView2 dequeueReusableCellWithIdentifier:@"historyRow"];
-    cell.backgroundColor = rgb(31, 33, 36);
-    cell.textLabel.textColor = [UIColor whiteColor];;
     UIImage *selectionBackground = [UIImage imageNamed:@"black"];
     UIImageView *iview=[[UIImageView alloc] initWithImage:selectionBackground];
     cell.selectedBackgroundView=iview;
@@ -105,8 +103,7 @@
         NSString *time = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
         
         
-        cell.versionLabel.text =  [NSString stringWithFormat:@"Auto Backup@<%@>", time];
-        cell.versionLabel.font = [UIFont systemFontOfSize:35.0f];
+        cell.versionLabel.text =  [NSString stringWithFormat:@"Auto Backup taken at %@", time];
         cell.descriptionTextView.text = @"Automatic snapshot taken every 10 min";
     
     }

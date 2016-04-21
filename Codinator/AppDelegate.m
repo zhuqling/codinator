@@ -6,8 +6,6 @@
 //  Copyright © 2015 Vladimir Danila. All rights reserved.
 //
 
-@import Fabric;
-@import Crashlytics;
 
 #import "AppDelegate.h"
 
@@ -19,14 +17,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    
-    
-    // Initialize Fabric
-    [[Fabric sharedSDK] setDebug:YES];
-    [Fabric with:@[[Crashlytics class]]];
-    
-    
     
     // Create FileSystem
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];

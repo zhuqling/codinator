@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="s5m-wp-Lqw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0qf-g2-rAV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Pulse View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="giv-pa-Cho">
+            <objects>
+                <navigationController storyboardIdentifier="server" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0qf-g2-rAV" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="0A1-bK-Q7V">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="s5m-wp-Lqw" kind="relationship" relationship="rootViewController" id="z7V-Fu-iWP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Fd-o7-dQQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-251" y="-2601"/>
+        </scene>
+        <!--Local Server-->
         <scene sceneID="ePz-DR-uDT">
             <objects>
-                <viewController storyboardIdentifier="server" useStoryboardIdentifierAsRestorationIdentifier="YES" id="s5m-wp-Lqw" customClass="PulseViewController" sceneMemberID="viewController">
+                <viewController id="s5m-wp-Lqw" customClass="ServersViewController" customModule="Codinator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f77-l1-6Gh"/>
                         <viewControllerLayoutGuide type="bottom" id="fSh-7i-3cF"/>
@@ -18,124 +34,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z6f-bG-GM0">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="35"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXJ-AJ-N5p">
-                                        <rect key="frame" x="8" y="6" width="24" height="24"/>
-                                        <color key="backgroundColor" red="0.61450714760000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="24" id="jMv-Qo-Ywu"/>
-                                            <constraint firstAttribute="height" constant="24" id="p6f-aV-y8w"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
-                                        <state key="normal" title="X">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="closeDidPush:" destination="s5m-wp-Lqw" eventType="touchUpInside" id="p8S-ZI-mt1"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local Server 💻" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoW-s5-Wnn">
-                                        <rect key="frame" x="416" y="2" width="176" height="32"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="MBB-sO-hDn"/>
-                                    <constraint firstItem="BXJ-AJ-N5p" firstAttribute="leading" secondItem="z6f-bG-GM0" secondAttribute="leading" constant="8" id="MOb-eH-E3z"/>
-                                    <constraint firstItem="BXJ-AJ-N5p" firstAttribute="leading" secondItem="z6f-bG-GM0" secondAttribute="leading" constant="8" id="Qfr-75-hBT"/>
-                                    <constraint firstItem="NoW-s5-Wnn" firstAttribute="centerY" secondItem="z6f-bG-GM0" secondAttribute="centerY" id="cxX-Xt-WIS"/>
-                                    <constraint firstItem="BXJ-AJ-N5p" firstAttribute="centerY" secondItem="z6f-bG-GM0" secondAttribute="centerY" id="p5M-Am-GxZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="NoW-s5-Wnn" secondAttribute="trailing" constant="8" id="pp3-hR-JAg"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="MOb-eH-E3z"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="MOb-eH-E3z"/>
-                                    </mask>
-                                </variation>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="104.214.124.124" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRh-3L-Hod">
-                                <rect key="frame" x="202" y="168" width="196" height="32"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6Xh-Ry-Mut">
-                                <rect key="frame" x="100" y="116" width="400" height="29"/>
-                                <segments>
-                                    <segment title="Web Server"/>
-                                    <segment title="WebDav"/>
-                                    <segment title="Web Uploader"/>
-                                </segments>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="segmentDidChanged:" destination="s5m-wp-Lqw" eventType="valueChanged" id="ogI-3k-HvB"/>
-                                </connections>
-                            </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Codinator Reflector IP:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="h84-d4-ieA">
-                                <rect key="frame" x="20" y="571" width="560" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WebDav ip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epx-6d-txB">
+                                <rect key="frame" x="20" y="64" width="83" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rn8-V7-wuN">
-                                <rect key="frame" x="154" y="68" width="293" height="40"/>
-                                <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">On this IP are several servers running. 
-(You can turn them off in Settings)</string>
-                                        <attributes>
-                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="79.198.100.121" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWj-Lu-K9T">
+                                <rect key="frame" x="468" y="64" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Web Server ip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OS-xp-aJA">
+                                <rect key="frame" x="20" y="101" width="107" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="79.198.100.121" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="356-F9-xLu">
+                                <rect key="frame" x="468" y="101" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="79.198.100.121" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrJ-qe-40b">
+                                <rect key="frame" x="468" y="138" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On this IP several servers are running. You can turn them off in Settings." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rn8-V7-wuN">
+                                <rect key="frame" x="20" y="577" width="560" height="15"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.43370616010000002" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Web Uploader ip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCS-cC-Lop">
+                                <rect key="frame" x="20" y="138" width="128" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="rn8-V7-wuN" firstAttribute="top" secondItem="z6f-bG-GM0" secondAttribute="bottom" constant="33" id="5TC-VG-544"/>
-                            <constraint firstItem="6Xh-Ry-Mut" firstAttribute="centerX" secondItem="F71-ff-iXM" secondAttribute="centerX" id="5Y7-zV-uOy"/>
-                            <constraint firstItem="mRh-3L-Hod" firstAttribute="top" secondItem="6Xh-Ry-Mut" secondAttribute="bottom" constant="24" id="6CL-CA-96A"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6Xh-Ry-Mut" secondAttribute="trailing" constant="80" id="75F-D3-nbl">
-                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
-                            </constraint>
-                            <constraint firstItem="h84-d4-ieA" firstAttribute="trailing" secondItem="F71-ff-iXM" secondAttribute="trailingMargin" id="7nb-8s-71G"/>
-                            <constraint firstItem="6Xh-Ry-Mut" firstAttribute="leading" secondItem="F71-ff-iXM" secondAttribute="leadingMargin" constant="80" id="A6i-7L-hQX">
-                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
-                            </constraint>
-                            <constraint firstItem="6Xh-Ry-Mut" firstAttribute="top" secondItem="rn8-V7-wuN" secondAttribute="bottom" constant="8" id="YBZ-Yn-xnG"/>
-                            <constraint firstItem="rn8-V7-wuN" firstAttribute="centerX" secondItem="F71-ff-iXM" secondAttribute="centerX" id="YWs-dW-9Gi"/>
-                            <constraint firstItem="z6f-bG-GM0" firstAttribute="top" secondItem="f77-l1-6Gh" secondAttribute="bottom" id="ZaF-pk-YcH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="z6f-bG-GM0" secondAttribute="trailing" constant="-20" id="bWu-3S-dD5"/>
-                            <constraint firstItem="fSh-7i-3cF" firstAttribute="top" secondItem="h84-d4-ieA" secondAttribute="bottom" constant="8" id="ccs-wB-Jtm"/>
-                            <constraint firstItem="h84-d4-ieA" firstAttribute="leading" secondItem="F71-ff-iXM" secondAttribute="leadingMargin" id="rsd-MX-xWX"/>
-                            <constraint firstItem="mRh-3L-Hod" firstAttribute="centerX" secondItem="F71-ff-iXM" secondAttribute="centerX" id="vtr-EA-Lz0"/>
-                            <constraint firstItem="z6f-bG-GM0" firstAttribute="leading" secondItem="F71-ff-iXM" secondAttribute="leadingMargin" constant="-20" id="zhR-hO-ygK"/>
+                            <constraint firstItem="WrJ-qe-40b" firstAttribute="trailing" secondItem="F71-ff-iXM" secondAttribute="trailingMargin" id="1Op-5D-ph1"/>
+                            <constraint firstItem="epx-6d-txB" firstAttribute="leading" secondItem="F71-ff-iXM" secondAttribute="leadingMargin" id="8GE-wb-vZ4"/>
+                            <constraint firstItem="356-F9-xLu" firstAttribute="centerY" secondItem="6OS-xp-aJA" secondAttribute="centerY" id="Bef-pe-M1z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rn8-V7-wuN" secondAttribute="trailing" id="CKf-B8-PLy"/>
+                            <constraint firstItem="jCS-cC-Lop" firstAttribute="leading" secondItem="F71-ff-iXM" secondAttribute="leadingMargin" id="G4c-9E-Aqo"/>
+                            <constraint firstItem="jCS-cC-Lop" firstAttribute="top" secondItem="6OS-xp-aJA" secondAttribute="bottom" constant="16" id="KJ0-XR-28h"/>
+                            <constraint firstItem="fSh-7i-3cF" firstAttribute="top" secondItem="rn8-V7-wuN" secondAttribute="bottom" constant="8" id="KzF-sW-Cns"/>
+                            <constraint firstItem="6OS-xp-aJA" firstAttribute="top" secondItem="epx-6d-txB" secondAttribute="bottom" constant="16" id="Lbv-4g-MZ7"/>
+                            <constraint firstItem="rn8-V7-wuN" firstAttribute="leading" secondItem="F71-ff-iXM" secondAttribute="leadingMargin" id="Qn0-fE-f1L"/>
+                            <constraint firstItem="356-F9-xLu" firstAttribute="trailing" secondItem="F71-ff-iXM" secondAttribute="trailingMargin" id="VcF-ua-lmQ"/>
+                            <constraint firstItem="kWj-Lu-K9T" firstAttribute="centerY" secondItem="epx-6d-txB" secondAttribute="centerY" id="XKX-hd-wR6"/>
+                            <constraint firstItem="WrJ-qe-40b" firstAttribute="centerY" secondItem="jCS-cC-Lop" secondAttribute="centerY" id="aCl-Nw-dEA"/>
+                            <constraint firstItem="kWj-Lu-K9T" firstAttribute="trailing" secondItem="F71-ff-iXM" secondAttribute="trailingMargin" id="g9Z-NJ-fRE"/>
+                            <constraint firstItem="6OS-xp-aJA" firstAttribute="leading" secondItem="F71-ff-iXM" secondAttribute="leadingMargin" id="gUi-et-Zr9"/>
+                            <constraint firstItem="epx-6d-txB" firstAttribute="top" secondItem="f77-l1-6Gh" secondAttribute="bottom" constant="20" id="oKo-1H-iZS"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Local Server" id="bl4-Wp-7eK">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Qiv-fI-mxr">
+                            <connections>
+                                <action selector="doneDidPush" destination="s5m-wp-Lqw" id="C55-Vi-Bxd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="atvLabel" destination="h84-d4-ieA" id="C6h-7W-eBt"/>
-                        <outlet property="closeButton" destination="BXJ-AJ-N5p" id="Nmh-Hd-1tL"/>
-                        <outlet property="ipLabel" destination="mRh-3L-Hod" id="gQv-KS-r7d"/>
-                        <outlet property="segmentControll" destination="6Xh-Ry-Mut" id="Mk1-dT-qoN"/>
+                        <outlet property="webDavLabel" destination="kWj-Lu-K9T" id="hMU-u2-tYx"/>
+                        <outlet property="webServerLabel" destination="356-F9-xLu" id="bic-GL-hkP"/>
+                        <outlet property="webUploaderLabel" destination="WrJ-qe-40b" id="ALZ-8o-HhE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nC4-tn-BN2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -212,4 +187,5 @@
             <point key="canvasLocation" x="-289" y="-833"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.52156862749999999" green="0.23137254900000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
 </document>

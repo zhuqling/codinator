@@ -151,7 +151,6 @@
 		64A0827A1BDBE4EC0001CA0C /* CLTextTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0826F1BDBE4EC0001CA0C /* CLTextTool.m */; };
 		64A082821BDBE61B0001CA0C /* YALSunnyRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082801BDBE61B0001CA0C /* YALSunnyRefreshControl.m */; };
 		64A082831BDBE61B0001CA0C /* YALSunnyRefreshControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A082811BDBE61B0001CA0C /* YALSunnyRefreshControl.xib */; };
-		64A082871BDBE6430001CA0C /* PulseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082861BDBE6430001CA0C /* PulseViewController.m */; };
 		64A0828C1BDBE68E0001CA0C /* FileMoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0828B1BDBE68E0001CA0C /* FileMoverViewController.m */; };
 		64A0828F1BDBE6AF0001CA0C /* QuickStartQuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A0828E1BDBE6AF0001CA0C /* QuickStartQuide.swift */; };
 		64A082941BDBE7170001CA0C /* ProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082931BDBE7170001CA0C /* ProjectTableViewCell.m */; };
@@ -179,7 +178,6 @@
 		64A082DD1BDCD7A50001CA0C /* NewDirViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082DC1BDCD7A50001CA0C /* NewDirViewController.m */; };
 		64A082E01BDCD7B30001CA0C /* NewSubpageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082DF1BDCD7B30001CA0C /* NewSubpageViewController.m */; };
 		64A082E31BDCD7BC0001CA0C /* NewFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082E21BDCD7BC0001CA0C /* NewFileViewController.m */; };
-		64A082E91BDCD8370001CA0C /* ArchiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082E81BDCD8370001CA0C /* ArchiveViewController.m */; };
 		64A082F01BDCD8BB0001CA0C /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082ED1BDCD8BB0001CA0C /* HistoryViewController.m */; };
 		64A082F11BDCD8BB0001CA0C /* HistoryRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082EF1BDCD8BB0001CA0C /* HistoryRow.m */; };
 		64A082F41BDCD8C80001CA0C /* HistoryWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082F31BDCD8C80001CA0C /* HistoryWebViewController.m */; };
@@ -201,9 +199,10 @@
 		64A083631BDD1E6B0001CA0C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A0835B1BDD18C40001CA0C /* libxml2.tbd */; };
 		64A083641BDD20740001CA0C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A081141BDBDE780001CA0C /* libz.tbd */; };
 		64A083661BDD24680001CA0C /* project.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A083651BDD24680001CA0C /* project.storyboard */; };
-		64A083691BDD35250001CA0C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A083671BDD35240001CA0C /* Fabric.framework */; };
-		64A0836A1BDD35250001CA0C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A083681BDD35250001CA0C /* Crashlytics.framework */; };
 		64B67C8F1C7F53440040E574 /* SettingsEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B67C8E1C7F53440040E574 /* SettingsEngine.m */; };
+		64FD18B41CC7BFF600A4A3B7 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD18B31CC7BFF600A4A3B7 /* Notifications.swift */; };
+		64FD18B61CC815E500A4A3B7 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD18B51CC815E500A4A3B7 /* ArchiveViewController.swift */; };
+		64FD18B91CC82E7800A4A3B7 /* ServersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD18B81CC82E7800A4A3B7 /* ServersViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -462,8 +461,6 @@
 		64A0827F1BDBE61B0001CA0C /* YALSunnyRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALSunnyRefreshControl.h; sourceTree = "<group>"; };
 		64A082801BDBE61B0001CA0C /* YALSunnyRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALSunnyRefreshControl.m; sourceTree = "<group>"; };
 		64A082811BDBE61B0001CA0C /* YALSunnyRefreshControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YALSunnyRefreshControl.xib; sourceTree = "<group>"; };
-		64A082851BDBE6430001CA0C /* PulseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulseViewController.h; sourceTree = "<group>"; };
-		64A082861BDBE6430001CA0C /* PulseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseViewController.m; sourceTree = "<group>"; };
 		64A0828A1BDBE68E0001CA0C /* FileMoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileMoverViewController.h; sourceTree = "<group>"; };
 		64A0828B1BDBE68E0001CA0C /* FileMoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileMoverViewController.m; sourceTree = "<group>"; };
 		64A0828E1BDBE6AF0001CA0C /* QuickStartQuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickStartQuide.swift; sourceTree = "<group>"; };
@@ -512,8 +509,6 @@
 		64A082DF1BDCD7B30001CA0C /* NewSubpageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewSubpageViewController.m; sourceTree = "<group>"; };
 		64A082E11BDCD7BC0001CA0C /* NewFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFileViewController.h; sourceTree = "<group>"; };
 		64A082E21BDCD7BC0001CA0C /* NewFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFileViewController.m; sourceTree = "<group>"; };
-		64A082E71BDCD8370001CA0C /* ArchiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveViewController.h; sourceTree = "<group>"; };
-		64A082E81BDCD8370001CA0C /* ArchiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveViewController.m; sourceTree = "<group>"; };
 		64A082EC1BDCD8BB0001CA0C /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		64A082ED1BDCD8BB0001CA0C /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		64A082EE1BDCD8BB0001CA0C /* HistoryRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryRow.h; sourceTree = "<group>"; };
@@ -557,6 +552,9 @@
 		64A0836B1BDD61E70001CA0C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		64B67C8D1C7F53440040E574 /* SettingsEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsEngine.h; sourceTree = "<group>"; };
 		64B67C8E1C7F53440040E574 /* SettingsEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsEngine.m; sourceTree = "<group>"; };
+		64FD18B31CC7BFF600A4A3B7 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		64FD18B51CC815E500A4A3B7 /* ArchiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
+		64FD18B81CC82E7800A4A3B7 /* ServersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServersViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -566,8 +564,6 @@
 			files = (
 				64A083641BDD20740001CA0C /* libz.tbd in Frameworks */,
 				64A083631BDD1E6B0001CA0C /* libxml2.tbd in Frameworks */,
-				64A0836A1BDD35250001CA0C /* Crashlytics.framework in Frameworks */,
-				64A083691BDD35250001CA0C /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,7 +781,6 @@
 				646EC6FD1CA8D15700F359C2 /* LTMorphingLabel */,
 				64A0829F1BDBE7BB0001CA0C /* CSNotificationView */,
 				64A0829B1BDBE7850001CA0C /* Pulsing */,
-				64A082841BDBE63B0001CA0C /* PulseView */,
 				64A0827E1BDBE6120001CA0C /* YALSunnyRefreshControll */,
 				64A081DD1BDBE4C40001CA0C /* Photonator */,
 				64A080D71BDBDBEF0001CA0C /* Extension */,
@@ -1355,15 +1350,6 @@
 			path = YALSunnyRefreshControll;
 			sourceTree = "<group>";
 		};
-		64A082841BDBE63B0001CA0C /* PulseView */ = {
-			isa = PBXGroup;
-			children = (
-				64A082851BDBE6430001CA0C /* PulseViewController.h */,
-				64A082861BDBE6430001CA0C /* PulseViewController.m */,
-			);
-			path = PulseView;
-			sourceTree = "<group>";
-		};
 		64A082881BDBE6690001CA0C /* Universal Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1401,6 +1387,7 @@
 				3201D0151CA6EDBF00204373 /* ProjectSplitViewController.swift */,
 				3201D00A1CA6E02600204373 /* FilesTableViewController.swift */,
 				3201D0171CA6EFA900204373 /* EditorViewController.swift */,
+				64FD18B31CC7BFF600A4A3B7 /* Notifications.swift */,
 				64A083651BDD24680001CA0C /* project.storyboard */,
 			);
 			path = "Main View(s)";
@@ -1505,6 +1492,7 @@
 		64A082D41BDBE9490001CA0C /* Product Button */ = {
 			isa = PBXGroup;
 			children = (
+				64FD18B71CC82E6600A4A3B7 /* Servers */,
 				64A082E61BDCD82E0001CA0C /* Archive */,
 				64A082E51BDCD8250001CA0C /* History */,
 			);
@@ -1562,8 +1550,7 @@
 		64A082E61BDCD82E0001CA0C /* Archive */ = {
 			isa = PBXGroup;
 			children = (
-				64A082E71BDCD8370001CA0C /* ArchiveViewController.h */,
-				64A082E81BDCD8370001CA0C /* ArchiveViewController.m */,
+				64FD18B51CC815E500A4A3B7 /* ArchiveViewController.swift */,
 			);
 			path = Archive;
 			sourceTree = "<group>";
@@ -1701,6 +1688,14 @@
 			path = Zip;
 			sourceTree = "<group>";
 		};
+		64FD18B71CC82E6600A4A3B7 /* Servers */ = {
+			isa = PBXGroup;
+			children = (
+				64FD18B81CC82E7800A4A3B7 /* ServersViewController.swift */,
+			);
+			path = Servers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1801,7 +1796,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run a9db8361f62e5e9f07ee5c42b59c4239b4ddedc2 4d5b49e97e76ba7f6545212351bd4547a5d6ff03f838f40591d546216f95e902\n\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nTAGS=\"TODO:|FIXME:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"\nfi";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nTAGS=\"TODO:|FIXME:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1812,7 +1807,6 @@
 			files = (
 				646EC6FC1CA8D0BE00F359C2 /* UIColor+HexString.m in Sources */,
 				646EC7171CA8D15700F359C2 /* LTMorphingLabel+Fall.swift in Sources */,
-				64A082871BDBE6430001CA0C /* PulseViewController.m in Sources */,
 				64A082771BDBE4EC0001CA0C /* CLPickerView.m in Sources */,
 				64B67C8F1C7F53440040E574 /* SettingsEngine.m in Sources */,
 				64A082401BDBE4DC0001CA0C /* CLEffectBase.m in Sources */,
@@ -1927,7 +1921,9 @@
 				646EC7101CA8D15700F359C2 /* LTCharacterLimbo.swift in Sources */,
 				646EC6F21CA8D0BE00F359C2 /* GCDWebServerRequest.m in Sources */,
 				6444D1B21CA7205E002BAD23 /* NewPlaygroundViewController.swift in Sources */,
+				64FD18B41CC7BFF600A4A3B7 /* Notifications.swift in Sources */,
 				646EC71B1CA8D15700F359C2 /* NSString+LTMorphingLabel.swift in Sources */,
+				64FD18B61CC815E500A4A3B7 /* ArchiveViewController.swift in Sources */,
 				64A083051BDD14170001CA0C /* KOSwipeButton.m in Sources */,
 				64A082431BDBE4DC0001CA0C /* CLFilterTool.m in Sources */,
 				64A082A81BDBE7CC0001CA0C /* CSNativeBlurView.m in Sources */,
@@ -1951,7 +1947,6 @@
 				64A082481BDBE4DC0001CA0C /* CLColorPickerView.m in Sources */,
 				64A082A71BDBE7CC0001CA0C /* CSLayerStealingBlurView.m in Sources */,
 				64A0823A1BDBE4DC0001CA0C /* CLGloomEffect.m in Sources */,
-				64A082E91BDCD8370001CA0C /* ArchiveViewController.m in Sources */,
 				646EC6E91CA8D0BE00F359C2 /* GCDWebServer.m in Sources */,
 				64A080B91BDBD9D60001CA0C /* main.m in Sources */,
 				646EC7191CA8D15700F359C2 /* LTMorphingLabel+Sparkle.swift in Sources */,
@@ -1970,6 +1965,7 @@
 				64A081251BDBDFD80001CA0C /* CBZVectorSplashView.m in Sources */,
 				646EC7251CA8D3EF00F359C2 /* NeuronTextView.swift in Sources */,
 				64A082D21BDBE89A0001CA0C /* AFURLSessionManager.m in Sources */,
+				64FD18B91CC82E7800A4A3B7 /* ServersViewController.swift in Sources */,
 				64A081231BDBDFD80001CA0C /* CBZRasterSplashView.m in Sources */,
 				646EC6EC1CA8D0BE00F359C2 /* GCDWebServerDataResponse.m in Sources */,
 				64A0830C1BDD14B80001CA0C /* AskQuestioniPad.m in Sources */,

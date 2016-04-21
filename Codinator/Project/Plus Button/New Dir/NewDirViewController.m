@@ -16,17 +16,6 @@
 @synthesize projectManager;
 
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Dir name..." attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
- 
-   
-    //round interface a bit
-    closeButton.layer.cornerRadius = 5;
-    closeButton.layer.masksToBounds = YES;
-    
-}
 
 
 #pragma mark - Shortcuts
@@ -46,8 +35,7 @@
 
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
-    nameTextField.backgroundColor = [UIColor blackColor];
-    nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Dir name..." attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{

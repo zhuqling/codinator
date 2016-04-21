@@ -8,8 +8,12 @@
 
 import UIKit
 
-class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggestionDisplayControllerDataSource, ProjectSplitViewControllerDelegate {
+class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggestionDisplayControllerDataSource, ProjectSplitViewControllerDelegate, UISearchBarDelegate {
+    
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     let textView: HTMLTextView = HTMLTextView()
+    
     
     var text: String? {
         get {
@@ -45,7 +49,7 @@ class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggesti
         textView.delegate = self
         textView.tintColor = UIColor.whiteColor()
         
-        view.addSubview(textView)
+        view.insertSubview(textView, belowSubview: searchBar)
         textView.bindFrameToSuperviewBounds()
 
         
@@ -65,9 +69,12 @@ class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggesti
         
         view.layoutSubviews()
         
-        // Subscribe to Delegate
+        // Subscribe to Delegates
         getSplitView.splitViewDelegate = self
+        searchBar.delegate = self
         
+        // Set up notification view
+        Notifications.sharedInstance.viewController = self
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -129,6 +136,80 @@ class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggesti
         NSOperationQueue.mainQueue().addOperation(operation)
     }
     
+    
+    // MARK: - Searchbar
+    
+    // Show searchbar and add insets
+    @IBOutlet weak var searchBarTopConstraint: NSLayoutConstraint!
+    func searchBarAppeared() {
+        
+        view.layoutIfNeeded()
+        searchBarTopConstraint.constant = 0
+
+        var insets = textView.contentInset
+        insets.top = searchBar.frame.height
+        
+        UIView.animateWithDuration(0.4, animations: {
+            self.view.layoutIfNeeded()
+
+            self.textView.contentInset = insets
+            self.textView.scrollIndicatorInsets = insets
+        }, completion : { bool in
+          self.searchBar.becomeFirstResponder()
+        })
+    }
+    
+    // Hide searchbar and reset insets
+    func searchBarDisAppeard() {
+        
+        view.layoutIfNeeded()
+        searchBarTopConstraint.constant = -searchBar.frame.height
+        
+        var insets = textView.contentInset
+        insets.top = 0
+        
+        UIView.animateWithDuration(0.4, animations: {
+            self.view.layoutIfNeeded()
+            
+            self.textView.contentInset = insets
+            self.textView.scrollIndicatorInsets = insets
+
+            
+            }, completion: { bool in
+                self.searchBar.resignFirstResponder()
+            })
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        getSplitView.searchBarDissappeared()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        
+        // Search algorithm
+        searchForText(searchBar.text!)
+        getSplitView.searchBarDissappeared()
+        
+    }
+    
+    var startedSearchInstance = false
+    func searchForText(text: String) {
+            let range = (textView.text as NSString).rangeOfString(text, options: .CaseInsensitiveSearch)
+            
+            if range.location == NSNotFound {
+                Notifications.sharedInstance.displayErrorMessage("No occupancy found!")
+            }
+            else {
+                textView.becomeFirstResponder()
+                textView.selectedRange = range
+            }
+        
+    }
+    
+    
+    
+    
     // MARK: - Keyboard show/hide 
     
     var keyboardHeight: CGFloat = 0
@@ -185,6 +266,9 @@ class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggesti
         textView.scrollIndicatorInsets = insets
 
     }
+    
+    
+    
     
     
     

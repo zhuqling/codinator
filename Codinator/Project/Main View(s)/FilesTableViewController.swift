@@ -124,22 +124,22 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
 
+    // MARK: - Action Buttons
+    
     @IBAction func add(sender: UIBarButtonItem) {
-        let newFile = UIAlertAction(title: "New File", style: .Default) { (action : UIAlertAction) in
+        let newFile = UIAlertAction(title: "New File ✏️", style: .Default) { (action : UIAlertAction) in
             self.performSegueWithIdentifier("newFile", sender: self)
         }
         
-        let newSubpage = UIAlertAction(title: "New Subpage", style: .Default) { (action : UIAlertAction) in
+        let newSubpage = UIAlertAction(title: "New Subpage 📝", style: .Default) { (action : UIAlertAction) in
             self.performSegueWithIdentifier("newSubpage", sender: self)
         }
         
-        let newDir = UIAlertAction(title: "New Directory", style: .Default) { (action : UIAlertAction) in
+        let newDir = UIAlertAction(title: "New Directory 📂", style: .Default) { (action : UIAlertAction) in
             self.performSegueWithIdentifier("newDir", sender: self)
         }
         
-        let Import = UIAlertAction(title: "Import", style: .Default) { (action : UIAlertAction) in
-            
-            
+        let Import = UIAlertAction(title: "Import 🚚", style: .Default) { (action : UIAlertAction) in
             self.performSegueWithIdentifier("import", sender: self)
         }
         
@@ -160,6 +160,49 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
             popup.view.tintColor = UIColor.purpleColor()
         })
     }
+    
+    @IBAction func product(sender: UIBarButtonItem) {
+        let run = UIAlertAction(title: "Run 🚀", style: .Default) { (action : UIAlertAction) in
+            self.performSegueWithIdentifier("run", sender: self)
+        }
+        
+        let archive = UIAlertAction(title: "Archive 📦", style: .Default) { (action : UIAlertAction) in
+            self.performSegueWithIdentifier("archive", sender: self)
+        }
+        
+        let history = UIAlertAction(title: "History 🚧", style: .Default) { (action : UIAlertAction) in
+            self.performSegueWithIdentifier("histrory", sender: self)
+        }
+        
+        let export = UIAlertAction(title: "Export ✈️", style: .Default) { (action : UIAlertAction) in
+            Notifications.sharedInstance.alertWithMessage("Archive the Project first.\nAfterwards open up the History window and use the export manager.", title: "✈️")
+        }
+        
+        let localServer = UIAlertAction(title: "Local Server 💻", style: .Default) { (action : UIAlertAction) in
+            self.performSegueWithIdentifier("Pulse", sender: self)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        
+        let popup = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        popup.addAction(run)
+        popup.addAction(archive)
+        popup.addAction(history)
+        popup.addAction(export)
+        popup.addAction(localServer)
+        popup.addAction(cancel)
+        
+        popup.view.tintColor = UIColor.purpleColor()
+        
+        popup.popoverPresentationController?.barButtonItem = sender
+        self.presentViewController(popup, animated: true, completion: {
+            popup.view.tintColor = UIColor.purpleColor()
+        })
+    }
+    
+    
+    
     
     
     // MARK: - Keyboard show/hide
@@ -235,10 +278,36 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//        
-//    }
+
+    // MARK: - Storyboards
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "run":
+                let viewController = (segue.destinationViewController as! UINavigationController).viewControllers.first as! AspectRatioViewController
+                viewController.previewPath = projectManager.inspectorPath
+                
+            case "import":
+                let viewController = (segue.destinationViewController as! UINavigationController).viewControllers.first as! NewImportViewController
+               
+                viewController.items = self.items.map{ $0.lastPathComponent! }
+                viewController.webUploaderURL = projectManager.webUploaderServerURL()
+                viewController.inspectorPath = projectManager.inspectorPath
+            
+            case "archive":
+                let viewController = (segue.destinationViewController as! UINavigationController).viewControllers.first as! ArchiveViewController
+                viewController.projectManager = projectManager
+                
+            case "Pulse":
+                let viewController = (segue.destinationViewController as! UINavigationController).viewControllers.first as! ServersViewController
+                viewController.projectManager = projectManager
+                
+            default:
+                break
+            }
+        
+        }
+        
+    }
 }

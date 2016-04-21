@@ -893,8 +893,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="vVI-4z-1GO"/>
                                         <exclude reference="Dcy-jU-Ooi"/>
+                                        <exclude reference="vVI-4z-1GO"/>
                                     </mask>
                                 </variation>
                             </view>

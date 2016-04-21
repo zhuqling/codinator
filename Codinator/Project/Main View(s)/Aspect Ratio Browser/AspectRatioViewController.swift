@@ -12,24 +12,18 @@ import WebKit
 
 class AspectRatioViewController: UIViewController {
 
-    @IBOutlet var closeButton: UIButton!
     @IBOutlet weak var effectPannel: UIVisualEffectView!
     @IBOutlet weak var easterEggLabel: UILabel!
     
     
     var webView: WKWebView!
+    var previewPath: String!
     
-    
-    let previewPath: NSString = NSUserDefaults.standardUserDefaults().stringForKey("aspectPreviewPath")!
-    
-   
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //Round Corner
-        closeButton.layer.cornerRadius = 5
         
         // Configure WebView
         let configuration = WKWebViewConfiguration()
@@ -42,11 +36,15 @@ class AspectRatioViewController: UIViewController {
         
         
         // Display up WebView
-        webView = WKWebView(frame: CGRect(x: 0, y: 45, width: self.view.frame.width, height: self.view.frame.height), configuration:configuration)
+        webView = WKWebView(frame: self.view.frame, configuration:configuration)
         self.view.insertSubview(webView, belowSubview: effectPannel)
     
         // Autoresizing for webview
         webView.autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleHeight, .FlexibleWidth]
+    
+        
+        webView.bindFrameToSuperviewBounds()
+    
         
         
         // Round Corners for Effect Pannel
@@ -69,12 +67,18 @@ class AspectRatioViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         
-        let url = NSURL(fileURLWithPath: previewPath as String)
+        print(previewPath)
+        
+        let url = NSURL(fileURLWithPath: previewPath + "/index.html")
 
         // Load url
-        webView.loadFileURL(url, allowingReadAccessToURL: NSURL(fileURLWithPath:(previewPath.stringByDeletingLastPathComponent), isDirectory: true))
+        webView.loadFileURL(url, allowingReadAccessToURL: NSURL(fileURLWithPath:previewPath, isDirectory: true))
         
     
+        let fileManager = NSFileManager.defaultManager()
+        
+        let fileExists = fileManager.fileExistsAtPath(url.path!)
+        print("File Exists: \(fileExists) at path: \(previewPath)")
         
     }
     
@@ -90,14 +94,10 @@ class AspectRatioViewController: UIViewController {
         
         return [UIKeyCommand(input: "W", modifierFlags: .Command, action: #selector(AspectRatioViewController.close), discoverabilityTitle: "Close Window")]
     }
-    
-    
 
     
     
     //MARK: print
-    
-    
     
     @IBAction func printDidPush(sender: AnyObject) {
         
@@ -117,6 +117,12 @@ class AspectRatioViewController: UIViewController {
         
     }
     
+    
+    // MARK: - Relaod
+    
+    @IBAction func refreshDidPush() {
+        webView.reload()
+    }
     
     
     

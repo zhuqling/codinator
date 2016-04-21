@@ -260,10 +260,6 @@
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K like %@", NSMetadataItemFSNameKey, @"*"];
         _query.predicate = predicate;
-        
-        if (![_query startQuery]) {
-            NSLog(@"Query didn't start... for whatever reason");
-        }
     }
     return _query;
 }
@@ -335,12 +331,7 @@
             
             
             [[CSSearchableIndex defaultSearchableIndex] indexSearchableItems:@[item] completionHandler:^(NSError * __nullable error) {
-                if (!error) {
-                    #ifdef DEBUG
-                    NSLog(@"Spotlight item indexed:  %@", title);
-                    #endif
-                }
-                else{
+                if (error) {
                     #ifdef DEBUG
                     NSLog(@"%@",[error localizedDescription]);
                     #endif

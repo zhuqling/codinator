@@ -10,6 +10,8 @@ import UIKit
 
 protocol ProjectSplitViewControllerDelegate {
     func webViewSizeDidChange()
+    func searchBarAppeared()
+    func searchBarDisAppeard()
 }
 
 class ProjectSplitViewController: UISplitViewController {
@@ -64,6 +66,30 @@ class ProjectSplitViewController: UISplitViewController {
         self.setOverrideTraitCollection(horizontallyRegularTraitCollection, forChildViewController: self)
     }
     
+    
+    // MARK: - Searchbar
+    
+    var searchBarVisible = false
+    func dealWithSearchBar() {
+        switch searchBarVisible {
+        case true:
+            searchBarDissappeared()
+            
+        case false:
+            searchBarAppeared()
+        }
+
+    }
+    
+    func searchBarAppeared() {
+        searchBarVisible = true
+        splitViewDelegate?.searchBarAppeared()
+    }
+    
+    func searchBarDissappeared() {
+        searchBarVisible = false
+        splitViewDelegate?.searchBarDisAppeard()
+    }
     
     
     // MARK: - Custom API

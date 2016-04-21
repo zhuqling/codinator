@@ -9,7 +9,6 @@
 import UIKit
 import MessageUI
 import Social
-import Crashlytics
 
 class SettingsViewController: UIViewController,MFMailComposeViewControllerDelegate {
 
@@ -113,9 +112,6 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
             
             self.presentViewController(tweetSheet, animated: true, completion: nil)
             
-            Answers.logCustomEventWithName("tweetPressed",
-                customAttributes: [:])
-            
         }
         else {
             
@@ -157,12 +153,7 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
         
         
         
-        self.presentViewController(alert, animated: true, completion: {
-            Answers.logCustomEventWithName("Rate pressed",
-                customAttributes: [:])
-        })
-        
-        
+        self.presentViewController(alert, animated: true, completion: nil)
         
     }
 

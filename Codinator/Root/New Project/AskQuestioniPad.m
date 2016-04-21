@@ -7,8 +7,6 @@
 //
 
 
-@import Crashlytics;
-
 #import "Polaris.h"
 #import "CodinatorDocument.h"
 #import "AppDelegate.h"
@@ -370,18 +368,6 @@ document.getElementById(\"demo\").innerHTML = myFunction(4, 3);"];
             [projectManager saveValue:usePHP forKey:@"UsePHP"];
             [projectManager saveValue:@"1" forKey:@"version"];
             
-            
-            
-            
-            [Answers logCustomEventWithName:@"Created Project"
-                           customAttributes:@{
-                                              @"ProjectName" : webPageNameTextField.text,
-                                              @"Copyright" : copyrightTextField.text,
-                                              @"UseVersionControll" : useVersion,
-                                              @"UsePHP" : usePHP,
-                                              @"UseFTP" : useFTP
-                                              }];
-
             
         }
         else{

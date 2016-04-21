@@ -11,7 +11,6 @@
 @interface NewDirViewController : UIViewController<UITextFieldDelegate>{
     
      IBOutlet UITextField *nameTextField;
-    __weak IBOutlet UIButton *closeButton;
 }
 
 @property (nonatomic ,strong)Polaris *projectManager;

@@ -14,7 +14,6 @@ import WebKit
 class ProjectMainViewController: UIViewController {
 
     var webView: WKWebView?
-    var projectManager : Polaris!
 
     var getSplitView: ProjectSplitViewController? {
      
@@ -49,12 +48,9 @@ class ProjectMainViewController: UIViewController {
 
     
 
-        // Polaris the project manager
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        
+        // webView
         if let splitViewController = getSplitView {
             splitViewController.webView = webView
-            splitViewController.projectManager = Polaris(projectPath: userDefaults.stringForKey("ProjectPath"), currentView: self.view, withWebServer: userDefaults.boolForKey("CnWebServer"), uploadServer: userDefaults.boolForKey("CnUploadServer"), andWebDavServer: userDefaults.boolForKey("CnWebDavServer"))
         }
         
         // Override trait collection
@@ -71,17 +67,18 @@ class ProjectMainViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
     }
     
     
     @IBAction func back(sender: UIBarButtonItem) {
+        getSplitView?.projectManager.close()
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    var searchBarVisible = false
     @IBAction func search(sender: UIBarButtonItem) {
-        
+        getSplitView?.dealWithSearchBar()
     }
     
     @IBOutlet var grabberConstraint: NSLayoutConstraint!
@@ -175,8 +172,6 @@ class ProjectMainViewController: UIViewController {
             }
             
         }
-        
-        
         
     }
     

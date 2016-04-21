@@ -20,3 +20,5 @@
 
 #import "VWASAccessoryView.h"
 #import "KOKeyboardRow.h"
+
+#import "CSNotificationView.h"
