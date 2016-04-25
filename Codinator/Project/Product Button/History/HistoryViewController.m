@@ -236,7 +236,7 @@
         NSString *commentPath = [projectManager.inspectorPath stringByAppendingPathComponent:@"data"];
         [[NSFileManager defaultManager] removeItemAtPath:commentPath error:nil];
     
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Restored Successfully ♻️" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Restored Successfully" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *closeAlert = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * __nonnull action) {
                         [self dismissViewControllerAnimated:true completion:^{
                             [self dismissViewControllerAnimated:YES completion:nil];
@@ -246,7 +246,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     
     
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"history" object:self userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"relaodData" object:self userInfo:nil];
         
         return;
 

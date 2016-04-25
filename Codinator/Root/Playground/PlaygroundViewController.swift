@@ -37,7 +37,6 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var textViewSpace: UIView!
     
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,9 +71,9 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         
         
         // Add to subView
-        self.textViewSpace.addSubview(self.neuronTextView)
         self.textViewSpace.addSubview(self.cssTextView)
         self.textViewSpace.addSubview(self.jsTextView)
+        self.textViewSpace.addSubview(self.neuronTextView)
         
         
         
@@ -160,7 +159,7 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
             self.performSegueWithIdentifier("QSG", sender: self)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: key)
         }
-        
+     
     }
     
     
@@ -249,71 +248,7 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    
-    func textViewDidBeginEditing(textView: UITextView) {
-        
-        if (self.view.bounds.size.width >= 1000){
-            
-            var frame1 = self.neuronTextView.frame
-            var frame2 = self.cssTextView.frame
-            var frame3 = self.jsTextView.frame
-            
-            let noInsets = UIEdgeInsetsMake(0, 0, 0, 0)
-            self.neuronTextView.contentInset = noInsets
-            self.cssTextView.contentInset = noInsets
-            self.jsTextView.contentInset = noInsets
 
-            let insets =  UIEdgeInsetsMake(0, 0, 45, 0)
-            textView.contentInset = insets
-            textView.scrollIndicatorInsets = insets
-            
-            self.changeFileSegment.selectedSegmentIndex = textView.tag - 1
-            
-            switch (textView.tag) {
-                case 1:
-                    
-                    frame1.size.width = self.view.frame.size.width - 48 * 2 - 4
-                    
-                    frame2.origin.x = self.view.frame.size.width - 48 * 2 - 2
-                    frame2.size.width = 48
-                    
-                    frame3.origin.x = self.view.frame.size.width - 48
-                    frame3.size.width = 48
-                    break
-                case 2:
-                    frame1.size.width = 48
-                    
-                    frame2.origin.x  = 50
-                    frame2.size.width = self.view.frame.size.width - 48 * 2 - 4
-                    
-                    frame3.origin.x = self.view.frame.size.width - 48
-                    frame3.size.width = 48
-                    break
-                case 3:
-                    frame1.size.width = 48
-                    
-                    frame2.origin.x = 50
-                    frame2.size.width = 48
-                    
-                    frame3.origin.x = 48 * 2 + 4
-                    frame3.size.width = self.view.frame.size.width - 48 * 2 - 4
-                    break
-                
-                default:
-                    break
-            }
-            
-            UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
-                
-                self.neuronTextView.frame = frame1
-                self.cssTextView.frame = frame2
-                self.jsTextView.frame = frame3
-                
-                }, completion: nil)
-            
-        }
-        
-    }
     
     
     func textViewDidEndEditing(textView: UITextView) {
@@ -360,7 +295,9 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
     
     
     @IBAction func segmentDidChanged(sender: UISegmentedControl) {
-        
+        neuronTextView.resignFirstResponder()
+        cssTextView.resignFirstResponder()
+        jsTextView.resignFirstResponder()
         
         switch (sender.selectedSegmentIndex){
             
@@ -529,24 +466,11 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         
         // Set up frames
         
-        if (size.width <= 1000){
-            
-            self.rootHTML = CGRectMake(0, 0, self.view.bounds.size.width, size.height)
-            self.rootCSS = rootHTML
-            self.rootJS = rootHTML
-            
-            changeFileSegment.hidden = false
-            
-        }
-        else{
-            
-            rootHTML = CGRectMake(0, 0, self.view.bounds.width/3-3, size.height)
-            rootCSS = CGRectMake(self.view.bounds.width/3, 0, self.view.bounds.width/3-3, size.height)
-            rootJS = CGRectMake(self.view.bounds.width/3 * 2, 0, self.view.bounds.width/3, size.height)
-            
-            changeFileSegment.hidden = true
-        }
-
+        
+        self.rootHTML = CGRectMake(0, 0, size.width, size.height)
+        self.rootCSS = rootHTML
+        self.rootJS = rootHTML
+        
         
         self.neuronTextView.frame = rootHTML
         self.cssTextView.frame = rootCSS
@@ -560,7 +484,7 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
 
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        applyFramesForViewSize(size)
+        applyFramesForViewSize(textViewSpace.frame.size)
         
     }
     

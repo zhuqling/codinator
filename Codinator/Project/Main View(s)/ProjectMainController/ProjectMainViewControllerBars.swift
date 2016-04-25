@@ -23,7 +23,7 @@ extension ProjectMainViewController {
                     
                     
                     if splitViewController.preferredDisplayMode == .PrimaryHidden {
-                        splitViewController.preferredDisplayMode = .Automatic
+                        splitViewController.preferredDisplayMode = .AllVisible
                     } else {
                         splitViewController.preferredDisplayMode = .PrimaryHidden
                     }

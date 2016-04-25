@@ -79,6 +79,7 @@ class ProjectMainViewController: UIViewController, UISplitViewControllerDelegate
         leftAction = leftButton.action
 
     }
+
     
     
     var leftTarget: AnyObject?
@@ -95,21 +96,23 @@ class ProjectMainViewController: UIViewController, UISplitViewControllerDelegate
         
         if self.isCompact {
             self.getSplitView?.preferredDisplayMode = .PrimaryOverlay
-            getSplitView.filesTableView?.enableNavigationButton(true)
         }
         else {
-            getSplitView.filesTableView?.enableNavigationButton(false)
+            self.getSplitView?.preferredDisplayMode = .AllVisible
         }
 
+        self.getSplitView?.filesTableView?.viewDidAppear(true)
+        
         getSplitView.undoButton = undoButton
         getSplitView.redoButton = redoButton
 
     
-        if isCompact {
-            
+    if isCompact {
+        
             leftButton.target = getSplitView.displayModeButtonItem().target
             leftButton.action = getSplitView.displayModeButtonItem().action
-        }
+    }
+        
         
 
     }
@@ -186,13 +189,11 @@ class ProjectMainViewController: UIViewController, UISplitViewControllerDelegate
                 leftButton.action = getSplitView.displayModeButtonItem().action
                 
                 self.getSplitView?.preferredDisplayMode = .PrimaryOverlay
-                self.getSplitView.filesTableView?.enableNavigationButton(true)
             }
             else {
                 leftButton.target = leftTarget
                 leftButton.action = leftAction!
                 self.getSplitView?.preferredDisplayMode = .AllVisible
-                self.getSplitView.filesTableView?.enableNavigationButton(false)
             }
         }
         else {
@@ -237,13 +238,11 @@ class ProjectMainViewController: UIViewController, UISplitViewControllerDelegate
                 leftButton.action = getSplitView.displayModeButtonItem().action
                 
                 self.getSplitView?.preferredDisplayMode = .PrimaryOverlay
-                self.getSplitView.filesTableView?.enableNavigationButton(true)
             }
             else {
                 leftButton.target = leftTarget
                 leftButton.action = leftAction!
                 self.getSplitView?.preferredDisplayMode = .AllVisible
-                self.getSplitView.filesTableView?.enableNavigationButton(false)
 
             }
         }

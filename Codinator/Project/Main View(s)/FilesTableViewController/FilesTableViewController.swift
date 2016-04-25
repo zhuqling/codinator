@@ -19,20 +19,20 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var navigationHidden = true
     func enableNavigationButton(enable: Bool) {
-        if enable {
-                if navigationHidden == true {
-                navigationHidden = false
-                self.toolBar.items?.insert(fixedSpace, atIndex: 0)
-                self.toolBar.items?.insert(navigateBackButton, atIndex: 0)
-            }
-        }
-        else {
-            if navigationHidden == false {
-                navigationHidden = true
-                self.toolBar.items?.removeFirst()
-                self.toolBar.items?.removeFirst()
-            }
-        }
+//        if enable {
+//                if navigationHidden == true {
+//                navigationHidden = false
+//                self.toolBar.items?.insert(fixedSpace, atIndex: 0)
+//                self.toolBar.items?.insert(navigateBackButton, atIndex: 0)
+//            }
+//        }
+//        else {
+//            if navigationHidden == false {
+//                navigationHidden = true
+//                self.toolBar.items?.removeFirst()
+//                self.toolBar.items?.removeFirst()
+//            }
+//        }
     }
     
     
@@ -152,6 +152,11 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
         
         getSplitView.assistantViewController?.renameDelegate = self
     
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reloadData), name: "relaodData", object: nil)
+        if self.navigationController?.viewControllers.count == 1 {
+            navigateBackButton.enabled = false
+        }
     }
     
     
@@ -236,15 +241,15 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func product(sender: UIBarButtonItem) {
-        let run = UIAlertAction(title: "Run", style: .Default) { (action : UIAlertAction) in
+        let run = UIAlertAction(title: "Full Screen Preview", style: .Default) { (action : UIAlertAction) in
             self.performSegueWithIdentifier("run", sender: self)
         }
         
-        let archive = UIAlertAction(title: "Archive", style: .Default) { (action : UIAlertAction) in
+        let archive = UIAlertAction(title: "Commit", style: .Default) { (action : UIAlertAction) in
             self.performSegueWithIdentifier("archive", sender: self)
         }
         
-        let history = UIAlertAction(title: "History", style: .Default) { (action : UIAlertAction) in
+        let history = UIAlertAction(title: "Commit History", style: .Default) { (action : UIAlertAction) in
             self.performSegueWithIdentifier("history", sender: self)
         }
         
@@ -333,12 +338,22 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - File Database
     
     func reloadData() {
-       
+        
+        
         if let items = projectManager!.contentsOfDirectoryAtPath(inspectorPath) {
             self.items = items.map { $0 as! NSURL}
         }
 
+         let ip = tableView.indexPathForSelectedRow
+        
         tableView.reloadData()
+        
+        if let indexPath = ip {
+            tableView(tableView, didSelectRowAtIndexPath: indexPath)
+            tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .Top )
+        }
+
+        
     }
     
     

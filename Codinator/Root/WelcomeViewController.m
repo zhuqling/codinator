@@ -104,43 +104,49 @@
     
     // delete old indexed files
     [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:nil];
-
-    
-    
-    if (document) {
-        if (projectIsOpened) {
-            [document closeWithCompletionHandler:^(BOOL success) {
-                if (success) {
-                    projectIsOpened = NO;
-                }
-                else{
-                    projectIsOpened = YES;
-                }
-            }];
+    [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@", [error localizedDescription]);
         }
+        
+        
+        if (document) {
+            if (projectIsOpened) {
+                [document closeWithCompletionHandler:^(BOOL success) {
+                    if (success) {
+                        projectIsOpened = NO;
+                    }
+                    else{
+                        projectIsOpened = YES;
+                    }
+                }];
+            }
+        }
+        
+        
+        NSString *rootPath = [AppDelegate storagePath];
+        NSString *projectsDirPath = [rootPath stringByAppendingPathComponent:@"Projects"];
+        NSString *playgroundsDirPath = [rootPath stringByAppendingPathComponent:@"Playground"];
+        
+        
+        projectsArray = [[[NSFileManager defaultManager] contentsOfDirectoryAtURL:[NSURL fileURLWithPath:projectsDirPath isDirectory:YES] includingPropertiesForKeys:[NSArray arrayWithObject:NSURLNameKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:nil] mutableCopy];
+        playgroundsArray = [[[NSFileManager defaultManager] contentsOfDirectoryAtURL:[NSURL fileURLWithPath:playgroundsDirPath isDirectory:YES] includingPropertiesForKeys:[NSArray arrayWithObject:NSURLNameKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:nil] mutableCopy];
+        
+        self.oldProjectsArray = projectsArray;
+        self.oldPlaygroundsArray = playgroundsArray;
+        
+        
+        [self indexProjects:projectsArray];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+
+    }];
+    
+    
     }
-    
-
-    NSString *rootPath = [AppDelegate storagePath];
-    NSString *projectsDirPath = [rootPath stringByAppendingPathComponent:@"Projects"];
-    NSString *playgroundsDirPath = [rootPath stringByAppendingPathComponent:@"Playground"];
-    
-    
-    projectsArray = [[[NSFileManager defaultManager] contentsOfDirectoryAtURL:[NSURL fileURLWithPath:projectsDirPath isDirectory:YES] includingPropertiesForKeys:[NSArray arrayWithObject:NSURLNameKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:nil] mutableCopy];
-    playgroundsArray = [[[NSFileManager defaultManager] contentsOfDirectoryAtURL:[NSURL fileURLWithPath:playgroundsDirPath isDirectory:YES] includingPropertiesForKeys:[NSArray arrayWithObject:NSURLNameKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:nil] mutableCopy];
-
-    self.oldProjectsArray = projectsArray;
-    self.oldPlaygroundsArray = playgroundsArray;
-        
-        
-    [self indexProjects:projectsArray];
-
- 
-    
-    
-        
-    [self.collectionView reloadData];
-}
 
 
 
@@ -369,7 +375,7 @@
                             projectIsOpened = YES;
                             
                             self.projectsPath = path;
-                            [self performSegueWithIdentifier:@"project" sender:nil];
+                            [self performSegueWithIdentifier:@"projectPop" sender:nil];
                             
                         }
                         else{
