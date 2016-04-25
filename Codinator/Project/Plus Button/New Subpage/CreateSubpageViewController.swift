@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateSubpageViewController: UIViewController {
+class CreateSubpageViewController: UIViewController, UITextFieldDelegate {
 
     var projectManager: Polaris!
     @IBOutlet var textField: UITextField!
@@ -70,6 +70,10 @@ class CreateSubpageViewController: UIViewController {
     }
     
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
     
     
     @IBAction func cancelDidPush() {

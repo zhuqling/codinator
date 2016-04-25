@@ -154,6 +154,8 @@ class AssistantViewController: UIViewController, SnippetsDelegate, UITextFieldDe
     }
     
     
+    
+    
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -161,7 +163,7 @@ class AssistantViewController: UIViewController, SnippetsDelegate, UITextFieldDe
         case "img":
             let vc = segue.destinationViewController as! ImgSnippetsViewController
             vc.delegate = self
-   
+            
         case "link":
             let vc = segue.destinationViewController as! LinkSnippetsViewController
             vc.delegate = self
@@ -171,8 +173,8 @@ class AssistantViewController: UIViewController, SnippetsDelegate, UITextFieldDe
             vc.delegate = self
             
         case "colorPicker":
-            let vc = segue.destinationViewController as! ColorPickerViewController
-            vc.delegate = self
+            let vc = segue.destinationViewController as! UINavigationController
+            (vc.viewControllers.first as! ColorPickerViewController).delegate = self
             
         default:
             break

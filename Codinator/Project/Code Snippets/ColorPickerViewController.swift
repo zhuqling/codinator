@@ -29,41 +29,15 @@ class ColorPickerViewController: UIViewController{
         
     }
     
+    @IBAction func doneDidPush() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func viewDidDisappear(animated: Bool) {
         delegate?.colorDidChange(colorPickerView.color)
     }
     
-    
-    
-//    override func viewDidLoad() {
-//        if let color = NSUserDefaults.standardUserDefaults().colorForKey("colorPickerCn"){
-//            colorPickerView.color = color
-//        }
-//        else{
-//            colorPickerView.color = UIColor.purpleColor()
-//        }
-//        
-//        self.view.addSubview(colorPickerView)
-//        colorPickerView.addTarget(self, action: #selector(ColorPickerViewController.colorPickerDidChanged), forControlEvents: UIControlEvents.ValueChanged)
-//    }
-//    
-//    
-//    func colorPickerDidChanged(){
-//        
-//        NSUserDefaults.standardUserDefaults().setColor(colorPickerView.color, forKey: "colorPickerCn")
-//        
-//        if (!displayed){
-//            
-//            displayed = true
-//            
-//            let label = UILabel(frame: CGRectMake(0, 550, 400, 50))
-//            label.text = "The hex code has been copied to your clipboard."
-//            self.view.addSubview(label)
-//        }
-//        
-//        
-//    }
+
     
     
 }

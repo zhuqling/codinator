@@ -1515,7 +1515,7 @@ HTML, CSS, JS and Preview. In the HTML area, you type in your HTML. In the CSS a
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="dY0-K8-LtI"/>
                                 </constraints>
-                                <string key="text">Playgrounds have a few cool tricks backed in like our new syntax for the HTML area called Neuron. Down bellow you can see an example of Neuron and how it's rendered as HTML:
+                                <string key="text">Playgrounds have a few cool tricks backed in like our new syntax for the HTML area called Neuron. Down below you can see an example of Neuron and how it's rendered as HTML:
 </string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -1951,7 +1951,7 @@ BODY()
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ur0-sf-nVm">
                                 <rect key="frame" x="20" y="0.0" width="560" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <string key="text">To delete and rename files you have to long press on the related document till a popup with actions appears. Long pressing on files for document related actions like printing, moving etc. is integrated accross Codinator.</string>
+                                <string key="text">To delete and rename files you have to long press on the related document till a popup with actions appears. Long pressing on files for document related actions like printing, moving, etc. is integrated across Codinator.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1991,7 +1991,7 @@ BODY()
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ea4-oO-xr0">
                                 <rect key="frame" x="20" y="0.0" width="560" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <string key="text">Projects are great for working with more than just one html, css and js file. Furthermore they have more things under the hood like automatic backuping, versioning, local servers etc. Playgrounds are great for creating something quickly and prototyping. For that we also introduced Neuron a new markup language that is great for that. HTML is supported still.</string>
+                                <string key="text">Projects are great for working with more than just one html, css and js file. Furthermore, they have more things under the hood like automatic backuping, versioning, local servers, etc. Playgrounds are great for creating something quickly and prototyping. For that we also introduced Neuron a new markup language that is great for that. HTML is supported still.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

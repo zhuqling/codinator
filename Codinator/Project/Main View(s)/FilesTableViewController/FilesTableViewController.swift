@@ -28,6 +28,8 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
+    var indexPath: NSIndexPath?
+    
     var getSplitView: ProjectSplitViewController! {
         
         get {
@@ -56,6 +58,10 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let insets = UIEdgeInsetsMake(0, 0, toolBar.frame.height, 0)
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
+        
+        if traitCollection.forceTouchCapability == .Available {
+            registerForPreviewingWithDelegate(self, sourceView: self.tableView)
+        }
     }
 
     
@@ -249,7 +255,6 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
        
         if let items = projectManager!.contentsOfDirectoryAtPath(inspectorPath) {
             self.items = items.map { $0 as! NSURL}
-            print(items.map { $0.lastPathComponent })
         }
 
         tableView.reloadData()

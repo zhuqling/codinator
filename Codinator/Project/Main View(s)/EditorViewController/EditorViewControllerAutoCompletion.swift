@@ -84,7 +84,7 @@ extension EditorViewController {
         
         // Check if tag needs closing tag or not and insert the tag
         switch checkString {
-        case "h1>", "h2>", "h3>",  "h4>", "h5>", "h6>", "head>", "body>", "!Documentype html>", "center>", "tr>", "title>", "li>", "section>", "header>", "footer>", "ul>", "del>", "em>", "sub>", "sup>", "var>", "small>", "strong>", "code>", "blackquote>", "p>","h1> ", "h2> ", "h3> ",  "h4>", "h5> ", "h6> ", "head> ", "body> ", "!Documentype html> ", "center> ", "tr> ", "title> ", "li> ", "section> ", "header> ", "footer> ", "ul> ", "del> ", "em> ", "sub> ", "sup> ", "var> ", "small> ", "strong> ", "code> ", "blackquote> ", "p> ":
+        case "h1>", "h2>", "h3>",  "h4>", "h5>", "h6>", "head>", "body>", "!Documentype html>", "center>", "tr>", "title>", "section>", "header>", "footer>", "ul>", "del>", "em>", "sub>", "sup>", "var>", "small>", "strong>", "code>", "blackquote>", "p>","h1> ", "h2> ", "h3> ",  "h4>", "h5> ", "h6> ", "head> ", "body> ", "!Documentype html> ", "center> ", "tr> ", "title> ", "li> ", "section> ", "header> ", "footer> ", "ul> ", "del> ", "em> ", "sub> ", "sup> ", "var> ", "small> ", "strong> ", "code> ", "blackquote> ", "p> ":
             
             let br = "</\(checkString)"
             

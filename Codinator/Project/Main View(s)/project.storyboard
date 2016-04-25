@@ -763,7 +763,7 @@
                                             <rect key="frame" x="53" y="70" width="84" height="30"/>
                                             <state key="normal" title="Color Picker"/>
                                             <connections>
-                                                <segue destination="Q7w-c6-12z" kind="popoverPresentation" identifier="colorPicker" popoverAnchorView="Aaq-3i-94E" id="bSH-lF-EUv">
+                                                <segue destination="nh1-04-UAG" kind="popoverPresentation" identifier="colorPicker" popoverAnchorView="Aaq-3i-94E" id="bSH-lF-EUv">
                                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                 </segue>
                                             </connections>
@@ -880,7 +880,7 @@
                         <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="349" height="79"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="352" height="88"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -892,7 +892,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EMu-AR-dkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-759.5" y="-2108.5"/>
+            <point key="canvasLocation" x="52.5" y="-2108.5"/>
         </scene>
         <!--List Snippets View Controller-->
         <scene sceneID="bIu-y6-2ct">
@@ -938,7 +938,7 @@
                         <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.52941176469999995" green="0.31372549020000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="330" height="79"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="352" height="88"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -950,7 +950,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1E-Jr-d5k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-405" y="-2108.5"/>
+            <point key="canvasLocation" x="407" y="-2108.5"/>
         </scene>
         <!--Img Snippets View Controller-->
         <scene sceneID="bow-2z-0Ka">
@@ -1025,7 +1025,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="486" height="79"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="440" height="88"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="486" height="79"/>
                     <connections>
@@ -1036,9 +1036,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zm1-gP-Ccs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="22" y="-2108.5"/>
+            <point key="canvasLocation" x="834" y="-2108.5"/>
         </scene>
-        <!--Color Picker View Controller-->
+        <!--Color Picket-->
         <scene sceneID="uyb-ne-UyQ">
             <objects>
                 <viewController id="Q7w-c6-12z" customClass="ColorPickerViewController" customModule="Codinator" customModuleProvider="target" sceneMemberID="viewController">
@@ -1051,7 +1051,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ac-e7-GkK" customClass="HRColorPickerView">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                                <rect key="frame" x="0.0" y="44" width="400" height="356"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0k-JR-lOV" customClass="HRBrightnessSlider">
                                         <rect key="frame" x="83" y="65" width="308" height="11"/>
@@ -1066,7 +1066,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jtD-ey-EW4" customClass="HRColorMapView">
-                                        <rect key="frame" x="0.0" y="104" width="400" height="296"/>
+                                        <rect key="frame" x="0.0" y="104" width="410" height="262"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="saturationUpperLimit">
@@ -1103,10 +1103,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="jtD-ey-EW4" firstAttribute="leading" secondItem="0ac-e7-GkK" secondAttribute="leading" id="045-k5-pi0"/>
-                                    <constraint firstAttribute="trailing" secondItem="jtD-ey-EW4" secondAttribute="trailing" id="4gi-7E-vpt"/>
+                                    <constraint firstAttribute="trailing" secondItem="jtD-ey-EW4" secondAttribute="trailing" constant="-10" id="4gi-7E-vpt"/>
                                     <constraint firstItem="ddK-6h-qrz" firstAttribute="bottom" secondItem="a0k-JR-lOV" secondAttribute="bottom" constant="18" id="774-Wf-tOV"/>
                                     <constraint firstItem="6Dg-QD-pSL" firstAttribute="top" secondItem="ddK-6h-qrz" secondAttribute="bottom" id="BSH-5M-MJg"/>
-                                    <constraint firstAttribute="bottom" secondItem="jtD-ey-EW4" secondAttribute="bottom" id="Njf-Jn-WfR"/>
+                                    <constraint firstAttribute="bottom" secondItem="jtD-ey-EW4" secondAttribute="bottom" constant="-10" id="Njf-Jn-WfR"/>
                                     <constraint firstItem="6Dg-QD-pSL" firstAttribute="leading" secondItem="0ac-e7-GkK" secondAttribute="leading" id="XW6-k3-Fel"/>
                                     <constraint firstItem="jtD-ey-EW4" firstAttribute="top" secondItem="0ac-e7-GkK" secondAttribute="top" constant="104" id="XWo-WL-jMp"/>
                                     <constraint firstItem="1rr-is-AtL" firstAttribute="top" secondItem="0ac-e7-GkK" secondAttribute="top" id="Ypv-sI-H45"/>
@@ -1133,6 +1133,13 @@
                             <constraint firstAttribute="trailing" secondItem="0ac-e7-GkK" secondAttribute="trailing" id="u8c-I3-CK2"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Color Picket" id="y8h-Ei-KmA">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="fDN-cz-keZ">
+                            <connections>
+                                <action selector="doneDidPush" destination="Q7w-c6-12z" id="Qvx-Dn-Uxh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="400"/>
@@ -1142,7 +1149,77 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WLr-Dl-zk7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-549" y="-2261"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DS2-Vl-4So">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nh1-04-UAG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="lAS-mh-rOD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Q7w-c6-12z" kind="relationship" relationship="rootViewController" id="kLO-3V-Shk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="18c-NY-GFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="-1361" y="-2261"/>
+        </scene>
+        <!--Peek Image View Controller-->
+        <scene sceneID="AMP-s6-5Bb">
+            <objects>
+                <viewController storyboardIdentifier="imageViewPeek" modalPresentationStyle="currentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NgD-xi-8pk" customClass="PeekImageViewController" customModule="Codinator" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fFu-vp-3g1"/>
+                        <viewControllerLayoutGuide type="bottom" id="P9m-Ea-9GF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cPW-gY-rx6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="44U-SE-5Ks">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="P9m-Ea-9GF" firstAttribute="top" secondItem="44U-SE-5Ks" secondAttribute="bottom" id="307-aj-JYe"/>
+                            <constraint firstItem="44U-SE-5Ks" firstAttribute="leading" secondItem="cPW-gY-rx6" secondAttribute="leadingMargin" constant="-20" id="PUR-Vw-JmO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="44U-SE-5Ks" secondAttribute="trailing" constant="-20" id="lTM-0G-Ql3"/>
+                            <constraint firstItem="44U-SE-5Ks" firstAttribute="top" secondItem="fFu-vp-3g1" secondAttribute="bottom" id="nJf-hW-bzw"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JmT-S1-zls" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042" y="-127"/>
+        </scene>
+        <!--Aspect Ratio View Controller-->
+        <scene sceneID="9NO-5u-3tG">
+            <objects>
+                <viewController storyboardIdentifier="webViewPeek" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kg3-40-OL3" customClass="AspectRatioViewController" customModule="Codinator" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bPR-7h-XgG"/>
+                        <viewControllerLayoutGuide type="bottom" id="X0U-uH-fZg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Glm-H4-RT2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fJc-Fp-fn0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1673" y="-127"/>
         </scene>
     </scenes>
     <resources>

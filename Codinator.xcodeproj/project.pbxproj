@@ -32,6 +32,9 @@
 		6458FDC21CA8987C005B2B93 /* HTMLTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458FDC11CA8987C005B2B93 /* HTMLTextView.swift */; };
 		6458FDC61CA8AD34005B2B93 /* HighlighterToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458FDC51CA8AD34005B2B93 /* HighlighterToken.swift */; };
 		6458FDCA1CA8BADB005B2B93 /* HighlighterExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458FDC91CA8BADB005B2B93 /* HighlighterExtention.swift */; };
+		645FA8751CCDEFC80098A0BD /* PeekImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FA8741CCDEFC80098A0BD /* PeekImageViewController.swift */; };
+		645FA8771CCDF2EE0098A0BD /* PeekProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FA8761CCDF2EE0098A0BD /* PeekProtocol.swift */; };
+		645FA8791CCDF4450098A0BD /* FilesTableViewActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FA8781CCDF4450098A0BD /* FilesTableViewActions.swift */; };
 		646E15721CAC3C7400330BAD /* HighlighterFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646E15711CAC3C7400330BAD /* HighlighterFoundation.swift */; };
 		646EC6DF1CA8D0BE00F359C2 /* CodinatorDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 646EC6A01CA8D0BE00F359C2 /* CodinatorDocument.m */; };
 		646EC6E01CA8D0BE00F359C2 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 646EC6A51CA8D0BE00F359C2 /* RNCryptor.m */; };
@@ -81,6 +84,7 @@
 		646EC7271CADD2A800F359C2 /* UIAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EC7261CADD2A800F359C2 /* UIAlertViewController.swift */; };
 		646EC7291CADD80900F359C2 /* JsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EC7281CADD80900F359C2 /* JsTextView.swift */; };
 		646EC72B1CADD8AC00F359C2 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EC72A1CADD8AC00F359C2 /* UIColorExtension.swift */; };
+		647F33921CCDDC8600CA537D /* FilesTableViewControllerPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647F33911CCDDC8600CA537D /* FilesTableViewControllerPreviewing.swift */; };
 		649B64721C7B618900E0830D /* ContributeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649B64711C7B618900E0830D /* ContributeViewController.swift */; };
 		64A080B91BDBD9D60001CA0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A080B81BDBD9D60001CA0C /* main.m */; };
 		64A080BC1BDBD9D60001CA0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A080BB1BDBD9D60001CA0C /* AppDelegate.m */; };
@@ -206,6 +210,9 @@
 		6458FDC11CA8987C005B2B93 /* HTMLTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLTextView.swift; sourceTree = "<group>"; };
 		6458FDC51CA8AD34005B2B93 /* HighlighterToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlighterToken.swift; sourceTree = "<group>"; };
 		6458FDC91CA8BADB005B2B93 /* HighlighterExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlighterExtention.swift; sourceTree = "<group>"; };
+		645FA8741CCDEFC80098A0BD /* PeekImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeekImageViewController.swift; sourceTree = "<group>"; };
+		645FA8761CCDF2EE0098A0BD /* PeekProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeekProtocol.swift; sourceTree = "<group>"; };
+		645FA8781CCDF4450098A0BD /* FilesTableViewActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableViewActions.swift; sourceTree = "<group>"; };
 		646E15711CAC3C7400330BAD /* HighlighterFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlighterFoundation.swift; sourceTree = "<group>"; };
 		646EC69F1CA8D0BE00F359C2 /* CodinatorDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodinatorDocument.h; sourceTree = "<group>"; };
 		646EC6A01CA8D0BE00F359C2 /* CodinatorDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodinatorDocument.m; sourceTree = "<group>"; };
@@ -285,6 +292,7 @@
 		646EC7261CADD2A800F359C2 /* UIAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertViewController.swift; sourceTree = "<group>"; };
 		646EC7281CADD80900F359C2 /* JsTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsTextView.swift; sourceTree = "<group>"; };
 		646EC72A1CADD8AC00F359C2 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		647F33911CCDDC8600CA537D /* FilesTableViewControllerPreviewing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableViewControllerPreviewing.swift; sourceTree = "<group>"; };
 		649B64711C7B618900E0830D /* ContributeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributeViewController.swift; sourceTree = "<group>"; };
 		64A080B41BDBD9D60001CA0C /* Codinator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Codinator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A080B81BDBD9D60001CA0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -475,6 +483,15 @@
 				64380E0A1CC9195800FCF69A /* FileTemplates.m */,
 			);
 			path = FileTemplates;
+			sourceTree = "<group>";
+		};
+		645FA8731CCDEF990098A0BD /* Peek and Pop VC */ = {
+			isa = PBXGroup;
+			children = (
+				645FA8741CCDEFC80098A0BD /* PeekImageViewController.swift */,
+				645FA8761CCDF2EE0098A0BD /* PeekProtocol.swift */,
+			);
+			path = "Peek and Pop VC";
 			sourceTree = "<group>";
 		};
 		646EC63C1CA8CDA100F359C2 /* Neuron */ = {
@@ -1008,6 +1025,7 @@
 		64A082881BDBE6690001CA0C /* Universal Classes */ = {
 			isa = PBXGroup;
 			children = (
+				645FA8731CCDEF990098A0BD /* Peek and Pop VC */,
 				64A0828D1BDBE6A50001CA0C /* Quick Start Guide */,
 				64A082891BDBE6840001CA0C /* File Mover */,
 			);
@@ -1359,6 +1377,8 @@
 			children = (
 				3201D00A1CA6E02600204373 /* FilesTableViewController.swift */,
 				64EED4E01CCCE7DF00A8BC34 /* FilesTableViewControllerNavigation.swift */,
+				645FA8781CCDF4450098A0BD /* FilesTableViewActions.swift */,
+				647F33911CCDDC8600CA537D /* FilesTableViewControllerPreviewing.swift */,
 			);
 			name = "FilesTableViewController ";
 			path = FilesTableViewController;
@@ -1542,9 +1562,11 @@
 				64A081781BDBE2530001CA0C /* ImportFromGitHubViewController.m in Sources */,
 				64A0833D1BDD16040001CA0C /* UnArchivingViewController.m in Sources */,
 				646EC6E01CA8D0BE00F359C2 /* RNCryptor.m in Sources */,
+				645FA8791CCDF4450098A0BD /* FilesTableViewActions.swift in Sources */,
 				6407BEDF1CCD408C00B35C04 /* ProjectMainViewControllerBars.swift in Sources */,
 				64A081311BDBE0520001CA0C /* PlaygroundViewController.swift in Sources */,
 				646EC7271CADD2A800F359C2 /* UIAlertViewController.swift in Sources */,
+				645FA8751CCDEFC80098A0BD /* PeekImageViewController.swift in Sources */,
 				646EC6FB1CA8D0BE00F359C2 /* Thumbnail.m in Sources */,
 				6407BED81CCD175B00B35C04 /* JTSImageInfo.m in Sources */,
 				64A083271BDD155C0001CA0C /* WUTextSuggestionController.m in Sources */,
@@ -1583,6 +1605,7 @@
 				64EED4DE1CCCE67700A8BC34 /* EditorViewControllerAutoCompletion.swift in Sources */,
 				64A083311BDD15660001CA0C /* CYRLayoutManager.m in Sources */,
 				64A083081BDD142B0001CA0C /* VWASAccessoryView.m in Sources */,
+				645FA8771CCDF2EE0098A0BD /* PeekProtocol.swift in Sources */,
 				646EC7181CA8D15700F359C2 /* LTMorphingLabel+Pixelate.swift in Sources */,
 				6407BEDA1CCD175B00B35C04 /* JTSSimpleImageDownloader.m in Sources */,
 				64A0810A1BDBDC840001CA0C /* UZKArchive.m in Sources */,
@@ -1593,6 +1616,7 @@
 				64EED4DB1CCC3CC400A8BC34 /* ExportViewController.swift in Sources */,
 				64A082A71BDBE7CC0001CA0C /* CSLayerStealingBlurView.m in Sources */,
 				646EC6E91CA8D0BE00F359C2 /* GCDWebServer.m in Sources */,
+				647F33921CCDDC8600CA537D /* FilesTableViewControllerPreviewing.swift in Sources */,
 				64A080B91BDBD9D60001CA0C /* main.m in Sources */,
 				646EC7191CA8D15700F359C2 /* LTMorphingLabel+Sparkle.swift in Sources */,
 				64A0829A1BDBE7610001CA0C /* AspectRatioViewController.swift in Sources */,
