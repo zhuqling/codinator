@@ -14,13 +14,21 @@ class PeekImageViewController: UIViewController {
     
     var delegate: PeekProtocol?
     
+    var isDir = false
+    
     
     override func previewActionItems() -> [UIPreviewActionItem] {
-
         
-        let printAction = UIPreviewAction(title: "Print", style: .Default, handler: { _ in
+        var items = [UIPreviewActionItem]()
+        
+        if isDir == false {
+            let printAction = UIPreviewAction(title: "Print", style: .Default, handler: { _ in
             self.delegate?.print()
-        })
+            })
+            
+            items.append(printAction)
+        }
+        
         
         let moveAction = UIPreviewAction(title: "Move file", style: .Default, handler: { _ in
             self.delegate?.move()
@@ -39,8 +47,9 @@ class PeekImageViewController: UIViewController {
             self.delegate?.delete()
         })
         
-
-        return [printAction, moveAction, renameAction, shareAction, deleteAction]
+        [moveAction, renameAction, shareAction, deleteAction].forEach { items.append($0) }
+        
+        return items
         
     }
     

@@ -42,16 +42,18 @@ extension FilesTableViewController: UIViewControllerPreviewingDelegate {
             if fileName.pathExtension == "" {
                 let imageViewSize = cell.imageView!.frame.size
                 previewVC.preferredContentSize = CGSizeMake(imageViewSize.width * 3, imageViewSize.height * 3)
+                previewVC.isDir = true
+
             }
             
             return previewVC
             
             
         default:
-            guard let previewVC = storyboard?.instantiateViewControllerWithIdentifier("webViewPeek") as? AspectRatioViewController else {
+            guard let previewVC = storyboard?.instantiateViewControllerWithIdentifier("webViewPeek") as? PeekWebViewController else {
                 return nil
             }
-            
+            previewVC.delegate = self
             previewVC.previewPath = path
             previewingContext.sourceRect = cell.frame
             
@@ -64,7 +66,36 @@ extension FilesTableViewController: UIViewControllerPreviewingDelegate {
     // Pop
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+        let path: NSString = self.projectManager.deletePath
         
+        switch path.pathExtension {
+        case "png", "jpg", "jpeg", "bmp", "":
+            break
+            
+            
+        default:
+            guard let webView = getSplitView.webView else {
+                return
+            }
+            
+            
+            webView.loadFileURL( NSURL(fileURLWithPath: path as String, isDirectory: false), allowingReadAccessToURL: NSURL(fileURLWithPath: path.stringByDeletingLastPathComponent, isDirectory: true))
+            
+            projectManager.selectedFilePath = path as String
+            projectManager.deletePath = nil
+            
+            if let data = NSFileManager.defaultManager().contentsAtPath(path as String) {
+                let contents = NSString(data: data, encoding: NSUTF8StringEncoding)
+                
+                getSplitView.editorView!.text = contents as? String
+                
+                getSplitView.assistantViewController?.setFilePathTo(projectManager)
+                
+                self.selectFileWithName(path.lastPathComponent)
+                
+            }
+            
+        }
         
         
     }

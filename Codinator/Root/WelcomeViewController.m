@@ -18,7 +18,6 @@
 #import "ProjectCollectionViewCell.h"
 
 
-#import "CodinatorDocument.h"
 
 ///ZipImport
 #import "ProjectZipImporterViewController.h"
@@ -36,14 +35,12 @@
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
 //UI
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *plusButtonSuperView;
 
 
 //navigation
 @property (strong, nonatomic) NSString *tmpPath;
 @property (nonatomic) BOOL useTmpPath;
-
 
 
 //Holding Objects
@@ -54,12 +51,9 @@
 
 
 //documents
-@property (nonatomic) BOOL projectIsOpened;
-@property (nonatomic) CodinatorDocument *document;
 @property (nonatomic, nonnull) NSMetadataQuery *query;
 
 @property (nonatomic) NSString *playgroundsPath;
-@property (nonatomic) NSString *projectsPath;
 
 @end
 
@@ -100,6 +94,14 @@
     
     [self performSelectorInBackground:@selector(setUp) withObject:nil];
     
+    
+    if ([self.traitCollection
+         respondsToSelector:@selector(forceTouchCapability)] &&
+        (self.traitCollection.forceTouchCapability ==
+         UIForceTouchCapabilityAvailable))
+    {
+        [self registerForPreviewingWithDelegate:self sourceView:self.collectionView];
+    }
 
 
     
@@ -722,7 +724,7 @@
         
         
         
-            UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete ❌" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * __nonnull action) {
+            UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * __nonnull action) {
                 
                 
                 NSError *error;
@@ -741,7 +743,7 @@
             
             
             
-            UIAlertAction *renameAction = [UIAlertAction actionWithTitle:@"Rename 🎩" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
+            UIAlertAction *renameAction = [UIAlertAction actionWithTitle:@"Rename" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
             
                 // RENAME FILE DIALOGE
                 NSString *message = [NSString stringWithFormat:@"Rename \"%@\"", deletePath.lastPathComponent.stringByDeletingPathExtension];
@@ -779,7 +781,7 @@
                 
             }];
             
-            UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"Move file into a project 🚊" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
+            UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"Move file into a project" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
             
                 ///move FILE DIALOGE
                 
@@ -796,9 +798,9 @@
                 UIAlertController *popup = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
                 popup.view.tintColor = [UIColor blackColor];
                 
-                [popup addAction:deleteAction];
                 [popup addAction:renameAction];
-                
+                [popup addAction:deleteAction];
+
                 if (indexPath.section == 1) {
                     [popup addAction:moveAction];
                 }

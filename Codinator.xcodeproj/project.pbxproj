@@ -35,6 +35,8 @@
 		645FA8751CCDEFC80098A0BD /* PeekImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FA8741CCDEFC80098A0BD /* PeekImageViewController.swift */; };
 		645FA8771CCDF2EE0098A0BD /* PeekProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FA8761CCDF2EE0098A0BD /* PeekProtocol.swift */; };
 		645FA8791CCDF4450098A0BD /* FilesTableViewActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FA8781CCDF4450098A0BD /* FilesTableViewActions.swift */; };
+		645FA87B1CCDFB170098A0BD /* PeekWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FA87A1CCDFB170098A0BD /* PeekWebViewController.swift */; };
+		645FA87D1CCE06140098A0BD /* WelcomeViewPreviewingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FA87C1CCE06140098A0BD /* WelcomeViewPreviewingDelegate.swift */; };
 		646E15721CAC3C7400330BAD /* HighlighterFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646E15711CAC3C7400330BAD /* HighlighterFoundation.swift */; };
 		646EC6DF1CA8D0BE00F359C2 /* CodinatorDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 646EC6A01CA8D0BE00F359C2 /* CodinatorDocument.m */; };
 		646EC6E01CA8D0BE00F359C2 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 646EC6A51CA8D0BE00F359C2 /* RNCryptor.m */; };
@@ -213,6 +215,8 @@
 		645FA8741CCDEFC80098A0BD /* PeekImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeekImageViewController.swift; sourceTree = "<group>"; };
 		645FA8761CCDF2EE0098A0BD /* PeekProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeekProtocol.swift; sourceTree = "<group>"; };
 		645FA8781CCDF4450098A0BD /* FilesTableViewActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableViewActions.swift; sourceTree = "<group>"; };
+		645FA87A1CCDFB170098A0BD /* PeekWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeekWebViewController.swift; sourceTree = "<group>"; };
+		645FA87C1CCE06140098A0BD /* WelcomeViewPreviewingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewPreviewingDelegate.swift; sourceTree = "<group>"; };
 		646E15711CAC3C7400330BAD /* HighlighterFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlighterFoundation.swift; sourceTree = "<group>"; };
 		646EC69F1CA8D0BE00F359C2 /* CodinatorDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodinatorDocument.h; sourceTree = "<group>"; };
 		646EC6A01CA8D0BE00F359C2 /* CodinatorDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodinatorDocument.m; sourceTree = "<group>"; };
@@ -489,6 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				645FA8741CCDEFC80098A0BD /* PeekImageViewController.swift */,
+				645FA87A1CCDFB170098A0BD /* PeekWebViewController.swift */,
 				645FA8761CCDF2EE0098A0BD /* PeekProtocol.swift */,
 			);
 			path = "Peek and Pop VC";
@@ -826,6 +831,7 @@
 				326F029F1CA1EE1700CA61C7 /* MainStoryboard.storyboard */,
 				64A0817C1BDBE28D0001CA0C /* WelcomeViewController.h */,
 				64A0817D1BDBE28D0001CA0C /* WelcomeViewController.m */,
+				645FA87C1CCE06140098A0BD /* WelcomeViewPreviewingDelegate.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -1590,6 +1596,8 @@
 				64A080EC1BDBDBFE0001CA0C /* HRColorMapView.m in Sources */,
 				64A082CE1BDBE89A0001CA0C /* AFSecurityPolicy.m in Sources */,
 				646EC7101CA8D15700F359C2 /* LTCharacterLimbo.swift in Sources */,
+				645FA87B1CCDFB170098A0BD /* PeekWebViewController.swift in Sources */,
+				645FA87D1CCE06140098A0BD /* WelcomeViewPreviewingDelegate.swift in Sources */,
 				646EC6F21CA8D0BE00F359C2 /* GCDWebServerRequest.m in Sources */,
 				6444D1B21CA7205E002BAD23 /* NewPlaygroundViewController.swift in Sources */,
 				6407BED71CCD175B00B35C04 /* JTSAnimatedGIFUtility.m in Sources */,

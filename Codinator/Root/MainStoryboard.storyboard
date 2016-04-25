@@ -2034,6 +2034,26 @@ BODY()
             </objects>
             <point key="canvasLocation" x="2500" y="-1765"/>
         </scene>
+        <!--Peek Web View Controller-->
+        <scene sceneID="T53-vi-nGb">
+            <objects>
+                <viewController storyboardIdentifier="webViewPeek" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wxp-cO-5IH" customClass="PeekWebViewController" customModule="Codinator" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GCo-VP-ua3"/>
+                        <viewControllerLayoutGuide type="bottom" id="YN3-2g-e6D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DvY-s6-9j8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mxr-hM-R6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-799" y="2665"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back" width="13" height="21"/>

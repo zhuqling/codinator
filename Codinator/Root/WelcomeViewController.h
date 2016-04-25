@@ -7,12 +7,21 @@
 //
 
 @import SafariServices;
+#import "CodinatorDocument.h"
 
 
 @interface WelcomeViewController : UIViewController <UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SFSafariViewControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *projectsArray;
 @property (strong, nonatomic) NSMutableArray *playgroundsArray;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+
+@property (strong, nonatomic) NSString *forceTouchPath;
+@property (nonatomic) CodinatorDocument *document;
+
+@property (nonatomic) BOOL projectIsOpened;
+@property (nonatomic) NSString *projectsPath;
 
 
 - (void)indexProjects:(NSArray *)projects;

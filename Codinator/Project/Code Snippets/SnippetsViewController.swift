@@ -64,6 +64,10 @@ class ImgSnippetsViewController: UIViewController,UITextFieldDelegate {
         
     }
     
+    @IBAction func cancelDidPush(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     @IBAction func viewDidTapped(sender: AnyObject) {
         textField.resignFirstResponder()
@@ -89,6 +93,10 @@ class LinkSnippetsViewController :UIViewController,UITextFieldDelegate{
         nameTextField.attributedPlaceholder = NSAttributedString(string:"http link", attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
         
         
+    }
+    
+    @IBAction func cancelDidPush(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func generateDidPush(sender: AnyObject) {
@@ -157,6 +165,10 @@ class ListSnippetsViewController :UIViewController{
         
         let integer = Int(stepper.value)
         enumNumberLabel.text = "\(integer)"
+    }
+    
+    @IBAction func cancelDidPush(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func generateDidPush(sender: AnyObject) {

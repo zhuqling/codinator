@@ -122,7 +122,7 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - Assistant View
     
-    func renamedFileWithName(name: String) {
+    func selectFileWithName(name: String) {
         reloadData()
         
         // Find 'name' and save index of it in the array itself

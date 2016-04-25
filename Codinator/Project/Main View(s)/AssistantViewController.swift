@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol AssistantViewControllerDelegate {
-    func renamedFileWithName(name: String)
+    func selectFileWithName(name: String)
 }
 
 
@@ -143,7 +143,7 @@ class AssistantViewController: UIViewController, SnippetsDelegate, UITextFieldDe
         do {
             try fileManager.moveItemAtURL(fileUrl!, toURL: fileUrl!.URLByDeletingLastPathComponent!.URLByAppendingPathComponent(fileNameTextField.text! + "." + fileExtensionTextField.text!))
             
-            self.renameDelegate?.renamedFileWithName(fileNameTextField.text! + "." + fileExtensionTextField.text!)
+            self.renameDelegate?.selectFileWithName(fileNameTextField.text! + "." + fileExtensionTextField.text!)
             
         } catch let error as NSError {
             Notifications.sharedInstance.alertWithMessage(error.localizedDescription, title: "Something went wrong!", viewController: self)
@@ -161,16 +161,16 @@ class AssistantViewController: UIViewController, SnippetsDelegate, UITextFieldDe
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
         case "img":
-            let vc = segue.destinationViewController as! ImgSnippetsViewController
-            vc.delegate = self
+            let vc = segue.destinationViewController as! UINavigationController
+            (vc.viewControllers.first as! ImgSnippetsViewController).delegate = self
             
         case "link":
-            let vc = segue.destinationViewController as! LinkSnippetsViewController
-            vc.delegate = self
+            let vc = segue.destinationViewController as! UINavigationController
+            (vc.viewControllers.first as! LinkSnippetsViewController).delegate = self
             
         case "list":
-            let vc = segue.destinationViewController as! ListSnippetsViewController
-            vc.delegate = self
+            let vc = segue.destinationViewController as! UINavigationController
+            (vc.viewControllers.first as! ListSnippetsViewController).delegate = self
             
         case "colorPicker":
             let vc = segue.destinationViewController as! UINavigationController

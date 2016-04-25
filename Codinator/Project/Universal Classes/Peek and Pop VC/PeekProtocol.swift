@@ -15,3 +15,9 @@ protocol PeekProtocol {
     func share()
     func delete()
 }
+
+
+protocol PeekShortProtocol {
+    func rename()
+    func delete()
+}
