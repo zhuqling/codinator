@@ -59,10 +59,12 @@ class PlaygroundFileCreator: NSObject {
         // JS file
         let jsFile = FileTemplates.jsTemplateFile()
         
-        
-        document.setFile(.Neuron, toFile: neuronFile)
-        document.setFile(.JS, toFile: jsFile)
-        document.setFile(.CSS, toFile: cssFile)
+        document.contents.addObject(neuronFile)
+        document.contents.addObject(cssFile)
+        document.contents.addObject(jsFile)
+//        document.setFile(.Neuron, toFile: neuronFile)
+//        document.setFile(.JS, toFile: jsFile)
+//        document.setFile(.CSS, toFile: cssFile)
         
         return document
     }

@@ -46,11 +46,11 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         document.openWithCompletionHandler { (success) -> Void in
             
             if (success){
-                self.neuronText = self.document.embeddedFile(.Neuron)
-                self.cssText = self.document.embeddedFile(.CSS)
-                self.jsText = self.document.embeddedFile(.JS)
-                
-                
+                if (self.document.contents.count == 3){
+                    self.neuronText = self.document.contents[0] as! String
+                    self.cssText = self.document.contents[1] as! String
+                    self.jsText = self.document.contents[2] as! String
+                }
                 self.navigationItem.title = (self.document.fileURL.lastPathComponent! as NSString).stringByDeletingPathExtension + " Playground"
                 
             }
@@ -175,27 +175,68 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         switch (textView.tag) {
         
         case 1:
-            document.setFile(.Neuron, toFile: neuronTextView.text)
-        
+            
+            do{
+               self.document.contents[0] = self.neuronTextView.text
+                
+                let cssString = self.document.contents[1] as! String
+                let jsString = self.document.contents[2] as! String
+                
+                try Neuron.neuronCode(self.neuronTextView.text, cssString: cssString, jsString: jsString).writeToFile (tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
+                
+            }
+            catch{
+                //ERROR
+                
+                
+                print("Error copying file to tmp path")
+                
+            }
+            
+            
+            
+            
+            break
         case 2:
-            document.setFile(.CSS, toFile: cssTextView.text)
-        
+            
+            do{
+                document.contents[1] = self.cssTextView.text
+                
+                let startingHTMLString = self.document.contents[0] as! String
+                let jsString = self.document.contents[2] as! String
+                
+                try Neuron.neuronCode(startingHTMLString, cssString: cssTextView.text, jsString: jsString).writeToFile(tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
+                
+            }
+            catch{
+                //ERROR
+            }
+            
+            
+            break
         case 3:
-            document.setFile(.JS, toFile: jsTextView.text)
-        
+            
+            do{
+                document.contents[2] = self.jsTextView.text
+                
+                let startingHTMLString = self.document.contents[0] as! String
+                let cssString = self.document.contents[1] as! String
+                
+                try Neuron.neuronCode(startingHTMLString, cssString: cssString, jsString: self.jsTextView.text).writeToFile(tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
+                
+            }
+            catch{
+                //ERROR
+            }
+            
+            break
+            
         default:
             break
         }
         
-        
-        let neuronString = document.embeddedFile(.Neuron)
-        let cssString = document.embeddedFile(.CSS)
-        let jsString = document.embeddedFile(.JS)
-        
-        try! Neuron.neuronCode(neuronString, cssString: cssString, jsString: jsString).writeToFile(tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
 
-            
-        document.saveToURL(document.fileURL, forSaveOperation: .ForOverwriting) { (success) -> Void in
+        document.saveToURL(NSURL(fileURLWithPath: filePath), forSaveOperation: UIDocumentSaveOperation.ForOverwriting) { (success) -> Void in
             
         }
         
@@ -298,11 +339,11 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         
         let tmpPath = NSTemporaryDirectory()
         
-        let startingNeuronString = document.embeddedFile(.Neuron)
-        let cssString = document.embeddedFile(.CSS)
-        let jsString = document.embeddedFile(.JS)
-            
-        try! Neuron.neuronCode(startingNeuronString, cssString: cssString, jsString: jsString).writeToFile(tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
+        let startingHTMLString = self.document.contents[0] as! String
+        let cssString = self.document.contents[1] as! String
+        let jsString = self.document.contents[2] as! String
+        
+        try! Neuron.neuronCode(startingHTMLString, cssString: cssString, jsString: jsString).writeToFile(tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
         
         
         let url = NSURL(fileURLWithPath: tmpPath + "/index.html", isDirectory: false)
@@ -374,7 +415,27 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
     //MARK: Extra
     
     @IBAction func closeDidPush(sender: AnyObject) {
-    self.navigationController?.popViewControllerAnimated(true)
+        
+        document.saveToURL(NSURL(fileURLWithPath: filePath), forSaveOperation: UIDocumentSaveOperation.ForOverwriting) { (success) -> Void in
+            
+            if (success){
+                
+                self.document.closeWithCompletionHandler({ (success) -> Void in
+                    if (success){
+                        self.navigationController?.popToRootViewControllerAnimated(true)
+                    }
+                })
+            }
+            else {
+                Notifications.sharedInstance.alertWithMessage("Failed saving playground", title: nil, viewController: self)
+            }
+
+        }
+        
+
+        
+        
+        
     }
     
     
@@ -406,15 +467,13 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         
         let convertAction = UIAlertAction(title: "Copy Converted to Clipboard 📎", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
             
+            
+            let startingHTMLString = self.document.contents[0] as! String
+            let cssString = self.document.contents[1] as! String
+            let jsString = self.document.contents[2] as! String
+            
             let pasteboard = UIPasteboard.generalPasteboard()
-            
-            
-            let startingNeuronString = self.document.embeddedFile(.Neuron)
-            let cssString = self.document.embeddedFile(.CSS)
-            let jsString = self.document.embeddedFile(.JS)
-            
-            pasteboard.string = Neuron.neuronCode(startingNeuronString, cssString: cssString, jsString: jsString)
-            
+            pasteboard.string = Neuron.neuronCode(startingHTMLString, cssString: cssString, jsString: jsString)
         }
         
         

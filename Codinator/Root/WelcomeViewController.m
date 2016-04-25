@@ -68,23 +68,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    UIEdgeInsets insets;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        insets = UIEdgeInsetsMake(0, 0, 0, 0);
-    }
-    else {
-        insets = UIEdgeInsetsMake(30, 0, 0, 0);
-    }
     
-    self.collectionView.contentInset = insets;
-    
-    UIEdgeInsets scrollInsets = insets;
-    scrollInsets.top = 0;
-    
-    self.collectionView.scrollIndicatorInsets = scrollInsets;
-    
-
     //link to app delegate
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
@@ -457,6 +441,11 @@
     return 2;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    return CGSizeMake(166, 155)/*CGSizeMake(170, 155)*/;
+}
+
 
 - (UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
 
@@ -764,7 +753,8 @@
                     NSString *newName = [alert.textFields[0].text stringByAppendingPathExtension:@"cnProj"];
                     NSString *newPath = [[deletePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:newName];
                     
-                    NSLog(@"%@",newName);
+                    Polaris *polaris = [[Polaris alloc] initWithProjectPath:deletePath currentView:nil WithWebServer:false UploadServer:false andWebDavServer:false];
+                    [polaris updateSettingsValueForKey:@"ProjectName" withValue:newName.stringByDeletingPathExtension];
                     
                     [[NSFileManager defaultManager] moveItemAtPath:deletePath toPath:newPath error:nil];
                     [self reloadData];
@@ -1097,7 +1087,7 @@
         destViewController.filePath = self.playgroundsPath;
         
     }
-    else if ([segue.identifier isEqualToString:@"project"]) {
+    else if ([segue.identifier isEqualToString:@"project"] || [segue.identifier isEqualToString:@"projectPop"]) {
         ProjectMainViewController *destViewController = segue.destinationViewController;
         destViewController.path = self.projectsPath;
     }else if ([segue.identifier isEqualToString:@"settings"]){

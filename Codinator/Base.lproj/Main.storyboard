@@ -63,7 +63,7 @@
                                     <action selector="closeDidPush:" destination="Pjd-Yv-yil" eventType="touchUpInside" id="tOa-UQ-xce"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12L-ej-P4C">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12L-ej-P4C">
                                 <rect key="frame" x="196" y="562" width="365" height="46"/>
                                 <string key="text">Why don't you go and enjoy a cup of cofee
 (or tea if you're in the UK)</string>
@@ -77,7 +77,7 @@
                                     <rect key="frame" x="0.0" y="383" width="363" height="46"/>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee" translatesAutoresizingMaskIntoConstraints="NO" id="xJg-s5-qnM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="coffee" translatesAutoresizingMaskIntoConstraints="NO" id="xJg-s5-qnM">
                                 <rect key="frame" x="208" y="151" width="341" height="341"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="1RJ-fV-aac"/>
@@ -108,7 +108,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWz-Ed-vn0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWz-Ed-vn0">
                                 <rect key="frame" x="196" y="512" width="365" height="42"/>
                                 <attributedString key="attributedText">
                                     <fragment content="This might take a ">
@@ -3215,10 +3215,10 @@ BODY()
     <resources>
         <image name="coffee" width="341" height="341"/>
         <image name="git" width="170" height="170"/>
-        <image name="mailS" width="85" height="85"/>
-        <image name="star" width="85" height="85"/>
+        <image name="mailS" width="22" height="22"/>
+        <image name="star" width="22" height="22"/>
         <image name="tool" width="40" height="40"/>
-        <image name="tweet" width="85" height="85"/>
+        <image name="tweet" width="22" height="22"/>
         <image name="zip" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>

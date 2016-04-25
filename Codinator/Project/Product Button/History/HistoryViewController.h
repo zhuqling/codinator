@@ -24,7 +24,6 @@
 
 }
 
-
 @property (nonatomic, strong) Polaris *projectManager;
 
 

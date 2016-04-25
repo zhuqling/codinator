@@ -61,7 +61,10 @@ extension FilesTableViewController {
                 if let controller = storyboard?.instantiateViewControllerWithIdentifier("filesTableView") as? FilesTableViewController {
                     controller.inspectorPath = selectedPath
                     
+                    
                     count += 1
+                    
+                    controller.navigationHidden = false
                     self.navigationController?.showViewController(controller, sender: self)
                 }
                 

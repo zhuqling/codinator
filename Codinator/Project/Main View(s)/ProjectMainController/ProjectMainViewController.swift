@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 
-class ProjectMainViewController: UIViewController {
+class ProjectMainViewController: UIViewController, UISplitViewControllerDelegate {
 
     
     var path: String!
@@ -75,11 +75,18 @@ class ProjectMainViewController: UIViewController {
         self.setOverrideTraitCollection(horizontallyRegularTraitCollection, forChildViewController: getSplitView!)
 
         
+        leftTarget = leftButton.target
+        leftAction = leftButton.action
+
     }
     
     
+    var leftTarget: AnyObject?
+    var leftAction: Selector?
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        
         
         let projectName = getSplitView.projectManager.getSettingsDataForKey("ProjectName") as! String
             self.navigationController?.navigationBar.topItem?.title = projectName
@@ -88,10 +95,23 @@ class ProjectMainViewController: UIViewController {
         
         if self.isCompact {
             self.getSplitView?.preferredDisplayMode = .PrimaryOverlay
+            getSplitView.filesTableView?.enableNavigationButton(true)
+        }
+        else {
+            getSplitView.filesTableView?.enableNavigationButton(false)
         }
 
         getSplitView.undoButton = undoButton
         getSplitView.redoButton = redoButton
+
+    
+        if isCompact {
+            
+            leftButton.target = getSplitView.displayModeButtonItem().target
+            leftButton.action = getSplitView.displayModeButtonItem().action
+        }
+        
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -102,16 +122,18 @@ class ProjectMainViewController: UIViewController {
     
     @IBAction func back(sender: UIBarButtonItem) {
         
-        print("Path 1: " + getSplitView!.projectManager.projectUserDirectoryPath() + "\nPath2: " + getSplitView!.projectManager.inspectorPath)
-        
-        
-        
-        if getSplitView?.projectManager.projectUserDirectoryPath() == getSplitView?.projectManager.inspectorPath {
+        if getSplitView?.projectManager.projectUserDirectoryPath() == getSplitView?.projectManager.inspectorPath && self.view.traitCollection.horizontalSizeClass != .Compact {
             getSplitView?.projectManager.close()
             self.navigationController?.popViewControllerAnimated(true)
         }
         else {
-            getSplitView.filesTableView?.navigationController?.popViewControllerAnimated(true)
+            
+            if getSplitView.filesTableView?.count <= 1 {
+                getSplitView?.projectManager.close()
+                self.navigationController?.popViewControllerAnimated(true)
+            }else {
+                getSplitView.filesTableView?.navigationController?.popViewControllerAnimated(true)
+            }
         }
         
         
@@ -142,7 +164,7 @@ class ProjectMainViewController: UIViewController {
 
     var isCompact: Bool {
         get {
-            return UIApplication.sharedApplication().statusBarOrientation == .Portrait || UIApplication.sharedApplication().statusBarOrientation == .PortraitUpsideDown ||  self.view.traitCollection.horizontalSizeClass == .Compact ||  self.view.traitCollection.horizontalSizeClass == .Compact
+            return self.view.traitCollection.horizontalSizeClass == .Compact
         }
     }
     
@@ -154,8 +176,30 @@ class ProjectMainViewController: UIViewController {
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
 
+
         
         // Hide undo button
+        
+        if firstStartHappened == true {
+            if isCompact {
+                leftButton.target = getSplitView.displayModeButtonItem().target
+                leftButton.action = getSplitView.displayModeButtonItem().action
+                
+                self.getSplitView?.preferredDisplayMode = .PrimaryOverlay
+                self.getSplitView.filesTableView?.enableNavigationButton(true)
+            }
+            else {
+                leftButton.target = leftTarget
+                leftButton.action = leftAction!
+                self.getSplitView?.preferredDisplayMode = .AllVisible
+                self.getSplitView.filesTableView?.enableNavigationButton(false)
+            }
+        }
+        else {
+            firstStartHappened = true
+        }
+        
+        
         if self.view.frame.width >= 480 {
             
             if removedOnce {
@@ -174,13 +218,58 @@ class ProjectMainViewController: UIViewController {
             
         }
         
+
+        
+
+        
         
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         
+        
+        // Hide undo button
+        
+        if firstStartHappened == true {
+            if isCompact {
+                leftButton.target = getSplitView.displayModeButtonItem().target
+                leftButton.action = getSplitView.displayModeButtonItem().action
+                
+                self.getSplitView?.preferredDisplayMode = .PrimaryOverlay
+                self.getSplitView.filesTableView?.enableNavigationButton(true)
+            }
+            else {
+                leftButton.target = leftTarget
+                leftButton.action = leftAction!
+                self.getSplitView?.preferredDisplayMode = .AllVisible
+                self.getSplitView.filesTableView?.enableNavigationButton(false)
 
+            }
+        }
+        else {
+            firstStartHappened = true
+        }
+        
+        
+        if size.width >= 480 {
+            
+            if removedOnce {
+                self.navigationItem.leftBarButtonItems?.append(undoButton)
+                self.navigationItem.leftBarButtonItems?.append(redoButton)
+                removedOnce = false
+            }
+        }
+        else {
+            
+            if removedOnce == false {
+                self.navigationItem.leftBarButtonItems?.removeLast()
+                self.navigationItem.leftBarButtonItems?.removeLast()
+                removedOnce = true
+            }
+            
+        }
+        
     }
     
     
@@ -195,5 +284,7 @@ class ProjectMainViewController: UIViewController {
         
     }
     
-    
+
+
+
 }

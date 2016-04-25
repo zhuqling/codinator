@@ -13,6 +13,30 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var toolBar: UIToolbar!
 
+    @IBOutlet var navigateBackButton: UIBarButtonItem!
+    @IBOutlet var fixedSpace: UIBarButtonItem!
+    
+    
+    var navigationHidden = true
+    func enableNavigationButton(enable: Bool) {
+        if enable {
+                if navigationHidden == true {
+                navigationHidden = false
+                self.toolBar.items?.insert(fixedSpace, atIndex: 0)
+                self.toolBar.items?.insert(navigateBackButton, atIndex: 0)
+            }
+        }
+        else {
+            if navigationHidden == false {
+                navigationHidden = true
+                self.toolBar.items?.removeFirst()
+                self.toolBar.items?.removeFirst()
+            }
+        }
+    }
+    
+    
+    
     var documentInteractionController: UIDocumentInteractionController?
     
     var items: [NSURL] = []
@@ -62,6 +86,24 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
         if traitCollection.forceTouchCapability == .Available {
             registerForPreviewingWithDelegate(self, sourceView: self.tableView)
         }
+        
+        if self.view.traitCollection.horizontalSizeClass != .Compact {
+            self.toolBar.items?.removeFirst()
+            self.toolBar.items?.removeFirst()
+        }
+        else {
+            navigationHidden = false
+        }
+        
+        if self.navigationController?.viewControllers.count > 0{
+            navigateBackButton.enabled = true
+        }
+        else {
+            navigateBackButton.enabled = false
+        }
+        
+        
+        
     }
 
     
@@ -160,7 +202,14 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
             self.performSegueWithIdentifier("import", sender: self)
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { _ in
+            
+            if self.getSplitView.displayMode == .PrimaryHidden {
+                self.getSplitView.preferredDisplayMode = .PrimaryOverlay
+            }
+            
+        })
+
         
         
         let popup = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
@@ -173,9 +222,17 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
         popup.view.tintColor = UIColor.purpleColor()
         
         popup.popoverPresentationController?.barButtonItem = sender
-        self.presentViewController(popup, animated: true, completion: {
-            popup.view.tintColor = UIColor.purpleColor()
-        })
+        
+        if getSplitView.displayMode != .PrimaryOverlay {
+            self.presentViewController(popup, animated: true, completion: nil)
+        }
+        else {
+            
+            popup.title = "Product"
+            
+            getSplitView.preferredDisplayMode = .PrimaryHidden
+            getSplitView!.rootVC.presentViewController(popup, animated: true, completion: nil)
+        }
     }
     
     @IBAction func product(sender: UIBarButtonItem) {
@@ -192,14 +249,20 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         let export = UIAlertAction(title: "Export", style: .Default) { (action : UIAlertAction) in
-            Notifications.sharedInstance.alertWithMessage("Archive the Project first.\nAfterwards open up the History window and use the export manager.", title: "✈️")
+            Notifications.sharedInstance.alertWithMessage("Archive the Project first.\nAfterwards open up the History window and use the export manager.", title: "Export")
         }
         
         let localServer = UIAlertAction(title: "Local Server", style: .Default) { (action : UIAlertAction) in
             self.performSegueWithIdentifier("Pulse", sender: self)
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: { _ in
+
+            if self.getSplitView.displayMode == .PrimaryHidden {
+                self.getSplitView.preferredDisplayMode = .PrimaryOverlay
+            }
+    
+        })
         
         
         let popup = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
@@ -213,12 +276,30 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
         popup.view.tintColor = UIColor.purpleColor()
         
         popup.popoverPresentationController?.barButtonItem = sender
-        self.presentViewController(popup, animated: true, completion: {
-            popup.view.tintColor = UIColor.purpleColor()
-        })
+
+        //        self.presentViewController(popup, animated: true, completion: {
+//            popup.view.tintColor = UIColor.purpleColor()
+//        })
+        
+        if getSplitView.displayMode != .PrimaryOverlay {
+            self.presentViewController(popup, animated: true, completion: nil)
+        }
+        else {
+            
+            popup.title = "Product"
+            
+            getSplitView.preferredDisplayMode = .PrimaryHidden
+            getSplitView!.rootVC.presentViewController(popup, animated: true, completion: nil)
+        }
+        
     }
     
     
+    @IBAction func navigateBackDidPush(sender: AnyObject) {
+        if self.navigationController?.viewControllers.count != 1 {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
     
     
     

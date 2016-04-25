@@ -135,24 +135,42 @@ class AssistantViewController: UIViewController, SnippetsDelegate, UITextFieldDe
     
     // MARK: - TextFieldDelegate
     
+    var previosText: String?
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if fileExtensionTextField.text == "" && fileNameTextField.text == "" {
+            textField.resignFirstResponder()
+        }
+        else {
+            previosText = textField.text
+        }
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-        let fileManager = NSFileManager.defaultManager()
-        
-        do {
-            try fileManager.moveItemAtURL(fileUrl!, toURL: fileUrl!.URLByDeletingLastPathComponent!.URLByAppendingPathComponent(fileNameTextField.text! + "." + fileExtensionTextField.text!))
+        if previosText != textField.text {
             
-            self.renameDelegate?.selectFileWithName(fileNameTextField.text! + "." + fileExtensionTextField.text!)
-            
-        } catch let error as NSError {
-            Notifications.sharedInstance.alertWithMessage(error.localizedDescription, title: "Something went wrong!", viewController: self)
+            if fileNameTextField.text == "" {
+                Notifications.sharedInstance.alertWithMessage(nil, title: "Filename cant be empty", viewController: self)
+                fileNameTextField.becomeFirstResponder()
+            }
+            else {
+                let fileManager = NSFileManager.defaultManager()
+                
+                do {
+                    try fileManager.moveItemAtURL(fileUrl!, toURL: fileUrl!.URLByDeletingLastPathComponent!.URLByAppendingPathComponent(fileNameTextField.text! + "." + fileExtensionTextField.text!))
+                    
+                    self.renameDelegate?.selectFileWithName(fileNameTextField.text! + "." + fileExtensionTextField.text!)
+                    
+                } catch let error as NSError {
+                    Notifications.sharedInstance.alertWithMessage(error.localizedDescription, title: "Something went wrong!", viewController: self)
+                }
+            }
         }
         
-        
         return false
+        
     }
-    
     
     
     

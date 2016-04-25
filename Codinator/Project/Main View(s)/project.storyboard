@@ -99,6 +99,12 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="X7N-uv-V53">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
+                                    <barButtonItem enabled="NO" image="back" id="SWc-s5-WDk">
+                                        <connections>
+                                            <action selector="navigateBackDidPush:" destination="bHI-NH-V6D" id="JQO-yz-fbQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="wLI-kn-vFX"/>
                                     <barButtonItem systemItem="add" id="xbO-Ii-cR5">
                                         <connections>
                                             <action selector="add:" destination="bHI-NH-V6D" id="MQA-qu-edg"/>
@@ -126,8 +132,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="Qmc-eB-E5K"/>
                     <connections>
+                        <outlet property="fixedSpace" destination="wLI-kn-vFX" id="cKr-dd-Ft6"/>
+                        <outlet property="navigateBackButton" destination="SWc-s5-WDk" id="e4K-bC-CZi"/>
                         <outlet property="tableView" destination="E0h-hy-aAh" id="oBf-hl-Uyu"/>
-                        <outlet property="toolBar" destination="X7N-uv-V53" id="P1K-zu-m37"/>
+                        <outlet property="toolBar" destination="X7N-uv-V53" id="pPX-Xm-CNj"/>
                         <segue destination="R7f-Cr-R2b" kind="presentation" identifier="newFile" modalPresentationStyle="formSheet" id="FnJ-BD-ofr"/>
                         <segue destination="V9d-c1-1am" kind="presentation" identifier="newDir" modalPresentationStyle="formSheet" id="FPe-2M-WyC"/>
                         <segue destination="roT-Tm-7La" kind="presentation" identifier="run" modalPresentationStyle="fullScreen" id="1z3-OE-j65"/>
@@ -202,10 +210,6 @@
                                     <outletCollection property="gestureRecognizers" destination="qmB-Zy-xBc" appends="YES" id="T6u-L9-YoH"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcS-DT-rcw">
-                                <rect key="frame" x="0.0" y="416" width="600" height="184"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="urO-RY-jw8">
                                 <rect key="frame" x="384" y="64" width="15" height="336"/>
                                 <subviews>
@@ -246,6 +250,10 @@
                                     <segue destination="Xrc-Fk-kpC" kind="embed" identifier="assistantView" id="kdx-O1-rGS"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcS-DT-rcw">
+                                <rect key="frame" x="0.0" y="416" width="600" height="184"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -660,7 +668,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="CNY-dT-JmJ">
                                 <rect key="frame" x="16" y="0.0" width="189" height="400"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="html" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pZF-zu-Gxk">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pZF-zu-Gxk">
                                         <rect key="frame" x="10" y="58" width="169" height="30"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.090196078430000007" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="0.43370616010000002" colorSpace="calibratedWhite"/>
@@ -685,7 +693,7 @@
                                         <color key="textColor" white="1" alpha="0.43370616010000002" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="index" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MsK-4n-ie6">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MsK-4n-ie6">
                                         <rect key="frame" x="10" y="20" width="169" height="30"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.090196078430000007" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="0.43370616010000002" colorSpace="calibratedWhite"/>
@@ -939,7 +947,7 @@
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="2vh-kO-bhj">
                                 <rect key="frame" x="239" y="60" width="94" height="29"/>
-                                <color key="tintColor" red="0.59976761879999996" green="0.3591421494" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.52156862745098043" green="0.23137254901960785" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="stepperDidPush:" destination="dfr-bA-Ldq" eventType="valueChanged" id="MNC-Eu-XA2"/>
                                 </connections>
@@ -952,7 +960,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="0.52941176469999995" green="0.31372549020000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2vh-kO-bhj" firstAttribute="centerY" secondItem="biJ-ON-4k4" secondAttribute="centerY" id="E9D-bw-9VY"/>
                             <constraint firstItem="2vh-kO-bhj" firstAttribute="trailing" secondItem="YQt-ZI-83N" secondAttribute="trailingMargin" id="Iia-xM-oq5"/>
@@ -1076,10 +1083,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Image Snippet" id="Nvk-Pl-aRe">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zaa-NR-O2N"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ZbY-Fa-AbG"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zaa-NR-O2N">
+                            <connections>
+                                <action selector="cancelDidPush:" destination="cMv-o5-tpH" id="KCL-lV-lrL"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ZbY-Fa-AbG">
+                            <connections>
+                                <action selector="copyDidPush:" destination="cMv-o5-tpH" id="yEk-zk-h55"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
-                    <value key="contentSizeForViewInPopover" type="size" width="440" height="88"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="349" height="194"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -1123,7 +1138,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jtD-ey-EW4" customClass="HRColorMapView">
                                         <rect key="frame" x="0.0" y="104" width="410" height="262"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="saturationUpperLimit">
                                                 <real key="value" value="0.94999999999999996"/>

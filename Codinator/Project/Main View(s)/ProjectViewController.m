@@ -1064,7 +1064,7 @@ BOOL allowSaving;
                 
                 projectManager.deletePath = [projectManager.inspectorPath stringByAppendingPathComponent:[items[indexPath.row] lastPathComponent]];
                 
-                UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete ❌" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * __nonnull action) {
+                UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * __nonnull action) {
                     
                     
                     
@@ -1097,7 +1097,7 @@ BOOL allowSaving;
                 
                 
                 
-                UIAlertAction *previewAction = [UIAlertAction actionWithTitle:@"Preview 🎬" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
+                UIAlertAction *previewAction = [UIAlertAction actionWithTitle:@"Preview" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
                     
                     [[NSUserDefaults standardUserDefaults]setObject:projectManager.deletePath forKey:@"aspectPreviewPath"];
                     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -1108,7 +1108,7 @@ BOOL allowSaving;
                 }];
                 
                 
-                UIAlertAction *printAction = [UIAlertAction actionWithTitle:@"Print 📠" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
+                UIAlertAction *printAction = [UIAlertAction actionWithTitle:@"Print" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
                     
                     
                     //PRINT
@@ -1160,7 +1160,7 @@ BOOL allowSaving;
                 
                 
                 
-                UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"Move file 🚊" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
+                UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"Move file" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
                     
                     
                     //move file
@@ -1182,7 +1182,7 @@ BOOL allowSaving;
                 // Add the renaming function
                 if (self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact | self.view.traitCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact) {
             
-                    UIAlertAction *rename = [UIAlertAction actionWithTitle:@"Rename 🎩" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    UIAlertAction *rename = [UIAlertAction actionWithTitle:@"Rename" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         
                         // Check if file isn't index.html
                         if ([[NSString stringWithFormat:@"%@",projectManager.deletePath.lastPathComponent.stringByDeletingPathExtension] isEqualToString:@"index"]) {

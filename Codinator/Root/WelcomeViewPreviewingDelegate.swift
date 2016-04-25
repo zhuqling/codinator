@@ -17,6 +17,11 @@ extension WelcomeViewController: UIViewControllerPreviewingDelegate, PeekShortPr
                 return nil
         }
         
+        
+        if indexPath.section != 0 {
+            return nil
+        }
+    
         let fileName: NSString = projectsArray[indexPath.row].lastPathComponent!
         
         let root: NSString = AppDelegate.storagePath()
@@ -52,22 +57,26 @@ extension WelcomeViewController: UIViewControllerPreviewingDelegate, PeekShortPr
     
     public func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
      
-        document = CodinatorDocument(fileURL: NSURL(fileURLWithPath: forceTouchPath))
-        document.openWithCompletionHandler { sucess in
+        if forceTouchPath.characters.count > 5 {
             
-            if sucess {
-                self.projectIsOpened = true
+            document = CodinatorDocument(fileURL: NSURL(fileURLWithPath: forceTouchPath))
+            document.openWithCompletionHandler { sucess in
                 
-                self.projectsPath = self.forceTouchPath
+                if sucess {
+                    self.projectIsOpened = true
+                    
+                    self.projectsPath = self.forceTouchPath
+                    self.forceTouchPath = ""
+                    
+                    self.performSegueWithIdentifier("projectPop", sender: nil)
+                }
+                else {
+                    Notifications.sharedInstance.alertWithMessage("Failed opening the project.", title: "Error", viewController: self)
+                }
                 
-                self.performSegueWithIdentifier("project", sender: nil)
-            }
-            else {
-                Notifications.sharedInstance.alertWithMessage("Failed opening the project.", title: "Error", viewController: self)
             }
             
         }
-        
     }
     
     
