@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -35,39 +34,7 @@
                     <view key="view" contentMode="scaleToFill" id="s04-4s-pe7">
                         <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T1J-o6-of8">
-                                <rect key="frame" x="575" y="531" width="25" height="25"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sd4-HC-yqD">
-                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="1" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D0T-L8-LP9">
-                                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="D0T-L8-LP9" secondAttribute="trailing" id="HZr-3H-Xuj"/>
-                                        <constraint firstItem="D0T-L8-LP9" firstAttribute="top" secondItem="sd4-HC-yqD" secondAttribute="top" id="Nnn-T1-107"/>
-                                        <constraint firstItem="D0T-L8-LP9" firstAttribute="leading" secondItem="sd4-HC-yqD" secondAttribute="leading" id="NrH-xq-MAi"/>
-                                        <constraint firstAttribute="bottom" secondItem="D0T-L8-LP9" secondAttribute="bottom" id="c60-BY-GDo"/>
-                                    </constraints>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="GXE-qb-RSg"/>
-                                    <constraint firstAttribute="width" constant="25" id="rR9-L8-a1m"/>
-                                </constraints>
-                                <blurEffect style="dark"/>
-                            </visualEffectView>
-                        </subviews>
                         <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="BKC-iB-H9C" firstAttribute="top" secondItem="T1J-o6-of8" secondAttribute="bottom" id="3Uc-KD-toA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="T1J-o6-of8" secondAttribute="trailing" constant="-20" id="4HK-jj-gzg"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Preview" id="8VA-av-MaF">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="HN1-02-zbK">
@@ -90,10 +57,6 @@
                     </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <connections>
-                        <outlet property="easterEggLabel" destination="D0T-L8-LP9" id="34k-La-sQY"/>
-                        <outlet property="effectPannel" destination="T1J-o6-of8" id="oyV-A9-aQx"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y1C-Es-Vzc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -254,7 +217,7 @@
         <!--New Dir-->
         <scene sceneID="DHC-Oa-6du">
             <objects>
-                <viewController id="YUd-G2-YRZ" customClass="NewDirViewController" sceneMemberID="viewController">
+                <viewController id="YUd-G2-YRZ" customClass="CreateDirViewController" customModule="Codinator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MGU-mu-ciH"/>
                         <viewControllerLayoutGuide type="bottom" id="Ic0-RB-Bzs"/>
@@ -272,7 +235,6 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbi-kt-b0s">
                                 <rect key="frame" x="216" y="60" width="364" height="30"/>
                                 <color key="backgroundColor" red="0.090196078430000007" green="0.090196078430000007" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="364" id="0bo-ff-cA4"/>
                                 </constraints>
@@ -280,7 +242,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done"/>
                                 <connections>
-                                    <outlet property="delegate" destination="YUd-G2-YRZ" id="REm-uz-QbK"/>
+                                    <outlet property="delegate" destination="YUd-G2-YRZ" id="aVA-qo-TM4"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -296,12 +258,12 @@
                     <navigationItem key="navigationItem" title="New Dir" id="Cpn-dx-hH2">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="0ky-uC-BF5">
                             <connections>
-                                <action selector="cancelDidPush:" destination="YUd-G2-YRZ" id="x5j-CG-XZA"/>
+                                <action selector="cancelDidPush" destination="YUd-G2-YRZ" id="8j0-Yi-CkD"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="9Gx-N9-Zb5">
                             <connections>
-                                <action selector="dirDidPush:" destination="YUd-G2-YRZ" id="atg-1f-oW4"/>
+                                <action selector="saveDidPush" destination="YUd-G2-YRZ" id="7Or-mt-alg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -310,7 +272,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="nameTextField" destination="xbi-kt-b0s" id="ZYM-Sa-zYt"/>
+                        <outlet property="textField" destination="xbi-kt-b0s" id="dcS-Mq-GxA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ifZ-FD-sTR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -352,7 +314,7 @@
         <!--New Subpage-->
         <scene sceneID="RCr-Cl-XNC">
             <objects>
-                <viewController id="h1s-FJ-hc2" customClass="NewSubpageViewController" sceneMemberID="viewController">
+                <viewController id="h1s-FJ-hc2" customClass="CreateSubpageViewController" customModule="Codinator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1ux-Zb-E77"/>
                         <viewControllerLayoutGuide type="bottom" id="yh6-KM-VsL"/>
@@ -377,9 +339,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="h1s-FJ-hc2" id="Sdu-Qc-SUB"/>
-                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -394,12 +353,12 @@
                     <navigationItem key="navigationItem" title="New Subpage" id="xFg-7n-bmx">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vqG-iN-GcK">
                             <connections>
-                                <action selector="cancelDidPush:" destination="h1s-FJ-hc2" id="JTU-fg-Z2E"/>
+                                <action selector="cancelDidPush" destination="h1s-FJ-hc2" id="Kcb-qi-1L0"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="PQJ-wc-45e">
                             <connections>
-                                <action selector="createDidPush:" destination="h1s-FJ-hc2" id="4xz-zR-KTG"/>
+                                <action selector="saveDidPush:" destination="h1s-FJ-hc2" id="wmc-Hu-sIY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -407,7 +366,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="nameTextField" destination="hTC-7D-ece" id="Gfn-Na-uOM"/>
+                        <outlet property="textField" destination="hTC-7D-ece" id="AXe-LD-tMH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qkk-GA-faF" userLabel="First Responder" sceneMemberID="firstResponder"/>

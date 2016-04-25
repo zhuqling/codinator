@@ -21,45 +21,63 @@ class ServersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let webDavIp = projectManager.webDavServerURL()
-            .stringByReplacingOccurrencesOfString("http://", withString: "")
-            .stringByReplacingOccurrencesOfString("/", withString: "")
+        let wifiErrorMessage = "No Wi-Fi"
+        let offErrorMessage = "Turned Off"
+        let userDefaults = NSUserDefaults.standardUserDefaults()
         
-        let webServerIp = projectManager.webServerURL()
-            .stringByReplacingOccurrencesOfString("http://", withString: "")
-            .stringByReplacingOccurrencesOfString("/", withString: "")
-        
-        let webUploaderIp = projectManager.webUploaderServerURL()
-            .stringByReplacingOccurrencesOfString("http://", withString: "")
-            .stringByReplacingOccurrencesOfString("/", withString: "")
-        
-
-        let errorMessage = "Please connect to a Wi-Fi network."
-        
-        if webDavIp.isEmpty {
-            webDavLabel.text = errorMessage
+        if let webDavIp = projectManager.webDavServerURL() {
+            if webDavIp.isEmpty {
+                
+                if userDefaults.boolForKey("CnWebDavServer") {
+                    webDavLabel.text = wifiErrorMessage
+                }
+                else {
+                    webDavLabel.text = offErrorMessage;
+                }
+                
+            }
+            else {
+                webDavLabel.text = webDavIp
+                    .stringByReplacingOccurrencesOfString("http://", withString: "")
+                    .stringByReplacingOccurrencesOfString("/", withString: "")
+                
+            }
         }
-        else {
-            webDavLabel.text = webDavIp
-        }
-
-        if webServerIp.isEmpty {
-            webServerLabel.text = errorMessage
-        }
-        else {
-            webServerLabel.text = webServerIp
-        }
-
         
-        if webUploaderIp.isEmpty {
-            webUploaderLabel.text = errorMessage
+        if let webServerIp = projectManager.webServerURL() {
+            if webServerIp.isEmpty {
+                if userDefaults.boolForKey("CnWebServer") {
+                    webServerLabel.text = wifiErrorMessage
+                }
+                else {
+                    webServerLabel.text = offErrorMessage;
+                }
+            }
+            else {
+                webServerLabel.text = webServerIp
+                    .stringByReplacingOccurrencesOfString("http://", withString: "")
+                    .stringByReplacingOccurrencesOfString("/", withString: "")
+            }
         }
-        else {
-            webUploaderLabel.text = webUploaderIp
-        }
-
         
         
+        
+        if let webUploaderIp = projectManager.webUploaderServerURL() {
+            if webUploaderIp.isEmpty {
+                if userDefaults.boolForKey("CnUploadServer") {
+                    webServerLabel.text = wifiErrorMessage
+                }
+                else {
+                    webServerLabel.text = offErrorMessage;
+                }            }
+            else {
+                webUploaderLabel.text = webUploaderIp
+                    .stringByReplacingOccurrencesOfString("http://", withString: "")
+                    .stringByReplacingOccurrencesOfString("/", withString: "")
+            }
+        }
+        
+    
     }
     
     

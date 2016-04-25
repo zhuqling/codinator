@@ -11,9 +11,10 @@
 #import "CodinatorDocument.h"
 #import "AppDelegate.h"
 #import "AskQuestioniPad.h"
+#import "FileTemplates.h"
+#import "Codinator-Swift.h"
 
-
-@interface AskQuestioniPad() {
+@interface AskQuestioniPad() <UITextFieldDelegate>{
 
     Polaris *projectManager;
     __weak IBOutlet UIButton *cancelButton;
@@ -141,22 +142,41 @@ BOOL done;
 
 
 - (IBAction)nextDidPush:(id)sender {
-    visualEffectView.hidden = NO;
-    [UIView animateWithDuration:1.0f animations:^{
-        visualEffectView.alpha = 1.0f;
-    }];
     
+    //Root Path
+    NSString *root = [AppDelegate storagePath];
     
-    
-    
-    [self createProject];
-    [self performSelector:@selector(animateProgressView) withObject:self afterDelay:0.5];
-    [self performSelector:@selector(animateProgressView) withObject:self afterDelay:0.6];
-    [self performSelector:@selector(animateProgressView) withObject:self afterDelay:0.7];
-    [self performSelector:@selector(animateProgressView) withObject:self afterDelay:0.8];
-    [self performSelector:@selector(animateProgressView) withObject:self afterDelay:0.9];
+    //Final Path
+    NSString *path = [root stringByAppendingPathComponent:@"Projects"];
+
+
+    NSString *name = [NSString stringWithFormat:@"%@.cnProj", webPageNameTextField.text];
+    NSURL *saveUrl = [NSURL fileURLWithPath:[path stringByAppendingPathComponent:name]];
 
     
+    if ([[NSFileManager defaultManager] fileExistsAtPath:saveUrl.path]) {
+        
+        [[Notifications sharedInstance] alertWithMessage:@"Due to security reasons we don't allow overwriting existing projects. Choose a different name or rename the existing one." title:@"Warning" viewController:self];
+        
+    }
+    else {
+    
+        visualEffectView.hidden = NO;
+        [UIView animateWithDuration:1.0f animations:^{
+            visualEffectView.alpha = 1.0f;
+        }];
+        
+        
+        
+        
+        [self createProject];
+        [self performSelector:@selector(animateProgressView) withObject:self afterDelay:0.5];
+        [self performSelector:@selector(animateProgressView) withObject:self afterDelay:0.6];
+        [self performSelector:@selector(animateProgressView) withObject:self afterDelay:0.7];
+        [self performSelector:@selector(animateProgressView) withObject:self afterDelay:0.8];
+        [self performSelector:@selector(animateProgressView) withObject:self afterDelay:0.9];
+
+    }
 
 }
 
@@ -181,7 +201,16 @@ BOOL done;
     NSString *name = [NSString stringWithFormat:@"%@.cnProj", webPageNameTextField.text];
     CodinatorDocument *codinatorDocument = [[CodinatorDocument alloc] initWithFileURL:[NSURL fileURLWithPath:[path stringByAppendingPathComponent:name]]];
     
-    [codinatorDocument saveToURL:[NSURL fileURLWithPath:[path stringByAppendingPathComponent:name]]
+    NSURL *saveUrl = [NSURL fileURLWithPath:[path stringByAppendingPathComponent:name]];
+                      
+    if ([[NSFileManager defaultManager] fileExistsAtPath:saveUrl.path]) {
+        
+        [[Notifications sharedInstance] alertWithMessage:@"Due to security reasons we don't allow overwriting existing projects. Choose a different name or rename the existing one." title:@"Warning" viewController:self];
+        
+    }
+    else {
+    
+    [codinatorDocument saveToURL:saveUrl
                 forSaveOperation: UIDocumentSaveForCreating
                completionHandler:^(BOOL success) {
                    if (success){
@@ -245,22 +274,7 @@ BOOL done;
                 
                 NSError *error;
                 NSString *fileName = @"index.html";
-            	NSString *fileContents = [NSString stringWithFormat:
-@"<!DOCTYPE html> \n\
-<html> \n\
-           <head> \n\
-                <title>%@</title> \n\
-                <meta charset=\"utf-8\"> \n\
-                <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> \n\
-                %@\n\
-           </head> \n\
-           <body> \n\
-           \n\
-                <h1>%@</h1> \n\
-                <p>Hello world</p>		\n\
-              \n\
-           </body> \n\
-</html>" ,webPageNameTextField.text,finalString,webPageNameTextField.text];
+                NSString *fileContents = [FileTemplates htmlTemplateFileForName:webPageNameTextField.text];
                 
                 
                 NSString *filePath = [[projectManager projectUserDirectoryPath] stringByAppendingPathComponent:fileName];
@@ -283,13 +297,7 @@ BOOL done;
             if (useCss) {
                 NSError *error;
                 NSString *fileName = @"style.css";
-                NSString *fileContents = [NSString stringWithFormat:
-                                          @"/* Normalize.css brings consistency to browsers. \n\
-                                             https://github.com/necolas/normalize.css */ \n\
-                                          \n\
-                                          @import url(http://cdn.jsdelivr.net/normalize/2.1.3/normalize.min.css); \n\
-                                          \n\
-                                          /* A fresh start */"];
+                NSString *fileContents = [FileTemplates cssTemplateFile];
                 
                 
                 NSString *filePath = [[projectManager projectUserDirectoryPath] stringByAppendingPathComponent:fileName];
@@ -314,11 +322,7 @@ BOOL done;
             if (useJs) {
                 NSError *error;
                 NSString *fileName = @"script.js";
-                NSString *fileContents = [NSString stringWithFormat:
-@"function myFunction(a, b) { \n\
-           return a * b; \n\
-} \n\
-document.getElementById(\"demo\").innerHTML = myFunction(4, 3);"];
+                NSString *fileContents = [FileTemplates jsTemplateFile ];
                 
                 NSString *filePath = [[projectManager projectUserDirectoryPath] stringByAppendingPathComponent:fileName];
                 [fileContents writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
@@ -384,6 +388,7 @@ document.getElementById(\"demo\").innerHTML = myFunction(4, 3);"];
         done = YES;
     }];
     
+    }
 }
 
 
@@ -394,6 +399,12 @@ document.getElementById(\"demo\").innerHTML = myFunction(4, 3);"];
     [self checkNext];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    
+    return NO;
+}
 
 #pragma mark - basic
 

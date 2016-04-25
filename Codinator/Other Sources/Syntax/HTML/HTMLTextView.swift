@@ -56,6 +56,7 @@ class HTMLTextView: CYRTextView {
     func highlightingTokens() -> [CYRToken] {
         
         let tokens = [
+            
             CYRToken(name: "Tag",
                 expression: HighlighterExtention.macroForKey(.Tag),
                 attributes: HighlighterExtention.attributesForKey(.Tag)
@@ -77,7 +78,16 @@ class HTMLTextView: CYRTextView {
             CYRToken(name: "string",
                 expression: HighlighterExtention.macroForKey(.String),
                 attributes: HighlighterExtention.attributesForKey(.String)
+            ),
+            
+            CYRToken(name: "comment",
+                expression: "<!--.*?(--!>|$)",
+                attributes:
+                [
+                    NSForegroundColorAttributeName : UIColor(hexString: "46A544")
+                ]
             )
+            
         ]
         
         return tokens as! [CYRToken]

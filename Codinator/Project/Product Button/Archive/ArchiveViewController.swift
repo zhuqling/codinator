@@ -36,7 +36,9 @@ class ArchiveViewController: UIViewController {
         }
         else {
             projectManager.archiveWorkingCopyWithCommitMessge(textView.text)
-            Notifications.sharedInstance.alertWithMessage(nil, title: "Project is Project is 📦 now.", viewController: self)
+            Notifications.sharedInstance.alertWithMessage(nil, title: "Project is archived now.", viewController: self, completion: {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
         }
     }
     

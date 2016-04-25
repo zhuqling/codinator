@@ -11,5 +11,11 @@
 
 @interface WelcomeViewController : UIViewController <UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SFSafariViewControllerDelegate>
 
+@property (strong, nonatomic) NSMutableArray *projectsArray;
+@property (strong, nonatomic) NSMutableArray *playgroundsArray;
+
+
+- (void)indexProjects:(NSArray *)projects;
+- (void)restoreUserActivityState:(NSUserActivity *)activity;
 
 @end

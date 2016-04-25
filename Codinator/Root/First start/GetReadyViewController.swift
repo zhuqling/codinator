@@ -26,6 +26,8 @@ class GetReadyViewController: UIViewController {
     }
 
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         dispatch_async(dispatch_get_main_queue(),{
             self.welcomeToCodinatorLabel.text = "Welcome to Codinator"
             self.welcomeToCodinatorLabel.morphingEffect = .Evaporate
@@ -42,7 +44,7 @@ class GetReadyViewController: UIViewController {
         }) { (Bool) -> Void in
             self.activityIndicator.hidden = true
             
-            self.welcomeToCodinatorLabel.text = "Magnificent. Simple. Powerful."
+            self.welcomeToCodinatorLabel.text = "Hello code that you can touch."
             
             
             UIView.animateWithDuration(1.0, animations: { () -> Void in

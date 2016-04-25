@@ -43,6 +43,7 @@ class NeuronTextView: CYRTextView {
     func commonSetUp() {
         self.font = defaultFont
         self.textColor = UIColor.whiteColor()
+        self.indicatorStyle = .White
         
         self.tokens = highlightingTokens()
     }
@@ -50,29 +51,30 @@ class NeuronTextView: CYRTextView {
     func highlightingTokens() -> [CYRToken!] {
         
         let tokens = [
+            
+            
+            CYRToken(name: "reserved_words",
+                expression: "(algin|width|height|color|text|border|bgcolor|description|name|content|href|src|initialScale|charset|class|role|id|<!DOCTYPE html>|border)",
+                attributes:
+                [
+                    NSForegroundColorAttributeName : NSUserDefaults.standardUserDefaults().colorForKey("Color: 5"),
+                    NSFontAttributeName : self.defaultFont
+                ]
+            ),
+            
             CYRToken(name: "square_brackets",
                 expression: "(HTML|START|END|KEYWORDS|ROBOTS|DESCRIPTION|AUTHOR|TITLE|VIEWPORT|VIEWPORT|HEAD|BODY|H1|LINK|META|H2|H3|H4|H5|H6|P|BR|TABLE|TR|TD|CODE|UL|IMPORT|B|I|LI)",
                 attributes:
                 [
-                    NSForegroundColorAttributeName : UIColor.orangeColor(),
+                    NSForegroundColorAttributeName : NSUserDefaults.standardUserDefaults().colorForKey("Color: 3"),
                     NSFontAttributeName : self.defaultFont
                 ]
             ),
         
             
             CYRToken(name: "Tag",
-                expression: "<.*?(>)",
-                attributes:
-                [
-                    NSForegroundColorAttributeName : UIColor.redColor(),
-                    NSFontAttributeName : self.defaultFont
-                ]
-            ),
-            
-            
-            CYRToken(name: "reserved_words",
-                expression: "(algin|width|height|color|text|border|bgcolor|description|name|content|href|src|initialScale|charset|class|role|id|<!DOCTYPE html>|border)",
-                attributes: HighlighterExtention.attributesForKey(.ReservedWords)
+                expression: HighlighterExtention.macroForKey(.Tag),
+                attributes: HighlighterExtention.attributesForKey(.Tag)
             ),
             
             

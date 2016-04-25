@@ -18,11 +18,10 @@
     
     NSMutableArray *items;
     
-    IBOutlet UIButton *previewButton;
-    IBOutlet UIButton *uploadButton;
-    IBOutlet UIButton *resetButton;
+    IBOutlet UIBarButtonItem *previewButton;
+    IBOutlet UIBarButtonItem *exportButton;
+    IBOutlet UIBarButtonItem *restoreButton;
 
-    __weak IBOutlet UIButton *closeButton;
 }
 
 

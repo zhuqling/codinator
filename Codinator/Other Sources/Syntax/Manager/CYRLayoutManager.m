@@ -84,18 +84,11 @@ static CGFloat kMinimumGutterWidth = 30.f;
     self.displayLineNumber = [[NSUserDefaults standardUserDefaults] boolForKey:@"CnLineNumber"];
     
     self.gutterWidth = kMinimumGutterWidth;
-  //  self.selectedRange = NSMakeRange(0, 0);
     self.lineAreaInset = UIEdgeInsetsMake(0, 10, 0, 4);
     self.lineAreaInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.lineNumberColor = [UIColor grayColor];
+    self.lineNumberColor = [UIColor darkGrayColor];
     self.lineNumberFont = [UIFont systemFontOfSize:10.0f];
-    
-//    if (self.displayLineNumber){
-        self.selectedLineNumberColor = [UIColor whiteColor];
-//    }
-//    else{
-//        self.selectedLineNumberColor = nil;
-//    }
+    self.selectedLineNumberColor = [UIColor blackColor];
 }
 
 

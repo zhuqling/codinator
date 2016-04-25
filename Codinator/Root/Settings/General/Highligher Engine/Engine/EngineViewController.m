@@ -16,9 +16,6 @@
 @interface EngineViewController ()
 
 
-//close button
-@property (weak, nonatomic) IBOutlet UIButton *closeButton;
-
 //customize
 @property (weak, nonatomic) IBOutlet UISegmentedControl *fontSegment;
 @property (weak, nonatomic) IBOutlet UIButton *changeColorButton;
@@ -41,8 +38,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.closeButton.layer.cornerRadius = 5;
-    self.closeButton.layer.masksToBounds = YES;
 
     [self load];
 
@@ -54,6 +49,11 @@
     [self.pickerView addSubview:colorPicker];
     [self.okButtonForPickerView removeFromSuperview];
     [self.pickerView addSubview:self.okButtonForPickerView];
+    
+    
+    _macroTextView.layer.cornerRadius = 5;
+    _macroTextView.layer.masksToBounds = true;
+    
 }
 
 

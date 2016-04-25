@@ -20,17 +20,13 @@
 
 #import "CodinatorDocument.h"
 
-///Animated launch screen
-#import "CBZSplashView.h"
-
-///New playground file creator
-#import "NewFileViewController.h"
-
 ///ZipImport
 #import "ProjectZipImporterViewController.h"
 
 ///NSUserDefaults additions
 #import "NSUserDefaults+Additions.h"
+
+#import "Codinator-Swift.h"
 
 
 @interface WelcomeViewController ()
@@ -52,20 +48,18 @@
 
 //Holding Objects
 @property (strong, nonatomic) UIImage *rocketBlueprintImage;
-@property (strong, nonatomic) NSMutableArray *projectsArray;
-@property (strong, nonatomic) NSMutableArray *playgroundsArray;
 @property (strong, nonatomic) NSMutableArray *oldProjectsArray;
 @property (strong, nonatomic) NSMutableArray *oldPlaygroundsArray;
 @property (weak, nonatomic) NSString *zipPath;
-
-//Splash View
-@property (strong, nonatomic) CBZSplashView *splashView;
 
 
 //documents
 @property (nonatomic) BOOL projectIsOpened;
 @property (nonatomic) CodinatorDocument *document;
 @property (nonatomic, nonnull) NSMetadataQuery *query;
+
+@property (nonatomic) NSString *playgroundsPath;
+@property (nonatomic) NSString *projectsPath;
 
 @end
 
@@ -76,16 +70,11 @@
 @synthesize query = _query;
 
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    //create splash view
-    UIImage *icon = [UIImage imageNamed:@"BrainForZoom"];
-    CBZSplashView *splashView = [CBZSplashView splashViewWithIcon:icon backgroundColor:[UIColor blackColor] frame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-    splashView.animationDuration = 1.4;
-    [self.view addSubview:splashView];
-    self.splashView = splashView;
-
     UIEdgeInsets insets;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         insets = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -165,16 +154,6 @@
     
         
     [self.collectionView reloadData];
-
-    
-    
-    
-    /* wait a beat before animating in */
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(DISPATCH_TIME_NOW)), dispatch_get_main_queue(), ^{
-        [self.splashView startAnimation];
-    });
-
-
 }
 
 
@@ -192,7 +171,9 @@
     self.oldPlaygroundsArray = playgroundsArray;
     
     
+    
     [self.collectionView reloadData];
+    [self performSelector:@selector(indexProjects:) withObject:projectsArray afterDelay:1.0];
 }
 
 
@@ -272,7 +253,7 @@
 
 
 
-- (void)setUp{
+- (void)setUp {
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"CNFirstRunEver"]) {
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -283,11 +264,11 @@
     
 
     NSString *macro = [[NSUserDefaults standardUserDefaults] stringForKey:@"MacroInit"];
-    NSString *expectedMacro = [[NSUserDefaults standardUserDefaults] stringForKey:@"MacroInitNewB4"];
+    NSString *expectedMacro = @"MacroInitNewB4";
    
     if (![macro isEqualToString:expectedMacro]) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:expectedMacro forKey:@"MacroInit"];
+        [userDefaults setObject:expectedMacro forKey:expectedMacro];
 
         [SettingsEngine restoreSyntaxSettings];
         [SettingsEngine restoreServerSettings];
@@ -296,38 +277,49 @@
 
 
 
-
+#pragma mark - Sportlight
 
 
 
 
 - (void)indexProjects:(NSArray *)projects{
     
-    NSOperation *backgroundOperation = [[NSOperation alloc] init];
-    backgroundOperation.queuePriority = NSOperationQueuePriorityVeryLow;
-    backgroundOperation.qualityOfService = NSOperationQualityOfServiceBackground;
-    
-    backgroundOperation.completionBlock = ^{
+//    NSOperation *backgroundOperation = [[NSOperation alloc] init];
+//    backgroundOperation.queuePriority = NSOperationQueuePriorityNormal;
+//    backgroundOperation.qualityOfService = NSOperationQualityOfServiceUtility;
+//    
+//    backgroundOperation.completionBlock = ^{
         [projects enumerateObjectsUsingBlock:^(id  __nonnull obj, NSUInteger idx, BOOL * __nonnull stop) {
             
             
             
-            CSSearchableItemAttributeSet *attributeSet = [[CSSearchableItemAttributeSet alloc] initWithItemContentType:(NSString *)kUTTypeImage];
+            CSSearchableItemAttributeSet *attributeSet = [[CSSearchableItemAttributeSet alloc] initWithItemContentType:(NSString *)kUTTypeItem];
             
             NSString *title = [projects[idx] lastPathComponent];
-            [attributeSet setTitle:title];
+            [attributeSet setTitle:title.stringByDeletingPathExtension];
             
-            NSString *description = [NSString stringWithFormat:@"Codinator Project with name: %@", title];
+            NSString *description;
+            if ([title.pathExtension isEqualToString:@"cnProj"]) {
+                description = @"The Codinator project you've recently worked on";
+            }
+            else if ([title.pathExtension isEqualToString:@"zip"]) {
+                description = @"The project you recently imported into Codinator";
+            }
+            else {
+                description = @"A file that you have imported into Codinator";
+            }
+            
             [attributeSet setContentDescription:description];
             
             NSString *creator = @"Codinator";
             [attributeSet setCreator:creator];
             
             
-            NSString *key = [NSString stringWithFormat:@"cnProj:%@",title];
+            NSString *identifier = [NSString stringWithFormat:@"com.vladidanila.codinator.%@", title];
             
             CSSearchableItem *item = [[CSSearchableItem alloc]
-                                      initWithUniqueIdentifier:key domainIdentifier:@"com.vladidanila.VWAS-HTML-editor" attributeSet:attributeSet];
+                                      initWithUniqueIdentifier:title domainIdentifier:identifier attributeSet:attributeSet];
+            
             
             
             [[CSSearchableIndex defaultSearchableIndex] indexSearchableItems:@[item] completionHandler:^(NSError * __nullable error) {
@@ -335,20 +327,106 @@
                     #ifdef DEBUG
                     NSLog(@"%@",[error localizedDescription]);
                     #endif
+                } else {
+#ifdef DEBUG
+                    NSLog(@"Indexed: %@", item.uniqueIdentifier);
+#endif
                 }
             }];
             
             
         }];
 
-    };
-    
-    
-    [[NSOperationQueue mainQueue] addOperation:backgroundOperation];
+//    };
+//    
+//    
+//    [[NSOperationQueue mainQueue] addOperation:backgroundOperation];
     
 }
 
+- (void)restoreUserActivityState:(NSUserActivity *)activity {
+   
+    
+    if ([activity.activityType isEqualToString:@"com.apple.corespotlightitem"]) {
+        NSDictionary *userInfo = activity.userInfo;
+        
+        if (userInfo) {
+        
+            
+            NSString *root = [AppDelegate storagePath];
+            NSString *projectsDirPath = [root stringByAppendingPathComponent:@"Projects"];
 
+            NSString *projectName = userInfo[CSSearchableItemActivityIdentifier];
+
+            NSString *documentPath = [projectsDirPath stringByAppendingPathComponent:projectName];
+            
+            
+            BOOL isDir;
+            if ([[NSFileManager defaultManager] fileExistsAtPath:documentPath isDirectory:&isDir]) {
+      
+                // Import Zip
+                if ([projectName containsString:@".zip"]) {
+                    self.zipPath = [projectsDirPath stringByAppendingPathComponent:projectName];
+                    [self performSegueWithIdentifier:@"importZip" sender:self];
+                }
+                
+                // Open Project
+                else if ([projectName containsString:@".cnProj"]){
+                    NSString *path = [projectsDirPath stringByAppendingPathComponent:projectName];
+                    
+                    document = [[CodinatorDocument alloc] initWithFileURL:[NSURL fileURLWithPath:path]];
+                    
+                    [document openWithCompletionHandler:^(BOOL success) {
+                        
+                        if (success) {
+                            
+                            projectIsOpened = YES;
+                            
+                            self.projectsPath = path;
+                            [self performSegueWithIdentifier:@"project" sender:nil];
+                            
+                        }
+                        else{
+                            NSString *message = [NSString stringWithFormat:@"%@ can't be opened right now...", path.lastPathComponent];
+                            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
+                            UIAlertAction *closeAlert = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                            [alert addAction:closeAlert];
+                            [self presentViewController:alert animated:YES completion:nil];
+                            
+                        }
+                        
+                    }];
+                    
+                }
+                else {
+                    
+                    // Failed Opening other file type
+                    NSString *message = [NSString stringWithFormat:@"Failed opening %@", projectName];
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *closeAlert = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                    [alert addAction:closeAlert];
+                    [self presentViewController:alert animated:YES completion:nil];
+                    
+                }
+                
+                
+            }
+            
+            else {
+                
+                // Failed Opening other file type
+                NSString *message = [NSString stringWithFormat:@"Document wasn't found"];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *closeAlert = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                [alert addAction:closeAlert];
+                [self presentViewController:alert animated:YES completion:nil];
+                
+            }
+            
+        }
+        
+    }
+}
 
 
 
@@ -402,6 +480,9 @@
 
             
             [self dealWithiCloudDownloadForCell:cell forIndexPath:indexPath andFilePath:path];
+            
+            
+            
             cell.imageView.image = [self projectRocketBlueprintIconForProjectPath:[projectsDirPath stringByAppendingPathComponent:[projectsArray[indexPath.row] lastPathComponent]]];
             cell.name.text = [[projectsArray[indexPath.row] lastPathComponent] stringByDeletingPathExtension];
 
@@ -537,7 +618,6 @@
         }
         else{
             NSString *path = [projectsDirPath stringByAppendingPathComponent:[projectsArray[indexPath.row] lastPathComponent]];
-            [[NSUserDefaults standardUserDefaults] setObject:path forKey:@"ProjectPath"];
             
             document = [[CodinatorDocument alloc] initWithFileURL:[NSURL fileURLWithPath:path]];
             
@@ -547,14 +627,8 @@
                     
                     projectIsOpened = YES;
                     
-                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"project" bundle:nil];
-                    UIViewController *vc = [storyboard instantiateInitialViewController];
-                    
-                    //[storyboard instantiateViewControllerWithIdentifier:@"project"];
-
-                    [self.navigationController pushViewController:vc animated:YES];
-
-
+                    self.projectsPath = path;
+                    [self performSegueWithIdentifier:@"project" sender:nil];
                     
                 }
                 else{
@@ -588,8 +662,7 @@
         
         if ([fileName.pathExtension isEqualToString:@"cnPlay"]) {
             
-            [[NSUserDefaults standardUserDefaults] setObject:path forKey:@"PlaygroundPath"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            self.playgroundsPath = path;
             
             [self performSegueWithIdentifier:@"playground" sender:self];
             
@@ -1014,6 +1087,18 @@
         
         destViewController.filePathToZipFile = self.zipPath;
         destViewController.projectsPath = projectsDirPath;
+        
+    }
+    else if ([segue.identifier isEqualToString:@"playground"]) {
+        
+        PlaygroundViewController *destViewController = segue.destinationViewController;
+        destViewController.filePath = self.playgroundsPath;
+        
+    }
+    else if ([segue.identifier isEqualToString:@"project"]) {
+        ProjectMainViewController *destViewController = segue.destinationViewController;
+        destViewController.path = self.projectsPath;
+    }else if ([segue.identifier isEqualToString:@"settings"]){
         
     }
 }

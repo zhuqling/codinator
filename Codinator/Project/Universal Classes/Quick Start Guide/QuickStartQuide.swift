@@ -20,6 +20,7 @@ class QuickStartQuide: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         self.view.layer.masksToBounds = true
         self.view.layer.cornerRadius = 13
@@ -49,27 +50,16 @@ class QuickStartQuide: UIViewController {
 
 class QuickStartQuidePlaygrounds: UIViewController {
     
+    @IBInspectable var viewTitle: String?
     
-    
-    @IBOutlet weak var closeButton: UIButton?
-    @IBOutlet weak var okButton: UIButton?
-    
-    
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationItem.title = viewTitle
+    }
     
     @IBAction func closeDidPush(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        closeButton?.layer.cornerRadius = 5
-        
-        
-        self.view.layer.masksToBounds = true
-        self.view.layer.cornerRadius = 13
-        self.view.layer.borderColor = UIColor.orangeColor().CGColor
-        self.view.layer.borderWidth = 3
-        
     }
     
 }

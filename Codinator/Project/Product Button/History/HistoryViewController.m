@@ -10,8 +10,8 @@
 #import "HistoryWebViewController.h"
 #import "ProjectExportViewController.h"
 
+#import "Codinator-Swift.h"
 
-#define rgb(R,G,B) [UIColor colorWithRed:R/255.0f green:G/255.0f blue:B/255.0f alpha:1.0]
 @implementation HistoryViewController
 @synthesize projectManager;
 
@@ -19,7 +19,6 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    tableView.backgroundColor = self.view.backgroundColor;
     
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:[projectManager projectVersionsPath]];
     if (fileExists){
@@ -39,11 +38,9 @@
         
         
     }
+
+    NSLog(@"THe path is: %@", projectManager.inspectorPath);
     
-    
-    //round interface a bit
-    closeButton.layer.cornerRadius = 5;
-    closeButton.layer.masksToBounds = YES;
 }
 
 
@@ -118,23 +115,23 @@
     
     
     
-    
-    
-    
-    
     return cell;
     
     
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 77;
+}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Version%li",(long)indexPath.row+1);
     
     previewButton.enabled = YES;
-    uploadButton.enabled = YES;
-    resetButton.enabled = YES;
+    exportButton.enabled = YES;
+    restoreButton.enabled = YES;
 }
 
 
@@ -282,8 +279,8 @@
         destViewController.path = projectManager.tmpFilePath;
     }
     else if ([segue.identifier isEqualToString:@"export"]){
-        ProjectExportViewController *destViewController = segue.destinationViewController;
-        destViewController.projectManager = projectManager;
+        ExportViewController *destViewController = segue.destinationViewController;
+        destViewController.path = projectManager.projectPath;
     }
 }
 

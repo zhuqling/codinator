@@ -20,21 +20,12 @@
 #import "VWASAccessoryView.h"
 #import "CSNotificationView.h"
 #import "HistoryViewController.h"
-#import "NewFileViewController.h"
-#import "NewSubpageViewController.h"
-#import "NewDirViewController.h"
-
-#import "CLImageEditor.h"
-
-//Splash screen
-#import "CBZSplashView.h"
 
 
 //Server
 
 
 //file mover
-#import "FileMoverViewController.h"
 
 #import "ProjectTableViewCell.h"
 
@@ -43,7 +34,8 @@
 
 
 
-@interface ProjectViewController () <CLImageEditorDelegate, CLImageEditorThemeDelegate, CLImageEditorTransitionDelegate>
+
+@interface ProjectViewController ()
 {
     Polaris *projectManager;
 }
@@ -62,7 +54,6 @@
 // Delegate
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
-@property (nonatomic, strong) CBZSplashView *splashView;
 
 @end
 
@@ -198,19 +189,7 @@ BOOL allowSaving;
     [[NSOperationQueue mainQueue] addOperation:backgroundOperation2];
 
     
-    
-    
-    UIImage *icon = [UIImage imageNamed:@"RocketForZoom"];
-    
-    CBZSplashView *splashView = [CBZSplashView splashViewWithIcon:icon backgroundColor:[UIColor blackColor] frame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-    
-    splashView.animationDuration = 1.4;
-    
-    
-    [self.view insertSubview:splashView aboveSubview:webPreviewView];
-    self.splashView = splashView;
- 
-    //link to app delegate
+        //link to app delegate
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     
@@ -272,15 +251,9 @@ BOOL allowSaving;
         textview.inputAccessoryView = nil;
         [KOKeyboardRow applyToTextView:textview];
     }
-    
-    /* wait a beat before animating in */
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(DISPATCH_TIME_NOW)), dispatch_get_main_queue(), ^{
-        [self.splashView startAnimation];
-        
-        //check for quick start guide
+  
         [self performSelector:@selector(checkIfQuickStartGuideShouldBeDisplayed) withObject:self afterDelay:1.4];
         
-    });
     
     //self.navigationController.navigationBar.hidden = true;
 }
@@ -1029,10 +1002,6 @@ BOOL allowSaving;
         UIImage *image = [UIImage imageWithContentsOfFile:projectManager.selectedFilePath];
         projectManager.tmpFilePath = projectManager.selectedFilePath;
         
-        CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
-        editor.delegate = self;
-        
-        [self presentViewController:editor animated:YES completion:nil];
         
         
     }
@@ -1493,18 +1462,6 @@ BOOL allowSaving;
 
 
 
-#pragma mark - Photonator
-
-
-- (void)imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
-{
-
-    NSData *binaryImageData = UIImagePNGRepresentation(image);
-    [binaryImageData writeToFile:projectManager.tmpFilePath atomically:YES];
-    
-    [editor dismissViewControllerAnimated:YES completion:nil];
-}
-
 
 
 #pragma mark - utilities
@@ -1814,26 +1771,7 @@ BOOL allowSaving;
         HistoryViewController *destViewController = segue.destinationViewController;
         destViewController.projectManager = projectManager;
     }
-    if ([segue.identifier isEqualToString:@"archive"]) {
-    }
-    else if ([segue.identifier isEqualToString:@"newFile"]){
-        NewFileViewController *destViewController = segue.destinationViewController;
-        destViewController.items = items;
-        destViewController.path = projectManager.inspectorPath;
-    }
-    else if ([segue.identifier isEqualToString:@"newSubpage"]){
-        NewSubpageViewController *destViewController = segue.destinationViewController;
-        destViewController.projectManager = projectManager;
-    }
-    else if ([segue.identifier isEqualToString:@"newDir"]){
-        NewDirViewController *destViewController = segue.destinationViewController;
-        destViewController.projectManager = projectManager;
-    }
-    else if ([segue.identifier isEqualToString:@"moveFile"]){
-        FileMoverViewController *fileMover = segue.destinationViewController;
-        fileMover.path_ = projectManager.deletePath;
-        fileMover.rootPath = [projectManager projectUserDirectoryPath];
-    }
+    
 }
 
 

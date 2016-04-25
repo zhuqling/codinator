@@ -8,6 +8,13 @@
 
 import UIKit
 
+
+protocol SnippetsDelegate {
+    func snippetWasCoppied(status: String)
+    func colorDidChange(color: UIColor)
+}
+
+
 class ImgSnippetsViewController: UIViewController,UITextFieldDelegate {
    
     @IBOutlet var textField: UITextField!
@@ -15,6 +22,12 @@ class ImgSnippetsViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet var width: UITextField!
     @IBOutlet var height: UITextField!
    
+    var delegate: SnippetsDelegate?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        textField.attributedPlaceholder = NSAttributedString(string:"link or path to projects", attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -32,7 +45,7 @@ class ImgSnippetsViewController: UIViewController,UITextFieldDelegate {
         if characterCount != 0 {
             let image = (textField.text! as NSString).lastPathComponent
             let imageName = (image as NSString).stringByDeletingPathExtension
-            let code = "<img src=\"\(text)\" alt=\"\(imageName)\"  width=\"\(width.text!)\" height=\"\(height.text!)\">"
+            let code = "<img src=\"\(text!)\" alt=\"\(imageName)\"  width=\"\(width.text!)\" height=\"\(height.text!)\">"
             status = "copied"
             
             let pasteboard = UIPasteboard.generalPasteboard()
@@ -46,7 +59,7 @@ class ImgSnippetsViewController: UIViewController,UITextFieldDelegate {
         
         
         self.dismissViewControllerAnimated(true, completion: {
-            NSNotificationCenter.defaultCenter().postNotificationName(status as String, object: self)
+            self.delegate?.snippetWasCoppied(status)
         })
         
     }
@@ -67,6 +80,16 @@ class LinkSnippetsViewController :UIViewController,UITextFieldDelegate{
     @IBOutlet var textField: UITextField!
     @IBOutlet var nameTextField: UITextField!
     
+    var delegate: SnippetsDelegate?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        textField.attributedPlaceholder = NSAttributedString(string:"name", attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+        nameTextField.attributedPlaceholder = NSAttributedString(string:"http link", attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+        
+        
+    }
     
     @IBAction func generateDidPush(sender: AnyObject) {
     
@@ -82,7 +105,9 @@ class LinkSnippetsViewController :UIViewController,UITextFieldDelegate{
             pasteBoard.string = code
             
             self.dismissViewControllerAnimated(true, completion: {
-                NSNotificationCenter.defaultCenter().postNotificationName("copied", object: self)
+                
+                self.delegate?.snippetWasCoppied("copied")
+            
             })
         }
     }
@@ -120,6 +145,7 @@ class ListSnippetsViewController :UIViewController{
     @IBOutlet var stepper: UIStepper!
     @IBOutlet var enumNumberLabel: UILabel!
     
+    var delegate: SnippetsDelegate?
     
     @IBAction func stepperDidPush(sender: AnyObject) {
         let integer = Int(stepper.value)
@@ -127,6 +153,8 @@ class ListSnippetsViewController :UIViewController{
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         let integer = Int(stepper.value)
         enumNumberLabel.text = "\(integer)"
     }
@@ -146,52 +174,11 @@ class ListSnippetsViewController :UIViewController{
         pasteBoard.string = tags
         
         self.dismissViewControllerAnimated(true, completion: {
-            NSNotificationCenter.defaultCenter().postNotificationName("copied", object: self)
+            self.delegate?.snippetWasCoppied("copied")
         })
     }
     
     
     
 }
-
-
-
-class ColorPickerViewController: UIViewController{
-
-    var displayed = false
-    let colorPickerView = HRColorPickerView(frame: CGRectMake(0, 0, 400, 550))
-    
-    
-    override func viewDidLoad() {
-        if let color = NSUserDefaults.standardUserDefaults().colorForKey("colorPickerCn"){
-            colorPickerView.color = color
-        }
-        else{
-            colorPickerView.color = UIColor.purpleColor()
-        }
-        
-        self.view.addSubview(colorPickerView)
-        colorPickerView.addTarget(self, action: #selector(ColorPickerViewController.colorPickerDidChanged), forControlEvents: UIControlEvents.ValueChanged)
-    }
-    
-    
-    func colorPickerDidChanged(){
-        
-        NSUserDefaults.standardUserDefaults().setColor(colorPickerView.color, forKey: "colorPickerCn")
-        
-        if (!displayed){
-            
-            displayed = true
-            
-            let label = UILabel(frame: CGRectMake(0, 550, 400, 50))
-            label.text = "The hex code has been copied to your clipboard."
-            self.view.addSubview(label)
-        }
-
-    
-    }
-    
-     
-}
-
 

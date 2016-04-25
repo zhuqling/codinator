@@ -23,12 +23,10 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
     var webUploaderURL: String!
     var inspectorPath: String!
 
+    var delegate: NewFilesDelegate?
     
     
-    
-    override func viewDidLoad() {
 
-    }
     
     
     // MARK: - Shortcuts
@@ -69,8 +67,7 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
             let reloadDataBase = UIAlertAction(title: "Reload File-Database ", style: .Default) { (UIAlertAction) -> Void in
                 
                 self.dismissViewControllerAnimated(true, completion: {
-                    NSNotificationCenter.defaultCenter().postNotificationName("fileImported", object: self, userInfo: nil)
-                    NSNotificationCenter.defaultCenter().postNotificationName("history", object: self, userInfo: nil)
+                    self.delegate?.reloadData()
                 })
                 
             }
@@ -87,12 +84,7 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
         else{
             
             let deviceName = UIDevice.currentDevice().model
-            
-            let controller = UIAlertController(title: "Error ❌", message: "Please connect your " + deviceName + " to a Wi-Fi network", preferredStyle: .Alert)
-            let cancel = UIAlertAction(title: "Ok!", style: .Cancel, handler: nil)
-            controller.addAction(cancel)
-            self.presentViewController(controller, animated: true, completion: nil)
-
+            Notifications.sharedInstance.alertWithMessage("Please connect your " + deviceName + " to a Wi-Fi network and make sure web uploader is enabled in Settings.", title: "Error ❌", viewController: self)
             
         }
     
@@ -168,9 +160,8 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
         }
         
         
-        let newFileName = availableName(fileUrl.lastPathComponent!, nameWithoutExtension: fileUrl.URLByDeletingPathExtension!.lastPathComponent!, Extension: fileUrl.pathExtension!)
         
-    
+        let newFileName = NewFiles.availableName(fileUrl.lastPathComponent!, nameWithoutExtension: fileUrl.URLByDeletingPathExtension!.lastPathComponent!, Extension: fileUrl.pathExtension!, items: items)
         fileUrl = fileUrl.URLByDeletingLastPathComponent!.URLByAppendingPathComponent(newFileName)
         
     
@@ -181,8 +172,7 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
         
         
         picker.dismissViewControllerAnimated(true, completion: {
-            NSNotificationCenter.defaultCenter().postNotificationName("fileImported", object: self, userInfo: nil)
-            NSNotificationCenter.defaultCenter().postNotificationName("history", object: self, userInfo: nil)
+            self.delegate?.reloadData()
             self.dismissViewControllerAnimated(true, completion: nil)
         })
     }
@@ -252,37 +242,11 @@ class NewImportViewController: UIViewController,UINavigationControllerDelegate,U
         }
     
         self.dismissViewControllerAnimated(true, completion: {
-            NSNotificationCenter.defaultCenter().postNotificationName("fileImported", object: self, userInfo: nil)
-            NSNotificationCenter.defaultCenter().postNotificationName("history", object: self, userInfo: nil)
+            self.delegate?.reloadData()
         })
     }
     
-    
-    // MARK: - Custom API
-    
-    func availableName(name: String, nameWithoutExtension: String, Extension: String) -> String {
-        let files = items.filter { $0 == name }
-        
-        // If there no file names that are the same continue else count up
-        if files.isEmpty {
-            return name
-        }
-        else {
-            
-            // Check if there's already a number at the end else return name2.extension
-            guard let number = Int(String((nameWithoutExtension.characters.last! as Character))) else {
-                return nameWithoutExtension + "2." + Extension
-            }
-            
-            // Increase number and append extension
-            return nameWithoutExtension + String(number + 1) + Extension
-        }
-        
-    }
-    
-    
-    
-    
+
     // MARK: - Default
     
     

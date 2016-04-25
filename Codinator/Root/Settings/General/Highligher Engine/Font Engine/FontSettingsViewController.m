@@ -13,9 +13,6 @@
 @interface FontSettingsViewController ()
 
 
-///close button
-@property (weak, nonatomic) IBOutlet UIButton *closeButton;
-
 ///size
 @property (weak, nonatomic) IBOutlet UILabel *currentSizeLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *changeSizeStepper;
@@ -39,12 +36,7 @@ BOOL madeChanges;
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-
-
-    self.closeButton.layer.cornerRadius = 5;
-    self.closeButton.layer.masksToBounds = YES;
-    
+    [super viewDidLoad];    
 
     [self loadFont];
     [self updateLabel];

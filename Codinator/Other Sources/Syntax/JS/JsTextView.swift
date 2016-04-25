@@ -43,6 +43,7 @@ class JsTextView: CYRTextView {
     func commonSetUp() {
         self.font = defaultFont
         self.textColor = UIColor.whiteColor()
+        self.indicatorStyle = .White
         
         self.tokens = highlightingTokens()
     }

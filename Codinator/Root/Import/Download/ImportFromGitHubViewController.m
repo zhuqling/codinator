@@ -17,9 +17,6 @@
     
 }
 
-//close Button
-@property (weak, nonatomic) IBOutlet UIButton *closeButton;
-
 //delegate
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
@@ -36,6 +33,10 @@
 //progress
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *downloadButton;
+@property (weak, nonatomic) IBOutlet UISwitch *uiSwitch;
+
 
 @end
 
@@ -46,8 +47,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.closeButton.layer.masksToBounds = YES;
-    self.closeButton.layer.cornerRadius = 5;
     self.gitHubView.layer.cornerRadius = 5;
 
     self.gitHubView.alpha = .0f;
@@ -69,40 +68,25 @@
     [self dismissViewControllerAnimated:TRUE completion:nil];
 }
 
-
-- (IBAction)gitHubDidPush:(id)sender {
+- (IBAction)gitHubSwitch:(id)sender {
     
-    self.pathTextField.text = @"(user)/(proj)/zip/master";
-    self.pathTextField.placeholder = @"(user)/(proj)/zip/master";
-    self.pathTextField.keyboardType = UIKeyboardTypeAlphabet;
-    
-    
-    [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    if (_uiSwitch.on == true) {
+        self.pathTextField.text = @"(user)/(proj)/zip/master";
+        self.pathTextField.placeholder = @"(user)/(proj)/zip/master";
+        self.pathTextField.keyboardType = UIKeyboardTypeAlphabet;
         
-        self.gitHubView.alpha = 1.0f;
+        isGitHub = YES;
+    }
+    else {
+        self.pathTextField.text = @"https://";
+        self.pathTextField.placeholder = @"https://";
+        self.pathTextField.keyboardType = UIKeyboardTypeURL;
         
-    }completion:nil];
+        isGitHub = false;
+    }
     
-    isGitHub = YES;
 }
 
-
-
-
-- (IBAction)otherDidPush:(id)sender {
-    
-    self.pathTextField.text = @"http://";
-    self.pathTextField.placeholder = @"http://";
-    self.pathTextField.keyboardType = UIKeyboardTypeURL;
-
-    [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        
-        self.gitHubView.alpha = 1.0f;
-        
-    }completion:nil];
-    
-
-}
 
 
 
@@ -113,8 +97,14 @@
     
     [self.pathTextField resignFirstResponder];
     
+    
+    self.uiSwitch.enabled = false;
+    self.pathTextField.enabled = false;
+    self.cancelButton.enabled = false;
+    self.downloadButton.enabled = false;
     self.progressView.hidden = NO;
     self.progressView.progress = 0.0;
+    
     
     
     NSString *currentURL = [NSString stringWithFormat:@"https://codeload.github.com/%@",self.pathTextField.text];
@@ -163,8 +153,12 @@
             NSLog(@"downloadComplete!");
             #endif
             
-            [self dismissViewControllerAnimated:true completion:nil];
             
+            
+            [self dismissViewControllerAnimated:YES completion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:self userInfo:nil];
+                
+            }];
         }];
         
         
@@ -196,7 +190,13 @@
                 NSLog(@"downloadComplete!");
                 #endif
                 
-                [self dismissViewControllerAnimated:true completion:nil];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:self userInfo:nil];
+
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:self userInfo:nil];
+
+                }];
                 
             }];
             
@@ -208,12 +208,22 @@
         else{
             
             //Show error;
-
+            
+            self.uiSwitch.enabled = YES;
+            self.pathTextField.enabled = YES;
+            self.cancelButton.enabled = YES;
+            self.downloadButton.enabled = YES;
+            self.progressView.hidden = YES;
+            self.progressView.progress = 0.0;
+            
+            
             [CSNotificationView showInViewController:self
                                                style:CSNotificationViewStyleError
                                              message:@"You can only download zipped projects right now."];
             
             self.progressView.hidden = YES;
+            
+            
             
         }
         

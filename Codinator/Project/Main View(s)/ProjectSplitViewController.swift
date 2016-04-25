@@ -14,32 +14,45 @@ protocol ProjectSplitViewControllerDelegate {
     func searchBarDisAppeard()
 }
 
-class ProjectSplitViewController: UISplitViewController {
+class ProjectSplitViewController: UISplitViewController{
 
+    var rootVC: ProjectMainViewController!
+    
+    
     var webView: WKWebView?
-    var projectManager : Polaris = Polaris(projectPath: NSUserDefaults.standardUserDefaults().stringForKey("ProjectPath"), currentView: nil, withWebServer: NSUserDefaults.standardUserDefaults().boolForKey("CnWebServer"), uploadServer: NSUserDefaults.standardUserDefaults().boolForKey("CnUploadServer"), andWebDavServer: NSUserDefaults.standardUserDefaults().boolForKey("CnWebDavServer"))
+    var projectManager : Polaris!
+    
+    var redoButton: UIBarButtonItem!
+    var undoButton: UIBarButtonItem!
 
     var splitViewDelegate: ProjectSplitViewControllerDelegate?
 
     
+    var assistantViewController: AssistantViewController?
+    
+    
     var filesTableView: FilesTableViewController? {
         get {
             
-            guard let FilesTableVC = self.viewControllers[0] as? FilesTableViewController else {
-                print("Empty FilesTableVC")
+            guard let filesTableNavCoontroller = self.viewControllers.first as? UINavigationController else {
+                assertionFailure("Empty FilesTable Nav Controller")
                 return nil
             }
             
-            return FilesTableVC
+            guard let filesTableVC = filesTableNavCoontroller.viewControllers.last as? FilesTableViewController else {
+                assertionFailure("Empty FilesTable VC")
+                return nil
+            }
+            
+            return filesTableVC
         }
     }
     
     var editorView: EditorViewController? {
         get {
             
-            guard let editorVC = self.viewControllers[1] as? EditorViewController else {
-                
-                print("Empty EditorVC")
+            guard let editorVC = self.viewControllers.last as? EditorViewController else {
+                assertionFailure("Empty EditorVC")
                 return nil
             }
             
@@ -66,6 +79,11 @@ class ProjectSplitViewController: UISplitViewController {
         self.setOverrideTraitCollection(horizontallyRegularTraitCollection, forChildViewController: self)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+    }
     
     // MARK: - Searchbar
     
@@ -109,5 +127,6 @@ class ProjectSplitViewController: UISplitViewController {
     func webViewDidChange() {
         splitViewDelegate?.webViewSizeDidChange()
     }
+    
     
 }

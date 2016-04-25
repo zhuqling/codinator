@@ -22,36 +22,6 @@ class SettingsViewController: UIViewController,MFMailComposeViewControllerDelega
     @IBOutlet weak var securityContainer: UIView!
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-
-
-        
-        
-    }
-    
-    
-    
-    override func viewDidAppear(animated: Bool) {
-        
-        /*let maskPath = UIBezierPath(roundedRect: purpleView.bounds, byRoundingCorners: [UIRectCorner.BottomLeft, UIRectCorner.BottomRight], cornerRadii: CGSizeMake(15.0, 15.0))
-        
-        let maskLayer = CAShapeLayer()
-        maskLayer.frame = self.view.bounds
-        maskLayer.path = maskPath.CGPath
-        self.purpleView.layer.mask = maskLayer
-
-        
-        let maskPath2 = UIBezierPath(roundedRect: purpleViewPartTwo.bounds, byRoundingCorners: [UIRectCorner.TopLeft,UIRectCorner.TopRight], cornerRadii: CGSizeMake(15.0, 15.0))
-        
-        let maskLayer2 = CAShapeLayer()
-        maskLayer2.frame = self.view.bounds
-        maskLayer2.path = maskPath2.CGPath
-        self.purpleViewPartTwo.layer.mask = maskLayer2*/
-        
-    }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

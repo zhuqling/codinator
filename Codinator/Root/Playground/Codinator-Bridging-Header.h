@@ -22,3 +22,16 @@
 #import "KOKeyboardRow.h"
 
 #import "CSNotificationView.h"
+
+// Help bubbles
+#import "CRProductTour.h"
+#import "CRBubble.h"
+
+#import "HistoryViewController.h"
+
+
+#import "FileTemplates.h"
+
+#import "JTSImageViewController.h"
+
+#import "ProjectTableViewCell.h"

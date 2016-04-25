@@ -6,8 +6,11 @@
 //  Copyright © 2015 Vladimir Danila. All rights reserved.
 //
 
+@import CoreSpotlight;
+
 
 #import "AppDelegate.h"
+#import "WelcomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,10 +22,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // Create FileSystem
-    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"CodinatorB6"]) {
         
+        NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+
         NSString *playgroundsDirPath = [path stringByAppendingPathComponent:@"Playground"];
         NSString *projectsDirPath = [path stringByAppendingPathComponent:@"Projects"];
         
@@ -145,6 +149,20 @@
     }
     
     
+}
+
+
+
+#pragma mark - Spotlight
+
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler {
+    UINavigationController *navController = (UINavigationController *) self.window.rootViewController;
+    WelcomeViewController *welcomeController = navController.viewControllers[0];
+    
+    [welcomeController restoreUserActivityState:userActivity];
+    
+    return true;
 }
 
 

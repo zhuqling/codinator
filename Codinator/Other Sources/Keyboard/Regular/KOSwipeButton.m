@@ -191,7 +191,7 @@
                     
                     [self addSubview:imgView];
                     
-                    [labels[i] setText:@" "];
+                    [labels[i] setText:@"    "];
                     [labels[i] setFrame:self.bounds];
                 }
             }

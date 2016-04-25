@@ -11,10 +11,6 @@ import WebKit
 
 
 class AspectRatioViewController: UIViewController {
-
-    @IBOutlet weak var effectPannel: UIVisualEffectView!
-    @IBOutlet weak var easterEggLabel: UILabel!
-    
     
     var webView: WKWebView!
     var previewPath: String!
@@ -37,7 +33,9 @@ class AspectRatioViewController: UIViewController {
         
         // Display up WebView
         webView = WKWebView(frame: self.view.frame, configuration:configuration)
-        self.view.insertSubview(webView, belowSubview: effectPannel)
+        webView.allowsLinkPreview = true
+        
+        self.view.addSubview(webView)
     
         // Autoresizing for webview
         webView.autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleHeight, .FlexibleWidth]
@@ -46,41 +44,15 @@ class AspectRatioViewController: UIViewController {
         webView.bindFrameToSuperviewBounds()
     
         
+    
         
-        // Round Corners for Effect Pannel
-        let maskPath2 = UIBezierPath(roundedRect: effectPannel.bounds, byRoundingCorners: .TopLeft, cornerRadii: CGSizeMake(10.0, 10.0))
-        
-        let maskLayer2 = CAShapeLayer()
-        maskLayer2.frame = self.view.bounds
-        maskLayer2.path = maskPath2.CGPath
-        self.effectPannel.layer.mask = maskLayer2
-        
-        
-        // Add the icon at bottom for a neat easter egg
-        let dataBase = ["🐍","🐰","🚄","✈️","🚇","🚲","☕️","📚","🐍","🐰","🚄","✈️","🚇","🚲","☕️","⏳","🐝","🚀"]
-        
-        let int = arc4random_uniform(UInt32(dataBase.count))
-        easterEggLabel.text = dataBase[Int(int)]
-        
-        
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        
-        print(previewPath)
-        
-        let url = NSURL(fileURLWithPath: previewPath + "/index.html")
-
+        let url = NSURL(fileURLWithPath: previewPath)
         // Load url
         webView.loadFileURL(url, allowingReadAccessToURL: NSURL(fileURLWithPath:previewPath, isDirectory: true))
-        
-    
-        let fileManager = NSFileManager.defaultManager()
-        
-        let fileExists = fileManager.fileExistsAtPath(url.path!)
-        print("File Exists: \(fileExists) at path: \(previewPath)")
+
         
     }
+
     
     
     // MARK: - Shortcuts

@@ -33,9 +33,16 @@ class Notifications: NSObject {
         alert.addAction(cancelAction)
         viewController.presentViewController(alert, animated: true, completion: nil)
     }
+
+    func alertWithMessage(message: String?, title: String?, viewController: UIViewController, completion: Void -> Void) {
+        let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: { _ in completion()})
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        alert.addAction(cancelAction)
+        viewController.presentViewController(alert, animated: true, completion: nil)
+    }
     
-    
-    func alertWithMessage(message: String, title: String) {
+    func alertWithMessage(message: String?, title: String?) {
         let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         

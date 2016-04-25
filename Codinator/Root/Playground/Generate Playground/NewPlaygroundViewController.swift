@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewPlaygroundViewController: UIViewController{
+class NewPlaygroundViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var fileNameTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
@@ -60,7 +60,7 @@ class NewPlaygroundViewController: UIViewController{
             if success {
                 self.dismissViewControllerAnimated(true, completion: { 
                     NSNotificationCenter.defaultCenter().postNotificationName("createdProj", object: nil, userInfo: nil)
-                    NSNotificationCenter.defaultCenter().postNotificationName("relead", object: nil, userInfo: nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName("reload", object: self, userInfo: nil)
                 })
             }
             else {
@@ -114,6 +114,11 @@ class NewPlaygroundViewController: UIViewController{
         }
     }
     
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
     
 
 }

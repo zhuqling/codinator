@@ -18,7 +18,9 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
     var rootCSS: CGRect = CGRect()
     var rootJS: CGRect = CGRect()
     
-    var document: PlaygroundDocument = PlaygroundDocument(fileURL: NSURL(fileURLWithPath: NSUserDefaults.standardUserDefaults().stringForKey("PlaygroundPath")!, isDirectory: false))
+    var document: PlaygroundDocument!
+    var filePath: String!
+
     
     var neuronTextView: NeuronTextView = NeuronTextView()
     var cssTextView: HTMLTextView = HTMLTextView()
@@ -29,22 +31,28 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
     var cssText: String = ""
     var jsText: String = ""
     
-    @IBOutlet weak var webView: UIWebView!
-    @IBOutlet weak var closeButton: UIButton!
     
-
+    
+    
+    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var textViewSpace: UIView!
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        document = PlaygroundDocument(fileURL: NSURL(fileURLWithPath: filePath, isDirectory: false))
         document.openWithCompletionHandler { (success) -> Void in
             
             if (success){
                 self.neuronText = self.document.embeddedFile(.Neuron)
                 self.cssText = self.document.embeddedFile(.CSS)
                 self.jsText = self.document.embeddedFile(.JS)
+                
+                
+                self.navigationItem.title = (self.document.fileURL.lastPathComponent! as NSString).stringByDeletingPathExtension + " Playground"
+                
             }
             else{
                 //Error
@@ -54,38 +62,30 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         }
         
         
-        self.performSegueWithIdentifier("QSG", sender: self)
-    }
-
-    
-    override func viewDidAppear(animated: Bool) {
- 
-        if (self.view.bounds.size.width <= 1000){
-            
-            let height = self.view.frame.size.height - self.webView.frame.size.height - 37
-            self.rootHTML = CGRectMake(0, 37, self.view.bounds.size.width, height)
-            
-            self.rootCSS = rootHTML
-            self.rootJS = rootHTML
-            
-        }
-        else{
-            
-            rootHTML = CGRectMake(0, 37, self.view.bounds.width/3-3, self.view.bounds.size.height - self.webView.bounds.size.height - 37)
-            rootCSS = CGRectMake(self.view.bounds.width/3, 37, self.view.bounds.width/3-3, self.view.bounds.size.height - self.webView.bounds.size.height - 37)
-            rootJS = CGRectMake(self.view.bounds.width/3 * 2, 37, self.view.bounds.width/3, self.view.bounds.size.height - self.webView.bounds.size.height - 37)
-            
-        }
+        // Set up frames
         
-        
-        self.neuronTextView.frame = rootHTML
-        self.cssTextView.frame = rootCSS
-        self.jsTextView.frame = rootJS
+        self.applyFramesForViewSize(self.textViewSpace.frame.size)
         
         self.neuronTextView.backgroundColor = UIColor.blackColor()
         self.cssTextView.backgroundColor = UIColor.blackColor()
         self.jsTextView.backgroundColor = UIColor.blackColor()
         
+        
+        // Add to subView
+        self.textViewSpace.addSubview(self.neuronTextView)
+        self.textViewSpace.addSubview(self.cssTextView)
+        self.textViewSpace.addSubview(self.jsTextView)
+        
+        
+        
+        
+    }
+
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        applyFramesForViewSize(textViewSpace.frame.size)
         let appearance = UIKeyboardAppearance.Dark
         
         self.neuronTextView.alwaysBounceVertical = true
@@ -100,14 +100,14 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         self.cssTextView.keyboardDismissMode = .Interactive
         self.jsTextView.keyboardDismissMode = .Interactive
         
-        self.neuronTextView.tintColor = UIColor.orangeColor()
-        self.cssTextView.tintColor = UIColor.orangeColor()
-        self.jsTextView.tintColor = UIColor.orangeColor()
+        let textViewTintColor = UIColor.whiteColor()
+        self.neuronTextView.tintColor = textViewTintColor
+        self.cssTextView.tintColor = textViewTintColor
+        self.jsTextView.tintColor = textViewTintColor
         
         
         // Create keyboard
         
-        // let snippet = UIBarButtonItem(title: "Tab", style: UIBarButtonItemStyle.Plain, target: self, action: "insertTab")
         let snippet = UIBarButtonItem(image: UIImage(named: "tab"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PlaygroundViewController.insertTab))
         let snippetOne = UIBarButtonItem(image: UIImage(named: "quoteSign"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PlaygroundViewController.insertStringSnippet))
         let snippetTwo = UIBarButtonItem(image: UIImage(named: "bracketOpenSC"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PlaygroundViewController.insertOpenBracket))
@@ -125,21 +125,13 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         self.neuronTextView.tag = 1
         self.cssTextView.tag = 2
         self.jsTextView.tag = 3
-        
-        self.view.addSubview(self.neuronTextView)
-        self.view.addSubview(self.cssTextView)
-        self.view.addSubview(self.jsTextView)
-        
-        
-        self.closeButton.layer.masksToBounds = true
-        self.closeButton.layer.cornerRadius = 5
+    
         
         
         self.neuronTextView.text = neuronText
         self.cssTextView.text = cssText
         self.jsTextView.text = jsText
         self.setUpPlayground()
-        
         
         
         
@@ -160,7 +152,15 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         self.cssTextView.autoresizingMask = resizingMask
         self.jsTextView.autoresizingMask = resizingMask
         
-
+        
+        let key = "PlaygroundQSGWasDisplayedOnce"
+        let display = NSUserDefaults.standardUserDefaults().boolForKey(key)
+        
+        if display == false {
+            self.performSegueWithIdentifier("QSG", sender: self)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: key)
+        }
+        
     }
     
     
@@ -195,7 +195,7 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         try! Neuron.neuronCode(neuronString, cssString: cssString, jsString: jsString).writeToFile(tmpPath + "/index.html", atomically: true, encoding: NSUTF8StringEncoding)
 
             
-        document.saveToURL(NSURL(fileURLWithPath: NSUserDefaults.standardUserDefaults().stringForKey("PlaygroundPath")!), forSaveOperation: UIDocumentSaveOperation.ForOverwriting) { (success) -> Void in
+        document.saveToURL(document.fileURL, forSaveOperation: .ForOverwriting) { (success) -> Void in
             
         }
         
@@ -222,8 +222,10 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
             self.cssTextView.contentInset = noInsets
             self.jsTextView.contentInset = noInsets
 
-            textView.contentInset = UIEdgeInsetsMake(0, 0, 40, 0)
-
+            let insets =  UIEdgeInsetsMake(0, 0, 45, 0)
+            textView.contentInset = insets
+            textView.scrollIndicatorInsets = insets
+            
             self.changeFileSegment.selectedSegmentIndex = textView.tag - 1
             
             switch (textView.tag) {
@@ -274,21 +276,17 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
     
     
     func textViewDidEndEditing(textView: UITextView) {
-        
-    
-        
-        if (self.view.bounds.size.width >= 1000){
+
+
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
             
+            let noInsets = UIEdgeInsetsMake(0, 0, 0, 0)
+            textView.contentInset = noInsets
+            textView.scrollIndicatorInsets = noInsets
             
-            UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
-                
-                self.neuronTextView.frame = self.rootHTML
-                self.cssTextView.frame = self.rootCSS
-                self.jsTextView.frame = self.rootJS
-                
-                }, completion: nil)
+            self.applyFramesForViewSize(self.textViewSpace.frame.size)
             
-        }
+            }, completion: nil)
         
     }
     
@@ -320,12 +318,10 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
     
     
     
-    @IBAction func segmentDidChanged(sender: AnyObject) {
+    @IBAction func segmentDidChanged(sender: UISegmentedControl) {
         
         
-        let segment: UISegmentedControl = sender as! UISegmentedControl
-        
-        switch (segment.selectedSegmentIndex){
+        switch (sender.selectedSegmentIndex){
             
         case 0:
             self.neuronTextView.hidden = false
@@ -345,6 +341,8 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         default:
             break
         }
+        
+        
         
     }
     
@@ -376,36 +374,16 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
     //MARK: Extra
     
     @IBAction func closeDidPush(sender: AnyObject) {
-        
-        document.saveToURL(NSURL(fileURLWithPath: NSUserDefaults.standardUserDefaults().stringForKey("PlaygroundPath")!), forSaveOperation: UIDocumentSaveOperation.ForOverwriting) { (success) -> Void in
-            
-            if (success){
-                
-                self.document.closeWithCompletionHandler({ (success) -> Void in
-                    if (success){
-                        self.navigationController?.popToRootViewControllerAnimated(true)
-                    }
-                })
-            }
-
-        }
-        
-
-        
-        
-        
+    self.navigationController?.popViewControllerAnimated(true)
     }
     
     
-    @IBAction func actionsDidPush(sender: AnyObject) {
-        
-        let button = sender as! UIButton
+    @IBAction func actionsDidPush(sender: UIBarButtonItem) {
         
         let popup = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         popup.view.tintColor = UIColor.orangeColor()
         
-        popup.popoverPresentationController?.sourceView = button.superview
-        popup.popoverPresentationController?.sourceRect = button.frame
+        popup.popoverPresentationController?.barButtonItem = sender
         
         
         let printAction = UIAlertAction(title: "Print 📠", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
@@ -440,22 +418,10 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         }
         
         
-        let documetationAction = UIAlertAction(title: "Neuron Documentation 📚", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
-            
-            let url: NSURL = NSURL(string: "http://vwas.cf/neuron/docs")!
-            
-            let safariVC: SFSafariViewController = SFSafariViewController(URL: url)
-            safariVC.view.tintColor = UIColor.orangeColor()
-            self.presentViewController(safariVC, animated: true, completion: nil)
-            
-            
-        }
-        
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
         popup.addAction(printAction)
         popup.addAction(convertAction)
-        popup.addAction(documetationAction)
         popup.addAction(cancel)
         
         self.presentViewController(popup, animated: true, completion: nil)
@@ -465,48 +431,77 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
     }
     
     
-    
-    @IBAction func playgroundDidPush(sender: AnyObject) {
+    @IBAction func documentationDidPush(sender: UIBarButtonItem) {
         
-        let alert = UIAlertController(title: "Playground - noun:", message: "A place where people can play and prototype stuff...\n\nVersion 1.0\n(Compatible with Polaris 1.3+)", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.view.tintColor = UIColor.blackColor()
+        let popup = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        popup.view.tintColor = UIColor.orangeColor()
         
-        let closeAlert = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil)
+        popup.popoverPresentationController?.barButtonItem = sender
         
-        alert.addAction(closeAlert)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-        
-    }
-    
-    
-    
-    //MARK: Layout Managing
-
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        
-        if (self.view.bounds.size.width <= 1000){
+        let documetationAction = UIAlertAction(title: "Neuron Documentation 📚", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
             
-            let height = self.view.frame.size.height - self.webView.frame.size.height - 37
-            self.rootHTML = CGRectMake(0, 37, self.view.bounds.size.width, height)
+            let url: NSURL = NSURL(string: "http://vwas.cf/neuron/docs")!
             
-            self.rootCSS = rootHTML
-            self.rootJS = rootHTML
+            let safariVC: SFSafariViewController = SFSafariViewController(URL: url)
+            safariVC.view.tintColor = self.view.tintColor
+            
+            safariVC.modalPresentationStyle = .FormSheet
+            
+            self.presentViewController(safariVC, animated: true, completion: nil)
             
         }
-        else{
-            
-            rootHTML = CGRectMake(0, 37, self.view.bounds.width/3-3, self.view.bounds.size.height - self.webView.bounds.size.height - 37)
-            rootCSS = CGRectMake(self.view.bounds.width/3, 37, self.view.bounds.width/3-3, self.view.bounds.size.height - self.webView.bounds.size.height - 37)
-            rootJS = CGRectMake(self.view.bounds.width/3 * 2, 37, self.view.bounds.width/3, self.view.bounds.size.height - self.webView.bounds.size.height - 37)
-            
-        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        popup.addAction(documetationAction)
+        popup.addAction(cancelAction)
+        
+        self.presentViewController(popup, animated: true, completion: nil)
         
         self.neuronTextView.frame = rootHTML
         self.cssTextView.frame = rootCSS
         self.jsTextView.frame = rootJS
         
+    }
+    
+    // MARK: - Frames
+    
+    func applyFramesForViewSize(size: CGSize) {
+        
+        // Set up frames
+        
+        if (size.width <= 1000){
+            
+            self.rootHTML = CGRectMake(0, 0, self.view.bounds.size.width, size.height)
+            self.rootCSS = rootHTML
+            self.rootJS = rootHTML
+            
+            changeFileSegment.hidden = false
+            
+        }
+        else{
+            
+            rootHTML = CGRectMake(0, 0, self.view.bounds.width/3-3, size.height)
+            rootCSS = CGRectMake(self.view.bounds.width/3, 0, self.view.bounds.width/3-3, size.height)
+            rootJS = CGRectMake(self.view.bounds.width/3 * 2, 0, self.view.bounds.width/3, size.height)
+            
+            changeFileSegment.hidden = true
+        }
+
+        
+        self.neuronTextView.frame = rootHTML
+        self.cssTextView.frame = rootCSS
+                self.jsTextView.frame = rootJS
+
+        
+        
+    }
+    
+    //MARK: Layout Managing
+
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        applyFramesForViewSize(size)
         
     }
     

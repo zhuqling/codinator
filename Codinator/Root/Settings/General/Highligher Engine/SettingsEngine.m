@@ -52,10 +52,11 @@
         //Save colors
 
         
-        UIColor *tagColor = [UIColor redColor];
-        UIColor *bracketsColor = [UIColor orangeColor];
+        
+        UIColor *tagColor = [UIColor colorWithRed:0.451 green:0.424 blue:0.686 alpha:1];
+        UIColor *bracketsColor = [UIColor colorWithRed:0.702 green:0.439 blue:0.278 alpha:1];
         UIColor *keyworkdsColor = [UIColor grayColor];
-        UIColor *stringColor = RGB(3, 128, 30);
+        UIColor *stringColor = [UIColor colorWithRed:0.827 green:0.137 blue:0.18 alpha:1];
         
         
         [userDefaults setColor:tagColor ForKey:@"Color: 3"];

@@ -35,35 +35,29 @@ class PlaygroundFileCreator: NSObject {
         // Neuron file
         let neuronFile =
             "START \n" +
-            "HEAD() \n" +
-            "TITLE(\"" + fileName +  "\")TITLE \n" +
-            "VIEWPORT(content: \"width=device-width\", initialScale: 1)\n" +
-            "DESCRIPTION(\"A simple webpage written in Neuron\")         \n" +
-            "AUTHOR(\"YOUR NAME\")    \n" +
-            "IMPORT(CSS)   \n" +
-            "IMPORT(JS)   \n" +
-            "()HEAD \n" +
-            "BODY() \n" +
-            "\n" +
-            "H1(\"" + "\")H1 \n" +
-            "P(\"Hello World\")P \n" +
-            "\n" +
-            "()BODY \n" +
+            "    HEAD() \n" +
+            "        TITLE(\"" + fileName +  "\")TITLE \n" +
+            "        VIEWPORT(content: \"width=device-width\", initialScale: 1)\n" +
+            "        DESCRIPTION(\"A simple webpage written in Neuron\")         \n" +
+            "        AUTHOR(\"YOUR NAME\")    \n" +
+            "        IMPORT(CSS)   \n" +
+            "        IMPORT(JS)   \n" +
+            "    ()HEAD \n" +
+            "    BODY() \n" +
+            "    \n" +
+            "        H1(\"" + "\")H1 \n" +
+            "        P(\"Hello World\")P \n" +
+            "        \n" +
+            "    ()BODY \n" +
             "END"
         
         
         //CSS file
-        let cssFile =
-            "/* Normalize.css brings consistency to browsers. \n" +
-            "https://github.com/necolas/normalize.css */ \n" +
-            "\n" +
-            "@import url(http://cdn.jsdelivr.net/normalize/2.1.3/normalize.min.css); \n" +
-            "\n" +
-            "/* A fresh start */"
+        let cssFile = FileTemplates.cssTemplateFile()
         
         
         // JS file
-        let jsFile = "//JS file \n"
+        let jsFile = FileTemplates.jsTemplateFile()
         
         
         document.setFile(.Neuron, toFile: neuronFile)

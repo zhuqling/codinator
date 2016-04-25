@@ -21,6 +21,7 @@
 @property (nonatomic, strong) Polaris *projectManager;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 @end
 
@@ -29,19 +30,11 @@
 @synthesize projectsPath;
 
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.closeButton.layer.cornerRadius = 5.0f;
-    self.closeButton.layer.masksToBounds = YES;
-    
-    [self performSelector:@selector(start) withObject:self afterDelay:1.0];
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self start];
 }
-
-   
-
-
-
 
 
 
@@ -57,8 +50,6 @@
 -(void)unZip{
     
     
-    
-    
     //name
     NSString *name = [[[filePathToZipFile lastPathComponent] stringByDeletingPathExtension] stringByAppendingPathExtension:@"cnProj"];
     NSURL *url = [NSURL fileURLWithPath:[projectsPath stringByAppendingPathComponent:name]];
@@ -70,6 +61,12 @@
                completionHandler:^(BOOL success) {
                    if (success){
                        NSLog(@"Created");
+                       
+                       dispatch_async(dispatch_get_main_queue(), ^{
+                           self.statusLabel.text = @"Created Project";
+                       });
+                       
+                       
                    } else {
                        NSLog(@"Not created");
                    }
@@ -85,13 +82,16 @@
             self.projectManager = [[Polaris alloc] initWithCreatingProjectRequiredFilesAtPath:url.path];
             
             
-            [self.projectManager saveValue:name forKey:@"ProjectName"];
+            [self.projectManager saveValue:name.stringByDeletingPathExtension.capitalizedString forKey:@"ProjectName"];
             [self.projectManager saveValue:@"YES" forKey:@"UseVersionControll"];
             [self.projectManager saveValue:@"NO" forKey:@"UseFTP"];
             [self.projectManager saveValue:@"NO" forKey:@"UsePHP"];
             [self.projectManager saveValue:@"1" forKey:@"version"];
             
             
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.statusLabel.text = @"Configured Project";
+            });
             
             
             
@@ -104,6 +104,12 @@
                 NSError *error;
                 
                 
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.statusLabel.text = @"Started Exporting";
+                });
+                
+                
                 if (archive.isPasswordProtected) {
                     
                     NSLog(@"Password protected");
@@ -114,7 +120,12 @@
                         UIAlertAction *closeAlert = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * __nonnull action) {
                             
                             [codinatorDocument closeWithCompletionHandler:^(BOOL success) {
-                                [self dismissViewControllerAnimated:true completion:nil];
+                                
+                                
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [self dismissViewControllerAnimated:true completion:nil];
+                                });
+                                
                             }];
                         
                         }];
@@ -130,7 +141,13 @@
                     
                     NSLog(@"%@", [archive listFilenames:nil]);
                     
+                    
                     BOOL extractedFilesSuccesful = [archive extractFilesTo:[self.projectManager projectUserDirectoryPath] overwrite:YES progress:^(UZKFileInfo *currentFile, CGFloat percentArchiveDecompressed) {
+                        
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.statusLabel.text = [NSString stringWithFormat: @"Extracting: %@", currentFile.filename.lastPathComponent.stringByDeletingPathExtension];
+                        });
                         
                         [progressView setProgress:percentArchiveDecompressed animated:YES];
                         
@@ -208,67 +225,29 @@
     [[NSOperationQueue mainQueue] addOperation:backgroundOperation];
     
     
-    
-    NSString *name = [[[filePathToZipFile lastPathComponent] stringByDeletingPathExtension] stringByAppendingPathExtension:@"cnProj"];
-    NSURL *url = [NSURL fileURLWithPath:[projectsPath stringByAppendingPathComponent:name]];
-
-    CodinatorDocument *codinatorDocument = [[CodinatorDocument alloc] initWithFileURL:url];
-
-    [codinatorDocument closeWithCompletionHandler:^(BOOL success) {
-       
-        if (success) {
-            [self dismissViewControllerAnimated:true completion:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:self userInfo:nil];
-            }];
-        }
-        else{
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"An unknown error occured" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *closeAlert = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * __nonnull action) {
-                [self dismissViewControllerAnimated:true completion:nil];
-                
-            }];
-            [alert addAction:closeAlert];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-    }];
+        
+        [self dismissViewControllerAnimated:true completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:self userInfo:nil];
+            
+        }];
+        
+        
+    });
     
+   
 
 }
 
 
 - (IBAction)closeDidPush:(id)sender {
-
-    NSString *name = [[[filePathToZipFile lastPathComponent] stringByDeletingPathExtension] stringByAppendingPathExtension:@"cnProj"];
-    NSURL *url = [NSURL fileURLWithPath:[projectsPath stringByAppendingPathComponent:name]];
     
-    CodinatorDocument *codinatorDocument = [[CodinatorDocument alloc] initWithFileURL:url];
-
-    
-
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cancel" message:@"Do you want to cancel this action?" preferredStyle:UIAlertControllerStyleAlert];
-    
-    
-        UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * __nonnull action) {
-
-            [codinatorDocument closeWithCompletionHandler:^(BOOL success) {
-                
-                [self dismissViewControllerAnimated:true completion:^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:self userInfo:nil];
-                }];
-            
-            }];
-            
-
-        
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:true completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:self userInfo:nil];
         }];
-    
-            UIAlertAction *closeAlert = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    
-    
-    [alert addAction:cancelAlert];
-    [alert addAction:closeAlert];
-    [self presentViewController:alert animated:YES completion:nil];
+    });
     
 }
 
