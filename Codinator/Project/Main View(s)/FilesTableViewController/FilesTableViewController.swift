@@ -147,6 +147,35 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 hasntOpenIndexFileYet = false
             }
+            else {
+                
+                
+                if self.items.count != 0 {
+                // No index file 
+                
+                    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+                    tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .Top)
+                    tableView(tableView, didSelectRowAtIndexPath: indexPath)
+                    
+                    // Load WebView
+                    guard let webView = getSplitView.webView else {
+                        return
+                    }
+                    
+                    guard let path = (projectManager?.inspectorPath as NSString?)?.stringByAppendingPathComponent(self.items.first!.lastPathComponent!) else {
+                        return
+                    }
+                    
+                    webView.loadFileURL( NSURL(fileURLWithPath: path, isDirectory: false), allowingReadAccessToURL: NSURL(fileURLWithPath: path, isDirectory: true))
+                    
+                    
+                    hasntOpenIndexFileYet = false
+
+                }
+                
+                
+            }
+            
         }
 
         

@@ -60,14 +60,17 @@ BOOL madeChanges;
     
     switch (self.selectedType) {
         case 0:
-            self.overviewLabel.text = @"Default Font";
+            self.navigationItem.title = @"Default Font";
             break;
+            
         case 1:
-            self.overviewLabel.text = @"Italic Font";
+            self.navigationItem.title = @"Italic Font";
             break;
+            
         case 2:
-            self.overviewLabel.text = @"Bold Font";
+            self.navigationItem.title = @"Bold Font";
             break;
+            
         default:
             break;
     }

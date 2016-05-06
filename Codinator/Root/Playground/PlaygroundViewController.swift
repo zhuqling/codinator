@@ -234,12 +234,6 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
             break
         }
         
-
-        document.saveToURL(NSURL(fileURLWithPath: filePath), forSaveOperation: UIDocumentSaveOperation.ForOverwriting) { (success) -> Void in
-            
-        }
-        
-        
         
         let url = NSURL(fileURLWithPath: tmpPath + "/index.html", isDirectory: false)
         let request = NSURLRequest(URL: url)
@@ -248,7 +242,31 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
         
     }
     
+    var length = 0
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        if length >= 8 || text.characters.count > 8 {
+            length = 0
+            print("File will save..")
+            document.saveToURL(NSURL(fileURLWithPath: filePath), forSaveOperation: UIDocumentSaveOperation.ForOverwriting) { (success) -> Void in
+                if success {
+                    print("Playground file was saved")
+                }
+                else {
+                    print("Failed Saving playground file")
+                }
+            }
+        }
+        else {
+            
+            if text != " " {
+                length += text.characters.count
+            }
+        }
 
+        
+        return true
+    }
     
     
     func textViewDidEndEditing(textView: UITextView) {
@@ -353,25 +371,38 @@ class PlaygroundViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func closeDidPush(sender: AnyObject) {
         
-        document.saveToURL(NSURL(fileURLWithPath: filePath), forSaveOperation: UIDocumentSaveOperation.ForOverwriting) { (success) -> Void in
+//        NSOperationQueue.mainQueue().addOperationWithBlock { 
+        
+        self.document.closeWithCompletionHandler { saved in
             
-            if (success){
+            if saved {
                 
-                self.document.closeWithCompletionHandler({ (success) -> Void in
-                    if (success){
-                        self.navigationController?.popToRootViewControllerAnimated(true)
-                    }
-                })
+                self.navigationController?.popToRootViewControllerAnimated(true)
+                
             }
-            else {
-                Notifications.sharedInstance.alertWithMessage("Failed saving playground", title: nil, viewController: self)
-            }
-
+            
+            
+            
         }
+            
+//            self.document.saveToURL(NSURL(fileURLWithPath: self.filePath), forSaveOperation: UIDocumentSaveOperation.ForOverwriting) { (success) -> Void in
+//                
+//                if (success){
+//                    
+//                    self.document.closeWithCompletionHandler({ (success) -> Void in
+//                        if (success){
+//                            self.navigationController?.popToRootViewControllerAnimated(true)
+//                        }
+//                    })
+//                }
+//                else {
+//                    Notifications.sharedInstance.alertWithMessage("Failed saving playground", title: nil, viewController: self)
+//                }
+//                
+//            }
+//
         
-
-        
-        
+//        }
         
     }
     

@@ -21,7 +21,6 @@
     
 }
 
-@property (weak, nonatomic) IBOutlet UIButton *closeButton;
 
 
 
@@ -51,8 +50,11 @@
     [super viewDidLoad];
 
     
-    self.closeButton.layer.cornerRadius = 5;
-    self.closeButton.layer.masksToBounds = YES;
+    UIBarButtonItem *restoreButton = [[UIBarButtonItem alloc] initWithTitle:@"Restore" style:UIBarButtonItemStylePlain target:self action:@selector(restoreDidPush:)];
+    self.navigationItem.rightBarButtonItem = restoreButton;
+    self.navigationItem.title = @"Highlighter engine";
+    
+    [self reload];
 
 }
 
@@ -62,22 +64,6 @@
 - (void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:YES];
-    
-    
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    self.tagsButton.tintColor = [defaults colorForKey:@"Color: 3"];
-    self.bracketsButton.tintColor = [defaults colorForKey:@"Color: 4"];
-    self.attributesButton.tintColor = [defaults colorForKey:@"Color: 5"];
-    self.stringsButton.tintColor = [defaults colorForKey:@"Color: 6"];
-
-    self.customOneButton.tintColor = [defaults colorForKey:@"Color: 7"];
-    self.customTwoButton.tintColor = [defaults colorForKey:@"Color: 8"];
-    self.customThreeButton.tintColor = [defaults colorForKey:@"Color: 9"];
-    self.customFourButton.tintColor = [defaults colorForKey:@"Color: 10"];
-
-    
 }
 
 
@@ -96,9 +82,28 @@
 
 - (IBAction)restoreDidPush:(id)sender {
     [SettingsEngine restoreSyntaxSettings];
+
+    [self performSelector:@selector(reload) withObject:nil afterDelay:1.0];
+
 }
 
 
+
+- (void)reload {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.tagsButton.tintColor = [defaults colorForKey:@"Color: 3"];
+    self.bracketsButton.tintColor = [defaults colorForKey:@"Color: 4"];
+    self.attributesButton.tintColor = [defaults colorForKey:@"Color: 5"];
+    self.stringsButton.tintColor = [defaults colorForKey:@"Color: 6"];
+    
+    self.customOneButton.tintColor = [defaults colorForKey:@"Color: 7"];
+    self.customTwoButton.tintColor = [defaults colorForKey:@"Color: 8"];
+    self.customThreeButton.tintColor = [defaults colorForKey:@"Color: 9"];
+    self.customFourButton.tintColor = [defaults colorForKey:@"Color: 10"];
+    
+}
 
 
 #pragma mark - Font

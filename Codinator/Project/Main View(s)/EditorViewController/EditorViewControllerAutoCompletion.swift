@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension EditorViewController {
+extension EditorViewController: WUTextSuggestionDisplayControllerDataSource {
     
     
     func textSuggestionDisplayController(textSuggestionDisplayController: WUTextSuggestionDisplayController!, suggestionDisplayItemsForSuggestionType suggestionType: WUTextSuggestionType, query suggestionQuery: String!) -> [AnyObject]! {

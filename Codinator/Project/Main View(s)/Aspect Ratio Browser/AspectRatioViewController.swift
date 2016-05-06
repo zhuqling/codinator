@@ -85,6 +85,7 @@ class AspectRatioViewController: UIViewController {
         printInteractionController.showsPageRange = true
         printInteractionController.printFormatter = self.webView.viewPrintFormatter()
         
+        
         [printInteractionController .presentAnimated(true, completionHandler: nil)]
         
     }

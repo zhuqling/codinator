@@ -1109,7 +1109,7 @@
             </objects>
             <point key="canvasLocation" x="1932.5" y="-2025"/>
         </scene>
-        <!--Color Picket-->
+        <!--Color Picker-->
         <scene sceneID="uyb-ne-UyQ">
             <objects>
                 <viewController id="Q7w-c6-12z" customClass="ColorPickerViewController" customModule="Codinator" customModuleProvider="target" sceneMemberID="viewController">
@@ -1118,11 +1118,11 @@
                         <viewControllerLayoutGuide type="bottom" id="PGV-rw-wqX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Cdg-93-TcT">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                        <rect key="frame" x="0.0" y="44" width="400" height="356"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ac-e7-GkK" customClass="HRColorPickerView">
-                                <rect key="frame" x="0.0" y="44" width="400" height="356"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="356"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0k-JR-lOV" customClass="HRBrightnessSlider">
                                         <rect key="frame" x="83" y="65" width="308" height="11"/>
@@ -1204,7 +1204,7 @@
                             <constraint firstAttribute="trailing" secondItem="0ac-e7-GkK" secondAttribute="trailing" id="u8c-I3-CK2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Color Picket" id="y8h-Ei-KmA">
+                    <navigationItem key="navigationItem" title="Color Picker" id="y8h-Ei-KmA">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="fDN-cz-keZ">
                             <connections>
                                 <action selector="doneDidPush" destination="Q7w-c6-12z" id="Qvx-Dn-Uxh"/>
@@ -1227,7 +1227,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nh1-04-UAG" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="lAS-mh-rOD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="lAS-mh-rOD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

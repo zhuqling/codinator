@@ -26,5 +26,5 @@
 
 - (void)indexProjects:(NSArray *)projects;
 - (void)restoreUserActivityState:(NSUserActivity *)activity;
-
+- (void)reloadData;
 @end

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditorViewController: UIViewController, UITextViewDelegate, WUTextSuggestionDisplayControllerDataSource, ProjectSplitViewControllerDelegate, UISearchBarDelegate, SnippetsDelegate {
+class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitViewControllerDelegate, UISearchBarDelegate, SnippetsDelegate {
     
     
     @IBOutlet weak var searchBar: UISearchBar!

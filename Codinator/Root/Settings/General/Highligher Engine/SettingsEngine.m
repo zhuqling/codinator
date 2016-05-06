@@ -8,6 +8,7 @@
 
 #import "SettingsEngine.h"
 #import "NSUserDefaults+Additions.h"
+#import "Codinator-Swift.h"
 
 #define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
 
@@ -53,10 +54,10 @@
 
         
         
-        UIColor *tagColor = [UIColor colorWithRed:0.451 green:0.424 blue:0.686 alpha:1];
-        UIColor *bracketsColor = [UIColor colorWithRed:0.702 green:0.439 blue:0.278 alpha:1];
-        UIColor *keyworkdsColor = [UIColor grayColor];
-        UIColor *stringColor = [UIColor colorWithRed:0.827 green:0.137 blue:0.18 alpha:1];
+        UIColor *tagColor = [SyntaxHighlighterDefaultColors purpleColor];
+        UIColor *bracketsColor = [SyntaxHighlighterDefaultColors darkGoldColor];
+        UIColor *keyworkdsColor = [SyntaxHighlighterDefaultColors silverGray];
+        UIColor *stringColor = [SyntaxHighlighterDefaultColors stringRed];
         
         
         [userDefaults setColor:tagColor ForKey:@"Color: 3"];

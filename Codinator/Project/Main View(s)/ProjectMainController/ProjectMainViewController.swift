@@ -23,6 +23,7 @@ class ProjectMainViewController: UIViewController, UISplitViewControllerDelegate
     @IBOutlet var assistantView: UIView!
     
     // WebView Grabber
+
     
     @IBOutlet var grabberConstraint: NSLayoutConstraint!
     @IBOutlet var bottomView: UIView!
@@ -84,6 +85,8 @@ class ProjectMainViewController: UIViewController, UISplitViewControllerDelegate
     
     var leftTarget: AnyObject?
     var leftAction: Selector?
+    
+    var notConfigured = true
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -94,18 +97,22 @@ class ProjectMainViewController: UIViewController, UISplitViewControllerDelegate
             getSplitView.rootVC = self
         
         
-        if self.isCompact {
-            self.getSplitView?.preferredDisplayMode = .PrimaryOverlay
+        if notConfigured {
+            notConfigured = false
+            
+            if self.isCompact {
+                self.getSplitView?.preferredDisplayMode = .PrimaryOverlay
+            }
+            else {
+                self.getSplitView?.preferredDisplayMode = .AllVisible
+            }
         }
-        else {
-            self.getSplitView?.preferredDisplayMode = .AllVisible
-        }
-
+        
         self.getSplitView?.filesTableView?.viewDidAppear(true)
         
         getSplitView.undoButton = undoButton
         getSplitView.redoButton = redoButton
-
+        
     
     if isCompact {
         

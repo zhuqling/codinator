@@ -23,8 +23,6 @@
     
     // Create FileSystem
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"CodinatorB6"]) {
-        
         NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
 
         NSString *playgroundsDirPath = [path stringByAppendingPathComponent:@"Playground"];
@@ -54,8 +52,7 @@
         
         
         
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CodinatorB6"];
-    }
+    
     
 
     
@@ -132,16 +129,12 @@
 + (NSString *)storagePath {
     
     NSURL *rootDirectory = [[[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil]URLByAppendingPathComponent:@"Documents"];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     
-    if (rootDirectory && ![defaults boolForKey:@"iCloudDocumentsEnabled"]){
+    if (rootDirectory && ![[NSUserDefaults standardUserDefaults] boolForKey:@"CnCloud"]){
         return rootDirectory.path;
     }
     else{
-        [defaults setBool:YES forKey:@"iCloudDocumentsEnabled"];
-        [defaults synchronize];
-        
         NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
         NSURL *homeURL = [NSURL fileURLWithPath:documentDirectory isDirectory:YES];
         

@@ -22,7 +22,7 @@
             </objects>
             <point key="canvasLocation" x="1967" y="-422"/>
         </scene>
-        <!--Archive-->
+        <!--Commit-->
         <scene sceneID="BJ5-jR-Dxj">
             <objects>
                 <viewController id="8x2-bR-OEB" customClass="ArchiveViewController" customModule="Codinator" customModuleProvider="target" sceneMemberID="viewController">
@@ -60,7 +60,7 @@
                             <constraint firstItem="G34-5P-YUV" firstAttribute="leading" secondItem="O0u-d4-sIL" secondAttribute="leadingMargin" id="pdC-i3-iPL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Archive" id="jCC-Kd-kjX">
+                    <navigationItem key="navigationItem" title="Commit" id="jCC-Kd-kjX">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="DLc-Lp-lno">
                             <connections>
                                 <action selector="cancelDidPush:" destination="8x2-bR-OEB" id="xgD-9L-az6"/>
@@ -98,7 +98,7 @@
             </objects>
             <point key="canvasLocation" x="2120" y="1153"/>
         </scene>
-        <!--History-->
+        <!--Commit History-->
         <scene sceneID="pby-gV-Mur">
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="zbL-YC-6Or" customClass="HistoryViewController" sceneMemberID="viewController">
@@ -110,7 +110,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="162" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mrR-NG-qdV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="162" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mrR-NG-qdV">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.090196078430000007" green="0.090196078430000007" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
@@ -119,7 +119,7 @@
                                         <rect key="frame" x="0.0" y="66" width="600" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1yB-TA-gvZ" id="6Jg-8p-jgO">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="76"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" alpha="0.42999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="archive" translatesAutoresizingMaskIntoConstraints="NO" id="5S5-hA-cZK">
@@ -208,7 +208,7 @@
                             <constraint firstItem="mrR-NG-qdV" firstAttribute="leading" secondItem="bsI-rk-Bt7" secondAttribute="leadingMargin" constant="-20" id="qRR-Lf-h11"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="History" id="Ps5-on-137">
+                    <navigationItem key="navigationItem" title="Commit History" id="Ps5-on-137">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="eib-Qa-13F">
                             <connections>
                                 <action selector="cancelDidPush:" destination="zbL-YC-6Or" id="vtM-sm-Hop"/>

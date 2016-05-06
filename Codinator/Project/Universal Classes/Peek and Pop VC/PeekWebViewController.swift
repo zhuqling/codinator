@@ -21,10 +21,12 @@ class PeekWebViewController: AspectRatioViewController {
             
             let renameAction = UIPreviewAction(title: "Rename", style: .Default, handler: { _ in
                 self.delegate?.rename()
+                self.projectsDelegate?.rename()
             })
             
             let deleteAction = UIPreviewAction(title: "Delete", style: .Destructive, handler: { _ in
                 self.delegate?.delete()
+                self.projectsDelegate?.delete()
             })
             
             

@@ -11,5 +11,7 @@
 @interface EngineViewController : UIViewController
 
 @property (nonatomic) NSInteger selectedType;
+@property (weak, nonatomic) IBOutlet UIButton *changeColorButton;
+
 
 @end

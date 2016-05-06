@@ -46,7 +46,7 @@ extension ProjectMainViewController {
         if isCompact {
             
             // View hidden
-            if assistantGrabberConstraint.constant == 0 {
+            if assistantGrabberConstraint.constant <= 50 {
                 assistantGrabberConstraint.constant = 216
                 
                 UIView.animateWithDuration(0.4) {

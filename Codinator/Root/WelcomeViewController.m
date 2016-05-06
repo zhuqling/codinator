@@ -68,7 +68,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
+    UIEdgeInsets insets;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        insets = UIEdgeInsetsMake(10, 0, 0, 0);
+        
+        UIEdgeInsets scrollInsets = insets;
+        scrollInsets.top = 0;
+        
+        self.collectionView.scrollIndicatorInsets = scrollInsets;
+    }
     
+    self.collectionView.contentInset = insets;
+    
+
+    
+
     //link to app delegate
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
@@ -165,7 +180,8 @@
     
     
     [self.collectionView reloadData];
-    [self performSelector:@selector(indexProjects:) withObject:projectsArray afterDelay:1.0];
+    [self indexProjects:projectsArray];
+//    [self performSelector:@selector(indexProjects:) withObject:projectsArray afterDelay:1.0];
 }
 
 
@@ -254,14 +270,16 @@
         
     }
     
+    NSString *macroKey = @"MacroInitBOOL";
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-    NSString *macro = [[NSUserDefaults standardUserDefaults] stringForKey:@"MacroInit"];
-    NSString *expectedMacro = @"MacroInitNewB4";
+    BOOL macro = [userDefaults boolForKey:macroKey];
+
    
-    if (![macro isEqualToString:expectedMacro]) {
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:expectedMacro forKey:expectedMacro];
-
+    if (!macro) {
+        [userDefaults setBool:YES forKey:macroKey];
+        
+        
         [SettingsEngine restoreSyntaxSettings];
         [SettingsEngine restoreServerSettings];
     }
@@ -276,11 +294,11 @@
 
 - (void)indexProjects:(NSArray *)projects{
     
-//    NSOperation *backgroundOperation = [[NSOperation alloc] init];
-//    backgroundOperation.queuePriority = NSOperationQueuePriorityNormal;
-//    backgroundOperation.qualityOfService = NSOperationQualityOfServiceUtility;
-//    
-//    backgroundOperation.completionBlock = ^{
+    NSOperation *backgroundOperation = [[NSOperation alloc] init];
+    backgroundOperation.queuePriority = NSOperationQueuePriorityNormal;
+    backgroundOperation.qualityOfService = NSOperationQualityOfServiceUtility;
+    
+    backgroundOperation.completionBlock = ^{
         [projects enumerateObjectsUsingBlock:^(id  __nonnull obj, NSUInteger idx, BOOL * __nonnull stop) {
             
             
@@ -329,10 +347,10 @@
             
         }];
 
-//    };
+    };
 //    
 //    
-//    [[NSOperationQueue mainQueue] addOperation:backgroundOperation];
+    [[NSOperationQueue mainQueue] addOperation:backgroundOperation];
     
 }
 
@@ -555,11 +573,11 @@
             });
         }
         
-        #ifdef DEBUG
-        if (error) {
-            NSLog(@"%@", error.localizedFailureReason);
-        }
-        #endif
+//        #ifdef DEBUG
+//        if (error) {
+//            NSLog(@"%@", error.localizedFailureReason);
+//        }
+//        #endif
         
     };
     
@@ -755,8 +773,15 @@
                 
                 UIAlertAction *processAction = [UIAlertAction actionWithTitle:@"Rename" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
               
+                    NSString *extension = @"";
+                    if (indexPath.section == 0) {
+                        extension = @"cnProj";
+                    }
+                    else {
+                        extension = @"cnPlay";
+                    }
                     
-                    NSString *newName = [alert.textFields[0].text stringByAppendingPathExtension:@"cnProj"];
+                    NSString *newName = [alert.textFields[0].text stringByAppendingPathExtension:extension];
                     NSString *newPath = [[deletePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:newName];
                     
                     Polaris *polaris = [[Polaris alloc] initWithProjectPath:deletePath currentView:nil WithWebServer:false UploadServer:false andWebDavServer:false];
@@ -777,13 +802,13 @@
                 
             }];
             
-            UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"Move file into a project" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
-            
-                ///move FILE DIALOGE
-                
-            
-            }];
-        
+//            UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"Move file into a project" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
+//            
+//                ///move FILE DIALOGE
+//                
+//            
+//            }];
+//        
         
             NSOperation *backgroundOperation = [[NSOperation alloc] init];
             backgroundOperation.queuePriority = NSOperationQueuePriorityVeryHigh;
@@ -797,9 +822,9 @@
                 [popup addAction:renameAction];
                 [popup addAction:deleteAction];
 
-                if (indexPath.section == 1) {
-                    [popup addAction:moveAction];
-                }
+//                if (indexPath.section == 1) {
+//                    [popup addAction:moveAction];
+//                }
                 
                 
                 
@@ -1093,7 +1118,7 @@
         destViewController.filePath = self.playgroundsPath;
         
     }
-    else if ([segue.identifier isEqualToString:@"project"] || [segue.identifier isEqualToString:@"projectPop"]) {
+    else if ([segue.identifier isEqualToString:@"project"] || [segue.identifier isEqualToString:@"projectPop"]) {
         ProjectMainViewController *destViewController = segue.destinationViewController;
         destViewController.path = self.projectsPath;
     }else if ([segue.identifier isEqualToString:@"settings"]){

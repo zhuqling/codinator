@@ -83,10 +83,53 @@ extension WelcomeViewController: UIViewControllerPreviewingDelegate, PeekShortPr
     // MARK: - Actions
     
     func rename() {
-    
+        let message = "Rename \(((forceTouchPath as NSString).lastPathComponent as NSString).stringByDeletingPathExtension)"
+        
+        let alertController = UIAlertController(title: "Rename", message: message, preferredStyle: .Alert)
+        
+        alertController.addTextFieldWithConfigurationHandler { textField in
+            textField.placeholder = "Projects new name"
+            textField.keyboardAppearance = .Dark
+            textField.tintColor = self.view.tintColor
+        }
+        
+        let processRenaming = UIAlertAction(title: "Rename", style: .Default) { _ in
+            let newName = alertController.textFields![0].text! + ".cnProj"
+            let newPath = (self.forceTouchPath as NSString).stringByDeletingLastPathComponent + newName
+            
+            let polaris = Polaris(projectPath: self.forceTouchPath!, currentView: nil, withWebServer: false, uploadServer: false, andWebDavServer: false)
+            polaris.updateSettingsValueForKey("ProjectName", withValue: (newName as NSString).stringByDeletingPathExtension)
+            
+            do {
+                try NSFileManager.defaultManager().moveItemAtPath(self.forceTouchPath, toPath: newPath)
+                self.reloadData()
+                
+            } catch let error as NSError {
+                Notifications.sharedInstance.alertWithMessage(error.localizedDescription, title: "Something went wrong", viewController: self)
+            }
+            
+            
+        
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        alertController.addAction(processRenaming)
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
     }
     
     func delete() {
+        
+        do {
+            try NSFileManager.defaultManager().removeItemAtPath(self.forceTouchPath)
+            forceTouchPath = ""
+            self.reloadData()
+        } catch let error as NSError{
+            Notifications.sharedInstance.alertWithMessage(error.localizedDescription, title: "Someting went wrong", viewController: self)
+        }
         
     }
     

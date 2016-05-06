@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HighlighterEngineCustomizerRootViewController : UIViewController
+@interface HighlighterEngineCustomizerRootViewController : UITableViewController
 
 @end

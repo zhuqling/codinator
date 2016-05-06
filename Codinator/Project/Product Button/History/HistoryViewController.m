@@ -64,7 +64,7 @@
         return @"Auto Backup";
     }
     else{
-        return @"Snapshots";
+        return @"Commit History";
     }
 
 }
