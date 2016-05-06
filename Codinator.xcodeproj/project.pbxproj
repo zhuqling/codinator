@@ -432,8 +432,6 @@
 		64A0835D1BDD19830001CA0C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		64A0835F1BDD19970001CA0C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		64A083651BDD24680001CA0C /* project.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = project.storyboard; sourceTree = "<group>"; };
-		64A083671BDD35240001CA0C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		64A083681BDD35250001CA0C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		64A0836B1BDD61E70001CA0C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		64B3840B1CC912B000B8B340 /* CreateSubpageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSubpageViewController.swift; sourceTree = "<group>"; };
 		64B67C8D1C7F53440040E574 /* SettingsEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsEngine.h; sourceTree = "<group>"; };
@@ -679,8 +677,6 @@
 			isa = PBXGroup;
 			children = (
 				64A0836B1BDD61E70001CA0C /* CoreImage.framework */,
-				64A083671BDD35240001CA0C /* Fabric.framework */,
-				64A083681BDD35250001CA0C /* Crashlytics.framework */,
 				64A0835F1BDD19970001CA0C /* SystemConfiguration.framework */,
 				64A0835D1BDD19830001CA0C /* Security.framework */,
 				64A0835B1BDD18C40001CA0C /* libxml2.tbd */,
