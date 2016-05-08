@@ -22,6 +22,7 @@
 		6407BEDC1CCD175B00B35C04 /* UIImage+JTSImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6407BED61CCD175B00B35C04 /* UIImage+JTSImageEffects.m */; };
 		6407BEDF1CCD408C00B35C04 /* ProjectMainViewControllerBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6407BEDE1CCD408C00B35C04 /* ProjectMainViewControllerBars.swift */; };
 		6407BEE11CCD899D00B35C04 /* FileMoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6407BEE01CCD899D00B35C04 /* FileMoverViewController.swift */; };
+		640AFA331CDCF7D60063727D /* EditorViewControllerTextViewsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640AFA321CDCF7D50063727D /* EditorViewControllerTextViewsExtension.swift */; };
 		640B48641CCFEDA100A5B2AE /* EngineViewControllerColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640B48631CCFEDA100A5B2AE /* EngineViewControllerColorPicker.swift */; };
 		64380E0B1CC9195800FCF69A /* FileTemplates.m in Sources */ = {isa = PBXBuildFile; fileRef = 64380E0A1CC9195800FCF69A /* FileTemplates.m */; };
 		64380E0D1CC91E9E00FCF69A /* NewFileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64380E0C1CC91E9E00FCF69A /* NewFileDelegate.swift */; };
@@ -144,7 +145,6 @@
 		64A082F01BDCD8BB0001CA0C /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082ED1BDCD8BB0001CA0C /* HistoryViewController.m */; };
 		64A082F11BDCD8BB0001CA0C /* HistoryRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082EF1BDCD8BB0001CA0C /* HistoryRow.m */; };
 		64A082F41BDCD8C80001CA0C /* HistoryWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082F31BDCD8C80001CA0C /* HistoryWebViewController.m */; };
-		64A082F71BDCD8D10001CA0C /* ProjectExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082F61BDCD8D10001CA0C /* ProjectExportViewController.m */; };
 		64A082FC1BDCD8E70001CA0C /* GitHubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A082FB1BDCD8E70001CA0C /* GitHubViewController.m */; };
 		64A083041BDD14170001CA0C /* KOKeyboardRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A083011BDD14170001CA0C /* KOKeyboardRow.m */; };
 		64A083051BDD14170001CA0C /* KOSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A083031BDD14170001CA0C /* KOSwipeButton.m */; };
@@ -198,6 +198,7 @@
 		6407BED61CCD175B00B35C04 /* UIImage+JTSImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JTSImageEffects.m"; sourceTree = "<group>"; };
 		6407BEDE1CCD408C00B35C04 /* ProjectMainViewControllerBars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectMainViewControllerBars.swift; sourceTree = "<group>"; };
 		6407BEE01CCD899D00B35C04 /* FileMoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMoverViewController.swift; sourceTree = "<group>"; };
+		640AFA321CDCF7D50063727D /* EditorViewControllerTextViewsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewControllerTextViewsExtension.swift; sourceTree = "<group>"; };
 		640B48631CCFEDA100A5B2AE /* EngineViewControllerColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngineViewControllerColorPicker.swift; sourceTree = "<group>"; };
 		64380E091CC9195800FCF69A /* FileTemplates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTemplates.h; sourceTree = "<group>"; };
 		64380E0A1CC9195800FCF69A /* FileTemplates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTemplates.m; sourceTree = "<group>"; };
@@ -400,8 +401,6 @@
 		64A082EF1BDCD8BB0001CA0C /* HistoryRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryRow.m; sourceTree = "<group>"; };
 		64A082F21BDCD8C80001CA0C /* HistoryWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryWebViewController.h; sourceTree = "<group>"; };
 		64A082F31BDCD8C80001CA0C /* HistoryWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryWebViewController.m; sourceTree = "<group>"; };
-		64A082F51BDCD8D10001CA0C /* ProjectExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectExportViewController.h; sourceTree = "<group>"; };
-		64A082F61BDCD8D10001CA0C /* ProjectExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectExportViewController.m; sourceTree = "<group>"; };
 		64A082FA1BDCD8E70001CA0C /* GitHubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GitHubViewController.h; sourceTree = "<group>"; };
 		64A082FB1BDCD8E70001CA0C /* GitHubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GitHubViewController.m; sourceTree = "<group>"; };
 		64A083001BDD14170001CA0C /* KOKeyboardRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOKeyboardRow.h; sourceTree = "<group>"; };
@@ -1204,8 +1203,6 @@
 			isa = PBXGroup;
 			children = (
 				64A082F91BDCD8E10001CA0C /* GitHub */,
-				64A082F51BDCD8D10001CA0C /* ProjectExportViewController.h */,
-				64A082F61BDCD8D10001CA0C /* ProjectExportViewController.m */,
 				64EED4DA1CCC3CC400A8BC34 /* ExportViewController.swift */,
 			);
 			path = Export;
@@ -1338,6 +1335,7 @@
 			isa = PBXGroup;
 			children = (
 				3201D0171CA6EFA900204373 /* EditorViewController.swift */,
+				640AFA321CDCF7D50063727D /* EditorViewControllerTextViewsExtension.swift */,
 				64EED4DD1CCCE67700A8BC34 /* EditorViewControllerAutoCompletion.swift */,
 			);
 			path = EditorViewController;
@@ -1522,6 +1520,7 @@
 				64A082A91BDBE7CC0001CA0C /* CSNotificationView.m in Sources */,
 				64A081491BDBE14B0001CA0C /* HighlighterEngineCustomizerRootViewController.m in Sources */,
 				64380E111CC9258200FCF69A /* CreateFileViewController.swift in Sources */,
+				640AFA331CDCF7D60063727D /* EditorViewControllerTextViewsExtension.swift in Sources */,
 				646EC7121CA8D15700F359C2 /* LTEmitterView.swift in Sources */,
 				646EC7161CA8D15700F359C2 /* LTMorphingLabel+Evaporate.swift in Sources */,
 				64A081001BDBDC3E0001CA0C /* zip.c in Sources */,
@@ -1551,7 +1550,6 @@
 				646EC6F31CA8D0BE00F359C2 /* GCDWebServerResponse.m in Sources */,
 				64A0813D1BDBE0B60001CA0C /* SettingsGeneralViewController.swift in Sources */,
 				646EC6EE1CA8D0BE00F359C2 /* GCDWebServerFileRequest.m in Sources */,
-				64A082F71BDCD8D10001CA0C /* ProjectExportViewController.m in Sources */,
 				64A080BC1BDBD9D60001CA0C /* AppDelegate.m in Sources */,
 				64A080FD1BDBDC3E0001CA0C /* ioapi.c in Sources */,
 				646EC6ED1CA8D0BE00F359C2 /* GCDWebServerErrorResponse.m in Sources */,

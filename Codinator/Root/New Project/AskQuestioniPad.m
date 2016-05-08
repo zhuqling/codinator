@@ -236,8 +236,8 @@ BOOL done;
                                           \n\
                                           ?>",copyrightTextField.text, webPageNameTextField.text];
                 
-                NSString *filePath = [[projectManager projectUserDirectoryPath] stringByAppendingPathComponent:fileName];
-                [fileContents writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+                NSURL *fileURL = [[projectManager projectUserDirectoryURL] URLByAppendingPathComponent:fileName];
+                [fileContents writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
                 
                 if (error) {
                     NSLog(@"%@",[error localizedDescription]);
@@ -277,8 +277,8 @@ BOOL done;
                 NSString *fileContents = [FileTemplates htmlTemplateFileForName:webPageNameTextField.text];
                 
                 
-                NSString *filePath = [[projectManager projectUserDirectoryPath] stringByAppendingPathComponent:fileName];
-                [fileContents writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+                NSURL *fileURL = [[projectManager projectUserDirectoryURL] URLByAppendingPathComponent:fileName];
+                [fileContents writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
                 
                 if (error) {
                     NSLog(@"%@",[error localizedDescription]);
@@ -300,8 +300,8 @@ BOOL done;
                 NSString *fileContents = [FileTemplates cssTemplateFile];
                 
                 
-                NSString *filePath = [[projectManager projectUserDirectoryPath] stringByAppendingPathComponent:fileName];
-                [fileContents writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+                NSURL *fileURL = [[projectManager projectUserDirectoryURL] URLByAppendingPathComponent:fileName];
+                [fileContents writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
                 
                 if (error) {
                     NSLog(@"%@",[error localizedDescription]);
@@ -324,8 +324,8 @@ BOOL done;
                 NSString *fileName = @"script.js";
                 NSString *fileContents = [FileTemplates jsTemplateFile ];
                 
-                NSString *filePath = [[projectManager projectUserDirectoryPath] stringByAppendingPathComponent:fileName];
-                [fileContents writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+                NSURL *fileURL = [[projectManager projectUserDirectoryURL] URLByAppendingPathComponent:fileName];
+                [fileContents writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
                 
                 if (error) {
                     NSLog(@"%@",[error localizedDescription]);

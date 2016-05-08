@@ -35,7 +35,7 @@ extension FilesTableViewController {
         if let text = items[indexPath.row].lastPathComponent {
             cell.textLabel?.text = text
             
-            if let path = (projectManager?.inspectorPath as NSString?)?.stringByAppendingPathComponent(text) {
+            if let path = projectManager?.inspectorURL.URLByAppendingPathComponent(text).path {
                 let manager = Thumbnail()
                 cell.imageView?.image = manager.thumbnailForFileAtPath(path)
             }
@@ -51,15 +51,15 @@ extension FilesTableViewController {
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let selectedPath = (inspectorPath as NSString?)?.stringByAppendingPathComponent(items[indexPath.row].lastPathComponent!) {
+        if let selectedURL = inspectorURL?.URLByAppendingPathComponent(items[indexPath.row].lastPathComponent!) {
             var isDirectory : ObjCBool = ObjCBool(false)
             
-            if (NSFileManager.defaultManager().fileExistsAtPath(selectedPath, isDirectory: &isDirectory) && Bool(isDirectory) == true) {
+            if (NSFileManager.defaultManager().fileExistsAtPath(selectedURL.path!, isDirectory: &isDirectory) && Bool(isDirectory) == true) {
                                 
-                projectManager.inspectorPath = selectedPath
+                projectManager.inspectorURL = selectedURL
                 
                 if let controller = storyboard?.instantiateViewControllerWithIdentifier("filesTableView") as? FilesTableViewController {
-                    controller.inspectorPath = selectedPath
+                    controller.inspectorURL = selectedURL
                     
                     
                     count += 1
@@ -70,14 +70,14 @@ extension FilesTableViewController {
                 
             } else {
                 
-                projectManager?.selectedFilePath = selectedPath
+                projectManager?.selectedFileURL = selectedURL
                 
                 
-                switch (selectedPath as NSString).pathExtension {
+                switch selectedURL.pathExtension! {
                     
                 case "png","img","jpg","jpeg", "gif":
                     
-                    projectManager.tmpFilePath = selectedPath
+                    projectManager.tmpFileURL = selectedURL
                     
                     let cell = tableView.cellForRowAtIndexPath(indexPath)!
                     
@@ -98,7 +98,7 @@ extension FilesTableViewController {
                     break
                     
                 case "pdf":
-                    projectManager.tmpFilePath = projectManager.selectedFilePath
+                    projectManager.tmpFileURL = projectManager.selectedFileURL
                     self.performSegueWithIdentifier("run", sender: self)
                     
                     
@@ -108,10 +108,10 @@ extension FilesTableViewController {
                         return
                     }
                     
-                    webView.loadFileURL( NSURL(fileURLWithPath: selectedPath, isDirectory: false), allowingReadAccessToURL: NSURL(fileURLWithPath: projectManager!.selectedFilePath, isDirectory: true))
+                    webView.loadFileURL(selectedURL, allowingReadAccessToURL: projectManager!.selectedFileURL)
                     
                     
-                    if let data = NSFileManager.defaultManager().contentsAtPath(selectedPath) {
+                    if let data = NSFileManager.defaultManager().contentsAtPath(selectedURL.path!) {
                         let contents = NSString(data: data, encoding: NSUTF8StringEncoding)
                         
                         getSplitView.editorView!.text = contents as? String
@@ -136,7 +136,7 @@ extension FilesTableViewController {
         
         let indexPath = tableView.indexPathForRowAtPoint(point)
         if sender.state == .Began && indexPath != nil {
-            projectManager.deletePath = (projectManager.inspectorPath as NSString).stringByAppendingPathComponent(items[indexPath!.row].lastPathComponent!)
+            projectManager.deleteURL = projectManager.inspectorURL.URLByAppendingPathComponent(items[indexPath!.row].lastPathComponent!)
             
             
             let deleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: { _ in
@@ -182,7 +182,7 @@ extension FilesTableViewController {
             
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
             
-            let pathExtension = (self.projectManager.deletePath as NSString).pathExtension
+            let pathExtension = self.projectManager.deleteURL.pathExtension!
             
             
             if pathExtension != "" {
@@ -209,7 +209,7 @@ extension FilesTableViewController {
             }
             else {
 
-                alertController.title = (projectManager.deletePath as NSString).lastPathComponent
+                alertController.title = projectManager.deleteURL.lastPathComponent
                 alertController.message = "What do you want to do with the file?"
                 
                 getSplitView.preferredDisplayMode = .PrimaryHidden

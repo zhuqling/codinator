@@ -142,7 +142,7 @@
                     NSLog(@"%@", [archive listFilenames:nil]);
                     
                     
-                    BOOL extractedFilesSuccesful = [archive extractFilesTo:[self.projectManager projectUserDirectoryPath] overwrite:YES progress:^(UZKFileInfo *currentFile, CGFloat percentArchiveDecompressed) {
+                    BOOL extractedFilesSuccesful = [archive extractFilesTo:[[self.projectManager projectUserDirectoryURL] path] overwrite:YES progress:^(UZKFileInfo *currentFile, CGFloat percentArchiveDecompressed) {
                         
                         
                         dispatch_async(dispatch_get_main_queue(), ^{

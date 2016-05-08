@@ -109,6 +109,9 @@ static const float kCursorVelocity = 1.0f/8.0f;
     self.gutterBackgroundColor = [UIColor colorWithWhite:0 alpha:1];
     self.gutterLineColor       = [UIColor blackColor];
     
+    self.textColor = [UIColor whiteColor];
+    self.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    self.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.backgroundColor = [UIColor blackColor];
     self.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;

@@ -12,17 +12,103 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
     
     
     @IBOutlet weak var searchBar: UISearchBar!
-    let textView: HTMLTextView = HTMLTextView()
+    let htmlTextView = HTMLTextView()
+    let jsTextView = JsTextView()
+    let cssTextView = HTMLTextView()
     
     
     var text: String? {
         get {
-            return textView.text
+            if let polaris = unsafeProjectManager {
+                let fileExtension = polaris.selectedFileURL.pathExtension!
+                switch fileExtension {
+                case "css":
+                    return cssTextView.text
+                case "js":
+                    return jsTextView.text
+                    
+                default:
+                    return htmlTextView.text
+                }
+            }
+            else {
+                return htmlTextView.text
+            }
         }
         
         set {
-            textView.text = newValue
-            textView.undoManager!.removeAllActions()
+            let fileExtension = projectManager.selectedFileURL.pathExtension!
+            
+            switch fileExtension {
+            case "css":
+                cssTextView.text = newValue
+                cssTextView.undoManager!.removeAllActions()
+                jsTextView.hidden = true
+                htmlTextView.hidden = true
+                cssTextView.hidden = false
+                
+                if htmlTextView.isFirstResponder() {
+                    htmlTextView.resignFirstResponder()
+                    cssTextView.becomeFirstResponder()
+                }
+                
+                if jsTextView.isFirstResponder() {
+                    jsTextView.resignFirstResponder()
+                    cssTextView.becomeFirstResponder()
+                }
+                
+                
+            case "js":
+                jsTextView.text = newValue
+                jsTextView.undoManager!.removeAllActions()
+                cssTextView.hidden = true
+                htmlTextView.hidden = true
+                jsTextView.hidden = false
+                
+                if htmlTextView.isFirstResponder() {
+                    htmlTextView.resignFirstResponder()
+                    jsTextView.becomeFirstResponder()
+                }
+                
+                if cssTextView.isFirstResponder() {
+                    cssTextView.resignFirstResponder()
+                    jsTextView.becomeFirstResponder()
+                }
+                
+            default:
+                htmlTextView.text = newValue
+                htmlTextView.undoManager!.removeAllActions()
+                jsTextView.hidden = true
+                cssTextView.hidden = true
+                htmlTextView.hidden = false
+                
+                if jsTextView.isFirstResponder() {
+                    jsTextView.resignFirstResponder()
+                    htmlTextView.becomeFirstResponder()
+                }
+                
+                if cssTextView.isFirstResponder() {
+                    cssTextView.resignFirstResponder()
+                    htmlTextView.becomeFirstResponder()
+                }
+            }
+            
+        }
+    }
+    
+    
+    private var textView: CYRTextView {
+        get {
+            let fileExtension = projectManager.selectedFileURL.pathExtension!
+            switch fileExtension {
+            case "css":
+                return cssTextView
+            case "js":
+                return jsTextView
+                
+            default:
+                return htmlTextView
+            }
         }
     }
     
@@ -34,6 +120,12 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
         
     }
     
+    private var unsafeProjectManager: Polaris? {
+        get {
+            return getSplitView.projectManager
+        }
+    }
+    
     var projectManager: Polaris! {
         get {
             return getSplitView.projectManager
@@ -43,27 +135,15 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // Setting up TextView
-        textView.frame = self.view.frame
-        textView.text = text
-        textView.delegate = self
-        textView.tintColor = UIColor.whiteColor()
-        textView.alwaysBounceVertical = true
-        
-        view.addSubview(textView)
-        textView.bindFrameToSuperviewBounds()
+        setUpTextView(jsTextView)
+        setUpTextView(cssTextView)
+        setUpTextView(htmlTextView)
 
-        
-        // Keyboard
-        textView.inputAssistantItem.trailingBarButtonGroups = []
-        textView.inputAssistantItem.leadingBarButtonGroups = []
-        
         
         // Auto Completion
         let suggestionDisplayController = WUTextSuggestionDisplayController()
         suggestionDisplayController.dataSource = self
-        let suggestionController = WUTextSuggestionController(textView: textView, suggestionDisplayController: suggestionDisplayController)
+        let suggestionController = WUTextSuggestionController(textView: htmlTextView, suggestionDisplayController: suggestionDisplayController)
         suggestionController.suggestionType = .At
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(range), name: "range", object: nil)
 
@@ -84,18 +164,10 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Keyboard Accessory
-        if self.view.traitCollection.horizontalSizeClass == .Compact || self.view.traitCollection.verticalSizeClass == .Compact || UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            
-            textView.inputAccessoryView = VWASAccessoryView(textView: textView)
-    
-        }
-        else{
+        setUpKeyboardForTextView(htmlTextView)
+        setUpKeyboardForTextView(cssTextView)
+        setUpKeyboardForTextView(jsTextView)
         
-            textView.inputAccessoryView = nil;
-            KOKeyboardRow.applyToTextView(textView)
-
-        }
         
         getSplitView.assistantViewController!.delegate = self
         
@@ -128,17 +200,17 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
         operation.qualityOfService = .Background
         operation.completionBlock = {
             
-            let fileURL = NSURL(fileURLWithPath: self.projectManager.selectedFilePath, isDirectory: false)
-            let root = NSURL(fileURLWithPath: (self.projectManager.selectedFilePath as NSString).stringByDeletingLastPathComponent, isDirectory: true)
+            let fileURL = self.projectManager.selectedFileURL
+            let root = self.projectManager.selectedFileURL.URLByDeletingLastPathComponent
             
             dispatch_async(dispatch_get_main_queue(), { 
                 if let splitViewController = self.splitViewController as? ProjectSplitViewController {
-                    splitViewController.webView!.loadFileURL(fileURL, allowingReadAccessToURL: root)
+                    splitViewController.webView!.loadFileURL(fileURL, allowingReadAccessToURL: root!)
                 }
             })
             
             do {
-                try textView.text.writeToFile(self.projectManager.selectedFilePath, atomically: false, encoding: NSUTF8StringEncoding)
+                try textView.text.writeToURL(self.projectManager.selectedFileURL, atomically: false, encoding: NSUTF8StringEncoding)
             } catch {
                 
             }
@@ -162,14 +234,14 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
         view.layoutIfNeeded()
         searchBarTopConstraint.constant = 0
 
-        var insets = textView.contentInset
+        var insets = htmlTextView.contentInset
         insets.top = searchBar.frame.height
         
         UIView.animateWithDuration(0.4, animations: {
             self.view.layoutIfNeeded()
 
-            self.textView.contentInset = insets
-            self.textView.scrollIndicatorInsets = insets
+            self.htmlTextView.contentInset = insets
+            self.htmlTextView.scrollIndicatorInsets = insets
         }, completion : { bool in
           self.searchBar.becomeFirstResponder()
         })
@@ -183,14 +255,14 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
         view.layoutIfNeeded()
         searchBarTopConstraint.constant = -searchBar.frame.height
         
-        var insets = textView.contentInset
+        var insets = htmlTextView.contentInset
         insets.top = 0
         
         UIView.animateWithDuration(0.4, animations: {
             self.view.layoutIfNeeded()
             
-            self.textView.contentInset = insets
-            self.textView.scrollIndicatorInsets = insets
+            self.htmlTextView.contentInset = insets
+            self.htmlTextView.scrollIndicatorInsets = insets
 
             
             }, completion: { bool in
@@ -214,14 +286,14 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
     
     var startedSearchInstance = false
     func searchForText(text: String) {
-            let range = (textView.text as NSString).rangeOfString(text, options: .CaseInsensitiveSearch)
+            let range = (htmlTextView.text as NSString).rangeOfString(text, options: .CaseInsensitiveSearch)
             
             if range.location == NSNotFound {
                 Notifications.sharedInstance.displayErrorMessage("No occupancy found!")
             }
             else {
-                textView.becomeFirstResponder()
-                textView.selectedRange = range
+                htmlTextView.becomeFirstResponder()
+                htmlTextView.selectedRange = range
             }
         
     }
@@ -247,7 +319,7 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
     func keyboardWillHide(notification: NSNotification) {
         keyboardHeight = 0
         
-        var insets = textView.contentInset
+        var insets = htmlTextView.contentInset
         insets.bottom = 0
         
         textView.contentInset = insets
@@ -286,7 +358,7 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
     
         
         // Apply insets
-        var insets = textView.contentInset
+        var insets = htmlTextView.contentInset
         insets.bottom = insetValue
         
         textView.contentInset = insets
@@ -328,7 +400,7 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
-        textView.resignFirstResponder()
+        htmlTextView.resignFirstResponder()
         
     }
     

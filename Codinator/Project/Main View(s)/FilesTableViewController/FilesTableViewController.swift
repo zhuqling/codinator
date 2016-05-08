@@ -42,7 +42,7 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
     var items: [NSURL] = []
     
     
-    var inspectorPath: String?
+    var inspectorURL: NSURL?
     var projectManager: Polaris! {
         
         get {
@@ -71,8 +71,8 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let _ = inspectorPath { } else {
-            inspectorPath = projectManager.inspectorPath
+        if let _ = inspectorURL { } else {
+            inspectorURL = projectManager.inspectorURL
         }
         
         
@@ -114,7 +114,7 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidAppear(animated)
         
         if count > 0 {
-            projectManager.inspectorPath = inspectorPath
+            projectManager.inspectorURL = inspectorURL
         }
         
         
@@ -138,7 +138,7 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
                     return
                 }
                 
-                guard let path = (projectManager?.inspectorPath as NSString?)?.stringByAppendingPathComponent(items.first!.element.lastPathComponent!) else {
+                guard let path = projectManager.inspectorURL.URLByAppendingPathComponent(items.first!.element.lastPathComponent!).path else {
                     return
                 }
                 
@@ -162,7 +162,7 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
                         return
                     }
                     
-                    guard let path = (projectManager?.inspectorPath as NSString?)?.stringByAppendingPathComponent(self.items.first!.lastPathComponent!) else {
+                    guard let path = projectManager.inspectorURL.URLByAppendingPathComponent(self.items.first!.lastPathComponent!).path else {
                         return
                     }
                     
@@ -369,7 +369,7 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
     func reloadData() {
         
         
-        if let items = projectManager!.contentsOfDirectoryAtPath(inspectorPath) {
+        if let items = projectManager!.contentsOfDirectoryAtPath(inspectorURL?.path) {
             self.items = items.map { $0 as! NSURL}
         }
 
@@ -395,7 +395,7 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
                
             case "newFile":
                 let viewController = (segue.destinationViewController as! UINavigationController).viewControllers.first as! CreateFileViewController
-                viewController.path = projectManager.inspectorPath
+                viewController.path = projectManager.inspectorURL.path
                 viewController.items = self.items.map { $0.lastPathComponent! }
                 viewController.delegate = self
  
@@ -414,40 +414,40 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
                
                 viewController.items = self.items.map{ $0.lastPathComponent! }
                 viewController.webUploaderURL = projectManager.webUploaderServerURL()
-                viewController.inspectorPath = projectManager.inspectorPath
+                viewController.inspectorPath = projectManager.inspectorURL.path
                 viewController.delegate = self
             
             case "run":
                 let viewController = (segue.destinationViewController as! UINavigationController).viewControllers.first as! AspectRatioViewController
                 
-                if projectManager.deletePath?.characters.count >= 2 {
-                    viewController.previewPath = projectManager.deletePath
-                    projectManager.deletePath = ""
+                if projectManager.deleteURL?.path!.characters.count >= 2 {
+                    viewController.previewPath = projectManager.deleteURL.path
+                    projectManager.deleteURL = NSURL(string: "")
                 }
                 else {
                 
-                    if let tmpPath = projectManager.tmpFilePath {
-                        if tmpPath.isEmpty {
+                    if let tmpPath = projectManager.tmpFileURL {
+                        if tmpPath.path!.isEmpty {
                             
-                            if (projectManager.inspectorPath as NSString).lastPathComponent != "index.html" {
-                                viewController.previewPath = projectManager.inspectorPath + "/index.html"
+                            if projectManager.inspectorURL.lastPathComponent != "index.html" {
+                                viewController.previewPath = projectManager.inspectorURL.URLByAppendingPathComponent("index.html").path
                             }
                             else {
-                                viewController.previewPath = projectManager.inspectorPath
+                                viewController.previewPath = projectManager.inspectorURL.path
                             }
                             
                         }
                         else {
-                            viewController.previewPath = projectManager.tmpFilePath
-                            projectManager.tmpFilePath = ""
+                            viewController.previewPath = projectManager.tmpFileURL.path
+                            projectManager.tmpFileURL = NSURL(string: "")
                         }
                     }
                     else {
-                        if (projectManager.inspectorPath as NSString).lastPathComponent != "index.html" {
-                            viewController.previewPath = projectManager.inspectorPath + "/index.html"
+                        if projectManager.inspectorURL.lastPathComponent != "index.html" {
+                            viewController.previewPath = projectManager.inspectorURL.URLByAppendingPathComponent("index.html").path
                         }
                         else {
-                            viewController.previewPath = projectManager.inspectorPath
+                            viewController.previewPath = projectManager.inspectorURL.path
                         }
                     
                     }
@@ -469,7 +469,7 @@ class FilesTableViewController: UIViewController, UITableViewDelegate, UITableVi
                
             case "moveFile":
                 let viewController = (segue.destinationViewController as! UINavigationController).viewControllers.first as! FileMoverViewController
-                viewController.fileUrl = NSURL(fileURLWithPath: projectManager.deletePath)
+                viewController.fileUrl = projectManager.deleteURL
                 viewController.delegate = self
                 
             default:

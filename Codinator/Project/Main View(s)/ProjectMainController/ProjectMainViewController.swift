@@ -132,7 +132,7 @@ class ProjectMainViewController: UIViewController, UISplitViewControllerDelegate
     
     @IBAction func back(sender: UIBarButtonItem) {
         
-        if getSplitView?.projectManager.projectUserDirectoryPath() == getSplitView?.projectManager.inspectorPath && self.view.traitCollection.horizontalSizeClass != .Compact {
+        if getSplitView?.projectManager.projectUserDirectoryURL() == getSplitView?.projectManager.inspectorURL && self.view.traitCollection.horizontalSizeClass != .Compact {
             getSplitView?.projectManager.close()
             self.navigationController?.popViewControllerAnimated(true)
         }
@@ -158,7 +158,7 @@ class ProjectMainViewController: UIViewController, UISplitViewControllerDelegate
     @IBAction func shareDidPush(sender: UIBarButtonItem) {
         
         // Create an NSURL for the file you want to send to another app
-        let fileUrl = NSURL(fileURLWithPath: getSplitView!.projectManager.selectedFilePath)
+        let fileUrl = getSplitView!.projectManager.selectedFileURL
         
 
         // Create the interaction controller

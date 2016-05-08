@@ -21,11 +21,11 @@ extension FilesTableViewController: PeekProtocol {
         printController.printInfo = printInfo
         printController.showsPageRange = true
         
-        let pathExtension = (self.projectManager.deletePath as NSString).pathExtension
+        let pathExtension = self.projectManager.deleteURL.pathExtension!
         switch pathExtension {
             
         case "jpg", "jped", "png", "bmp":
-            let image = UIImage(contentsOfFile: self.projectManager.deletePath)
+            let image = UIImage(contentsOfFile: self.projectManager.deleteURL.path!)
             let imageView = UIImageView(image: image)
             printController.printFormatter = imageView.viewPrintFormatter()
             
@@ -33,7 +33,7 @@ extension FilesTableViewController: PeekProtocol {
             
             if pathExtension != "" {
                 let textView = UITextView(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
-                try! textView.text = String(contentsOfFile: self.projectManager.deletePath)
+                try! textView.text = String(contentsOfURL: projectManager.deleteURL)
                 
                 printController.printFormatter = textView.viewPrintFormatter()
             }
@@ -61,12 +61,12 @@ extension FilesTableViewController: PeekProtocol {
     }
     
     func rename() {
-        let message = "Rename \((self.projectManager.deletePath as NSString).lastPathComponent)"
+        let message = "Rename \(self.projectManager.deleteURL.lastPathComponent)"
         
         let alert = UIAlertController(title: "Rename", message: message, preferredStyle: .Alert)
         
         alert.addTextFieldWithConfigurationHandler({ textField in
-            textField.placeholder = (self.projectManager.deletePath as NSString).lastPathComponent
+            textField.placeholder = self.projectManager.deleteURL.lastPathComponent!
             
             textField.keyboardAppearance = .Dark
             textField.autocorrectionType = .No
@@ -77,11 +77,11 @@ extension FilesTableViewController: PeekProtocol {
         let processAction = UIAlertAction(title: "Rename", style: .Default, handler: { _ in
             
             let newName = alert.textFields?.first?.text
-            let newPath = ((self.projectManager.deletePath as NSString).stringByDeletingLastPathComponent as NSString).stringByAppendingPathComponent(newName!)
+            let newURL = self.projectManager.deleteURL.URLByDeletingLastPathComponent!.URLByAppendingPathComponent(newName!)
             
             do {
                 
-                try NSFileManager.defaultManager().moveItemAtPath(self.projectManager.deletePath, toPath: newPath)
+                try NSFileManager.defaultManager().moveItemAtURL(self.projectManager.deleteURL, toURL: newURL)
                 
                 self.reloadData()
                 
@@ -109,7 +109,7 @@ extension FilesTableViewController: PeekProtocol {
     
     func share() {
         // Create an NSURL for the file you want to send to another app
-        let fileUrl = NSURL(fileURLWithPath: self.projectManager.deletePath)
+        let fileUrl = projectManager.deleteURL
         
         
         // Create the interaction controller
@@ -121,17 +121,17 @@ extension FilesTableViewController: PeekProtocol {
     }
     
     func delete() {
-        let fileExists = NSFileManager.defaultManager().fileExistsAtPath(self.projectManager.deletePath)
+        let fileExists = NSFileManager.defaultManager().fileExistsAtPath(self.projectManager.deleteURL.path!)
         
         if fileExists {
             
-            let alert = UIAlertController(title: "Are you sure you want to delete \((self.projectManager.deletePath as NSString).lastPathComponent)?", message: nil, preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Are you sure you want to delete \(self.projectManager.deleteURL.lastPathComponent)?", message: nil, preferredStyle: .Alert)
             
             let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             let delete = UIAlertAction(title: "Delete", style: .Destructive, handler: { _ in
                 
                 do {
-                    try NSFileManager.defaultManager().removeItemAtPath(self.projectManager.deletePath)
+                    try NSFileManager.defaultManager().removeItemAtURL(self.projectManager.deleteURL)
                     
                     self.reloadData()
                     

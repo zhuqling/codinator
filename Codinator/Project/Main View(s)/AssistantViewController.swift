@@ -54,16 +54,16 @@ class AssistantViewController: UIViewController, SnippetsDelegate, UITextFieldDe
     var fileUrl: NSURL?
     func setFilePathTo(projectManager: Polaris) {
         
-        fileUrl = NSURL(fileURLWithPath: projectManager.selectedFilePath, isDirectory: false)
+        fileUrl = projectManager.selectedFileURL
         
-        let name: NSString = (projectManager.selectedFilePath as NSString).lastPathComponent
-        fileNameTextField.text = name.stringByDeletingPathExtension
-        fileExtensionTextField.text = name.pathExtension
+        let name = projectManager.selectedFileURL.lastPathComponent!
+        fileNameTextField.text = (name as NSString).stringByDeletingPathExtension
+        fileExtensionTextField.text = (name as NSString).pathExtension
                 
         pathLabel.text = projectManager.fakePathForFileSelectedFile()
         
         do {
-            let attributes = try NSFileManager.defaultManager().attributesOfItemAtPath(projectManager.selectedFilePath)
+            let attributes = try NSFileManager.defaultManager().attributesOfItemAtPath(projectManager.selectedFileURL.path!)
             
             
             let dateFormatter = NSDateFormatter()

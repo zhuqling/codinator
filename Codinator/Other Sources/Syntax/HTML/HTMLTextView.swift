@@ -84,7 +84,7 @@ class HTMLTextView: CYRTextView {
                 expression: "<!--.*?(--!>|$)",
                 attributes:
                 [
-                    NSForegroundColorAttributeName : UIColor(hexString: "46A544")
+                    NSForegroundColorAttributeName : SyntaxHighlighterDefaultColors.commentGreen
                 ]
             )
             

@@ -53,7 +53,7 @@ extension EditorViewController: WUTextSuggestionDisplayControllerDataSource {
         
         
         // Get string nearby the typing area
-        let stringFromRange = (textView.text as NSString).substringWithRange( NSRange(location: textView.selectedRange.location - 10, length: 10))
+        let stringFromRange = (htmlTextView.text as NSString).substringWithRange( NSRange(location: htmlTextView.selectedRange.location - 10, length: 10))
         
         // Find where the tag starts
         let findTag = stringFromRange.characters.enumerate().filter { $0.element == "<"}.last?.index
@@ -63,7 +63,7 @@ extension EditorViewController: WUTextSuggestionDisplayControllerDataSource {
         
         // Delete the charachters that are after the tag
         for _ in 1...itemsToDeleteTillTag {
-            textView.deleteBackward()
+            htmlTextView.deleteBackward()
         }
         
         
@@ -88,7 +88,7 @@ extension EditorViewController: WUTextSuggestionDisplayControllerDataSource {
             
             let br = "</\(checkString)"
             
-            textView.insertText(checkString + br)
+            htmlTextView.insertText(checkString + br)
             
             // Move cursor back +1 since count starts with 0
             self.moveCursorBy(br.characters.count, diretion: .Back)
@@ -98,7 +98,7 @@ extension EditorViewController: WUTextSuggestionDisplayControllerDataSource {
             
             let br = "/\(checkString)"
             
-            textView.insertText(br)
+            htmlTextView.insertText(br)
             
         }
         
@@ -112,14 +112,14 @@ extension EditorViewController: WUTextSuggestionDisplayControllerDataSource {
     }
     
     func moveCursorBy(number: Int, diretion: MoveCursorDirection) {
-        let range = textView.selectedRange
+        let range = htmlTextView.selectedRange
         
         switch diretion {
         case .Back:
-            textView.selectedRange = NSMakeRange(range.location - number, 0)
+            htmlTextView.selectedRange = NSMakeRange(range.location - number, 0)
             
         case .Forward:
-            textView.selectedRange = NSMakeRange(range.location + number, 0)
+            htmlTextView.selectedRange = NSMakeRange(range.location + number, 0)
         }
         //textView.undoManager?.registerUndoWithTarget(self, selector: <#T##Selector#>, object: nil)
         

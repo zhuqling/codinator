@@ -8,7 +8,6 @@
 
 #import "HistoryViewController.h"
 #import "HistoryWebViewController.h"
-#import "ProjectExportViewController.h"
 
 #import "Codinator-Swift.h"
 
@@ -20,10 +19,10 @@
     [super viewDidLoad];
     
     
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:[projectManager projectVersionsPath]];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:[[projectManager projectVersionURL] path]];
     if (fileExists){
         NSError *error;
-        items = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:[projectManager projectVersionsPath] error:&error] mutableCopy];
+        items = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[projectManager projectVersionURL] path] error:&error] mutableCopy];
         [items removeObject:@"Autobackup"];
         
         
@@ -39,7 +38,7 @@
         
     }
 
-    NSLog(@"THe path is: %@", projectManager.inspectorPath);
+    NSLog(@"The path is: %@", projectManager.inspectorURL);
     
 }
 
@@ -95,9 +94,9 @@
     if (indexPath.section == 0) {
         
             
-        NSString *halfPath = [[projectManager projectVersionsPath] stringByAppendingPathComponent:@"Autobackup"];
-        NSString *path = [halfPath stringByAppendingPathComponent:@"data"];
-        NSString *time = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        NSURL *halfURL = [[projectManager projectVersionURL] URLByAppendingPathComponent:@"Autobackup"];
+        NSURL *path = [halfURL URLByAppendingPathComponent:@"data"];
+        NSString *time = [[NSString alloc] initWithContentsOfURL:path encoding:NSUTF8StringEncoding error:nil];
         
         
         cell.versionLabel.text =  [NSString stringWithFormat:@"Auto Backup taken at %@", time];
@@ -106,11 +105,11 @@
     }
     else{
         NSString *version = items[indexPath.row];
-        NSString *halfPath = [[projectManager projectVersionsPath] stringByAppendingPathComponent:version];
-        NSString *path = [halfPath stringByAppendingPathComponent:@"data"];
+        NSURL *halfURL = [[projectManager projectVersionURL] URLByAppendingPathComponent:version];
+        NSURL *url = [halfURL URLByAppendingPathComponent:@"data"];
     
         cell.versionLabel.text  = [NSString stringWithFormat:@"Version: %li",(long)indexPath.row+1];
-        cell.descriptionTextView.text = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        cell.descriptionTextView.text = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
     }
     
     
@@ -161,9 +160,9 @@
     }
     
     
-    projectManager.archivePath = [[projectManager projectVersionsPath] stringByAppendingPathComponent:versionNumber];
+    projectManager.archiveURL = [[projectManager projectVersionURL] URLByAppendingPathComponent:versionNumber];
 
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:projectManager.archivePath];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:projectManager.archiveURL.path];
     if (fileExists) {
         [self performSegueWithIdentifier:@"export" sender:self];
     }
@@ -190,8 +189,8 @@
     else{
         versionNumber = [NSString stringWithFormat:@"Version%li.0/index.html",(long)indexPath.row+1];
     }
-    projectManager.tmpFilePath = [[projectManager projectVersionsPath] stringByAppendingPathComponent:versionNumber];
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:projectManager.tmpFilePath];
+    projectManager.tmpFileURL = [[projectManager projectVersionURL] URLByAppendingPathComponent:versionNumber];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:projectManager.tmpFileURL.path];
     if (fileExists) {
         [self performSegueWithIdentifier:@"preview" sender:self];
     }
@@ -223,18 +222,18 @@
         versionNumber = [NSString stringWithFormat:@"Version%li.0",(long)indexPath.row+1];
     }
     
-    NSString *dirToCopyPath = [[projectManager projectVersionsPath] stringByAppendingPathComponent:versionNumber];
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:dirToCopyPath];
+    NSURL *dirToCopyURL = [[projectManager projectVersionURL] URLByAppendingPathComponent:versionNumber];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:dirToCopyURL.path];
     if (fileExists) {
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
         [fileManager setDelegate:self];
-        [fileManager removeItemAtPath:projectManager.inspectorPath error:nil];
-        [fileManager copyItemAtPath:dirToCopyPath  toPath:projectManager.inspectorPath error:nil];
+        [fileManager removeItemAtURL:projectManager.inspectorURL error:nil];
+        [fileManager copyItemAtURL:dirToCopyURL  toURL:projectManager.inspectorURL error:nil];
     
     
-        NSString *commentPath = [projectManager.inspectorPath stringByAppendingPathComponent:@"data"];
-        [[NSFileManager defaultManager] removeItemAtPath:commentPath error:nil];
+        NSURL *commentURL = [projectManager.inspectorURL URLByAppendingPathComponent:@"data"];
+        [[NSFileManager defaultManager] removeItemAtURL:commentURL error:nil];
     
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Restored Successfully" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *closeAlert = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * __nonnull action) {
@@ -276,11 +275,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"preview"]) {
         HistoryWebViewController *destViewController = segue.destinationViewController;
-        destViewController.path = projectManager.tmpFilePath;
+        destViewController.path = projectManager.tmpFileURL.path;
     }
     else if ([segue.identifier isEqualToString:@"export"]){
         ExportViewController *destViewController = segue.destinationViewController;
-        destViewController.path = projectManager.projectPath;
+        destViewController.path = projectManager.projectURL.path;
     }
 }
 

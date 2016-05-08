@@ -19,12 +19,12 @@ extension FilesTableViewController: UIViewControllerPreviewingDelegate {
         }
         
 
-        let fileName: NSString = items[indexPath.row].lastPathComponent!
-        let path = (inspectorPath as NSString?)?.stringByAppendingPathComponent(fileName as String)
+        let fileName = items[indexPath.row].lastPathComponent!
+        let path = inspectorURL!.URLByAppendingPathComponent(fileName)
         
-        self.projectManager.deletePath = path
+        self.projectManager.deleteURL = path
         
-        switch fileName.pathExtension {
+        switch path.pathExtension! {
     
         case "png", "jpg", "jpeg", "bmp", "":
             
@@ -39,7 +39,7 @@ extension FilesTableViewController: UIViewControllerPreviewingDelegate {
             self.indexPath = indexPath
             previewVC.delegate = self
             
-            if fileName.pathExtension == "" {
+            if path.pathExtension == "" {
                 let imageViewSize = cell.imageView!.frame.size
                 previewVC.preferredContentSize = CGSizeMake(imageViewSize.width * 3, imageViewSize.height * 3)
                 previewVC.isDir = true
@@ -54,7 +54,7 @@ extension FilesTableViewController: UIViewControllerPreviewingDelegate {
                 return nil
             }
             previewVC.delegate = self
-            previewVC.previewPath = path
+            previewVC.previewPath = path.path
             previewingContext.sourceRect = cell.frame
             
             return previewVC
@@ -66,9 +66,9 @@ extension FilesTableViewController: UIViewControllerPreviewingDelegate {
     // Pop
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
-        let path: NSString = self.projectManager.deletePath
+        let path = self.projectManager.deleteURL
         
-        switch path.pathExtension {
+        switch path.pathExtension! {
         case "png", "jpg", "jpeg", "bmp", "":
             break
             
@@ -79,19 +79,19 @@ extension FilesTableViewController: UIViewControllerPreviewingDelegate {
             }
             
             
-            webView.loadFileURL( NSURL(fileURLWithPath: path as String, isDirectory: false), allowingReadAccessToURL: NSURL(fileURLWithPath: path.stringByDeletingLastPathComponent, isDirectory: true))
+            webView.loadFileURL(path, allowingReadAccessToURL: path.URLByDeletingLastPathComponent!)
             
-            projectManager.selectedFilePath = path as String
-            projectManager.deletePath = nil
+            projectManager.selectedFileURL = path
+            projectManager.deleteURL = nil
             
-            if let data = NSFileManager.defaultManager().contentsAtPath(path as String) {
+            if let data = NSFileManager.defaultManager().contentsAtPath(path.path!) {
                 let contents = NSString(data: data, encoding: NSUTF8StringEncoding)
                 
                 getSplitView.editorView!.text = contents as? String
                 
                 getSplitView.assistantViewController?.setFilePathTo(projectManager)
                 
-                self.selectFileWithName(path.lastPathComponent)
+                self.selectFileWithName(path.lastPathComponent!)
                 
             }
             
