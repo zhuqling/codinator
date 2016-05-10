@@ -23,6 +23,7 @@
 		6407BEDF1CCD408C00B35C04 /* ProjectMainViewControllerBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6407BEDE1CCD408C00B35C04 /* ProjectMainViewControllerBars.swift */; };
 		6407BEE11CCD899D00B35C04 /* FileMoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6407BEE01CCD899D00B35C04 /* FileMoverViewController.swift */; };
 		640AFA331CDCF7D60063727D /* EditorViewControllerTextViewsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640AFA321CDCF7D50063727D /* EditorViewControllerTextViewsExtension.swift */; };
+		640AFA361CDF7BA30063727D /* CSSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640AFA351CDF7BA30063727D /* CSSTextView.swift */; };
 		640B48641CCFEDA100A5B2AE /* EngineViewControllerColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640B48631CCFEDA100A5B2AE /* EngineViewControllerColorPicker.swift */; };
 		64380E0B1CC9195800FCF69A /* FileTemplates.m in Sources */ = {isa = PBXBuildFile; fileRef = 64380E0A1CC9195800FCF69A /* FileTemplates.m */; };
 		64380E0D1CC91E9E00FCF69A /* NewFileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64380E0C1CC91E9E00FCF69A /* NewFileDelegate.swift */; };
@@ -199,6 +200,7 @@
 		6407BEDE1CCD408C00B35C04 /* ProjectMainViewControllerBars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectMainViewControllerBars.swift; sourceTree = "<group>"; };
 		6407BEE01CCD899D00B35C04 /* FileMoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMoverViewController.swift; sourceTree = "<group>"; };
 		640AFA321CDCF7D50063727D /* EditorViewControllerTextViewsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewControllerTextViewsExtension.swift; sourceTree = "<group>"; };
+		640AFA351CDF7BA30063727D /* CSSTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSSTextView.swift; sourceTree = "<group>"; };
 		640B48631CCFEDA100A5B2AE /* EngineViewControllerColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngineViewControllerColorPicker.swift; sourceTree = "<group>"; };
 		64380E091CC9195800FCF69A /* FileTemplates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTemplates.h; sourceTree = "<group>"; };
 		64380E0A1CC9195800FCF69A /* FileTemplates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTemplates.m; sourceTree = "<group>"; };
@@ -466,6 +468,14 @@
 				6407BEDE1CCD408C00B35C04 /* ProjectMainViewControllerBars.swift */,
 			);
 			path = ProjectMainController;
+			sourceTree = "<group>";
+		};
+		640AFA341CDF721F0063727D /* CSS */ = {
+			isa = PBXGroup;
+			children = (
+				640AFA351CDF7BA30063727D /* CSSTextView.swift */,
+			);
+			path = CSS;
 			sourceTree = "<group>";
 		};
 		64380E081CC9193400FCF69A /* FileTemplates */ = {
@@ -1267,6 +1277,7 @@
 		64A0830D1BDD14DC0001CA0C /* Syntax */ = {
 			isa = PBXGroup;
 			children = (
+				640AFA341CDF721F0063727D /* CSS */,
 				646EC63C1CA8CDA100F359C2 /* Neuron */,
 				64A083121BDD153B0001CA0C /* HTML */,
 				64A0830E1BDD14EF0001CA0C /* JS */,
@@ -1557,6 +1568,7 @@
 				64A082CE1BDBE89A0001CA0C /* AFSecurityPolicy.m in Sources */,
 				646EC7101CA8D15700F359C2 /* LTCharacterLimbo.swift in Sources */,
 				645FA87B1CCDFB170098A0BD /* PeekWebViewController.swift in Sources */,
+				640AFA361CDF7BA30063727D /* CSSTextView.swift in Sources */,
 				645FA87D1CCE06140098A0BD /* WelcomeViewPreviewingDelegate.swift in Sources */,
 				646EC6F21CA8D0BE00F359C2 /* GCDWebServerRequest.m in Sources */,
 				6444D1B21CA7205E002BAD23 /* NewPlaygroundViewController.swift in Sources */,

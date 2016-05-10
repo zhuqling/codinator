@@ -14,7 +14,7 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
     @IBOutlet weak var searchBar: UISearchBar!
     let htmlTextView = HTMLTextView()
     let jsTextView = JsTextView()
-    let cssTextView = HTMLTextView()
+    let cssTextView = CSSTextView()
     
     
     var text: String? {
@@ -153,7 +153,6 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
         
         // Subscribe to Delegates
         getSplitView.splitViewDelegate = self
-//        searchBar.delegate = self
         
         // Set up notification view
         Notifications.sharedInstance.viewController = self
@@ -218,7 +217,64 @@ class EditorViewController: UIViewController, UITextViewDelegate, ProjectSplitVi
         }
         
         NSOperationQueue.mainQueue().addOperation(operation)
+        
+    }
     
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        if text == "\n" {
+        
+            // Get the line
+            let line = (textView.text as NSString).substringToIndex(range.location)
+                .componentsSeparatedByString("\n")
+                .last!
+
+            
+            // Get indent
+            var indentingString: String {
+                let characters = line.characters
+                var indentations = ""
+                
+                for character in characters {
+                    if character == " " {
+                        indentations += String(character)
+                    }
+                    else {
+                        break
+                    }
+                }
+                return indentations
+            }
+            
+            // line break + indent
+            textView.insertText("\n" + indentingString)
+            return false
+        }
+        else if range.length == 1 {
+            
+            // Get the line
+            let line = (textView.text as NSString).substringToIndex(range.location + 1)
+                .componentsSeparatedByString("\n")
+                .last!
+
+            
+            let containsOtherCharacters = line.characters.filter { $0 != " " }
+            
+            // if there's a indentation delete 4 characters at once
+            if containsOtherCharacters.count == 0 && line.characters.count != 0{
+                textView.deleteBackward()
+                textView.deleteBackward()
+                textView.deleteBackward()
+                textView.deleteBackward()
+                return false
+            }
+            else {
+                return true
+            }
+        }
+        else {
+            return true
+        }
     }
     
     

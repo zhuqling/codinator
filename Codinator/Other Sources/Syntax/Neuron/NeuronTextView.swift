@@ -52,9 +52,10 @@ class NeuronTextView: CYRTextView {
         
         let tokens = [
             
+
             
             CYRToken(name: "reserved_words",
-                expression: "(algin|width|height|color|text|border|bgcolor|description|name|content|href|src|initialScale|charset|class|role|id|<!DOCTYPE html>|border)",
+                expression: "\\b(algin|width|height|color|text|border|bgcolor|description|name|content|href|src|initialScale|charset|class|role|id|<!DOCTYPE html>|border)\\b",
                 attributes:
                 [
                     NSForegroundColorAttributeName : NSUserDefaults.standardUserDefaults().colorForKey("Color: 5"),
@@ -62,15 +63,24 @@ class NeuronTextView: CYRTextView {
                 ]
             ),
             
-            CYRToken(name: "square_brackets",
-                expression: "(HTML|START|END|KEYWORDS|ROBOTS|DESCRIPTION|AUTHOR|TITLE|VIEWPORT|VIEWPORT|HEAD|BODY|H1|LINK|META|H2|H3|H4|H5|H6|P|BR|TABLE|TR|TD|CODE|UL|IMPORT|B|I|LI)",
+            CYRToken(name: "Tags_neuron_Short",
+                expression: "\\b(P|B|I|)\\b",
                 attributes:
                 [
                     NSForegroundColorAttributeName : NSUserDefaults.standardUserDefaults().colorForKey("Color: 3"),
                     NSFontAttributeName : self.defaultFont
                 ]
             ),
-        
+            
+            
+            CYRToken(name: "Tags_neuron_Long",
+                expression: "\\b[A-Z][A-Z0-9]+\\b",
+                attributes:
+                [
+                    NSForegroundColorAttributeName : NSUserDefaults.standardUserDefaults().colorForKey("Color: 3"),
+                    NSFontAttributeName : self.defaultFont
+                ]
+            ),
             
             CYRToken(name: "Tag",
                 expression: HighlighterExtention.macroForKey(.Tag),

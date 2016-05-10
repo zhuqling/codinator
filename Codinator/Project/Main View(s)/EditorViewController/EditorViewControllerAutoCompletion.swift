@@ -95,9 +95,7 @@ extension EditorViewController: WUTextSuggestionDisplayControllerDataSource {
             
             
         default:
-            
-            let br = "/\(checkString)"
-            
+            let br = checkString
             htmlTextView.insertText(br)
             
         }
@@ -121,8 +119,6 @@ extension EditorViewController: WUTextSuggestionDisplayControllerDataSource {
         case .Forward:
             htmlTextView.selectedRange = NSMakeRange(range.location + number, 0)
         }
-        //textView.undoManager?.registerUndoWithTarget(self, selector: <#T##Selector#>, object: nil)
-        
     }
     
     

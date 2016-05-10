@@ -190,7 +190,7 @@
     if (!expression)
     {
         expression = [NSRegularExpression regularExpressionWithPattern:attribute.expression
-                                                               options:NSRegularExpressionCaseInsensitive error:nil];
+                                                               options:0 error:nil];
         
         (self.regularExpressionCache)[definition] = expression;
     }

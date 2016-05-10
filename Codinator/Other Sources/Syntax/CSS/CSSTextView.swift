@@ -1,15 +1,15 @@
 //
-//  NeuronTextView.swift
+//  CSSTextView.swift
 //  Codinator
 //
-//  Created by Vladimir Danila on 28/03/16.
+//  Created by Vladimir Danila on 08/05/16.
 //  Copyright © 2016 Vladimir Danila. All rights reserved.
 //
 
 import UIKit
 
-class JsTextView: CYRTextView {
-
+class CSSTextView: CYRTextView {
+    
     var defaultFont: UIFont = NSUserDefaults.standardUserDefaults().fontForKey("Font: 0") {
         didSet {
             tokens = highlightingTokens()
@@ -50,46 +50,44 @@ class JsTextView: CYRTextView {
     
     func highlightingTokens() -> [CYRToken!] {
         
-        let regexAttributes = [
-            NSForegroundColorAttributeName : SyntaxHighlighterDefaultColors.darkGoldColor
-        ]
         
         let commentAttributes = [
-                NSForegroundColorAttributeName : SyntaxHighlighterDefaultColors.commentGreen,
+            NSForegroundColorAttributeName : SyntaxHighlighterDefaultColors.commentGreen,
         ]
-    
+        
         
         
         let tokens = [
-
-            CYRToken(name: "reserved_words",
-                expression: "\\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\\b",
+        
+            CYRToken(name: "property",
+                expression: "(\\b|\\B)[\\w-]+(?=\\s*:)",
+                attributes: HighlighterExtention.attributesForKey(.ReservedWords)
+            ),
+            
+            CYRToken(name: "selectors",
+                expression: "[^\\{\\}\\s][^\\{\\};]*?(?=\\s*\\{)",
                 attributes: HighlighterExtention.attributesForKey(.Tag)
             ),
-
+            
+            CYRToken(name: "functions",
+                expression: "[-a-z0-9]+(?=\\()",
+                attributes: [
+                    NSForegroundColorAttributeName : SyntaxHighlighterDefaultColors.darkGoldColor
+            ]),
+            
             
             CYRToken(name: "string",
-                expression: "\".*?(\"|$)|'.*?('|$)",
+                expression: "(\"|')(\\\\(?:\\r\\n|[\\w\\W])|(?!\\1)[^\\\\\\r\\n])*\\1",
                 attributes: HighlighterExtention.attributesForKey(.String)
             ),
             
             
-            
-            CYRToken(name: "regular_expression",
-                expression: "/.*?(/|$)",
-                attributes: regexAttributes
+            CYRToken(name: "urls",
+                expression: "url\\((?:([\"'])(\\\\(?:\\r\\n|[\\w\\W])|(?!\\1)[^\\\\\\r\\n])*\\1|.*?)\\)",
+                attributes: [
+                    NSForegroundColorAttributeName : SyntaxHighlighterDefaultColors.darkGoldColor
+                ]
             ),
-            
-            CYRToken(name: "regular_expression_with_I",
-                expression: "/.*?(/i|$)",
-                attributes: regexAttributes
-            ),
-            
-            CYRToken(name: "regular_expression_with_G",
-                expression: "/.*?(/g|$)",
-                attributes: regexAttributes
-            ),
-            
             
             
             CYRToken(name: "documentation_comment",
